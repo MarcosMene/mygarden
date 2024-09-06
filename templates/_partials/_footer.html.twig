@@ -1,0 +1,102 @@
+<footer class="bg-green dark:bg-gray-900 px-16">
+	<div class="mx-auto w-full py-6 lg:py-8">
+		<div
+			class="flex flex-col xl:flex-row justify-center xl:justify-between xl:items-start ">
+			<!--LINKS-->
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 md:grid-cols-3">
+				<!--ADDRESS-->
+				<div class=" footer_address">
+					<h5 class="mb-2 text-black capitalize  font-mulish font-medium text-base">Contact Information</h5>
+					<div class="flex">
+						<span class="text-gray text-sm">
+							<i class="fa-solid fa-location-dot"></i>
+						</span>
+						<span class="ml-2 text-gray text-sm">123 Main St, AnyTown, USA 12345</span>
+					</div>
+					<div>
+						<i class="fa-solid fa-phone text-gray"></i>
+						<span class="ml-2 text-gray text-sm">555-55-55</span>
+					</div>
+					<div>
+						<i class="fa-solid fa-envelope text-gray"></i>
+						<span class="ml-2 text-gray text-sm">mygarden@teste.com</span>
+					</div>
+				</div>
+
+				<!--COMPANY-->
+				<div class="footer_our_company">
+					<h5 class="mb-2 text-black capitalize  font-mulish font-medium text-base">Our Company</h5>
+					<ul>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">Contact Us</a>
+						</li>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">Shipping</a>
+						</li>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">FAQs</a>
+						</li>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">Store</a>
+						</li>
+
+					</ul>
+				</div>
+
+				<!--INFORMATION-->
+				<div class="footer_information">
+					<h5 class="mb-2 text-black capitalize  font-mulish font-medium text-base">Information</h5>
+					<ul>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">Terms and Conditions</a>
+						</li>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">About Us</a>
+						</li>
+						<li class="">
+							<a href="" class=" text-gray text-sm  font-normal">Privacy Policy</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--NEWSLETTER-->
+			<div class="mb-2 md:mb-0 mt-4 xl:mt-0  flex flex-col mx-auto lg:ms-auto">
+				<div class="footer_text">
+					<p>Subscribe to our latest newsletter to get news about special discounts!
+					</p>
+				</div>
+				<!--FORM-->
+				<div class="footer_form">
+					<form class=" mx-auto w-full">
+
+						<div class="relative w-full">
+							<input type="search" id="location-search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50  border-s-gray-50 border-s-2 border border-gray-300 focus:ring-primary focus:border-primary" placeholder="Your email" required/>
+							<button type="submit" class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+								Subscribe
+								<span class="sr-only">Subscribe button</span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer_credit_cards flex gap-5 justify-center items-center">
+		<img src="{{asset('assets/images/visa.jpg')}}" alt="logo credit card visa" loading="lazy" class="w-10">
+		<img src="{{asset('assets/images/master_card.jpg')}}" alt="logo credit card visa" loading="lazy" class="w-10">
+	</div>
+
+</div>
+<hr
+class="my-4 border-gray mx-auto w-1/2  lg:my-4"/>
+
+<!--COPYRIGHT-->
+<div class="flex items-center justify-center pb-3">
+	<span class="text-xs">{{ '©'|raw }}
+		{{ 'now' | date('Y') }}
+		Designer by Marcos Meneghetti. All Rights Reserved.</span>
+
+</div></div></footer>
