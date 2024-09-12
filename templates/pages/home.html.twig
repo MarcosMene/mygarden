@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/homepage/_carousel.html.twig" %}
+
+	<!--OUR PRODUCTS-->
+	{% include "_partials/homepage/_our_products.html.twig" %}
+
+	<!--OUR SERVICES-->
+	{% include "_partials/homepage/_our_service.html.twig" %}
+
+	<!--CLIENTS REVIEW-->
+	{% include "_partials/homepage/_clients_reviews.html.twig" %}
+
+	<!--MY GARDEN BLOG-->
+	{% include "_partials/homepage/_garden_blog.html.twig" %}
+
+	<!--MY GALLERY-->
+	{% include "_partials/homepage/_gallery.html.twig" %}
+
+	<!--MY CONTACT US-->
+	{% include "_partials/homepage/_conversation.html.twig" %}
+
+	<!--MY OPENING HOURS-->
+	{% include "_partials/homepage/_opening.html.twig" %}
+
+
+{% endblock %}

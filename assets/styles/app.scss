@@ -1,3 +1,126 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+$primary: #c34795;
+$secondary: #f1c40f;
+$gray: #989898;
+$black: #161616;
+$white: #fcfcfc;
+$red: #e51515;
+$bg1: #fef5ea;
+$bg2: rgba(182, 222, 160, 0.14);
+$bg3: #fef9f9;
+
+body {
+  font-family: 'Roboto', system-ui;
+  max-width: 1900px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', system-ui;
+}
+
+.group.is-published .group-\[\.is-published\]\:block {
+  display: block;
+}
+
+// CARD
+.card_our_product_button:hover {
+  background-color: $primary;
+
+  & .card_our_product_icon {
+    color: $white;
+  }
+}
+
+// CARD PROMO LABEL
+.card_label {
+  clip-path: polygon(26% 0, 100% 0, 100% 100%, 26% 100%, 0 56%);
+  z-index: 200;
+}
+
+//FILTER CARDS
+.filterDiv {
+  display: none; /* Hidden by default */
+}
+
+.btn-filter.active {
+  background-color: $primary;
+  color: $white;
+}
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+//OUR SERVICE
+.our_services_right {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 10;
+    left: 10;
+    right: 0;
+    width: 360px;
+    height: 340px;
+    margin-right: 5px;
+    border: 1px solid $primary;
+    z-index: 0;
+  }
+}
+
+//OPENING
+.opening_image {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 20;
+    bottom: 0;
+    left: 0;
+    right: 40;
+    width: 340px;
+    height: 340px;
+    margin-right: 5px;
+    border: 1px solid $primary;
+    z-index: 0;
+    // @media screen and (max-width: 1400px) {
+    //   right: -40px;
+    //   width: 330px;
+    //   height: 280px;
+    // }
+    // @media screen and (max-width: 1200px) {
+    //   right: 220px;
+    //   width: 330px;
+    //   height: 280px;
+    // }
+    // @media screen and (max-width: 992px) {
+    //   right: 140px;
+    //   width: 270px;
+    //   height: 230px;
+    // }
+    // @media screen and (max-width: 768px) {
+    //   right: 110px;
+    //   width: 270px;
+    //   height: 230px;
+    // }
+    // @media screen and (max-width: 576px) {
+    //   right: -10px;
+    //   width: 270px;
+    //   height: 230px;
+    // }
+  }
+}

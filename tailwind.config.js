@@ -7,9 +7,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      inter: ['Inter Tight', 'ui-sans-serif'],
+      inter: ['Inter', 'ui-sans-serif'],
       roboto: ['Roboto', 'ui-sans-serif'],
-      mulish: ['Mulish', 'ui-sans-serif'],
+      // mulish: ['Mulish', 'ui-sans-serif'],
     },
     extend: {
       colors: {
@@ -17,9 +17,11 @@ module.exports = {
         secondary: '#f1c40f',
         gray: '#989898',
         black: '#161616',
-        green: 'hsla(99, 48%, 75%, 0.14)',
         white: '#fcfcfc',
         red: '#e51515',
+        bg1: '#fef5ea',
+        bg2: 'rgba(182, 222, 160, 0.14)',
+        bg3: '#fef9f9',
       },
       keyframes: {
         slideIn: {
@@ -44,5 +46,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tw-elements/plugin')],
+  plugins: [require('tw-elements/plugin', 'tailwindcss-scoped-groups')],
 }
