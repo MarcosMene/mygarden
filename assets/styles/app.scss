@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+//GENERAL
+
 $primary: #c34795;
 $secondary: #f1c40f;
 $gray: #989898;
@@ -9,22 +11,23 @@ $black: #161616;
 $white: #fcfcfc;
 $red: #e51515;
 $bg1: #fef5ea;
-$bg2: rgba(182, 222, 160, 0.14);
-$bg3: #fef9f9;
+$bg2: #f0f8ec;
+$bg3: #cf34340a;
 
 body {
   font-family: 'Roboto', system-ui;
-  max-width: 1900px;
+  max-width: 2300px;
   margin: auto;
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h2 {
   font-family: 'Inter', system-ui;
+}
+
+//h1 space text
+.line_height12 {
+  line-height: 1.2 !important;
 }
 
 .group.is-published .group-\[\.is-published\]\:block {
@@ -61,7 +64,7 @@ h6 {
 }
 
 //OUR SERVICE
-.our_services_right {
+.img_border_up {
   position: relative;
 
   &::before {
@@ -81,7 +84,7 @@ h6 {
 }
 
 //OPENING
-.opening_image {
+.img_border_down {
   position: relative;
 
   &::before {
@@ -100,6 +103,49 @@ h6 {
   }
 }
 
-.line_height12 {
-  line-height: 1.2 !important;
+//OUR STORY
+
+.img_bg_down_left {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10;
+    bottom: 0;
+    left: 0;
+    right: 10;
+    width: 317px;
+    height: 317px;
+    margin-right: 5px;
+    background-color: $bg2;
+    z-index: 0;
+  }
+}
+
+.img_bg_down_right {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10;
+    bottom: 0;
+    left: 10;
+    right: 0;
+    width: 317px;
+    height: 317px;
+    margin-right: 5px;
+    background-color: $bg3;
+    z-index: 0;
+  }
+}
+
+//TRUST US CAROUSEL
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
 }

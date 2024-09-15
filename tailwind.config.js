@@ -20,8 +20,8 @@ module.exports = {
         white: '#fcfcfc',
         red: '#e51515',
         bg1: '#fef5ea',
-        bg2: 'rgba(182, 222, 160, 0.14)',
-        bg3: '#fef9f9',
+        bg2: '#f0f8ec',
+        bg3: '#cf34340a',
       },
       keyframes: {
         slideIn: {
@@ -32,10 +32,15 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
         },
+        'loop-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-99.9%)' },
+        },
       },
       animation: {
         'slide-in': 'slideIn 0.3s ease-out forwards',
         'slide-out': 'slideOut 0.3s ease-out forwards',
+        'loop-scroll': 'loop-scroll 25s linear infinite',
       },
       screens: {
         sm: '576px',
