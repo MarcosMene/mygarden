@@ -1,0 +1,311 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - Blog
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/blog/_banner.html.twig')%}
+
+
+	<section class="blog w-full pt-20 pb-10">
+		<div
+			class="md:container mx-auto ">
+			<!--TITLE PAGE-->
+			<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal mb-4">My Garden Blog</h2>
+			<!--image-->
+			<img
+			src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+
+			<!--OUR BLOG-->
+			<div
+				class="blog_block flex flex-col md:flex-row px-8 md:px-16 items-start mt-10">
+
+
+				<!--LEFT-->
+				<div
+					class="  md:w-2/3">
+
+					<!--CARDS-->
+					<div
+						class="cards flex flex-wrap justify-between w-full">
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog7.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Keep your roses beautiful..</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog6.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Which buquet for a wedding.</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog5.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Bonsai. How to take care!</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog4.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Cactus? How to buy.</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog1.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Your garden is your soul.</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+						<!--CARD-->
+						<div
+							class="flex flex-col w-full xl:w-[48%] relative mb-16">
+							<!--TITLE-->
+							<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+								<h2 class="text-xs font-semibold text-primary text-gray-900">August, 9, 2024</h>
+							</div>
+							<img
+							src="{{asset('assets/upload/blog/blog2.jpg')}}" loading="lazy" alt=""/>
+
+							<!--body-->
+							<h3 class="text-black font-normal capitalize text-xl mt-2">Which plant for your balcony.</h3>
+							<div class="card-body flex justify-between items-end">
+								<div class="card-body-left">
+									<div class="card-body-info flex justify-between gap-4 mt-2">
+										<div class="card-body-author">
+											<span class="text-gray">By</span>
+											<span class="text-black">Asley</span>
+										</div>
+										<div class=" card-body-date">
+											<span class="text-gray">Date</span>
+											<span class="text-black">(August, 9, 2024)</span>
+										</div>
+									</div>
+									<div class=" card-body-category">
+										<span class="text-gray">Category:</span>
+										<span class="text-black">Decoration</span>
+									</div>
+								</div>
+								<div class="card-body-right">
+									<img src="{{asset('assets/upload/blog/avatar_blog.png')}}" alt="" loading="lazy">
+								</div>
+							</div>
+							<!--BUTTON-->
+							<a href="" type="button" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase w-fit mt-6">Read more</a>
+						</div>
+
+					</div>
+
+					<!--SHOW MORE BUTTON-->
+					<div class="blog_show_more text-center">
+						<button type="button" class="py-2 px-4 w-1/2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">show more</button>
+
+					</div>
+				</div>
+
+
+				<!--FILTERS AND SEARCH-->
+				<div
+					class="w-full md:w-1/3 ps-0 md:ps-4 lg:ps-12 mt-0 flex flex-col">
+					<!--border-->
+					<div class="border w-1/2 mx-auto border-primary block md:hidden my-12"></div>
+					<form class="blog_search">
+						<div class="relative flex" data-twe-input-wrapper-init data-twe-input-group-ref>
+							<input type="search" class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none   [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0" placeholder="Search" aria-label="Search" id="search-input" aria-describedby="search-button"/>
+							<label for="search-input" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-gray transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none ">Search
+							</label>
+							<button class="relative z-[2] -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-accent-300 focus:bg-primary-accent-300 focus:outline-none focus:ring-0 active:bg-primary-600 " type="button" id="search-button" data-twe-ripple-init data-twe-ripple-color="light">
+								<span class="[&>svg]:h-5 [&>svg]:w-5">
+									<i class="fa-solid fa-magnifying-glass fa-xl"></i>
+								</span>
+							</button>
+						</div>
+					</form>
+
+					<!--CATEGORIES-->
+					<div class="blog_categories mt-8">
+						<h3 class="uppercase text-xl font-normal">Categories</h3>
+						<!--border-->
+						<div class="border border-gray block "></div>
+
+						<!--LINKS-->
+						<div class="blog_links mt-4 flex flex-col">
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">Decoration</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">Wedding</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">Bonsai</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">Cactus</a>
+						</div>
+					</div>
+
+					<!--ARCHIVES-->
+					<div class="blog_archives mt-8">
+						<h3 class="uppercase text-xl font-normal">Archives</h3>
+						<!--border-->
+						<div class="border border-gray block "></div>
+
+						<!--LINKS-->
+						<div class="blog_links mt-4 flex flex-col">
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">2024</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">2023</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">2022</a>
+							<a href="" type="button" class=" text-base font-medium text-gray   hover:text-primary transition ease-in-out delay-100  w-fit my-4 capitalize">2021</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
