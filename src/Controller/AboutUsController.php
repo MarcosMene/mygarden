@@ -11,8 +11,6 @@ class AboutUsController extends AbstractController
     #[Route('/about-us', name: 'about_us')]
     public function index(): Response
     {
-        return $this->render('pages/about.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        return $this->render('pages/about.html.twig');
     }
 }
