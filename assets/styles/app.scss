@@ -18,11 +18,16 @@ body {
   font-family: 'Roboto', system-ui;
   max-width: 2300px;
   margin: auto;
+  color: $black;
 }
 
 h1,
-h2 {
-  font-family: 'Inter', system-ui;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Noto Serif', serif, system-ui;
 }
 
 //h1 space text
@@ -139,6 +144,26 @@ h2 {
     height: 317px;
     margin-right: 5px;
     background-color: $bg3;
+    z-index: 0;
+  }
+}
+
+// BLOG
+.img_bg_down_right_blog {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10;
+    bottom: 0;
+    left: 10;
+    right: 0;
+    width: 90%;
+    height: 90%;
+    margin-right: 5px;
+    background-color: $bg2;
     z-index: 0;
   }
 }

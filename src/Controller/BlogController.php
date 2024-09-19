@@ -13,4 +13,9 @@ class BlogController extends AbstractController
     {
         return $this->render('pages/blog.html.twig');
     }
+    #[Route('/blog/{slug}', name: 'blog_article', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
+    public function show(): Response
+    {
+        return $this->render('blog/show.html.twig');
+    }
 }
