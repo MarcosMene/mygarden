@@ -174,3 +174,11 @@ h6 {
     animation-play-state: paused;
   }
 }
+
+//SHOP
+input[type='range']::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  -webkit-appearance: none;
+}

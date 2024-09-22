@@ -1,0 +1,906 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - Shop
+{% endblock %}
+
+{% block body %}
+	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+	<!--BANNER-->
+	{% include ('_partials/shop/_banner.html.twig')%}
+
+
+	<section class="shop">
+
+		<div class=" w-full pt-5 lg:pt-16 pb-10 ">
+			<div
+				class="md:container mx-auto px-6 lg:px-16">
+
+				<!--PRODUCTS-->
+				<div
+					class=" flex flex-col-reverse lg:flex-row  justify-center items-start ">
+
+					<!--LEFT COLUMN-->
+					<div
+						class="shop_left shop_filters w-3/4 md:w-1/2 mx-auto lg:w-[30%] pe-0 lg:pe-8  mt-12 lg:mt-0 xl:mt-0">
+
+						<!--FILTERS-->
+						<form
+							action="">
+
+							<!--SEARCH INPUT-->
+							<div class="relative flex mb-6" data-twe-input-wrapper-init data-twe-input-group-ref>
+								<input type="search" class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none   [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0" placeholder="Search" aria-label="Search" id="search-input" aria-describedby="search-button"/>
+								<label for="search-input" class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-gray transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none ">Search
+								</label>
+								<button class="relative z-[2] -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-accent-primary-300 focus:bg-primary-accent-primary-300 focus:outline-none focus:ring-0 active:bg-primary-600 " type="button" id="search-button" data-twe-ripple-init data-twe-ripple-color="light">
+									<span class="[&>svg]:h-5 [&>svg]:w-5">
+										<i class="fa-solid fa-magnifying-glass fa-xl"></i>
+									</span>
+								</button>
+							</div>
+
+							<!--SORT BY FILTER-->
+							<div class="flex justify-between flex-col mb-6 border border-primary pb-8">
+								<h2 class="w-full bg-primary text-white text-lg font-normal py-2 px-6">Shop by</h2>
+
+								<!--CATEGORIES CHECKBOX-->
+								<p class="w-full text-black text-xl font-normal py-2 px-6 mb-2">Categories</p>
+								<div class="shop_categories px-6">
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox1" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox1" class="ms-2 text-lg font-normal text-gray">Bouquets</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox2" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox2" class="ms-2 text-lg font-normal text-gray">Wedding</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox3" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox3" class="ms-2 text-lg font-normal text-gray">Valentine's day</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox4" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox4" class="ms-2 text-lg font-normal text-gray">House decoration</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox5" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox5" class="ms-2 text-lg font-normal text-gray">Corporate events</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox6" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox6" class="ms-2 text-lg font-normal text-gray">Anniversary</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox7" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox7" class="ms-2 text-lg font-normal text-gray">Gifts</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="checked-checkbox8" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="checked-checkbox8" class="ms-2 text-lg font-normal text-gray">Grieving</label>
+									</div>
+								</div>
+
+								<!--border-->
+								<div class="border border-gray w-1/2 mx-auto my-3"></div>
+
+								<!--COLOR CHECKBOX-->
+								<p class="w-full text-black text-xl font-normal py-2 px-6 mb-2">Colors</p>
+								<div class="shop_colors px-6">
+									<div class="flex items-center mb-2">
+										<input id="color-checkbox1" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="color-checkbox1" class="ms-2 text-lg font-normal text-gray">Red</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="color-checkbox2" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="color-checkbox2" class="ms-2 text-lg font-normal text-gray">Yellow</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="color-checkbox3" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="color-checkbox3" class="ms-2 text-lg font-normal text-gray">Violet</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="color-checkbox4" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="color-checkbox4" class="ms-2 text-lg font-normal text-gray">Green</label>
+									</div>
+									<div class="flex items-center mb-2">
+										<input id="color-checkbox5" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="color-checkbox5" class="ms-2 text-lg font-normal text-gray">Brown</label>
+									</div>
+								</div>
+
+								<!--border-->
+								<div class="border border-gray w-1/2 mx-auto my-3"></div>
+
+								<!--SORT BY PROMOTION-->
+								<p class="w-full text-black text-xl font-normal py-2 px-6 mb-2">Promotion</p>
+								<div class="shop_promotion px-6">
+									<div class="flex items-center mb-2">
+										<input id="promotion-checkbox1" type="checkbox" value="" class="accent-primary w-4 h-4 bg-gray-100 border-gray-300 rounded ">
+										<label for="promotion-checkbox1" class="ms-2 text-lg font-normal text-gray">Promotion</label>
+									</div>
+								</div>
+
+								<!--border-->
+								<div class="border border-gray w-1/2 mx-auto my-6"></div>
+
+								<!--SORT BY PRICE-->
+								<div class=" flex justify-center flex-col items-center px-6">
+									<p class="w-full text-black text-xl font-normal py-2 mb-2">Price</p>
+									<div class="w-full flex justify-center items-center">
+										<div x-data="range()" x-init="mintrigger(); maxtrigger()" class="relative max-w-xl w-full">
+											<div>
+												<input type="range" step="10" x-bind:min="min" x-bind:max="max" x-on:input="mintrigger" x-model="minprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+
+												<input type="range" step="10" x-bind:min="min" x-bind:max="max" x-on:input="maxtrigger" x-model="maxprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+
+												<div class="relative z-10 h-2">
+
+													<div class="absolute z-10 left-0 right-0 bottom-0 top-0 rounded-md bg-gray-200"></div>
+
+													<div class="absolute z-20 top-0 bottom-0 rounded-md bg-gray-100" x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'"></div>
+
+													<div class="absolute z-30 w-6 h-6 top-0 left-0 bg-primary  rounded-full -mt-2" x-bind:style="'left: '+minthumb+'%'"></div>
+
+													<div class="absolute z-30 w-6 h-6 top-0 right-0 bg-primary  rounded-full -mt-2" x-bind:style="'right: '+maxthumb+'%'"></div>
+
+												</div>
+
+											</div>
+
+											<div class="flex items-center justify-between pt-5 space-x-4 text-sm text-gray-700">
+												<div>
+													<input type="text" maxlength="5" x-on:input.debounce="mintrigger" x-model="minprice" wire:model.debounce.300="minPrice" class="w-20 px-0 py-2 text-center border border-gray rounded-lg bg-gray-50 focus:border-primary focus:outline-none">
+												</div>
+												<div>
+													<input type="text" maxlength="5" x-on:input.debounce.300="maxtrigger" x-model="maxprice" wire:model.debounce="maxPrice" class="w-20 px-0 py-2 text-center border border-gray rounded-lg bg-gray-50 focus:border-primary focus:outline-none">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<!--BEST SELLERS-->
+						<div class="flex justify-between flex-col mb-6  pb-8">
+							<p class="w-full bg-primary text-white text-lg font-normal py-2 px-6 mb-6">Best sellers</p>
+							<div
+								class="flex flex-wrap justify-between">
+
+								<!--best seller 1-->
+								<a href="" class=" border border-gray-200  flex flex-row hover:shadow-4 relative mb-6 w-full">
+									<div
+										class="flex flex-row  bg-white justify-center">
+
+										<!--BEST SELLER IMAGE-->
+										<img src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="object-cover w-1/3" alt=""/>
+										<div class="flex flex-col justify-start items-start px-4 py-2 w-2/3">
+											<h3 class="text-base font-medium">Class interdim</h3>
+
+											<!--BEST SELLER STARS-->
+											<div class="review_stars flex justify-start my-3">
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+											</div>
+											<!--BEST SELLER PRICE-->
+											<p class="text-center font-bold text-primary text-[14px]">
+												$34.00
+											</p>
+										</div>
+									</div>
+								</a>
+								<!--best seller 2-->
+								<a href="" class=" border border-gray-200  flex flex-row hover:shadow-4 relative mb-6 w-full">
+									<div
+										class="flex flex-row  bg-white justify-center">
+
+										<!--BEST SELLER IMAGE-->
+										<img src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="object-cover w-1/3" alt=""/>
+										<div class="flex flex-col justify-start items-start px-4 py-2 w-2/3">
+											<h3 class="text-base font-medium">Class interdim</h3>
+
+											<!--BEST SELLER STARS-->
+											<div class="review_stars flex justify-start my-3">
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+											</div>
+											<!--BEST SELLER PRICE-->
+											<p class="text-center font-bold text-primary text-[14px]">
+												$34.00
+											</p>
+										</div>
+									</div>
+								</a>
+								<!--best seller 3-->
+								<a href="" class=" border border-gray-200  flex flex-row hover:shadow-4 relative mb-6 w-full">
+									<div
+										class="flex flex-row  bg-white justify-center">
+
+										<!--BEST SELLER IMAGE-->
+										<img src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="object-cover w-1/3" alt=""/>
+										<div class="flex flex-col justify-start items-start px-4 py-2 w-2/3">
+											<h3 class="text-base font-medium">Class interdim</h3>
+
+											<!--BEST SELLER STARS-->
+											<div class="review_stars flex justify-start my-3">
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+												<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+											</div>
+											<!--BEST SELLER PRICE-->
+											<p class="text-center font-bold text-primary text-[14px]">
+												$34.00
+											</p>
+										</div>
+									</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+
+					<!--RIGHT COLUMN-->
+					<div
+						class="shop_right shop_products w-full ">
+						<!--SHOP FILTER SELECTION-->
+						<div
+							class="shop_filter_selection flex flex-wrap justify-between items-start mb-6">
+							<!--SHOP FORM-->
+							<form class="p-0">
+								<div
+									class="sm:col-span-3">
+									<!--SELECT ORDER PRICE-->
+									<label for="price_order" class="block text-sm font-medium text-black sr-only">Price order</label>
+									<select id="price_order" class="bg-gray-50 border border-gray-300 text-gray text-sm rounded-lg focus:primary focus:primary block w-fit p-1.5 ">
+										<option selected class="text-gray">Sort by...</option>
+										<option value="1" class="text-black">Sort by best selling</option>
+										<option value="2" class="text-black">Sort by popularity</option>
+										<option value="3" class="text-black">Sort by latest</option>
+										<option value="4" class="text-black">Sort by promotion</option>
+										<option value="5" class="text-black">Sort by price: low to high</option>
+										<option value="6" class="text-black">Sort by price: high to low</option>
+									</select>
+								</div>
+							</form>
+							<!--SHOP FITER LIST GRID-->
+							<div class="shop_filter_list-grid flex gap-3">
+								<p class="text-gray text-sm font-normal">12 products</p>
+								<button>
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewbox="0 0 26 26">
+										<image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAGRJREFUSEtjPOw+9T8DHQAj3S2y2ZGF1V9HPKaBxSmVh/uIUoMI6R+1CCMeiY1D+gcdrbPSaD4aQomBUM6mVJ7+yZtSFxPST//kTbcMS8jrlMoP48RAadAQ0j+Mg45uyZvWFgEAH1TmJzf772YAAAAASUVORK5CYII=" x="0" y="0" width="26" height="26"/>
+									</svg>
+								</button>
+								<button>
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewbox="0 0 26 26">
+										<image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAWVJREFUSEvtlE1OwlAUhe99VnHgwCWwBFhA0Q5oO5Ml0JnaEHUFwAoaUl8cwg7qkB8TEHTOErqEDiFp3zO3pomx1fDwZyB2RJrD+ZLTLxcXFpfwCw8SSB+5+JMsYvyDtlq4cLq56TcSyUJj4i63ai34Uw40r/MmMuhTNhZQzWALi18BYEMZjElXH7ZmeZB1e42AXlqIwqAQ/Zyn7+FMFSQl69XGl/fF09m8iSDCDKJaXpTfAb2np97xfqnUlsBCfXTe+47ZqCM33aPpdxiy9nvrnizelwBNVbAU4NQm7iBvHYkgoS8lRAljVWN4EabWmX5DAlRUQYJpA+oolGFq35VhdRgZMydSLf4ovwvW2V5ZEwcBIIbxeu0Ys5t0PrJR0zTlb6Q/vF6WT617e4IWJg8AQfnWCSm6J+NWJwd6rvNKwjCgExTjnpNZR4JoEJdV5YhXR0uSagdkUJ1m0/wfnm7TCb6SewG6QCQ2fL4b0AAAAABJRU5ErkJggg==" x="0" y="0" width="26" height="26"/>
+									</svg>
+								</button>
+							</div>
+						</div>
+
+						<!--CARDS-->
+						<div
+							class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-8 lg:gap-12">
+
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center">
+
+											<!--shop button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div
+									class="relative">
+									<!--LABEL PROMOTION-->
+									<div class="absolute top-0 right-0 h-45 card_label bg-primary px-4 py-2 uppercase text-white text-[10px] text-end font-bold font-roboto tracking-widest">PROMO</div>
+									<img
+									src="{{asset('assets/upload/products/house2.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col  hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/buquet4.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+
+									<img
+									src="{{asset('assets/upload/products/corporate1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative  overflow-hidden ">
+									<img
+									src="{{asset('assets/upload/products/house.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/wedding.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div
+									class="relative">
+									<!--LABEL PROMOTION-->
+									<div class="absolute top-0 right-0 h-45 card_label bg-primary px-4 py-2 uppercase text-white text-[10px] text-end font-bold font-roboto tracking-widest">PROMO</div>
+									<img
+									src="{{asset('assets/upload/products/buquet8.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/anniversary1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/house3.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/buquet.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/house4.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+							<!--CARD-->
+							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+
+								<div class="relative">
+									<img
+									src="{{asset('assets/upload/products/buquet6.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+									<!--buttons-->
+									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+										<div
+											class="flex justify-between gap-4 items-center   ">
+
+											<!--shop button-->
+											<a href="https://www.google.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+											</a>
+
+											<!--wishlist button-->
+											<a href="https://www.meneghettimarcos.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+											</a>
+
+											<!--detail button-->
+											<a href="https://www.amazon.com" class="card_our_product_button rounded-full bg-white p-3 group ">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-center mt-3 mb-6">
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+									</div>
+									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+										$34.00
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--SCRIPT PRICE-->
+	<script>
+		function range() {
+return {
+minprice: 0,
+maxprice: 3000,
+min: 0,
+max: 3000,
+minthumb: 0,
+maxthumb: 0,
+mintrigger() {
+this.validation();
+this.minprice = Math.min(this.minprice, this.maxprice - 500);
+this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
+},
+maxtrigger() {
+this.validation();
+this.maxprice = Math.max(this.maxprice, this.minprice + 500);
+this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
+},
+validation() {
+if (/^\d*$/.test(this.minprice)) {
+if (this.minprice > this.max) {
+this.minprice = 2500;
+}
+if (this.minprice<this.min) {
+              this.minprice = this.min;
+            }
+          } else {
+            this.minprice = 0;
+          }
+          if (/^\d*$/.test(this.maxprice)) {
+            if (this.maxprice> this.max) {
+this.maxprice = this.max;
+}
+if (this.maxprice < this.min) {
+this.maxprice = 500;
+}
+} else {
+this.maxprice = 3000;
+}
+}
+}
+}
+	</script>
+
+{% endblock %}
