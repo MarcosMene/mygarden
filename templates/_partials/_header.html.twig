@@ -63,7 +63,7 @@
 				</li>
 				<!-- Contact link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold" href="#">Contact</a>
+					<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold" href="{{path('contact')}}">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -71,28 +71,23 @@
 
 		<!-- Icons -->
 		<div
-			class="flex   justify-between items-center">
+			class="flex   justify-between items-center w-[220px]">
 			<!-- Icon Member-->
 			<div class="flex justify-between items-center">
 				<span class="me-2  font-medium text-center md:text-start   sm:flex">Hello, Connor</span>
 				<a href="#">
-					<svg width="20" height="20" viewbox="0 0 20 20" fill="black" xmlns="http://www.w3.org/2000/svg" class=" hover:stroke-primary">
-						<path fill-rule="evenodd" h d="M10 10C11.3261 10 12.5979 9.47322 13.5355 8.53553C14.4732 7.59785 15 6.32608 15 5C15 3.67392 14.4732 2.40215 13.5355 1.46447C12.5979 0.526784 11.3261 0 10 0C8.67392 0 7.40215 0.526784 6.46447 1.46447C5.52678 2.40215 5 3.67392 5 5C5 6.32608 5.52678 7.59785 6.46447 8.53553C7.40215 9.47322 8.67392 10 10 10ZM13.3333 5C13.3333 5.88405 12.9821 6.7319 12.357 7.35702C11.7319 7.98214 10.8841 8.33333 10 8.33333C9.11594 8.33333 8.2681 7.98214 7.64298 7.35702C7.01786 6.7319 6.66667 5.88405 6.66667 5C6.66667 4.11594 7.01786 3.2681 7.64298 2.64298C8.2681 2.01786 9.11594 1.66667 10 1.66667C10.8841 1.66667 11.7319 2.01786 12.357 2.64298C12.9821 3.2681 13.3333 4.11594 13.3333 5ZM20 18.3333C20 20 18.3333 20 18.3333 20H1.66667C1.66667 20 0 20 0 18.3333C0 16.6667 1.66667 11.6667 10 11.6667C18.3333 11.6667 20 16.6667 20 18.3333ZM18.3333 18.3267C18.3317 17.9167 18.0767 16.6833 16.9467 15.5533C15.86 14.4667 13.815 13.3333 10 13.3333C6.185 13.3333 4.14 14.4667 3.05333 15.5533C1.92333 16.6833 1.67 17.9167 1.66667 18.3267H18.3333Z" fill="black"/>
-					</svg>
+					<i class="fa-solid fa-user text-2xl"></i>
 				</a>
 			</div>
 
 
 			<!-- Cart Icon -->
-			<div class="relative flex justify-center w-16">
-				<button id="cart-button" class="text-gray-700 hover:text-gray-900 focus:outline-none">
-					<svg width="20" height="20" viewbox="0 0 20 20" fill="black" xmlns="http://www.w3.org/2000/svg" class=" hover:stroke-primary">
-						<path fill-rule="evenodd" d="M0 0.666667C0 0.489856 0.0702393 0.320286 0.195266 0.195262C0.320293 0.0702379 0.489866 0 0.66668 0H2.66672C2.81543 4.1082e-05 2.95986 0.0498009 3.07704 0.141366C3.19421 0.232932 3.27741 0.361045 3.3134 0.505333L3.85341 2.66667H19.3337C19.4323 2.66673 19.5297 2.68865 19.6188 2.73087C19.7079 2.77308 19.7865 2.83454 19.849 2.9108C19.9115 2.98706 19.9563 3.07623 19.9802 3.17189C20.004 3.26755 20.0064 3.36732 19.9871 3.464L18.6537 10.1307C18.6245 10.276 18.5477 10.4075 18.4354 10.5044C18.3232 10.6012 18.1818 10.6579 18.0337 10.6653L5.50411 11.2947L5.88679 13.3333H17.3337C17.5105 13.3333 17.6801 13.4036 17.8051 13.5286C17.9301 13.6536 18.0004 13.8232 18.0004 14C18.0004 14.1768 17.9301 14.3464 17.8051 14.4714C17.6801 14.5964 17.5105 14.6667 17.3337 14.6667H5.33344C5.17801 14.6665 5.02752 14.6121 4.90798 14.5127C4.78844 14.4134 4.70736 14.2754 4.67876 14.1227L2.68005 3.476L2.14671 1.33333H0.66668C0.489866 1.33333 0.320293 1.2631 0.195266 1.13807C0.0702393 1.01305 0 0.843478 0 0.666667ZM4.13608 4L5.25611 9.972L17.4484 9.36L18.5204 4H4.13608ZM6.6668 14.6667C5.95954 14.6667 5.28125 14.9476 4.78114 15.4477C4.28104 15.9478 4.00008 16.6261 4.00008 17.3333C4.00008 18.0406 4.28104 18.7189 4.78114 19.219C5.28125 19.719 5.95954 20 6.6668 20C7.37406 20 8.05235 19.719 8.55246 19.219C9.05256 18.7189 9.33352 18.0406 9.33352 17.3333C9.33352 16.6261 9.05256 15.9478 8.55246 15.4477C8.05235 14.9476 7.37406 14.6667 6.6668 14.6667ZM16.0003 14.6667C15.2931 14.6667 14.6148 14.9476 14.1147 15.4477C13.6146 15.9478 13.3336 16.6261 13.3336 17.3333C13.3336 18.0406 13.6146 18.7189 14.1147 19.219C14.6148 19.719 15.2931 20 16.0003 20C16.7076 20 17.3859 19.719 17.886 19.219C18.3861 18.7189 18.667 18.0406 18.667 17.3333C18.667 16.6261 18.3861 15.9478 17.886 15.4477C17.3859 14.9476 16.7076 14.6667 16.0003 14.6667ZM6.6668 16C7.02043 16 7.35958 16.1405 7.60963 16.3905C7.85968 16.6406 8.00016 16.9797 8.00016 17.3333C8.00016 17.687 7.85968 18.0261 7.60963 18.2761C7.35958 18.5262 7.02043 18.6667 6.6668 18.6667C6.31317 18.6667 5.97403 18.5262 5.72397 18.2761C5.47392 18.0261 5.33344 17.687 5.33344 17.3333C5.33344 16.9797 5.47392 16.6406 5.72397 16.3905C5.97403 16.1405 6.31317 16 6.6668 16ZM16.0003 16C16.354 16 16.6931 16.1405 16.9431 16.3905C17.1932 16.6406 17.3337 16.9797 17.3337 17.3333C17.3337 17.687 17.1932 18.0261 16.9431 18.2761C16.6931 18.5262 16.354 18.6667 16.0003 18.6667C15.6467 18.6667 15.3075 18.5262 15.0575 18.2761C14.8074 18.0261 14.667 17.687 14.667 17.3333C14.667 16.9797 14.8074 16.6406 15.0575 16.3905C15.3075 16.1405 15.6467 16 16.0003 16Z"/>
-					</svg>
-
+			<div class=" flex justify-center w-16">
+				<button id="cart-button" class="relative text-gray-700 hover:text-gray-900 focus:outline-none">
+					<i class="fa-solid fa-cart-shopping text-2xl"></i>
 
 					<!-- Notification shop -->
-					<span class="absolute -mt-7 ms-1 rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
+					<span id="cart-button-notification" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
 				</button>
 
 				<!--CART-->
@@ -203,18 +198,14 @@
 						<a href="" class="py-2 px-4 ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">check out</a>
 					</div>
 				</div>
-
-
 			</div>
 
 			<!-- Wishlist Icon -->
-			<a class=" flex items-center text-neutral-600  hover:text-primary" href="#">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewbox="0 0 20 20" fill="currentColor" class="stroke-black hover:stroke-primary">
-					<path fill-rule="evenodd" d="M10.0002 3.66405L9.1039 2.68139C7.00008 0.37473 3.14246 1.17073 1.74992 4.07072C1.09615 5.43471 0.948648 7.40404 2.14243 9.91737C3.29247 12.3374 5.68504 15.236 10.0002 18.3933C14.3153 15.236 16.7066 12.3374 17.8579 9.91737C19.0517 7.40271 18.9054 5.43471 18.2504 4.07072C16.8579 1.17073 13.0003 0.373397 10.8965 2.68006L10.0002 3.66405ZM10.0002 20C-9.16666 6.49071 4.09874 -4.05326 9.78017 1.52406C9.85517 1.59784 9.9285 1.67384 10.0002 1.75206C10.0706 1.67334 10.144 1.59773 10.2202 1.52539C15.9004 -4.05592 29.167 6.48938 10.0002 20Z" fill="black"/>
-				</svg>
+			<a href="" id="wishlist-button" class="p-0 m-0 relative flex items-center text-neutral-600  hover:text-primary">
+				<i class="fa-solid fa-heart text-2xl"></i>
 
 				<!-- Notification wishlist -->
-				<span class="absolute -mt-5 ms-2.5 rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
+				<span id="wishlist-button-notification" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
 			</a>
 
 
@@ -251,7 +242,7 @@
 					</li>
 					<!-- Contact link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="#">Contact</a>
+						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
 					</li>
 				</ul>
 			</div>

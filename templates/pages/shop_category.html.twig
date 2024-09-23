@@ -1,0 +1,197 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - Shop Categories
+{% endblock %}
+
+{% block body %}
+
+
+	<!--BANNER-->
+	{% include ('_partials/shop/_banner_category.html.twig')%}
+
+
+	<section class="shop_categories bg-bg3">
+
+		<div class=" w-full pt-5 lg:pt-12 pb-10 ">
+
+			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Our bouquets</h2>
+			<!--image-->
+			<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+
+			<div
+				class="md:container mx-auto px-6 lg:px-16 mt-10">
+
+				{# ---------- breadcrump----------------------- #}
+				<div class="breadcrump w-full flex flex-col-reverse lg:flex-row  justify-between my-4">
+					<nav class=" text-sm font-medium">
+						<ol class="breadcrump flex justify-start ">
+							<li class="text-gray">
+								<a href="#" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary">All products</a>
+							</li>
+							<li class="text-gray">
+								<span class="mx-1 text-gray">></span>
+							</li>
+							<li class="text-gray">
+								<span class="mx-1 text-gray">Bouquets</span>
+
+							</li>
+						</ol>
+					</nav>
+				</div>
+
+				<div
+					class=" flex flex-col-reverse lg:flex-row  justify-center items-start ">
+
+					<!--CATEGORIES-->
+					<div
+						class=" w-full">
+
+						<!--CARDS CATEGORIES-->
+						<div
+							class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-8 lg:gap-12">
+
+							<!--CARD-->
+							<a href="/shop/product/d" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet3.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet4.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet5.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet6.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet7.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet8.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+							<!--CARD-->
+							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
+								<img
+								src="{{asset('assets/upload/products/buquet2.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+
+								<!--CARD TEXT AND PRICE-->
+								<div class="p-6 text-surface ">
+									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--SCRIPT PRICE-->
+	<script>
+		function range() {
+return {
+minprice: 0,
+maxprice: 3000,
+min: 0,
+max: 3000,
+minthumb: 0,
+maxthumb: 0,
+mintrigger() {
+this.validation();
+this.minprice = Math.min(this.minprice, this.maxprice - 500);
+this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
+},
+maxtrigger() {
+this.validation();
+this.maxprice = Math.max(this.maxprice, this.minprice + 500);
+this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
+},
+validation() {
+if (/^\d*$/.test(this.minprice)) {
+if (this.minprice > this.max) {
+this.minprice = 2500;
+}
+if (this.minprice<this.min) {
+              this.minprice = this.min;
+            }
+          } else {
+            this.minprice = 0;
+          }
+          if (/^\d*$/.test(this.maxprice)) {
+            if (this.maxprice> this.max) {
+this.maxprice = this.max;
+}
+if (this.maxprice < this.min) {
+this.maxprice = 500;
+}
+} else {
+this.maxprice = 3000;
+}
+}
+}
+}
+	</script>
+
+{% endblock %}

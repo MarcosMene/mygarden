@@ -39,6 +39,25 @@ h6 {
   display: block;
 }
 
+//HEADER
+#cart-button {
+  position: relative;
+  #cart-button-notification {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+  }
+}
+
+#wishlist-button {
+  position: relative;
+  #wishlist-button-notification {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+  }
+}
+
 // CARD
 .card_our_product_button:hover {
   background-color: $primary;

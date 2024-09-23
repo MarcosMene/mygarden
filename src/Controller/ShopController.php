@@ -14,7 +14,6 @@ class ShopController extends AbstractController
     return $this->render('pages/shop.html.twig');
   }
 
-
   #[Route('/shop/product/{slug}', name: 'shop_product', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
   public function show(string $slug): Response
   {
