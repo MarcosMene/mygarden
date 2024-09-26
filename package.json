@@ -28,6 +28,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@preline/toggle-password": "^2.5.0",
         "tw-elements": "^2.0.0"
     }
 }

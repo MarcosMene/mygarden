@@ -31,7 +31,12 @@
 	</head>
 	<body>
 		{% include ('_partials/_header.html.twig')%}
-		{% block body %}{% endblock %}
+		<main>
+			{# MESSAGES  #}
+			{% include '_partials/flash.html.twig' %}
+			{% block body %}{% endblock %}
+
+		</main>
 		{% include ('_partials/_footer.html.twig')%}
 		<!-- TW Elements JavaScript -->
 		<script src="{{asset('/assets/js/tw-elements.umd.min.js')}}"></script>

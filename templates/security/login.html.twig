@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - Login
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/security/_banner_security.html.twig')%}
+
+	<!--LOGIN SECTION-->
+	<section class="login w-full pt-5 lg:pt-12 pb-10">
+		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Connect on My Garden</h2>
+		<!--image-->
+		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+		<div
+			class="md:container mx-auto px-8 md:px-16">
+
+			<!--FORM-->
+			<div
+				class="w-1/2 mx-auto login_form bg-gray-50 border border-gray-100 p-4 md:p-12 mt-10">
+
+				{# error message #}
+				{% if error %}
+					<div class="w-full items-center rounded-lg bg-red-100 py-3  text-base text-black text-center" role="alert" id="alert-static-primary">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<!--FORM-->
+				<form
+					action="{{ path('app_login') }}" method="post" class="group" novalidate>
+
+					<!--EMAIL-->
+					<div class="email w-full ">
+						<label for="username" class="block mb-2 text-sm font-medium text-black mt-4">
+							<span>Email</span>
+							<input type="email" name="_username" id="username" class="w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" value="{{ last_username }}"/>
+							<span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+								Please enter a valid email address. Minimum 10, maximum 50 characters.
+							</span>
+						</label>
+					</div>
+
+
+					<!--PASSWORD-->
+					<div class="password w-full relative">
+						<label for="password" class=" mb-2 text-sm font-medium text-black mt-4">
+							<span>Password</span>
+							<input type="password" name="_password" id="password" class="w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your password" required autocomplete="off" pattern=".{6,}"/>
+							<span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+								Your password must be at least 6 characters long
+							</span>
+						</label>
+					</div>
+
+					{# security csrf  #}
+					<input
+					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+
+					<!--BUTTON-->
+					<div class="button_submit w-full md:w-1/2 lg:w-1/4 mx-auto">
+						<button type="submit" class="py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-sm font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-30 group-invalid:disabled">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+{% endblock %}

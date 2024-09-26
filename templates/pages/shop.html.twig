@@ -297,7 +297,7 @@
 							class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-8 lg:gap-12">
 
 							<!--CARD-->
-							<div class=" border border-gray-200  flex flex-col hover:shadow-4 relative group ">
+							<div class=" border border-gray-200  flex flex-col  hover:shadow-4 relative group ">
 
 								<div class="relative">
 									<img
@@ -306,7 +306,7 @@
 									<!--buttons-->
 									<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
 										<div
-											class="flex justify-between gap-4 items-center">
+											class="flex justify-between gap-4 items-center   ">
 
 											<!--shop button-->
 											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
@@ -314,12 +314,12 @@
 											</a>
 
 											<!--wishlist button-->
-											<a href class="card_our_product_button rounded-full bg-white p-3 group ">
+											<a href="" class="card_our_product_button rounded-full bg-white p-3 group ">
 												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
 											</a>
 
 											<!--detail button-->
-											<a href="/shop/product/sd" class="card_our_product_button rounded-full bg-white p-3 group ">
+											<a href="/shop/product/3" class="card_our_product_button rounded-full bg-white p-3 group ">
 												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6 text-gray  card_our_product_icon" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
 											</a>
 										</div>
@@ -329,14 +329,18 @@
 								<div class="p-6 text-surface ">
 									<h3 class="mb-2 text-lg font-medium leading-tight text-center">Class interdim</h3>
 									<!--PRODUCT STARS-->
-									<div class="review_stars flex justify-center mt-3 mb-6">
-										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
-									</div>
-									<p class="mb-4  text-center font-bold text-primary text-[25px]">
+									{# <div class="review_stars flex justify-center mt-3 mb-6">
+																																																																																																																																																										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																																																																																																																																																										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																																																																																																																																																										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																																																																																																																																																										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																																																																																																																																																										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+																																																																																																																																																									</div> #}
+									<!--NOT YET REVIEW-->
+										<p class="text-xs text-gray text-center mt-3 mb-2"> This product doesn't have a review yet.
+									</p>
+
+									<p class="text-center font-bold text-primary text-[25px]">
 										$34.00
 									</p>
 								</div>
@@ -385,9 +389,12 @@
 										<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
 										<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
 									</div>
-									<p class="mb-4  text-center font-bold text-primary text-[25px]">
-										$34.00
-									</p>
+									<!--IF PRODUCT PROMOTION-->
+									<div class="product_promotion text-center flex flex-col">
+										<span class="font-bold text-gray text-xl line-through ">$34.00</span>
+										<!--IF PRODUCT PROMOTION-->
+										<span class="text-2xl font-bold text-primary">$25.00</span>
+									</div>
 								</div>
 
 							</div>
@@ -854,6 +861,11 @@
 								</div>
 
 							</div>
+						</div>
+
+						<!--SHOW MORE BUTTON-->
+						<div class="blog_show_more text-center mt-12">
+							<button type="button" class="py-2 px-4  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize  mx-auto">show more</button>
 						</div>
 					</div>
 				</div>

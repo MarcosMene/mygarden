@@ -49,16 +49,16 @@
 					</div>
 
 					<!--PRODUCT STARS-->
-					<div class="review_stars flex justify-start mt-3 mb-6">
-						<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-						<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-						<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-						<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-						<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
-					</div>
+					{# <div class="review_stars flex justify-start mt-3 mb-6 text-gray">
+																<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+																<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+															</div> #}
 
 					<!--PRODUCT TITLE-->
-					<h2 class="text-2xl font-normal  mb-1">Class interdum</h2>
+						<h2 class="text-3xl font-normal mt-2 mb-3"> Class interdum</h2>
 
 					<!--PRODUCT PRICE-->
 					<div
@@ -112,31 +112,8 @@
 					</div>
 
 					<!--PRODUCT NETWORK-->
-					<div class="flex mt-4 sm:justify-start">
-
-						<a href="#" class="text-gray hover:text-primary me-5">
-							<i class="fa-brands fa-pinterest"></i>
-							<span class="sr-only">Pinterest</span>
-						</a>
-						<a href="#" class="text-gray hover:text-primary me-5">
-							<i class="fa-brands fa-x-twitter"></i>
-							<span class="sr-only">X</span>
-						</a>
-
-						<a href="#" class="text-gray hover:text-primary  me-5">
-							<i class="fa-brands fa-linkedin"></i>
-							<span class="sr-only">Linked In</span>
-						</a>
-
-						<a href="#" class="text-gray hover:text-primary  me-5">
-							<i class="fa-brands fa-facebook"></i>
-							<span class="sr-only">Facebook</span>
-						</a>
-
-						<a href="#" class="text-gray hover:text-primary  me-5">
-							<i class="fa-brands fa-instagram"></i>
-							<span class="sr-only">Instagram</span>
-						</a>
+					<div class="flex mt-4 -ms-2 sm:justify-start">
+						{% include ('components/network.html.twig')%}
 					</div>
 
 				</div>

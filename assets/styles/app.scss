@@ -49,6 +49,28 @@ h6 {
   }
 }
 
+//VALIDATE INPUTS
+
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:valid {
+  border: 2px solid greenyellow;
+  background-color: rgb(248, 250, 252);
+}
+
+input:invalid {
+  background-color: rgb(248, 250, 252);
+  border: 3px solid rgb(237, 230, 230);
+}
+
+.hidden {
+  display: none;
+}
+
+//WISHLIST
 #wishlist-button {
   position: relative;
   #wishlist-button-notification {
