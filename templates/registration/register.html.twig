@@ -1,23 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	<!--BANNER-->
+	{% include ('_partials/security/_banner_register.html.twig')%}
 
-    <h1>Register</h1>
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-    {{ form_errors(registrationForm) }}
+	<!--LOGIN SECTION-->
+	<section class="login w-full pt-5 lg:pt-12 pb-10">
+		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign Up My Garden</h2>
+		<!--image-->
+		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+		<div class="md:container mx-auto px-8 lg:px-16">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+			<div class="w-full lg:w-1/2 mx-auto login_form bg-gray-50 border border-gray-100 p-4 md:p-12 mt-10 shadow-lg">
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+				<div class="w-full">
+
+					{{ form_errors(registrationForm) }}
+					{{ form_start(registrationForm,{'attr': {'class': 'group'}}) }}
+
+					<div class=" w-full font-medium text-base">
+						{{ form_row(registrationForm.firstname) }}
+						<div id="firstname_error" hidden class="text-sm text-red"></div>
+					</div>
+
+					<div class=" w-full font-medium text-base">
+						{{ form_row(registrationForm.lastname) }}
+						<div id="lastname_error" hidden class="text-sm text-red"></div>
+					</div>
+
+					<div class=" w-full font-medium text-base">
+						{{ form_row(registrationForm.email) }}
+						<div id="email_error" hidden class="text-sm text-red"></div>
+					</div>
+
+					<div class=" w-full font-medium text-base">
+						{{ form_row(registrationForm.password) }}
+						<div id="password_error" hidden class="text-sm text-red"></div>
+					</div>
+
+					<div class=" w-full font-medium text-base flex">
+						{{ form_row(registrationForm.agreeTerms) }}
+					</div>
+
+					<!--BUTTON create account-->
+					<div class="button_submit w-full ">
+						<button type="submit" class="py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
+							Create account
+						</button>
+					</div>
+					{{ form_end(registrationForm) }}
+				</div>
+				<p class="text-center mt-5 text-gray hover:black">
+					You already have an account? Please
+					<a href="{{ path('app_login') }}" class="underline hover:text-black">Login</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	{# VALIDATION FORM JAVASCRIPT#}
+	<script src="{{ asset('assets/js/registrationForm.js') }}"></script>
 {% endblock %}

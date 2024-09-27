@@ -5,19 +5,19 @@
 
 {% block body %}
 	<!--BANNER-->
-	{% include ('_partials/security/_banner_security.html.twig')%}
+	{% include ('_partials/security/_banner_signin.html.twig')%}
 
 	<!--LOGIN SECTION-->
 	<section class="login w-full pt-5 lg:pt-12 pb-10">
-		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Connect on My Garden</h2>
+		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign In My Garden</h2>
 		<!--image-->
 		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
 		<div
-			class="md:container mx-auto px-8 md:px-16">
+			class="md:container mx-auto px-8 lg:px-16">
 
 			<!--FORM-->
 			<div
-				class="w-1/2 mx-auto login_form bg-gray-50 border border-gray-100 p-4 md:p-12 mt-10">
+				class="w-full lg:w-1/2 mx-auto login_form bg-gray-50 border border-gray-100 p-4 md:p-12 mt-10  shadow-lg">
 
 				{# error message #}
 				{% if error %}
@@ -26,28 +26,24 @@
 
 				<!--FORM-->
 				<form
-					action="{{ path('app_login') }}" method="post" class="group" novalidate>
+					action="{{ path('app_login') }}" method="post" class="group">
 
 					<!--EMAIL-->
 					<div class="email w-full ">
-						<label for="username" class="block mb-2 text-sm font-medium text-black mt-4">
+						<label for="username" class="block mb-2 text-base font-medium text-black mt-4">
 							<span>Email</span>
-							<input type="email" name="_username" id="username" class="w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" value="{{ last_username }}"/>
-							<span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
-								Please enter a valid email address. Minimum 10, maximum 50 characters.
-							</span>
+							<input type="email" name="_username" id="username" class="w-full rounded invalid:border-red-500  focus:bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+"/>
+							<div id="email_error" hidden class="text-sm text-red"></div>
 						</label>
 					</div>
 
 
 					<!--PASSWORD-->
 					<div class="password w-full relative">
-						<label for="password" class=" mb-2 text-sm font-medium text-black mt-4">
+						<label for="password" class=" mb-2 text-base font-medium text-black mt-4">
 							<span>Password</span>
-							<input type="password" name="_password" id="password" class="w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your password" required autocomplete="off" pattern=".{6,}"/>
-							<span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
-								Your password must be at least 6 characters long
-							</span>
+							<input type="password" name="_password" id="password" class="w-full rounded border border-gray-300 focus:bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your password" required autocomplete="off" pattern=".{6,}" min="6" max="16"/>
+							<div id="password_error" hidden class="text-sm text-red"></div>
 						</label>
 					</div>
 
@@ -56,14 +52,38 @@
 					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 
 
-					<!--BUTTON-->
-					<div class="button_submit w-full md:w-1/2 lg:w-1/4 mx-auto">
-						<button type="submit" class="py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-sm font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-30 group-invalid:disabled">
-							Submit
+					<!--BUTTON SIGN IN-->
+					<div class="button_submit w-full ">
+						<button type="submit" class="py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
+							Sign in
 						</button>
 					</div>
+
 				</form>
+				<p class="text-end mt-4">
+					<a href="#" class="text-gray underline hover:text-black">Forgot your password?</a>
+				</p>
+				<!--DIVISOR-->
+				<div
+					class="flex w-full items-center h-10">
+					<!--BORDER-->
+					<div class="border w-3/4 mx-auto border-gray my-6 opacity-50"></div>
+					<p class="mx-4">or</p>
+					<!--BORDER-->
+					<div class="border w-3/4 mx-auto border-gray my-6 opacity-50"></div>
+				</div>
+
+				<!--BUTTON CREATE AN ACCOUNT-->
+				<div class="buttons flex items-center justify-center sm:flex-row mt-3">
+
+
+					<a href="{{path('app_signup')}}" class="text-gray underline capitalize hover:text-black">Create a new account</a>
+
+				</div>
 			</div>
 		</div>
 	</section>
+
+	{# VALIDATION EMAIL WITH JAVASCRIPT  #}
+	<script src="{{ asset('assets/js/loginForm.js') }}"></script>
 {% endblock %}
