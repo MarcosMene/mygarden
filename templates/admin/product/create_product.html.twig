@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - Create product
+{% endblock %}
+
+{% block body %}
+
+	{# MENU  #}
+	<h1 class="w-full flex px-8 lg:px-16 mt-6 mb-4 capitalize text-xl font-semibold">My garden - flower shop - Create product</h1>
+
+	<div
+		class="create_products w-full flex px-8 lg:px-16 mb-10">
+
+		{# MENU LEFT  #}
+		{% include ('admin/_partials/menu_navigation.html.twig')%}
+		{# RIGHT CREATE FORM #}
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-2 lg:p-8">
+			<div class="title_form flex flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-4">Create new product</h2>
+				<a href="" class="text-gray underline text-base">Back to product</a>
+			</div>
+
+
+			{{ form_start(productForm,{'attr': {'class': 'form-control group'}}) }}
+
+			{# NAME AND CATEGORY #}
+			<div class="flex flex-col md:flex-row justify-between gap-1 md:gap-12 mb-4">
+				<div class=" w-full  text-base">
+					{{ form_label(productForm.name) }}
+					{{ form_widget(productForm.name) }}
+					<div class="form-error">
+						{{ form_errors(productForm.name) }}
+						<div id="productName_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+				<div class=" w-full  text-base">
+					{{ form_label(productForm.category) }}
+					{{ form_widget(productForm.category) }}
+					<div class="form-error">
+						{{ form_errors(productForm.category) }}
+						<div id="productCategory_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-4">
+
+				{# IMAGE  #}
+				<div class=" w-full  text-base">
+					{{ form_label(productForm.imageFile) }}
+					{{ form_widget(productForm.imageFile) }}
+					<div class="form-error">
+						{{ form_errors(productForm.imageFile) }}
+						<div id="productImage_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+				{#   PRICE AND TAX #}
+				<div
+					class="flex w-full flex-col md:flex-row justify-between gap-1 md:gap-12">
+
+					{#   PRICE #}
+					<div class=" w-full  text-base">
+						{{ form_label(productForm.price) }}
+						{{ form_widget(productForm.price) }}
+						<div class="form-error">
+							{{ form_errors(productForm.price) }}
+							<div id="productPrice_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					{#  TAX  #}
+					<div class=" w-full  text-base">
+						{{ form_label(productForm.tva) }}
+						{{ form_widget(productForm.tva) }}
+						<div class="form-error">
+							{{ form_errors(productForm.tva) }}
+							<div id="productTva_error" hidden class="text-sm text-red"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			{# COLOR PROMOTION AND SUGGESTION   #}
+			<div class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-8">
+				<div
+					class="flex flex-col w-full md:flex-row justify-between gap-1 md:gap-12">
+
+					{# COLOR  #}
+					<div class=" w-full  text-base">
+						{{ form_label(productForm.colorProduct) }}
+						{{ form_widget(productForm.colorProduct) }}
+						<div class="form-error">
+							{{ form_errors(productForm.colorProduct) }}
+							<div id="productColor_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					{#  PROMOTION  #}
+					<div class=" w-full  text-base">
+						{{ form_label(productForm.promotion) }}
+						{{ form_widget(productForm.promotion) }}
+						<div class="form-error">
+							{{ form_errors(productForm.promotion) }}
+							<div id="productPromotion_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+				</div>
+				{#  SUGGESTION  #}
+				<div class=" w-full  text-base">
+					{{ form_label(productForm.isSuggestion) }}
+					{{ form_widget(productForm.isSuggestion) }}
+					<div class="form-error">
+						{{ form_errors(productForm.isSuggestion) }}
+						<div id="productSuggestion_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+			</div>
+			{#  DESCRIPTION  #}
+			<div class="mt-4">
+				{{ form_label(productForm.description) }}
+				{{ form_widget(productForm.description) }}
+				<div class="form-error">
+					{{ form_errors(productForm.description) }}
+					<div id="productDescription_error" hidden class="text-sm text-red"></div>
+				</div>
+			</div>
+
+			{# SUBMIT BUTTON  #}
+			<div class="mt-4 text-center">
+				{{ form_row(productForm.submit) }}
+			</div>
+			{{ form_end(productForm) }}
+		</aside>
+	</div>
+
+	{# VALIDATE CREATE PRODUCT WITH JS  #}
+	<script src="{{ asset('assets/js/admin/createProduct.js') }}"></script>
+{% endblock %}

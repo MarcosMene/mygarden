@@ -47,23 +47,23 @@
 
 				<!-- Home link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a href="{{path('home')}}" class="text-primary transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-bold">Home</a>
+					<a href="{{path('home')}}" class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-bold">Home</a>
 				</li>
 				<!-- About link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a href="{{path('about_us')}}" class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold">About</a>
+					<a href="{{path('about_us')}}" class="{{app.current_route == 'about_us'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold">About</a>
 				</li>
 				<!-- Shop link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold" href="{{path('shop')}}">Shop</a>
+					<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('shop')}}">Shop</a>
 				</li>
 				<!-- Blog link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold" href="{{path('blog')}}">Blog</a>
+					<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('blog')}}">Blog</a>
 				</li>
 				<!-- Contact link -->
 				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-bold" href="{{path('contact')}}">Contact</a>
+					<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('contact')}}">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -226,23 +226,23 @@
 
 					<!-- Home link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="text-primary transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
+						<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
 					</li>
 					<!-- About link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
+						<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
 					</li>
 					<!-- Shop link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
+						<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
 					</li>
 					<!-- Blog link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
+						<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
 					</li>
 					<!-- Contact link -->
 					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="text-black transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary  motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
+						<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
 					</li>
 				</ul>
 			</div>

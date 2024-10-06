@@ -32,12 +32,17 @@
 	<body>
 		{% include ('_partials/_header.html.twig')%}
 		<main>
-			{# MESSAGES  #}
+			{% include '_partials/flash.html.twig' %}
 			{% include '_partials/flash.html.twig' %}
 			{% block body %}{% endblock %}
 
 		</main>
-		{# {% include ('_partials/_footer.html.twig')%} #}
+
+		{# HIDE FOOTER ON ADMINISTRATION PAGES #}
+		{% if app.request.pathinfo starts with '/admin' == false %}
+			{% include ('_partials/_footer.html.twig')%}
+		{% endif %}
+
 		<!-- TW Elements JavaScript -->
 		<script src="{{asset('/assets/js/tw-elements.umd.min.js')}}"></script>
 	</body>

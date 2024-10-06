@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - Create product
+{% endblock %}
+
+{% block body %}
+
+	{# MENU  #}
+	<h1 class="w-full flex px-8 lg:px-16 mt-6 mb-4 capitalize text-xl font-semibold">My garden - flower shop - Create product</h1>
+
+	<div
+		class="create_products w-full flex px-8 lg:px-16 mb-10">
+
+		{# MENU LEFT  #}
+		{% include ('admin/_partials/menu_navigation.html.twig')%}
+		{# RIGHT CREATE FORM #}
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-2 lg:p-8">
+			<h2 class="text-2xl font-bold mb-4">list product</h2>
+		</aside>
+	</div>
+
+
+	{# SCRIPT  #}
+
+{% endblock %}
