@@ -5,49 +5,30 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\ColorProduct;
 use App\Entity\Product;
-use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Event\PreSubmitEvent;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Contracts\Service\Attribute\Required;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Check if the form is for creating a new product (no existing product passed)
+        $isEdit = $options['is_edit'];
+
         $builder
             ->add('name', TextType::class, [
                 'empty_data' => '',
                 'label' => 'Name of product',
                 'required' => true,
-                'constraints' => [
-                    // new Assert\NotBlank([
-                    //     'message' => 'Name of product is required',
-                    // ]),
-                    // new Assert\Length([
-                    //     'min' => 3,
-                    //     'max' => 40,
-                    //     'minMessage' => 'Product name must be at least {{ limit }} characters long',
-                    //     'maxMessage' => 'Product name must be at most {{ limit }} characters long',
-                    // ]),
-                    // new Assert\Regex([
-                    //     'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s\-_]*$/',
-                    //     'message' => 'Product name can only contains letters, numbers, and underscores',
-                    // ])
-                ],
                 'attr' => [
                     'placeholder' => 'Ex.Ariscalis mantras',
                     'minlength' => 3,
@@ -63,37 +44,34 @@ class ProductType extends AbstractType
                 'required' => true,
                 'class' => Category::class,
                 'choice_label' => 'name',
-                // 'constraints' => [
-                //     new Assert\NotBlank([
-                //         'message' => 'Your category is required',
-                //     ]),
-                // ],
                 'attr' => [
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3'
+                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
             ])
 
             ->add('imageFile', VichImageType::class, [
                 'empty_data' => '',
-                'label' => 'Image of product',
-                'required' => true
+                'label' => 'Product Image',
+                'required' => !$isEdit, // Image required if creating product
+                'attr' => ['class' => 'form-input mt-1 block w-full'],
+                'constraints' => !$isEdit ? [
+                    new NotBlank(),
+                    new File([
+                        'maxSize' => '1M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/jpg',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image (JPG,JPEG, WEBP or PNG)',
+                    ]),
+                ] : [],
             ])
             ->add('description', TextareaType::class, [
                 'empty_data' => '',
                 'label' => 'Description of product',
                 'required' => true,
-                // 'constraints' => [
-                //     new Assert\Length([
-                //         'min' => 20,
-                //         'max' => 200,
-                //         'minMessage' => 'The description must be at least {{ limit }} characters long',
-                //         'maxMessage' => 'The description must be at most {{ limit }} characters long',
-                //     ]),
-                //     new Assert\Regex([
-                //         'pattern' => '/^[a-zA-ZÀ-ÿ0-9\s!?,.-_]*$/',
-                //         'message' => 'The description can only contains letters, numbers,(,.!?),space and underscores.',
-                //     ])
-                // ],
                 'attr' => [
                     'placeholder' => 'Ex.This product...',
                     'minlength' => 20,
@@ -101,25 +79,10 @@ class ProductType extends AbstractType
                     'class' => 'w-full rounded   bg-white p-3 shadow shadow-gray-100 text-base'
                 ],
             ])
-
             ->add('price', NumberType::class, [
                 'empty_data' => '',
                 'label' => 'Price of product',
                 'required' => true,
-                // 'constraints' => [
-                //     new Assert\Length([
-                //         'min' => 2,
-                //         'max' => 7,
-                //         'minMessage' => 'The price must be at least {{ limit }} characters long',
-                //         'maxMessage' => 'The price must be at most {{ limit }} characters long',
-                //     ]),
-                //     new Assert\Positive(),
-                //     new Assert\Range([
-                //         'min' => 10,
-                //         'max' => 5000,
-                //         'notInRangeMessage' => 'The price must be from {{ min }} to {{ max }}.',
-                //     ])
-                // ],
                 'attr' => [
                     'placeholder' => '100,00',
                     'minlength' => 2,
@@ -127,8 +90,6 @@ class ProductType extends AbstractType
                     'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 leading-4'
                 ],
             ])
-
-
             ->add('promotion', ChoiceType::class, [
                 'empty_data' => '',
                 'placeholder' => 'Choose a tax promotion',
@@ -145,7 +106,7 @@ class ProductType extends AbstractType
                     '40%' => 40,
                 ],
                 'attr' => [
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3'
+                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
                 'required' => true,
@@ -161,7 +122,7 @@ class ProductType extends AbstractType
                     '20%' => 20,
                 ],
                 'attr' => [
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3'
+                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
             ])
@@ -175,37 +136,25 @@ class ProductType extends AbstractType
                 ],
                 'required' => true,
                 'attr' => [
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3'
+                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
             ])
-
-
             ->add('colorProduct', EntityType::class, [
                 'class' => ColorProduct::class,
                 'placeholder' => 'Choose a color',
                 'choice_label' => 'color',
                 'attr' => [
-                    'minlength' => 3,
-                    'maxlength' => 25,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3'
+                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Create an account',
-                'attr' => [
-                    'class' => 'py-2 px-4 mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm w-fit'
-                ]
-            ])
-
-        ;
+            ]);
     }
-
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Product::class,
+            'is_edit' => false, // Pass whether the form is for creating or editing
         ]);
     }
 }

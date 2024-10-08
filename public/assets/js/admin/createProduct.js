@@ -119,6 +119,13 @@ function checkProductName() {
 
 // CHECK CATEGORY
 function checkProductCategory() {
+  // COLOR PLACEHOLDER
+  if (productCategory.value && productCategory.length != 0) {
+    productCategory.style.color = '#161616'
+  } else {
+    productCategory.style.color = '#989898'
+  }
+
   if (productCategory.value == '') {
     productCategoryError.style.display = 'block'
     productCategory.classList.add('error-message')
@@ -202,6 +209,12 @@ function checkProductPrice() {
 
 // CHECK TVA
 function checkProductTva() {
+  // COLOR PLACEHOLDER
+  if (productTva.value) {
+    productTva.style.color = '#161616'
+  } else {
+    productTva.style.color = '#989898'
+  }
   if (productTva.value == '') {
     productTvaError.style.display = 'block'
     productTva.classList.add('error-message')
@@ -218,6 +231,12 @@ function checkProductTva() {
 
 // CHECK COLOR
 function checkProductColor() {
+  // COLOR PLACEHOLDER
+  if (productColor.value) {
+    productColor.style.color = '#161616'
+  } else {
+    productColor.style.color = '#989898'
+  }
   if (productColor.value == '') {
     productColorError.style.display = 'block'
     productColor.classList.add('error-message')
@@ -234,6 +253,12 @@ function checkProductColor() {
 
 // CHECK PROMOTION
 function checkProductPromotion() {
+  // COLOR PLACEHOLDER
+  if (productPromotion.value) {
+    productPromotion.style.color = '#161616'
+  } else {
+    productPromotion.style.color = '#989898'
+  }
   if (productPromotion.value == '') {
     productPromotionError.style.display = 'block'
     productPromotion.classList.add('error-message')
@@ -250,6 +275,12 @@ function checkProductPromotion() {
 
 // CHECK SUGGESTION
 function checkProductSuggestion() {
+  // COLOR PLACEHOLDER
+  if (productSuggestion.value) {
+    productSuggestion.style.color = '#161616'
+  } else {
+    productSuggestion.style.color = '#989898'
+  }
   if (productSuggestion.value == '') {
     productSuggestionError.style.display = 'block'
     productSuggestion.classList.add('error-message')
@@ -283,7 +314,7 @@ function checkProductDescription() {
     productDescriptionError.style.display = 'block'
     productDescription.classList.add('error-message')
     productDescriptionError.innerText =
-      'The description of the product must be at least 3 characters, and maximum 40 characters.'
+      'The description of the product must be at least 20 characters, and maximum 200 characters.'
     return false
   } else if (!validProductDescription) {
     productDescriptionError.style.display = 'block'
