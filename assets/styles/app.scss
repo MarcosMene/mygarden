@@ -85,7 +85,7 @@ select option:not(first-child[selected]) {
   color: $red;
 }
 
-.text-red {
+form .text-red {
   margin-top: 6px;
 }
 
@@ -102,6 +102,19 @@ select option:not(first-child[selected]) {
 .disabled {
   pointer-events: none;
   opacity: 0.3;
+}
+
+//VICHUPLOAD IMAGES
+.vich-image img {
+  max-width: 300px;
+}
+
+.vich-image a {
+  pointer-events: none;
+}
+
+.vich-image a:last-child {
+  display: none;
 }
 
 //ALERTS

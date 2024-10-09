@@ -1,0 +1,18 @@
+<!-- Modal Background -->
+<div
+	id="modal_delete" class="fixed top-0 right-0 left-0 z-50 bg-black bg-opacity-50 hidden">
+	<!-- Modal Box -->
+	<div class="modal flex flex-col justify-center items-center h-screen ">
+		<div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md flex flex-col justify-center items-center">
+			<h2 class="text-2xl font-semibold text-red text-center">Delete action</h2>
+			<p class="mt-4 text-gray-600 text-center">Are you sure you want to delete the product</p>
+			<span id="delete-product-name" class="font-bold"></span>
+
+			<!--BUTTONS-->
+			<div class="mt-6 w-full flex justify-around">
+				<button id="confirm-button" class="py-2 px-4 text-base font-medium bg-red border border-red text-white   hover:bg-white hover:text-black transition ease-in-out delay-100 rounded-sm capitalize">Delete</button>
+				<button id="cancel-button" class="py-2 px-4 text-base font-medium bg-gray border-gray text-white  hover:bg-green-700 hover:border-green-700 transition ease-in-out delay-100 rounded-sm capitalize">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -46,11 +46,11 @@ class Product
     private ?bool $isSuggestion = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete:'SET NULL')]
     private ?Category $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete:'SET NULL')]
     private ?ColorProduct $colorProduct = null;
 
     #[ORM\Column]

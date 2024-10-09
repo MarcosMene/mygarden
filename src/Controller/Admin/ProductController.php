@@ -38,7 +38,7 @@ class ProductController extends AbstractController
 
     // CREATE PRODUCT 
     #[Route('/admin/create/product', name: 'create_product')]
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product, ['is_edit' => false]);
@@ -51,8 +51,8 @@ class ProductController extends AbstractController
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug(strtolower($product->getName()));
             $product->setSlug($slug);
-            $entityManager->persist($product);
-            $entityManager->flush();
+            $this->entityManager->persist($product);
+            $this->entityManager->flush();
             //message
             $this->addFlash('success', 'Your product was created with success');
             return $this->redirectToRoute('show_products');
@@ -68,16 +68,27 @@ class ProductController extends AbstractController
 
     {
         $product = $productRepository->findOneBySlug($slug);
+        if (!$product) {
+            $this->addFlash('danger', 'This product doesn\'t exist');
+            return $this->redirectToRoute('show_products');
+        }
+
         return $this->render('admin/product/detail_product.html.twig', [
             'product_detail' => $product
         ]);
     }
 
-    //MODIFY PRODUCT
-    #[Route('/admin/modify/product/{id}', name: 'modify_product', requirements: ['id' => '\d+'])]
-    public function modify(Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository, $id): Response
+    //EDIT PRODUCT
+    #[Route('/admin/edit/product/{id}', name: 'edit_product', requirements: ['id' => '\d+'])]
+    public function edit(Request $request, ProductRepository $productRepository, $id): Response
     {
         $product = $productRepository->find($id);
+
+        //IF PRODUCT DOESNT EXIT
+        if (!$product) {
+            $this->addFlash('danger', 'This product doesn\'t exist');
+            return $this->redirectToRoute('show_products');
+        }
 
         $form = $this->createForm(ProductType::class, $product, ['is_edit' => true]);
         $form->handleRequest($request);
@@ -89,8 +100,8 @@ class ProductController extends AbstractController
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug(strtolower($product->getName()));
             $product->setSlug($slug);
-            $entityManager->persist($product);
-            $entityManager->flush();
+            $this->entityManager->persist($product);
+            $this->entityManager->flush();
             $this->addFlash('success', 'Product updated succesfully');
             return $this->redirectToRoute('show_products');
         }
@@ -103,15 +114,19 @@ class ProductController extends AbstractController
     public function delete(ProductRepository $productRepository, Request $request, $id): Response
     {
         $product = $productRepository->find($id);
+        if (!$product) {
+            $this->addFlash('danger', 'This product doesn\'t exist');
+            return $this->redirectToRoute('show_products');
+        }
 
         //security csrf
         $csrfToken = new CsrfToken('deleteProduct' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have access to it.');
         } else {
+            $this->addFlash('success', 'Product deleted succesfully');
             $this->entityManager->remove($product);
             $this->entityManager->flush();
-            $this->addFlash('success', 'Product deleted succesfully');
         }
         return $this->redirectToRoute('show_products');
     }

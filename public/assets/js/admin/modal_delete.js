@@ -3,7 +3,7 @@ var teste = document.getElementById('cancel-button')
 // Function to open the delete modal
 function openDeleteModal(productId, productName) {
   // Show the modal
-  document.getElementById('product-modal').classList.remove('hidden')
+  document.getElementById('modal_delete').classList.remove('hidden')
 
   // Update the product name in the modal
   document.getElementById('delete-product-name').textContent = productName
@@ -14,8 +14,7 @@ function openDeleteModal(productId, productName) {
     document.getElementById('delete-form-' + productId).submit()
   }
 }
-console.log(teste)
 // Function to close the delete modal
 teste.addEventListener('click', () => {
-  document.getElementById('product-modal').classList.add('hidden')
+  document.getElementById('modal_delete').classList.add('hidden')
 })
