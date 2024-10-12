@@ -20,7 +20,7 @@ class ProductFixtures extends Fixture
     $categories = ['bouquets', 'gifts', 'wedding', 'decoration', 'events'];
     $colors = ['red', 'yellow', 'violet', 'green'];
 
-    $description = "Quam si euismod scelerisque phasellus faucibus nec feugiat porta hendrerit. Eleifend integer class litora gravida id scelerisque mattis cursus. Bibendum tellus sagittis viverra inceptos tortor himenaeos arcu diam. Luctus nam platea turpis congue nulla conubia consectetuer aliquam. Nullam letius tortor non maximus phasellus cras torquent. Cras finibus tempor interdum neque tellus morbi. Felis malesuada nam dis et sollicitudin.";
+    $description = "In omnis nobis maiores consectetur ipsum mollit praesentium In omnis nobis maiores consectetur ipsum mollit praesentiumIn omnis nobis maiores consectetur ipsum mollit praesentiumIn omnis.";
 
     //create 5 colors
 
@@ -29,7 +29,7 @@ class ProductFixtures extends Fixture
       $category = new Category();
       $category->setName($cat);
       $category->setSlug('slug' . $cat);
-      $category->setIllustration('bouquet.jpg');
+      $category->setImageName('bouquet.jpg');
       $manager->persist($category);
     }
     foreach ($colors as $colorproduct) {
@@ -41,12 +41,13 @@ class ProductFixtures extends Fixture
         $product = new Product();
         $product->setName('product ' . $j);
         $product->setSlug('slug' . $j);
-        $product->setImageName('1099d200-2584-46f6-81d3-e1d249c46eff-66faa83cbb274881477130.jpeg');
+        $product->setImageName('bouquet.jpg');
         $product->setDescription($description);
         $product->setPrice(mt_rand(10, 100));
         $product->setColorProduct($color);
-        $product->setTva(10);
-        $product->setPromotion(mt_rand(0, 20));
+        $product->setTva(15);
+        $product->setPromotion(0);
+        $product->setisSuggestion(false);
         $product->setCategory($category);
         $manager->persist($product);
       }

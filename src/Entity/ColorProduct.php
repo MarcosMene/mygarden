@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\ColorProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ColorProductRepository::class)]
+#[UniqueEntity('color')]
 class ColorProduct
 {
     #[ORM\Id]
@@ -72,7 +74,6 @@ class ColorProduct
                 $product->setColorProduct(null);
             }
         }
-
         return $this;
     }
 

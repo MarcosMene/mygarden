@@ -25,76 +25,95 @@
 				</a>
 			</div>
 
-			<!-- TABLE  -->
-			<div class="flex flex-col">
-				<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-					<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-						<div class="overflow-hidden">
-							<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
-								<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
-									<tr>
-										<th scope="col" class="p-2">Name</th>
-										<th scope="col" class="p-2">URL</th>
-										<th scope="col" class="p-2">Category</th>
-										<th scope="col" class="p-2">Image</th>
-										<th scope="col" class="p-2">Suggestion</th>
-										<th scope="col" class="p-2">Description</th>
-										<th scope="col" class="p-2">Color</th>
-										<th scope="col" class="p-2">Price</th>
-										<th scope="col" class="p-2">VAT%</th>
-										<th scope="col" class="p-2">Actions</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for product in products %}
-										<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-											<td class="whitespace-nowrap px-2 py-3 ">{{product.name|slice(0, 10) ~ '...'}}</td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.slug|slice(0, 10) ~ '...'}}</td>
-											<td class="whitespace-nowrap px-2 py-3">
-												{% if product.category %}
-													{{product.category}}
-												{% else %}
-													<p class="text-red font-semibold">Category deleted</p>
-													<p class="text-red font-semibold">Choose a category</p>
-												{% endif %}
-											</td>
-											<td class="whitespace-nowrap px-2 py-3"><img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class="w-14 mx-auto"></td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.isSuggestion == 1 ? 'yes':'no'}}</td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.description|slice(0, 10) ~ '...'}}</td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.colorProduct}}</td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.price|number_format(2, '.', ',') }}</td>
-											<td class="whitespace-nowrap px-2 py-3">{{product.tva}}</td>
-											<td class="whitespace-nowrap p-2">
-												<div class="h-full flex justify-between items-center">
-													<a href="{{path('detail_product', {slug:product.slug})}}" class="flex flex-col text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
-														<i class="fa-regular fa-eye"></i>
-														View
-													</a>
-													<a href="{{path('edit_product',{id: product.id})}}" class="flex flex-col text-black text-xs font-medium transition duration-200 hover:scale-125">
-														<i class="fa-solid fa-pencil text-black"></i>
-														Edit
-													</a>
+			{% if products|length >0 %}
 
-													<!-- Delete button triggers the modal, not a form submission -->
-													<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.id }}, '{{ product.name }}')">
-														<i class="fa-regular fa-trash-can"></i>
-														Delete
-													</button>
-
-													<!-- Hidden form for deletion -->
-													<form id="delete-form-{{ product.id }}" action="{{ path('delete_product', {id: product.id}) }}" method="POST" class="hidden">
-														<input type="hidden" name="_token" value="{{ csrf_token('deleteProduct' ~ product.id) }}">
-													</form>
-												</div>
-											</td>
+				<!-- TABLE  -->
+				<div class="flex flex-col">
+					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+							<div class="overflow-hidden">
+								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+										<tr>
+											<th scope="col" class="p-2 w-[500px]">Name</th>
+											<th scope="col" class="p-2 w-[500px]">URL</th>
+											<th scope="col" class="p-2 w-[500px]">Category</th>
+											<th scope="col" class="p-2 w-[500px]">Image</th>
+											<th scope="col" class="p-2 w-[500px]">Suggestion</th>
+											<th scope="col" class="p-2 w-[500px]">Description</th>
+											<th scope="col" class="p-2 w-[500px]">Color</th>
+											<th scope="col" class="p-2 w-[500px]">Price</th>
+											<th scope="col" class="p-2 w-[500px]">VAT%</th>
+											<th scope="col" class="p-2 w-[500px]">Promotion</th>
+											<th scope="col" class="p-2 w-[500px]">Actions</th>
 										</tr>
-									{% endfor %}
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										{% for product in products %}
+											<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+												<td class="whitespace-nowrap px-2 py-3 ">{{product.name|slice(0, 10) ~ '...'}}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.slug|slice(0, 10) ~ '...'}}</td>
+												<td class="whitespace-nowrap px-2 py-3">
+													{% if product.category %}
+														{{product.category}}
+													{% else %}
+														<p class="text-red font-semibold text-sm">Category deleted</p>
+														<p class="text-red font-semibold text-sm">Choose a category</p>
+													{% endif %}
+												</td>
+												<td class="whitespace-nowrap px-2 py-3"><img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class="w-14 mx-auto"></td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.isSuggestion == 1 ? 'yes':'no'}}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.description|slice(0, 10) ~ '...'}}</td>
+												<td class="whitespace-nowrap px-2 py-3">
+													{% if product.colorProduct %}
+														{{product.colorProduct}}
+													{% else %}
+														<p class="text-red font-semibold text-sm">Color deleted</p>
+														<p class="text-red font-semibold text-sm">Choose a color</p>
+													{% endif %}
+												</td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.price|number_format(2, '.', ',') }}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.tva}}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{product.promotion}}</td>
+
+												<!--ACTION BUTTONS-->
+												<td class="whitespace-nowrap p-2">
+													<div class="h-full flex justify-between items-center gap-4">
+														<a href="{{path('detail_product', {slug:product.slug})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-regular fa-eye"></i>
+															View
+														</a>
+														<a href="{{path('edit_product',{id: product.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-solid fa-pencil text-black"></i>
+															Edit
+														</a>
+
+														<!-- Delete button triggers the modal, not a form submission -->
+														<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.id }}, '{{ product.name }}')">
+															<i class="fa-regular fa-trash-can"></i>
+															Delete
+														</button>
+
+														<!-- Hidden form for deletion -->
+														<form id="delete-form-{{ product.id }}" action="{{ path('delete_product', {id: product.id}) }}" method="POST" class="hidden">
+															<input type="hidden" name="_token" value="{{ csrf_token('deleteProduct' ~ product.id) }}">
+														</form>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			{% else %}
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">No products found.</p>
+					<p>Create a product.</p>
+				</div>
+			{% endif %}
 		</aside>
 	</div>
 

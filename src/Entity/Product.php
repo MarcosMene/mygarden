@@ -5,11 +5,13 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Vich\Uploadable]
+#[UniqueEntity('name')]
 class Product
 {
     #[ORM\Id]
@@ -46,16 +48,15 @@ class Product
     private ?bool $isSuggestion = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: true, onDelete:'SET NULL')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Category $category = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: true, onDelete:'SET NULL')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?ColorProduct $colorProduct = null;
 
     #[ORM\Column]
     private ?float $promotion = null;
-
 
     public function getId(): ?int
     {
@@ -111,7 +112,6 @@ class Product
 
         return $this;
     }
-
 
     public function getDescription(): ?string
     {
@@ -201,7 +201,6 @@ class Product
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -213,7 +212,6 @@ class Product
     public function setPromotion(float $promotion): static
     {
         $this->promotion = $promotion;
-
         return $this;
     }
 }

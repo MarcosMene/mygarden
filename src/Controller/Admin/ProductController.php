@@ -4,9 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
+use App\Repository\ColorProductRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -38,34 +41,56 @@ class ProductController extends AbstractController
 
     // CREATE PRODUCT 
     #[Route('/admin/create/product', name: 'create_product')]
-    public function create(Request $request): Response
+    public function create(Request $request, ProductRepository $productRepository, CategoryRepository $categoryRepository, ColorProductRepository $colorProductRepository): Response
     {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product, ['is_edit' => false]);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $product = $form->getData();
+        $colorCounts = $colorProductRepository->findAll();
+        $categoryCounts = $categoryRepository->findAll();
 
-            // CREATE SLUG FROM PRODUCT NAME 
-            $slugger = new AsciiSlugger();
-            $slug = $slugger->slug(strtolower($product->getName()));
-            $product->setSlug($slug);
-            $this->entityManager->persist($product);
-            $this->entityManager->flush();
-            //message
-            $this->addFlash('success', 'Your product was created with success');
-            return $this->redirectToRoute('show_products');
+        if (empty($colorCounts)) {
+            $this->addFlash('error', 'You must create at least one color before creating a product');
+            return $this->redirectToRoute('create_color');
         }
-        return $this->render('admin/product/product_form.html.twig', [
-            'form' => $form
-        ]);
+
+        if (empty($categoryCounts)) {
+            $this->addFlash('error', 'You must create at least one category before creating a product');
+            return $this->redirectToRoute('create_category');
+        } else {
+            $product = new Product();
+            $form = $this->createForm(ProductType::class, $product, ['is_edit' => false]);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                // Check if the product name already exists
+                $existingProduct = $productRepository->findOneBy(['name' => $product->getName()]);
+
+                if ($existingProduct) {
+                    $form->get('name')->addError(new FormError('This product name is already taken.'));
+                } else {
+
+                    $product = $form->getData();
+
+                    // CREATE SLUG FROM PRODUCT NAME 
+                    $slugger = new AsciiSlugger();
+                    $slug = $slugger->slug(strtolower($product->getName()));
+                    $product->setSlug($slug);
+                    $this->entityManager->persist($product);
+                    $this->entityManager->flush();
+                    //message
+                    $this->addFlash('success', 'Your product was created with success');
+                    return $this->redirectToRoute('show_products');
+                }
+            }
+            return $this->render('admin/product/product_form.html.twig', [
+                'form' => $form
+            ]);
+        }
     }
 
     // DETAIL PRODUCT
     #[Route('/admin/detail/product/{slug}', name: 'detail_product', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
     public function detail(ProductRepository $productRepository, $slug): Response
-
     {
         $product = $productRepository->findOneBySlug($slug);
         if (!$product) {
@@ -91,6 +116,7 @@ class ProductController extends AbstractController
         }
 
         $form = $this->createForm(ProductType::class, $product, ['is_edit' => true]);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 

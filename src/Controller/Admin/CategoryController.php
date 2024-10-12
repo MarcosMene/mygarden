@@ -25,7 +25,6 @@ class CategoryController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-
     #[Route('/admin/show/categories', name: 'show_categories')]
     public function index(CategoryRepository $categoriesRepository): Response
     {
@@ -38,11 +37,13 @@ class CategoryController extends AbstractController
 
     // CREATE CATEGORY 
     #[Route('/admin/create/category', name: 'create_category')]
-    public function create(Request $request): Response
+    public function create(Request $request, CategoryRepository $categoryRepository): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category, ['is_edit' => false]);
         $form->handleRequest($request);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $category = $form->getData();
@@ -53,6 +54,7 @@ class CategoryController extends AbstractController
             $category->setSlug($slug);
             $this->entityManager->persist($category);
             $this->entityManager->flush();
+
             //message
             $this->addFlash('success', 'Your category was created with success');
             return $this->redirectToRoute('show_categories');
@@ -73,7 +75,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('show_categories');
         }
         return $this->render('admin/category/detail_category.html.twig', [
-            'category_detail' => $category
+            'category' => $category
         ]);
     }
 
@@ -93,6 +95,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
+
             //CREATE SLUG FROM CATEGORY NAME
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug(strtolower($category->getName()));
@@ -115,7 +118,6 @@ class CategoryController extends AbstractController
             $this->addFlash('danger', 'This category doesn\'t exist');
             return $this->redirectToRoute('show_categories');
         }
-
 
         //SECURITY CSRF
         $csrfToken = new CsrfToken(

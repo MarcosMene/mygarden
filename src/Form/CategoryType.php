@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'empty_data' => '',
-                'label' => 'Name of product',
+                'label' => 'Name of category',
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'Ex.Ariscalis mantras',
@@ -33,8 +33,8 @@ class CategoryType extends AbstractType
             ])
             ->add('imageFile', VichImageType::class, [
                 'empty_data' => '',
-                'label' => 'Product Image',
-                'required' => !$isEdit, // Image required if creating product
+                'label' => 'Category Image',
+                'required' => !$isEdit, // Image required if creating category
                 'attr' => ['class' => 'form-input mt-1 block w-full'],
                 'constraints' => !$isEdit ? [
                     new NotBlank(),

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}My Garden -
-	{{category_detail.slug}}
+	{{category.slug}}
 {% endblock %}
 
 {% block body %}
@@ -33,10 +33,10 @@
 				<!-- CATEGORY IMAGE  -->
 				<div class="detail_category_img w-full lg:w-1/5">
 
-					{% if category_detail.imageName %}
-						<img src="{{ asset('upload/categories/' ~ category_detail.imageName) }}" alt="{{ category_detail.name }}" loading="lazy"></td>
+					{% if category.imageName %}
+						<img src="{{ asset('upload/categories/' ~ category.imageName) }}" alt="{{ category.name }}" loading="lazy"></td>
 				{% else %}
-					<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="{{ category_detail.name }}" loading="lazy">
+					<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="{{ category.name }}" loading="lazy">
 				{% endif %}
 			</div>
 			<!-- CATEGORY DESCRIPTION  -->
@@ -48,15 +48,14 @@
 					<!-- NAME -->
 					<div class="flex me-0 lg:me-6">
 						<p class="font-semibold text-lg">Name:</p>
-						<p class="font-normal text-lg mb-2 ms-1">{{ category_detail.name }}</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ category.name }}</p>
 					</div>
 					<!-- SLUG -->
 					<div class="flex me-0 lg:me-6">
 						<p class="font-semibold text-lg">URL:</p>
-						<p class="font-normal text-lg mb-2 ms-1">{{ category_detail.slug }}</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ category.slug }}</p>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</aside>

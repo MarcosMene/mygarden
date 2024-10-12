@@ -1,6 +1,7 @@
 // NAME PRODUCT
 var productName = document.getElementById('product_name')
 var productNameError = document.getElementById('productName_error')
+var errorMessages = document.getElementById('error_messages')
 
 // CATEGORY PRODUCT
 var productCategory = document.getElementById('product_category')
@@ -39,37 +40,37 @@ var productDescriptionError = document.getElementById(
 // SUBMIT BUTTON
 var submitButton = document.getElementById('product_submit')
 
-productName.addEventListener('input', (event) => {
+productName.addEventListener('input', () => {
   checkProductName()
 })
-productCategory.addEventListener('change', (event) => {
+productCategory.addEventListener('change', () => {
   checkProductCategory()
 })
-productPrice.addEventListener('input', (event) => {
+productPrice.addEventListener('input', () => {
   checkProductPrice()
 })
-productTva.addEventListener('change', (event) => {
+productTva.addEventListener('change', () => {
   checkProductTva()
 })
-productColor.addEventListener('change', (event) => {
+productColor.addEventListener('change', () => {
   checkProductColor()
 })
 
-productPromotion.addEventListener('change', (event) => {
+productPromotion.addEventListener('change', () => {
   checkProductPromotion()
 })
-productSuggestion.addEventListener('change', (event) => {
+productSuggestion.addEventListener('change', () => {
   checkProductSuggestion()
 })
-productImage.addEventListener('change', (event) => {
+productImage.addEventListener('change', () => {
   checkProductImage()
 })
 
-productDescription.addEventListener('input', (event) => {
+productDescription.addEventListener('input', () => {
   checkProductDescription()
 })
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', (event) => {
   if (
     !checkProductName() &&
     !checkProductCategory() &&
@@ -81,11 +82,74 @@ submitButton.addEventListener('click', () => {
     !checkProductDescription() &&
     !checkProductImage()
   ) {
+    errorMessages.classList.remove('hidden')
+    errorMessages.innerText = 'Please fill in all the fields'
+  } else {
+    errorMessages.classList.add('hidden')
+  }
+
+  if (!checkProductName()) {
+    event.preventDefault()
+    productNameError.style.display = 'block'
+    productName.classList.add('error-message')
+    productNameError.innerText = 'The name of product is required.'
+  }
+  if (!checkProductCategory()) {
+    event.preventDefault()
+    productCategoryError.style.display = 'block'
+    productCategory.classList.add('error-message')
+    productCategoryError.innerText = 'The name of the category is required.'
+  }
+  if (!checkProductTva()) {
+    event.preventDefault()
+    productTvaError.style.display = 'block'
+    productTva.classList.add('error-message')
+    productTvaError.innerText = 'The tax is required.'
+  }
+  if (!checkProductPrice()) {
+    event.preventDefault()
+    productPriceError.style.display = 'block'
+    productPrice.classList.add('error-message')
+    productPriceError.innerText = 'The price is required.'
+  }
+  if (!checkProductColor()) {
+    event.preventDefault()
+    productColorError.style.display = 'block'
+    productColor.classList.add('error-message')
+    productColorError.innerText = 'The color is required.'
+  }
+  if (!checkProductPromotion()) {
+    event.preventDefault()
+    productPromotionError.style.display = 'block'
+    productPromotion.classList.add('error-message')
+    productPromotionError.innerText = 'The promotion is required.'
+  }
+  if (!checkProductSuggestion()) {
+    event.preventDefault()
+    productSuggestionError.style.display = 'block'
+    productSuggestion.classList.add('error-message')
+    productSuggestionError.innerText = 'The suggestion is required.'
+  }
+  if (!checkProductDescription()) {
+    event.preventDefault()
+    productDescriptionError.style.display = 'block'
+    productDescription.classList.add('error-message')
+    productDescriptionError.innerText = 'The description is required.'
+  }
+  if (!checkProductImage()) {
+    event.preventDefault()
+    productImageError.style.display = 'block'
+    productImage.classList.add('error-message')
+    productImageError.innerText = 'The image is required.'
   }
 })
 
 // CHECK PRODUCT NAME
 function checkProductName() {
+  productName.classList.remove('is-invalid')
+  productName.classList.remove('error-message')
+
+  //VALIDATION PRODUCT
   var patternProductName = /^[a-zA-ZÀ-ÿ0-9_\-\s]{2,40}$/
   var productname = productName.value
   var validProductName = patternProductName.test(productname)
@@ -119,7 +183,7 @@ function checkProductName() {
 
 // CHECK CATEGORY
 function checkProductCategory() {
-  // COLOR PLACEHOLDER
+  // CATEGORY PLACEHOLDER
   if (productCategory.value && productCategory.length != 0) {
     productCategory.style.color = '#161616'
   } else {
@@ -142,37 +206,46 @@ function checkProductCategory() {
 
 // CHECK IMAGE
 function checkProductImage() {
-  if (!productImage.files[0]) {
-    productImageError.style.display = 'block'
-    productImage.classList.add('error-message')
-    productImageError.innerText = 'The image of the product is required.'
-    return false
-  }
-  // Allowed file types
-  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+  let vichImage = document.querySelector('.vich-image')
 
-  // Check file type
-  if (!allowedTypes.includes(productImage.files[0].type)) {
-    productImageError.style.display = 'block'
-    productImage.classList.add('error-message')
-    productImageError.innerText =
-      'Invalid file type! Please upload a JPG, JPEG, PNG, or WEBP image.'
-    return false
-  }
+  // Check if the vichImage contains any element with an href attribute (like an <a> tag)
+  let hasHrefChild = vichImage.querySelector('[href]') !== null
 
-  // Check file size (max size set to 1MB in this example)
-  const maxSizeInBytes = 1 * 1024 * 1024 // 1MB
-  if (productImage.files[0].size > maxSizeInBytes) {
-    productImageError.style.display = 'block'
-    productImage.classList.add('error-message')
-    productImageError.innerText = 'File is too large! Maximum size is 1MB.'
-    return false
-  } else {
-    productImageError.innerText = ''
-    productImageError.style.display = 'none'
-    productImage.classList.remove('error-message')
-    productImage.classList.add('validated-message')
+  if (hasHrefChild) {
     return true
+  } else {
+    if (!productImage.files[0]) {
+      productImageError.style.display = 'block'
+      productImage.classList.add('error-message')
+      productImageError.innerText = 'The image of the product is required.'
+      return false
+    }
+    // Allowed file types
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+
+    // Check file type
+    if (!allowedTypes.includes(productImage.files[0].type)) {
+      productImageError.style.display = 'block'
+      productImage.classList.add('error-message')
+      productImageError.innerText =
+        'Invalid file type! Please upload a JPG, JPEG, PNG, or WEBP image.'
+      return false
+    }
+
+    // Check file size (max size set to 1MB in this example)
+    const maxSizeInBytes = 1 * 1024 * 1024 // 1MB
+    if (productImage.files[0].size > maxSizeInBytes) {
+      productImageError.style.display = 'block'
+      productImage.classList.add('error-message')
+      productImageError.innerText = 'File is too large! Maximum size is 1MB.'
+      return false
+    } else {
+      productImageError.innerText = ''
+      productImageError.style.display = 'none'
+      productImage.classList.remove('error-message')
+      productImage.classList.add('validated-message')
+      return true
+    }
   }
 }
 
@@ -209,7 +282,7 @@ function checkProductPrice() {
 
 // CHECK TVA
 function checkProductTva() {
-  // COLOR PLACEHOLDER
+  // TVA PLACEHOLDER
   if (productTva.value) {
     productTva.style.color = '#161616'
   } else {
@@ -253,7 +326,7 @@ function checkProductColor() {
 
 // CHECK PROMOTION
 function checkProductPromotion() {
-  // COLOR PLACEHOLDER
+  // PROMOTION PLACEHOLDER
   if (productPromotion.value) {
     productPromotion.style.color = '#161616'
   } else {
@@ -275,7 +348,7 @@ function checkProductPromotion() {
 
 // CHECK SUGGESTION
 function checkProductSuggestion() {
-  // COLOR PLACEHOLDER
+  // SUGGESTION PLACEHOLDER
   if (productSuggestion.value) {
     productSuggestion.style.color = '#161616'
   } else {
@@ -297,7 +370,7 @@ function checkProductSuggestion() {
 
 // CHECK  DESCRIPTION
 function checkProductDescription() {
-  var patternProductDescription = /^[a-zA-ZÀ-ÿ0-9_\-\s]{19,199}$/
+  var patternProductDescription = /^[a-zA-ZÀ-ÿ0-9_\.,!?\-\s]{19,199}$/
   var productdescription = productDescription.value
   var validProductDescription =
     patternProductDescription.test(productdescription)

@@ -83,6 +83,7 @@ select option:not(first-child[selected]) {
 
 .form-error li {
   color: $red;
+  margin-top: 6px;
 }
 
 form .text-red {
@@ -99,6 +100,11 @@ form .text-red {
 .error-message {
   outline: 4px solid red;
 }
+
+.is-invalid {
+  outline: 4px solid red;
+}
+
 .disabled {
   pointer-events: none;
   opacity: 0.3;

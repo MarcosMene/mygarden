@@ -1,6 +1,7 @@
 // NAME CATEGORY
 var categoryName = document.getElementById('category_name')
 var categoryNameError = document.getElementById('categoryName_error')
+var errorMessages = document.getElementById('error_messages')
 
 // IMAGE CATEGORY
 var categoryImage = document.getElementById('category_imageFile_file')
@@ -9,24 +10,45 @@ var categoryImageError = document.getElementById('categoryImage_error')
 // SUBMIT BUTTON
 var submitButton = document.getElementById('category_submit')
 
-categoryName.addEventListener('input', (event) => {
+categoryName.addEventListener('input', () => {
   checkcategoryName()
 })
 
-categoryImage.addEventListener('change', (event) => {
+categoryImage.addEventListener('change', () => {
   checkcategoryImage()
 })
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', (event) => {
   if (!checkcategoryName() && !checkcategoryImage()) {
+    errorMessages.classList.remove('hidden')
+    errorMessages.innerText = 'Please fill in all the fields'
+  } else {
+    errorMessages.classList.add('hidden')
+  }
+
+  if (!checkcategoryName()) {
+    event.preventDefault()
+    categoryNameError.style.display = 'block'
+    categoryName.classList.add('error-message')
+    categoryNameError.innerText = 'The name of the category is required.'
+  }
+  if (!checkcategoryImage()) {
+    event.preventDefault()
+    categoryImageError.style.display = 'block'
+    categoryImage.classList.add('error-message')
+    categoryImageError.innerText = 'The image of the category is required.'
   }
 })
 
 // CHECK CATEGORY NAME
 function checkcategoryName() {
-  var patterncategoryName = /^[a-zA-ZÀ-ÿ0-9_\-\s]{2,40}$/
-  var categoryname = categoryName.value
-  var validcategoryName = patterncategoryName.test(categoryname)
+  categoryName.classList.remove('is-invalid')
+  categoryName.classList.remove('error-message')
+
+  //VALIDATION CATEGORY
+  let patterncategoryName = /^[a-zA-ZÀ-ÿ0-9_\'\-\s]{2,40}$/
+  let categoryname = categoryName.value
+  let validcategoryName = patterncategoryName.test(categoryname)
   if (categoryname.trim() === '') {
     categoryNameError.style.display = 'block'
     categoryName.classList.add('error-message')
@@ -57,36 +79,45 @@ function checkcategoryName() {
 
 // CHECK IMAGE
 function checkcategoryImage() {
-  if (!categoryImage.files[0]) {
-    categoryImageError.style.display = 'block'
-    categoryImage.classList.add('error-message')
-    categoryImageError.innerText = 'The image of the category is required.'
-    return false
-  }
-  // Allowed file types
-  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+  let vichImage = document.querySelector('.vich-image')
 
-  // Check file type
-  if (!allowedTypes.includes(categoryImage.files[0].type)) {
-    categoryImageError.style.display = 'block'
-    categoryImage.classList.add('error-message')
-    categoryImageError.innerText =
-      'Invalid file type! Please upload a JPG, JPEG, PNG, or WEBP image.'
-    return false
-  }
+  // Check if the vichImage contains any element with an href attribute (like an <a> tag)
+  let hasHrefChild = vichImage.querySelector('[href]') !== null
 
-  // Check file size (max size set to 1MB in this example)
-  const maxSizeInBytes = 1 * 1024 * 1024 // 1MB
-  if (categoryImage.files[0].size > maxSizeInBytes) {
-    categoryImageError.style.display = 'block'
-    categoryImage.classList.add('error-message')
-    categoryImageError.innerText = 'File is too large! Maximum size is 1MB.'
-    return false
-  } else {
-    categoryImageError.innerText = ''
-    categoryImageError.style.display = 'none'
-    categoryImage.classList.remove('error-message')
-    categoryImage.classList.add('validated-message')
+  if (hasHrefChild) {
     return true
+  } else {
+    if (!categoryImage.files[0]) {
+      categoryImageError.style.display = 'block'
+      categoryImage.classList.add('error-message')
+      categoryImageError.innerText = 'The image of the category is required.'
+      return false
+    }
+    // Allowed file types
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+
+    // Check file type
+    if (!allowedTypes.includes(categoryImage.files[0].type)) {
+      categoryImageError.style.display = 'block'
+      categoryImage.classList.add('error-message')
+      categoryImageError.innerText =
+        'Invalid file type! Please upload a JPG, JPEG, PNG, or WEBP image.'
+      return false
+    }
+
+    // Check file size (max size set to 1MB in this example)
+    const maxSizeInBytes = 1 * 1024 * 1024 // 1MB
+    if (categoryImage.files[0].size > maxSizeInBytes) {
+      categoryImageError.style.display = 'block'
+      categoryImage.classList.add('error-message')
+      categoryImageError.innerText = 'File is too large! Maximum size is 1MB.'
+      return false
+    } else {
+      categoryImageError.innerText = ''
+      categoryImageError.style.display = 'none'
+      categoryImage.classList.remove('error-message')
+      categoryImage.classList.add('validated-message')
+      return true
+    }
   }
 }
