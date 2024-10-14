@@ -45,8 +45,8 @@
 									<tbody>
 										{% for category in categories %}
 											<tr class="border-b border-neutral-200 text-base text-left font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap py-2">{{category.name}}</td>
-												<td class="whitespace-nowrap py-2">{{category.slug|slice(0, 40) ~ '...'}}</td>
+												<td class="whitespace-nowrap py-2 ps-4">{{category.name}}</td>
+												<td class="whitespace-nowrap py-2 ps-4">{{category.slug|slice(0, 40) ~ '...'}}</td>
 												<td class="whitespace-nowrap py-2">
 													{% if category.imageName %}
 														<img src="{{ asset('upload/categories/' ~ category.imageName) }}" alt="{{ category.name }}" loading="lazy" class="w-14 mx-auto"></td>
