@@ -12,27 +12,31 @@
 
 	<section class="shop_categories bg-bg3">
 
+
 		<div class=" w-full pt-5 lg:pt-12 pb-10 ">
 
-			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Our bouquets</h2>
+			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">
+				<span>Our</span>
+				{{category.name}}</h2>
 			<!--image-->
 			<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
 
+
 			<div
-				class="container mx-auto px-8 lg:px-16 mt-10">
+				class=" mx-auto px-8 lg:px-16 mt-10">
 
 				{# ---------- breadcrump----------------------- #}
 				<div class="breadcrump w-full flex flex-col-reverse lg:flex-row  justify-between my-4">
 					<nav class=" text-sm font-medium">
 						<ol class="breadcrump flex justify-start ">
 							<li class="text-gray">
-								<a href="#" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary">All products</a>
+								<a href="{{path('shop')}}" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary">All products</a>
 							</li>
 							<li class="text-gray">
 								<span class="mx-1 text-gray">></span>
 							</li>
 							<li class="text-gray">
-								<span class="mx-1 text-gray">Bouquets</span>
+								<span class="mx-1 text-gray">{{category.name}}</span>
 
 							</li>
 						</ol>
@@ -47,99 +51,15 @@
 						class=" w-full">
 
 						<!--CARDS CATEGORIES-->
-						<div
-							class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-8 lg:gap-12">
+						<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8 lg:gap-12">
 
-							<!--CARD-->
-							<a href="/shop/product/d" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+							{% for product in category.products %}
+								<!--CARD-->
 
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet2.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+								{% include 'components/card.html.twig'%}
+							{% endfor %}
 
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet3.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
 
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet4.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet5.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet6.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet7.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet8.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
-							<!--CARD-->
-							<a href="" class=" border border-gray-200  flex flex-col hover:shadow-4 bg-white">
-								<img
-								src="{{asset('upload/products/bouquet2.png')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-								<!--CARD TEXT AND PRICE-->
-								<div class="p-6 text-surface ">
-									<h3 class="mb-2 text-lg font-medium leading-tight text-center text-primary">Class interdim</h3>
-								</div>
-							</a>
 						</div>
 					</div>
 				</div>
@@ -193,5 +113,4 @@ this.maxprice = 3000;
 }
 }
 	</script>
-
 {% endblock %}

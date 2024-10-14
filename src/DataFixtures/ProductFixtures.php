@@ -28,7 +28,7 @@ class ProductFixtures extends Fixture
     foreach ($categories as $cat) {
       $category = new Category();
       $category->setName($cat);
-      $category->setSlug('slug' . $cat);
+      $category->setSlug($cat);
       $category->setImageName('bouquet.jpg');
       $manager->persist($category);
     }

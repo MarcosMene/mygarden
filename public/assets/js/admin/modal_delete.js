@@ -1,4 +1,4 @@
-var teste = document.getElementById('cancel-button')
+let teste = document.getElementById('cancel-button')
 
 // Function to open the delete modal
 function openDeleteModal(productId, productName) {

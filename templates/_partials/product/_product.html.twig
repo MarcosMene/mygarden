@@ -12,7 +12,7 @@
 				<div
 					class="product_carousel w-full lg:w-2/6 lg:mr-4">
 					{#		{% include ('_partials/product/_carousel.html.twig') %}#}
-					<img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class=" group-hover:opacity-75">
+					<img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class=" group-hover:opacity-75 w-full">
 				</div>
 				<!--PRODUCT DESCRIPTION-->
 				<div
@@ -29,13 +29,13 @@
 									<span class="mx-1 text-gray">></span>
 								</li>
 								<li class="text-gray">
-									<a href="/shop" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary">Shop</a>
+									<a href="{{path('shop')}}" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary">Shop</a>
 								</li>
 								<li class="text-gray">
 									<span class="mx-1 text-gray">></span>
 								</li>
 								<li class="text-gray">
-									<a href="/shop/categories/d" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary capitalize">{{product.category.name}}</a>
+									<a href="{{path('shop_category', {slug:product.category.slug})}}" class="text-gray hover:underline focus:underline active:underline hover:text-primary focus:text-primary active:text-primary capitalize">{{product.category.name}}</a>
 								</li>
 								<li class="text-gray">
 									<span class="mx-1 text-gray">></span>
@@ -61,13 +61,13 @@
 						<!--PRODUCT REVIEW CLIENTS QUANTITY-->
 						<div class="review_clients_quantity flex justify-start text-gray mb-6 ms-3">
 							<span class="text-gray text-sm">(23 Customer reviews)</span>
-							<span class="text-gray text-sm">4.5/5</span>
+							<span class="text-gray text-sm ms-2">4.5/5</span>
 						</div>
 					</div>
 
 
 					<!--PRODUCT TITLE-->
-					<h2 class="text-3xl font-normal mt-2 mb-3">
+					<h2 class="text-3xl font-normal mt-2 mb-3 capitalize">
 						{{product.name}}</h2>
 
 					<!--PRODUCT PRICE-->

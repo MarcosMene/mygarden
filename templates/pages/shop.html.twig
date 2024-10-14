@@ -297,7 +297,9 @@
 
 						<!--CARDS-->
 						<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-8 lg:gap-12">
-							{% include 'components/card.html.twig'%}
+							{% for product in products %}
+								{% include 'components/card.html.twig'%}
+							{% endfor %}
 						</div>
 
 						<!--SHOW MORE BUTTON-->

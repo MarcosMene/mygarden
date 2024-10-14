@@ -252,10 +252,10 @@
 
 
 	<script>
-		// Mobile Menu Toggle
-var mobileMenu = document.getElementById('mobileMenu');
-var mobileMenuButton = document.getElementById('mobileMenuButton');
-var closeMobileMenu = document.getElementById('closeMobileMenu');
+		(function () { // Mobile Menu Toggle
+let mobileMenu = document.getElementById('mobileMenu');
+let mobileMenuButton = document.getElementById('mobileMenuButton');
+let closeMobileMenu = document.getElementById('closeMobileMenu');
 
 mobileMenuButton.addEventListener('click', function () {
 mobileMenu.classList.remove('hidden');
@@ -274,8 +274,8 @@ mobileMenu.classList.add('hidden');
 });
 
 // Cart Dropdown Toggle
-var cartIcon = document.getElementById('cart-button');
-var cartDropdown = document.getElementById('cart-dropdown');
+let cartIcon = document.getElementById('cart-button');
+let cartDropdown = document.getElementById('cart-dropdown');
 
 
 // Toggle cart dropdown
@@ -306,4 +306,5 @@ product.price
 });
 });
 }
+})();
 	</script>
