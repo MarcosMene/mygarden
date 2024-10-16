@@ -85,7 +85,7 @@ class CategoryController extends AbstractController
     {
         $category = $categoriesRepository->find($id);
 
-        //IF CATEGORY DOESNT EXIT
+        //IF CATEGORY DOESNT EXIST
         if (!$category) {
             $this->addFlash('danger', 'This category doesn\'t exist');
             return $this->redirectToRoute('show_categories');
