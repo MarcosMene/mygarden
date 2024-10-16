@@ -42,7 +42,6 @@ class Posts
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -65,7 +64,6 @@ class Posts
             $this->employees->add($employee);
             $employee->setEmployeePost($this);
         }
-
         return $this;
     }
 
@@ -77,7 +75,6 @@ class Posts
                 $employee->setEmployeePost(null);
             }
         }
-
         return $this;
     }
 }

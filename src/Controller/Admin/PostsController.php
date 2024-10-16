@@ -25,7 +25,6 @@ class PostsController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-
     //LIST POSTS
     #[Route('/admin/show/posts', name: 'show_posts')]
     public function index(PostsRepository $postsRepository): Response

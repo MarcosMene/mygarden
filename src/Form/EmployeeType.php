@@ -18,7 +18,6 @@ class EmployeeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         // Check if the form is for creating a new product (no existing product passed)
         $isEdit = $options['is_edit'];
 

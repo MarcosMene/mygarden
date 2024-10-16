@@ -113,7 +113,6 @@ class Employees
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -126,7 +125,6 @@ class Employees
     public function setJoinDate(\DateTimeInterface $joinDate): static
     {
         $this->joinDate = $joinDate;
-
         return $this;
     }
 
@@ -138,7 +136,6 @@ class Employees
     public function setOrderAppear(int $orderAppear): static
     {
         $this->orderAppear = $orderAppear;
-
         return $this;
     }
 
@@ -150,7 +147,6 @@ class Employees
     public function setEmployeePost(?Posts $employeePost): static
     {
         $this->employeePost = $employeePost;
-
         return $this;
     }
 }

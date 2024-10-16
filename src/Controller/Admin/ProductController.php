@@ -43,7 +43,6 @@ class ProductController extends AbstractController
     #[Route('/admin/create/product', name: 'create_product')]
     public function create(Request $request, ProductRepository $productRepository, CategoryRepository $categoryRepository, ColorProductRepository $colorProductRepository): Response
     {
-
         $colorCounts = $colorProductRepository->findAll();
         $categoryCounts = $categoryRepository->findAll();
 
