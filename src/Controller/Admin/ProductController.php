@@ -109,7 +109,7 @@ class ProductController extends AbstractController
     {
         $product = $productRepository->find($id);
 
-        //IF PRODUCT DOESNT EXIT
+        //IF PRODUCT DOESNT EXIST
         if (!$product) {
             $this->addFlash('danger', 'This product doesn\'t exist');
             return $this->redirectToRoute('show_products');

@@ -22,135 +22,137 @@
 		<!-- RIGHT CREATE FORM -->
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-2 lg:p-8 h-fit">
 			<div class="title_form flex flex-wrap justify-between">
-				<h2 class=" text-black font-medium text-xl mb-4">Create new product</h2>
-			</div>
+				<h2 class=" text-black font-medium text-xl mb-4">
+					{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}
+					<span class="sr-only">{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}</h2>
+				</div>
 
-			<!--ERROR MESSAGE-->
-			<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
+				<!--ERROR MESSAGE-->
+				<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
 
-			{{ form_start(form) }}
+				{{ form_start(form) }}
 
-			<!-- NAME AND CATEGORY -->
-			<div class="flex flex-col md:flex-row justify-between gap-1 md:gap-12 mb-4">
-				<div class=" w-full  text-base">
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name, {
+				<!-- NAME AND CATEGORY -->
+				<div class="flex flex-col md:flex-row justify-between gap-1 md:gap-12 mb-4">
+					<div class=" w-full  text-base">
+						{{ form_label(form.name) }}
+						{{ form_widget(form.name, {
         'attr': {
             'class': (attr.class|default('w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black') ~ (form_errors(form.name) ? ' is-invalid' : ''))
         }
     }) }}
-					<div class="form-error">
-						{{ form_errors(form.name) }}
-						<div id="productName_error" hidden class="text-sm text-red"></div>
+						<div class="form-error">
+							{{ form_errors(form.name) }}
+							<div id="productName_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					<div class=" w-full  text-base">
+						{{ form_label(form.category) }}
+						{{ form_widget(form.category) }}
+						<div class="form-error">
+							{{ form_errors(form.category) }}
+							<div id="productCategory_error" hidden class="text-sm text-red"></div>
+						</div>
 					</div>
 				</div>
-				<div class=" w-full  text-base">
-					{{ form_label(form.category) }}
-					{{ form_widget(form.category) }}
-					<div class="form-error">
-						{{ form_errors(form.category) }}
-						<div id="productCategory_error" hidden class="text-sm text-red"></div>
-					</div>
-				</div>
-			</div>
 
-			<div
-				class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-4">
+				<div
+					class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-4">
 
-				<!-- IMAGE  -->
-				<div class=" w-full  text-base">
-					{{ form_label(form.imageFile) }}
-					{{ form_widget(form.imageFile, {
+					<!-- IMAGE  -->
+					<div class=" w-full  text-base">
+						{{ form_label(form.imageFile) }}
+						{{ form_widget(form.imageFile, {
         'attr': {
             'class': (attr.class|default('w-full rounded bg-white  appearance-none outline-none  leading-4 text-black py-2 mt-2') ~ (form_errors(form.imageFile) ? ' error-message' : ''))
         }
     }) }}
+						<div class="form-error">
+							{{ form_errors(form.imageFile) }}
+							<div id="productImage_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					<!--   PRICE AND TAX -->
+					<div
+						class="flex w-full flex-col md:flex-row justify-between gap-1 md:gap-12">
+
+						<!--   PRICE -->
+						<div class=" w-full  text-base">
+							{{ form_label(form.price) }}
+							{{ form_widget(form.price) }}
+							<div class="form-error">
+								{{ form_errors(form.price) }}
+								<div id="productPrice_error" hidden class="text-sm text-red"></div>
+							</div>
+						</div>
+						<!--  TAX  -->
+						<div class=" w-full  text-base">
+							{{ form_label(form.tva) }}
+							{{ form_widget(form.tva) }}
+							<div class="form-error">
+								{{ form_errors(form.tva) }}
+								<div id="productTva_error" hidden class="text-sm text-red"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- COLOR PROMOTION AND SUGGESTION   -->
+				<div class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-8">
+					<div
+						class="flex flex-col w-full md:flex-row justify-between gap-1 md:gap-12">
+
+						<!-- COLOR  -->
+						<div class=" w-full  text-base">
+							{{ form_label(form.colorProduct) }}
+							{{ form_widget(form.colorProduct) }}
+							<div class="form-error">
+								{{ form_errors(form.colorProduct) }}
+								<div id="productColor_error" hidden class="text-sm text-red"></div>
+							</div>
+						</div>
+						<!--  PROMOTION  -->
+						<div class=" w-full  text-base">
+							{{ form_label(form.promotion) }}
+							{{ form_widget(form.promotion) }}
+							<div class="form-error">
+								{{ form_errors(form.promotion) }}
+								<div id="productPromotion_error" hidden class="text-sm text-red"></div>
+							</div>
+						</div>
+					</div>
+					<!--  SUGGESTION  -->
+					<div class=" w-full  text-base">
+						{{ form_label(form.isSuggestion) }}
+						{{ form_widget(form.isSuggestion) }}
+						<div class="form-error">
+							{{ form_errors(form.isSuggestion) }}
+							<div id="productSuggestion_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+				</div>
+				<!--  DESCRIPTION  -->
+				<div class="mt-4">
+					{{ form_label(form.description) }}
+					{{ form_widget(form.description) }}
 					<div class="form-error">
-						{{ form_errors(form.imageFile) }}
-						<div id="productImage_error" hidden class="text-sm text-red"></div>
+						{{ form_errors(form.description) }}
+						<div id="productDescription_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
-				<!--   PRICE AND TAX -->
-				<div
-					class="flex w-full flex-col md:flex-row justify-between gap-1 md:gap-12">
 
-					<!--   PRICE -->
-					<div class=" w-full  text-base">
-						{{ form_label(form.price) }}
-						{{ form_widget(form.price) }}
-						<div class="form-error">
-							{{ form_errors(form.price) }}
-							<div id="productPrice_error" hidden class="text-sm text-red"></div>
-						</div>
-					</div>
-					<!--  TAX  -->
-					<div class=" w-full  text-base">
-						{{ form_label(form.tva) }}
-						{{ form_widget(form.tva) }}
-						<div class="form-error">
-							{{ form_errors(form.tva) }}
-							<div id="productTva_error" hidden class="text-sm text-red"></div>
-						</div>
-					</div>
+				<!-- SUBMIT BUTTON  -->
+				<div class="text-center mt-4">
+					<button type="submit" id="product_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+						{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}
+						<span class="sr-only">{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}
+							button</span>
+					</button>
 				</div>
-			</div>
+				{{ form_end(form) }}
+			</aside>
+		</div>
 
-			<!-- COLOR PROMOTION AND SUGGESTION   -->
-			<div class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-8">
-				<div
-					class="flex flex-col w-full md:flex-row justify-between gap-1 md:gap-12">
-
-					<!-- COLOR  -->
-					<div class=" w-full  text-base">
-						{{ form_label(form.colorProduct) }}
-						{{ form_widget(form.colorProduct) }}
-						<div class="form-error">
-							{{ form_errors(form.colorProduct) }}
-							<div id="productColor_error" hidden class="text-sm text-red"></div>
-						</div>
-					</div>
-					<!--  PROMOTION  -->
-					<div class=" w-full  text-base">
-						{{ form_label(form.promotion) }}
-						{{ form_widget(form.promotion) }}
-						<div class="form-error">
-							{{ form_errors(form.promotion) }}
-							<div id="productPromotion_error" hidden class="text-sm text-red"></div>
-						</div>
-					</div>
-				</div>
-				<!--  SUGGESTION  -->
-				<div class=" w-full  text-base">
-					{{ form_label(form.isSuggestion) }}
-					{{ form_widget(form.isSuggestion) }}
-					<div class="form-error">
-						{{ form_errors(form.isSuggestion) }}
-						<div id="productSuggestion_error" hidden class="text-sm text-red"></div>
-					</div>
-				</div>
-			</div>
-			<!--  DESCRIPTION  -->
-			<div class="mt-4">
-				{{ form_label(form.description) }}
-				{{ form_widget(form.description) }}
-				<div class="form-error">
-					{{ form_errors(form.description) }}
-					<div id="productDescription_error" hidden class="text-sm text-red"></div>
-				</div>
-			</div>
-
-			<!-- SUBMIT BUTTON  -->
-			<div class="text-center mt-4">
-				<button type="submit" id="product_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
-					{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}
-					<span class="sr-only">{{ form.vars.value.id ? 'Update Product' : 'Create Product' }}
-						button</span>
-				</button>
-			</div>
-			{{ form_end(form) }}
-		</aside>
-	</div>
-
-	<!-- VALIDATE CREATE PRODUCT WITH JS  -->
-	<script src="{{ asset('assets/js/admin/createProduct.js') }}"></script>
-{% endblock %}
+		<!-- VALIDATE CREATE PRODUCT WITH JS  -->
+		<script src="{{ asset('assets/js/admin/createProduct.js') }}"></script>
+	{% endblock %}
