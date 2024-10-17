@@ -24,23 +24,23 @@ class ColorController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
+    //LIST COLOR
     #[Route('/admin/show/colors', name: 'show_colors')]
     public function index(ColorProductRepository $colorProductRepository): Response
     {
         $colors = $colorProductRepository->findAll();
-
         return $this->render('admin/color/list_color.html.twig', [
             'colors' => $colors
         ]);
     }
 
+    //CREATE COLOR
     #[Route('/admin/create/color', name: 'create_color')]
-    public function createColor(Request $request, ColorProductRepository $colorProductRepository): Response
+    public function createColor(Request $request): Response
     {
         $color = new ColorProduct();
         $form = $this->createForm(ColorType::class, $color, ['is_edit' => false]);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -56,6 +56,7 @@ class ColorController extends AbstractController
         ]);
     }
 
+    //DETAIL COLOR
     #[Route('/admin/detail/color/{id}', name: 'detail_color', requirements: ['id' => '\d+'])]
     public function detail(ColorProductRepository $colorProductRepository, $id): Response
     {
@@ -70,6 +71,7 @@ class ColorController extends AbstractController
         ]);
     }
 
+    //EDIT COLOR
     #[Route('/admin/edit/color/{id}', name: 'edit_color', requirements: ['id' => '\d+'])]
     public function edit(ColorProductRepository $colorProductRepository, Request $request, $id): Response
     {
@@ -81,7 +83,6 @@ class ColorController extends AbstractController
         }
 
         $form = $this->createForm(ColorType::class, $color, ['is_edit' => true]);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -97,6 +98,7 @@ class ColorController extends AbstractController
         ]);
     }
 
+    //DELETE COLOR
     #[Route('/admin/delete/color/{id}', name: 'delete_color', requirements: ['id' => '\d+'])]
     public function delete(ColorProductRepository $colorProductRepository, Request $request, $id): Response
     {

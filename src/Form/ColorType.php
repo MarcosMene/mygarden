@@ -26,7 +26,7 @@ class ColorType extends AbstractType
                     'placeholder' => 'Ex.violet',
                     'minlength' => 3,
                     'maxlength' => 41,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black invalid:border-red-500  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer',
+                    'class' => 'w-full rounded bg-white  shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black invalid:border-red-500  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer',
 
                 ],
             ]);

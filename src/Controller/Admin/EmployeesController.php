@@ -92,7 +92,6 @@ class EmployeesController extends AbstractController
         }
 
         $form = $this->createForm(EmployeeType::class, $employee, ['is_edit' => true]);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

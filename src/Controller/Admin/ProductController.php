@@ -31,7 +31,6 @@ class ProductController extends AbstractController
     // LIST PRODUCTS
     #[Route('/admin/show/products', name: 'show_products')]
     public function show(ProductRepository $productRepository): Response
-
     {
         $products = $productRepository->findAll();
         return $this->render('admin/product/list_product.html.twig', [
@@ -67,7 +66,6 @@ class ProductController extends AbstractController
                 if ($existingProduct) {
                     $form->get('name')->addError(new FormError('This product name is already taken.'));
                 } else {
-
                     $product = $form->getData();
 
                     // CREATE SLUG FROM PRODUCT NAME 
@@ -135,6 +133,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+    //DELETE PRODUCT
     #[Route('/admin/delete/product/{id}', name: 'delete_product', requirements: ['id' => '\d+'])]
     public function delete(ProductRepository $productRepository, Request $request, $id): Response
     {

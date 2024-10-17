@@ -24,8 +24,20 @@
 	<!--MY CONTACT US-->
 	{% include "_partials/homepage/_conversation.html.twig" %}
 
-	<!--MY OPENING HOURS-->
-	{% include "_partials/homepage/_opening.html.twig" %}
-
+	{# -----------------OPEN HOURS #}
+	{% if shopSchedules|length>0 %}
+		{% include "_partials/homepage/_opening.html.twig" %}
+	{% else %}
+		{# VACATION MESSAGE  #}
+		<div class="text-capitalize  bg-white p-10  text-center text-black">
+			<div class="bg-bg1 w-fit mx-auto p-10 border border-red shadow-lg">
+				<p class="mb-4 text-red text-3xl font-medium">We are on holiday.</p>
+				<p class="text-2xl">
+					My Garden - Flower Shop will open its doors at the end of the month.
+				</p>
+				<p class="text-xl  mt-2">See you soon.</p>
+			</div>
+		</div>
+	{% endif %}
 
 {% endblock %}

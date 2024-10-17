@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - List shop schedule
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	<h1 class="w-full flex px-8 lg:px-16 mt-6 mb-6  capitalize text-xl font-semibold">My garden - flower shop</h1>
+
+	<div
+		class="create_products w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+		<!-- RIGHT CREATE FORM -->
+		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-2 lg:p-8 overflow-x-hidden h-fit">
+			<div class="title_form flex flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of schedules</h2>
+				<a href="{{path('create_schedule')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
+					Create Schedule
+				</a>
+			</div>
+
+			{% if schedules|length >0 %}
+
+				<!-- TABLE  -->
+				<div class="flex flex-col">
+					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+							<div class="overflow-hidden">
+								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+										<tr>
+											<th scope="col" class="p-2 w-[500px] text-start">Day</th>
+											<th scope="col" class="p-2 w-[500px] text-start">Opening time</th>
+											<th scope="col" class="p-2 w-[500px] text-start">Closing time</th>
+											<th scope="col" class="p-2 w-fit">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for schedule in schedules %}
+
+											<tr class="border-b border-neutral-200 text-base text-start font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+												<td class="whitespace-nowrap px-2 py-3 ">{{schedule.day}}</td>
+
+												{%if schedule.openTime|date('G') == 0 %}
+													<td class="whitespace-nowrap px-2 py-3">Close</td>
+													<td class="whitespace-nowrap px-2 py-3"></td>
+												{% else %}
+													<td class="whitespace-nowrap px-2 py-3">{{schedule.openTime|date('G') }}h</td>
+													<td class="whitespace-nowrap px-2 py-3">{{schedule.closeTime|date('G') }}h</td>
+												{% endif %}
+
+												<!--ACTION BUTTONS-->
+												<td class="whitespace-nowrap p-2">
+													<div class="h-full flex justify-between items-center gap-4">
+														<a href="{{path('detail_schedule',{id:schedule.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-regular fa-eye"></i>
+															View
+														</a>
+														<a href="{{path('edit_schedule',{id:schedule.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-solid fa-pencil text-black"></i>
+															Edit
+														</a>
+
+														<!-- Delete button triggers the modal, not a form submission -->
+														<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ schedule.id }}, '{{ schedule.day }}')">
+															<i class="fa-regular fa-trash-can"></i>
+															Delete
+														</button>
+
+														<!-- Hidden form for deletion -->
+														<form id="delete-form-{{ schedule.id }}" action="{{ path('delete_schedule', {id: schedule.id}) }}" method="POST" class="hidden">
+															<input type="hidden" name="_token" value="{{ csrf_token('deleteSchedule' ~ schedule.id) }}">
+														</form>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">No schedule found.</p>
+					<p>Create a timetable.</p>
+				</div>
+			{% endif %}
+		</aside>
+	</div>
+
+	<!-- delete confirmation modal -->
+	{% include 'admin/_partials/_delete_modal.html.twig' %}
+
+	<!-- SCRIPT  -->
+	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+{% endblock %}
