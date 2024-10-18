@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}My Garden -
-	{{ form.vars.value.id ? 'Edit Category' : 'Create New Category' }}
+	{{ form.vars.value.id ? 'Edit Carrier' : 'Create New Carrier' }}
 {% endblock %}
 
 {% block body %}
@@ -8,10 +8,10 @@
 	<!-- MENU  -->
 	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
 	<div class="back_to text-end px-8 lg:px-16">
-		<a href="{{path('show_categories')}}" class="text-gray underline text-base  ">Back to categories</a>
+		<a href="{{path('show_carriers')}}" class="text-gray underline text-base  ">Back to carriers</a>
 	</div>
 	<div
-		class="create_categories w-full flex px-8 lg:px-16 mb-10">
+		class="create_carriers w-full flex px-8 lg:px-16 mb-10">
 
 		<!-- MENU LEFT  -->
 		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
@@ -23,7 +23,7 @@
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-2 lg:p-8 h-fit">
 			<div class="title_form flex flex-wrap justify-between">
 				<h2 class=" text-black font-medium text-xl mb-4">
-					{{ form.vars.value.id ? 'Edit Category' : 'Create Category' }}
+					{{ form.vars.value.id ? 'Edit Carrier' : 'Create Carrier' }}
 				</h2>
 			</div>
 
@@ -32,7 +32,7 @@
 
 			{{ form_start(form) }}
 
-			<!-- NAME AND CATEGORY -->
+			<!-- NAME -->
 			<div class="flex flex-col md:flex-row justify-between mb-2">
 				<div class=" w-full  text-base">
 					{{ form_label(form.name) }}
@@ -43,34 +43,41 @@
     }) }}
 					<div class="form-error">
 						{{ form_errors(form.name) }}
-						<div id="categoryName_error" hidden class="text-sm text-red"></div>
+						<div id="carrierName_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
 			</div>
 
-			<div
-				class="flex flex-col lg:flex-row justify-between mb-2">
-
-				<!-- IMAGE  -->
+			<!-- DESCRIPTION -->
+			<div class="flex flex-col md:flex-row justify-between mb-2">
 				<div class=" w-full  text-base">
-					{{ form_label(form.imageFile) }}
-					{{ form_widget(form.imageFile, {
-        'attr': {
-            'class': (attr.class|default('w-full rounded bg-white  appearance-none outline-none  leading-4 text-black py-1') ~ (form_errors(form.imageFile) ? ' error-message' : ''))
-        }
-    }) }}
+					{{ form_label(form.description) }}
+					{{ form_widget(form.description) }}
 					<div class="form-error">
-						{{ form_errors(form.imageFile) }}
-						<div id="categoryImage_error" hidden class="text-sm text-red"></div>
+						{{ form_errors(form.description) }}
+						<div id="carrierDescription_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
 			</div>
+
+			<!-- PRICE -->
+			<div class="flex flex-col md:flex-row justify-between mb-2">
+				<div class=" w-full  text-base">
+					{{ form_label(form.price) }}
+					{{ form_widget(form.price) }}
+					<div class="form-error">
+						{{ form_errors(form.price) }}
+						<div id="carrierPrice_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+			</div>
+
 
 			<!-- SUBMIT BUTTON  -->
 			<div class="text-center mt-4">
-				<button type="submit" id="category_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
-					{{ form.vars.value.id ? 'Update Category' : 'Create Category' }}
-					<span class="sr-only">{{ form.vars.value.id ? 'Update Category' : 'Create Category' }}
+				<button type="submit" id="carrier_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+					{{ form.vars.value.id ? 'Update Carrier' : 'Create Carrier' }}
+					<span class="sr-only">{{ form.vars.value.id ? 'Update Carrier' : 'Create Carrier' }}
 						button</span>
 				</button>
 			</div>
@@ -79,5 +86,5 @@
 	</div>
 
 	<!-- VALIDATE CREATE PRODUCT WITH JS  -->
-	<script src="{{ asset('assets/js/admin/createCategory.js') }}"></script>
+	<script src="{{ asset('assets/js/admin/createCarrier.js') }}"></script>
 {% endblock %}

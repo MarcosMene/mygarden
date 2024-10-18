@@ -5,7 +5,7 @@
   let errorMessages = document.getElementById('error_messages')
 
   // SUBMIT BUTTON
-  let submitButton = document.getElementById('color_submit')
+  let submitButton = document.getElementById('posts_submit')
 
   postName.addEventListener('input', () => {
     checkPostEmployeeName()

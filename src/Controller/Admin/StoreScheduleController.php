@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\StoreSchedule;
-use App\Form\StoreScheduleType;
 use App\Repository\StoreScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -121,7 +120,7 @@ class StoreScheduleController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deleteSchedule' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have access to it.');
+            $this->addFlash('danger', 'You don\'t have permission to do that..');
         } else {
             $this->addFlash('success', 'Schedule deleted succesfully');
             $this->entityManager->remove($schedule);

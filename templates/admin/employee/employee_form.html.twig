@@ -6,7 +6,7 @@
 {% block body %}
 
 	<!-- MENU  -->
-	<h1 class="w-full flex px-8 lg:px-16 mt-6 capitalize text-xl font-semibold">My garden - flower shop</h1>
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
 	<div class="back_to text-end px-8 lg:px-16">
 		<a href="{{path('show_employees')}}" class="text-gray underline text-base  ">back to employees</a>
 	</div>

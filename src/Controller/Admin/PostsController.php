@@ -113,7 +113,7 @@ class PostsController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deletePost' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have access to it.');
+            $this->addFlash('danger', 'You don\'t have permission to do that..');
         } else {
             $this->addFlash('success', 'Post deleted succesfully');
             $this->entityManager->remove($post);

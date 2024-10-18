@@ -1,32 +1,30 @@
 ;(function () {
   // FIRST NAME EMPLOYEE
-  var employeeFirstName = document.getElementById('employee_firstName')
-  var employeeFirstNameError = document.getElementById(
+  let employeeFirstName = document.getElementById('employee_firstName')
+  let employeeFirstNameError = document.getElementById(
     'employeeFirstName_error'
   )
-  var errorMessages = document.getElementById('error_messages')
 
   // LAST NAME EMPLOYEE
-  var employeeLastName = document.getElementById('employee_lastName')
-  var employeeLastNameError = document.getElementById('employeeLastName_error')
-  var errorMessages = document.getElementById('error_messages')
+  let employeeLastName = document.getElementById('employee_lastName')
+  let employeeLastNameError = document.getElementById('employeeLastName_error')
 
   // IMAGE EMPLOYEE
-  var employeeImage = document.getElementById('employee_imageFile_file')
-  var employeeImageError = document.getElementById('employeeImage_error')
+  let employeeImage = document.getElementById('employee_imageFile_file')
+  let employeeImageError = document.getElementById('employeeImage_error')
 
   // ORDER APPEAR EMPLOYEE
-  var employeeOrderAppear = document.getElementById('employee_orderAppear')
-  var employeeOrderAppearError = document.getElementById(
+  let employeeOrderAppear = document.getElementById('employee_orderAppear')
+  let employeeOrderAppearError = document.getElementById(
     'employeeOrderAppear_error'
   )
 
   // POST EMPLOYEE
-  var employeePost = document.getElementById('employee_employeePost')
-  var employeePostError = document.getElementById('employeePost_error')
+  let employeePost = document.getElementById('employee_employeePost')
+  let employeePostError = document.getElementById('employeePost_error')
 
   // SUBMIT BUTTON
-  var submitButton = document.getElementById('employee_submit')
+  let submitButton = document.getElementById('employee_submit')
 
   employeeFirstName.addEventListener('input', () => {
     checkEmployeeFirstName()

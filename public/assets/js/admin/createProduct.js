@@ -1,47 +1,47 @@
 ;(function () {
   // NAME PRODUCT
-  var productName = document.getElementById('product_name')
-  var productNameError = document.getElementById('productName_error')
-  var errorMessages = document.getElementById('error_messages')
+  let productName = document.getElementById('product_name')
+  let productNameError = document.getElementById('productName_error')
+  let errorMessages = document.getElementById('error_messages')
 
   // CATEGORY PRODUCT
-  var productCategory = document.getElementById('product_category')
-  var productCategoryError = document.getElementById('productCategory_error')
+  let productCategory = document.getElementById('product_category')
+  let productCategoryError = document.getElementById('productCategory_error')
 
   // IMAGE PRODUCT
-  var productImage = document.getElementById('product_imageFile_file')
-  var productImageError = document.getElementById('productImage_error')
+  let productImage = document.getElementById('product_imageFile_file')
+  let productImageError = document.getElementById('productImage_error')
 
   // TAX OF PRODUCT
-  var productTva = document.getElementById('product_tva')
-  var productTvaError = document.getElementById('productTva_error')
+  let productTva = document.getElementById('product_tva')
+  let productTvaError = document.getElementById('productTva_error')
 
   // PRICE OF PRODUCT
-  var productPrice = document.getElementById('product_price')
-  var productPriceError = document.getElementById('productPrice_error')
+  let productPrice = document.getElementById('product_price')
+  let productPriceError = document.getElementById('productPrice_error')
 
   // COLOR PRODUCT
-  var productColor = document.getElementById('product_colorProduct')
-  var productColorError = document.getElementById('productColor_error')
+  let productColor = document.getElementById('product_colorProduct')
+  let productColorError = document.getElementById('productColor_error')
 
   // PROMOTION PRODUCT
-  var productPromotion = document.getElementById('product_promotion')
-  var productPromotionError = document.getElementById('productPromotion_error')
+  let productPromotion = document.getElementById('product_promotion')
+  let productPromotionError = document.getElementById('productPromotion_error')
 
   // SUGGESTION PRODUCT
-  var productSuggestion = document.getElementById('product_isSuggestion')
-  var productSuggestionError = document.getElementById(
+  let productSuggestion = document.getElementById('product_isSuggestion')
+  let productSuggestionError = document.getElementById(
     'productSuggestion_error'
   )
 
   // DESCRIPTION PRODUCT
-  var productDescription = document.getElementById('product_description')
-  var productDescriptionError = document.getElementById(
+  let productDescription = document.getElementById('product_description')
+  let productDescriptionError = document.getElementById(
     'productDescription_error'
   )
 
   // SUBMIT BUTTON
-  var submitButton = document.getElementById('product_submit')
+  let submitButton = document.getElementById('product_submit')
 
   productName.addEventListener('input', () => {
     checkProductName()

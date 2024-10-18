@@ -114,7 +114,7 @@ class ColorController extends AbstractController
             $request->request->get('_token')
         );
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have accesss to it');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
         } else {
             $this->addFlash('success', 'Color deleted succesfully');
             $this->entityManager->remove($color);
