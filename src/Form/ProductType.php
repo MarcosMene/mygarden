@@ -45,7 +45,7 @@ class ProductType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
             ])
 
@@ -87,7 +87,7 @@ class ProductType extends AbstractType
                     'placeholder' => '100,00',
                     'minlength' => 2,
                     'maxlength' => 8,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 leading-4'
+                    'class' => 'w-full rounded bg-white  shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 leading-4'
                 ],
             ])
             ->add('promotion', ChoiceType::class, [
@@ -106,7 +106,7 @@ class ProductType extends AbstractType
                     '40%' => 40,
                 ],
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
                 'required' => true,
@@ -122,7 +122,7 @@ class ProductType extends AbstractType
                     '20%' => 20,
                 ],
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
             ])
@@ -136,7 +136,7 @@ class ProductType extends AbstractType
                 ],
                 'required' => true,
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
                 'multiple' => false,
             ])
@@ -145,7 +145,7 @@ class ProductType extends AbstractType
                 'placeholder' => 'Choose a color',
                 'choice_label' => 'color',
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
                 ],
             ]);
     }

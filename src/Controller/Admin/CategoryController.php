@@ -25,11 +25,11 @@ class CategoryController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
+    //SHOW CATEGORIES
     #[Route('/admin/show/categories', name: 'show_categories')]
     public function index(CategoryRepository $categoriesRepository): Response
     {
         $categories = $categoriesRepository->findAll();
-
         return $this->render('admin/category/list_category.html.twig', [
             'categories' => $categories
         ]);
@@ -37,12 +37,11 @@ class CategoryController extends AbstractController
 
     // CREATE CATEGORY 
     #[Route('/admin/create/category', name: 'create_category')]
-    public function create(Request $request, CategoryRepository $categoryRepository): Response
+    public function create(Request $request): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category, ['is_edit' => false]);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -64,6 +63,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    //DETAIL CATEGORY
     #[Route('/admin/detail/category/{slug}', name: 'detail_category', requirements: ['slug' => '[a-z0-9-\-]+'])]
     public function detail(CategoryRepository $categoriesRepository, $slug): Response
     {
@@ -85,7 +85,7 @@ class CategoryController extends AbstractController
     {
         $category = $categoriesRepository->find($id);
 
-        //IF CATEGORY DOESNT EXIT
+        //IF CATEGORY DOESNT EXIST
         if (!$category) {
             $this->addFlash('danger', 'This category doesn\'t exist');
             return $this->redirectToRoute('show_categories');
@@ -110,6 +110,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    //DELETE CATEGORY
     #[Route('/admin/delete/category/{id}', name: 'delete_category', requirements: ['id' => '\d+'])]
     public function delete(CategoryRepository $categoriesRepository, Request $request, $id): Response
     {
@@ -125,7 +126,7 @@ class CategoryController extends AbstractController
             $request->request->get('_token')
         );
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have accesss to it');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
         } else {
             $this->addFlash('success', 'Category deleted succesfully');
             $this->entityManager->remove($category);

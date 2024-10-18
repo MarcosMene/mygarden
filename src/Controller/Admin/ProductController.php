@@ -31,7 +31,6 @@ class ProductController extends AbstractController
     // LIST PRODUCTS
     #[Route('/admin/show/products', name: 'show_products')]
     public function show(ProductRepository $productRepository): Response
-
     {
         $products = $productRepository->findAll();
         return $this->render('admin/product/list_product.html.twig', [
@@ -43,7 +42,6 @@ class ProductController extends AbstractController
     #[Route('/admin/create/product', name: 'create_product')]
     public function create(Request $request, ProductRepository $productRepository, CategoryRepository $categoryRepository, ColorProductRepository $colorProductRepository): Response
     {
-
         $colorCounts = $colorProductRepository->findAll();
         $categoryCounts = $categoryRepository->findAll();
 
@@ -68,7 +66,6 @@ class ProductController extends AbstractController
                 if ($existingProduct) {
                     $form->get('name')->addError(new FormError('This product name is already taken.'));
                 } else {
-
                     $product = $form->getData();
 
                     // CREATE SLUG FROM PRODUCT NAME 
@@ -109,7 +106,7 @@ class ProductController extends AbstractController
     {
         $product = $productRepository->find($id);
 
-        //IF PRODUCT DOESNT EXIT
+        //IF PRODUCT DOESNT EXIST
         if (!$product) {
             $this->addFlash('danger', 'This product doesn\'t exist');
             return $this->redirectToRoute('show_products');
@@ -136,6 +133,7 @@ class ProductController extends AbstractController
         ]);
     }
 
+    //DELETE PRODUCT
     #[Route('/admin/delete/product/{id}', name: 'delete_product', requirements: ['id' => '\d+'])]
     public function delete(ProductRepository $productRepository, Request $request, $id): Response
     {
@@ -148,7 +146,7 @@ class ProductController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deleteProduct' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have access to it.');
+            $this->addFlash('danger', 'You don\'t have permission to do that..');
         } else {
             $this->addFlash('success', 'Product deleted succesfully');
             $this->entityManager->remove($product);
