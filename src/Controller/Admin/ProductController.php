@@ -60,13 +60,28 @@ class ProductController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
+                $product->setCreatedAt(new \DateTime());
+
                 // Check if the product name already exists
                 $existingProduct = $productRepository->findOneBy(['name' => $product->getName()]);
 
                 if ($existingProduct) {
                     $form->get('name')->addError(new FormError('This product name is already taken.'));
                 } else {
+                    // $product->setCreatedAt(new \DateTime());
+
                     $product = $form->getData();
+                    $promotion = $product->getPromotion();
+
+                    // dd($promotion);
+
+
+                    if ($promotion > 0) {
+                        $product->setIsPromotion(true); // 1 means true
+
+                    } else {
+                        $product->setIsPromotion(false); // 0 means false
+                    }
 
                     // CREATE SLUG FROM PRODUCT NAME 
                     $slugger = new AsciiSlugger();

@@ -9,18 +9,14 @@
 	<!--BANNER-->
 	{% include ('_partials/shop/_banner_category.html.twig')%}
 
-
 	<section class="shop_categories bg-bg3">
 
-
 		<div class=" w-full pt-5 lg:pt-12 pb-10 ">
-
 			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">
 				<span>Our</span>
 				{{category.name}}</h2>
 			<!--image-->
 			<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
-
 
 			<div
 				class=" mx-auto px-8 lg:px-16 mt-10">
@@ -37,80 +33,26 @@
 							</li>
 							<li class="text-gray">
 								<span class="mx-1 text-gray">{{category.name}}</span>
-
 							</li>
 						</ol>
 					</nav>
 				</div>
 
+				<!--CATEGORIES-->
 				<div
-					class=" flex flex-col-reverse lg:flex-row  justify-center items-start ">
+					class=" w-full">
 
-					<!--CATEGORIES-->
-					<div
-						class=" w-full">
+					<!--CARDS CATEGORIES-->
+					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8 lg:gap-12">
 
-						<!--CARDS CATEGORIES-->
-						<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8 lg:gap-12">
+						{% for product in category.products %}
 
-							{% for product in category.products %}
-								<!--CARD-->
-
-								{% include 'components/card.html.twig'%}
-							{% endfor %}
-
-
-						</div>
+							<!--CARD-->
+							{% include 'components/card.html.twig'%}
+						{% endfor %}
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-
-	<!--SCRIPT PRICE-->
-	<script>
-		function range() {
-return {
-minprice: 0,
-maxprice: 3000,
-min: 0,
-max: 3000,
-minthumb: 0,
-maxthumb: 0,
-mintrigger() {
-this.validation();
-this.minprice = Math.min(this.minprice, this.maxprice - 500);
-this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
-},
-maxtrigger() {
-this.validation();
-this.maxprice = Math.max(this.maxprice, this.minprice + 500);
-this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
-},
-validation() {
-if (/^\d*$/.test(this.minprice)) {
-if (this.minprice > this.max) {
-this.minprice = 2500;
-}
-if (this.minprice<this.min) {
-              this.minprice = this.min;
-            }
-          } else {
-            this.minprice = 0;
-          }
-          if (/^\d*$/.test(this.maxprice)) {
-            if (this.maxprice> this.max) {
-this.maxprice = this.max;
-}
-if (this.maxprice < this.min) {
-this.maxprice = 500;
-}
-} else {
-this.maxprice = 3000;
-}
-}
-}
-}
-	</script>
 {% endblock %}

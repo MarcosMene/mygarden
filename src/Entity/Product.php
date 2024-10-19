@@ -58,6 +58,21 @@ class Product
     #[ORM\Column]
     private ?float $promotion = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isBestSeller = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isPromotion = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
+
+    public function __construct()
+    {
+        // Automatically set the createdAt field to the current date and time
+        $this->createdAt = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -212,6 +227,41 @@ class Product
     public function setPromotion(float $promotion): static
     {
         $this->promotion = $promotion;
+        return $this;
+    }
+
+    public function isBestSeller(): ?bool
+    {
+        return $this->isBestSeller;
+    }
+
+    public function setBestSeller(?bool $isBestSeller): static
+    {
+        $this->isBestSeller = $isBestSeller;
+
+        return $this;
+    }
+
+    public function isPromotion(): ?bool
+    {
+        return $this->isPromotion;
+    }
+
+    public function setIsPromotion(?bool $isPromotion): static
+    {
+        $this->isPromotion = $isPromotion;
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
         return $this;
     }
 }

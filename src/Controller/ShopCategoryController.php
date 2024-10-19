@@ -13,9 +13,7 @@ class ShopCategoryController extends AbstractController
   public function show(CategoryRepository $categoryRepository, string $slug): Response
 
   {
-
     $category = $categoryRepository->findOneBySlug($slug);
-
 
     return $this->render('pages/shop_category.html.twig', [
       'category' => $category

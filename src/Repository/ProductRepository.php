@@ -16,28 +16,50 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findAllWithLimit()
+    {
+        return $this->createQueryBuilder('p')
+            ->setMaxResults(12)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findBestSellers()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.isBestSeller = true')
+            ->setMaxResults(12)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findPromotions()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.isPromotion = true')
+            ->setMaxResults(12)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findNewArrivals()
+    {
+        $date = new \DateTime();
+        $date->modify('-30 days'); // Products added in the last 30 days
+
+        return $this->createQueryBuilder('p')
+            ->where('p.createdAt >=:date')
+            ->setParameter('date', $date)
+            ->setMaxResults(12)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findTopRated()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.rating>=:rating')
+            ->setParameter('rating', 4)
+            ->getQuery()
+            ->getResult();
+    }
 }

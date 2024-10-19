@@ -12,10 +12,7 @@ class ShopController extends AbstractController
   #[Route('/shop', name: 'shop')]
   public function index(ProductRepository $productRepository): Response
   {
-
     $products = $productRepository->findAll();
-
-
 
     return $this->render(
       'pages/shop.html.twig',
