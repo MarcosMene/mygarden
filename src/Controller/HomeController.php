@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\GalleryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\StoreScheduleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,11 +15,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository): Response
+    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository): Response
+
     {
 
-        //FIND PRODUCT TO GALLERY OUR PRODUCTS
+        //FIND OUR PRODUCTS
         $products = $productRepository->findAllWithLimit();
+
+        //FIND GALLERY IMAGES
+        $galleries = $galleryRepository->findAll();
 
         //STORE SCHEDULES
         $shopSchedules = $storeScheduleRepository->findBy(array(), array('dayOrder' => 'ASC'));
@@ -26,6 +31,7 @@ class HomeController extends AbstractController
         return $this->render('pages/home.html.twig', [
             'shopSchedules' => $shopSchedules,
             'products' => $products,
+            'galleries' => $galleries
         ]);
     }
 

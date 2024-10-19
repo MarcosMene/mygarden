@@ -6,52 +6,24 @@
 		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
 
 		<div
-			class="container mx-auto px-8 lg:px-16">
+			class="md:container mx-auto px-8 lg:px-16">
 
 			<!--CARDS-->
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-16">
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-16">
 
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
+				{% for gallery in galleries %}
 
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery2.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
+					<!--CARD-->
+					<div
+						class="card border border-gray-200">
+						{# <img src="{{asset('upload/gallery/gallery1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/> #}
 
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery3.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
-
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery4.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery5.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery6.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery7.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
-				<!--CARD-->
-				<div class="card border border-gray-200">
-					<img src="{{asset('upload/gallery/gallery8.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-				</div>
+						<img src="{{ asset('upload/galleries/' ~ gallery.imageName) }}" alt="{{ gallery.name }}" loading="lazy" class="w-full group-hover:opacity-75" ">
 
 
+					</div>
+				{% endfor %}
 			</div>
 		</div>
-
-
 	</div>
 </section>

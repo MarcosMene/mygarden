@@ -68,13 +68,8 @@ class ProductController extends AbstractController
                 if ($existingProduct) {
                     $form->get('name')->addError(new FormError('This product name is already taken.'));
                 } else {
-                    // $product->setCreatedAt(new \DateTime());
-
                     $product = $form->getData();
                     $promotion = $product->getPromotion();
-
-                    // dd($promotion);
-
 
                     if ($promotion > 0) {
                         $product->setIsPromotion(true); // 1 means true
