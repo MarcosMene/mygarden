@@ -19,7 +19,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllWithLimit()
     {
         return $this->createQueryBuilder('p')
-            ->setMaxResults(12)
+            ->setMaxResults(16)
             ->getQuery()
             ->getResult();
     }
@@ -28,7 +28,7 @@ class ProductRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->where('p.isBestSeller = true')
-            ->setMaxResults(12)
+            ->setMaxResults(16)
             ->getQuery()
             ->getResult();
     }
@@ -37,7 +37,7 @@ class ProductRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->where('p.isPromotion = true')
-            ->setMaxResults(12)
+            ->setMaxResults(16)
             ->getQuery()
             ->getResult();
     }
@@ -49,7 +49,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.createdAt >=:date')
             ->setParameter('date', $date)
-            ->setMaxResults(12)
+            ->setMaxResults(16)
             ->orderBy('p.createdAt', 'DESC')
             ->getQuery()
             ->getResult();

@@ -26,8 +26,8 @@ class EmployeesController extends AbstractController
     }
 
     //LIST EMPLOYEES
-    #[Route('/admin/show/employees', name: 'show_employees')]
-    public function show(EmployeesRepository $employeesRepository): Response
+    #[Route('/admin/list/employees', name: 'show_employees')]
+    public function list(EmployeesRepository $employeesRepository): Response
     {
         $employees = $employeesRepository->findAll();
         return $this->render('admin/employee/list_employees.html.twig', [

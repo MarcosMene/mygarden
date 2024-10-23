@@ -25,7 +25,7 @@ class ColorController extends AbstractController
     }
 
     //LIST COLOR
-    #[Route('/admin/show/colors', name: 'show_colors')]
+    #[Route('/admin/list/colors', name: 'show_colors')]
     public function index(ColorProductRepository $colorProductRepository): Response
     {
         $colors = $colorProductRepository->findAll();

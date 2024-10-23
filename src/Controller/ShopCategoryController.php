@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class ShopCategoryController extends AbstractController
 {
   #[Route('/shop/products/{slug}', name: 'shop_category', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
-  public function show(CategoryRepository $categoryRepository, string $slug): Response
+  public function list(CategoryRepository $categoryRepository, string $slug): Response
 
   {
     $category = $categoryRepository->findOneBySlug($slug);

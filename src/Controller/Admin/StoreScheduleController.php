@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\StoreSchedule;
+use App\Form\StoreScheduleType;
 use App\Repository\StoreScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class StoreScheduleController extends AbstractController
     }
 
     // LIST SCHEDULE STORE
-    #[Route('/admin/show/schedules', name: 'show_schedules')]
+    #[Route('/admin/list/schedules', name: 'show_schedules')]
     public function index(StoreScheduleRepository $storeScheduleRepository): Response
     {
         $schedules = $storeScheduleRepository->findAllOrderedByDayOrder();

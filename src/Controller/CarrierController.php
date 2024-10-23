@@ -27,8 +27,8 @@ class CarrierController extends AbstractController
     }
 
     //LIST CARRIERS
-    #[Route('/admin/show/carriers', name: 'show_carriers')]
-    public function show(CarrierRepository $carrierRepository): Response
+    #[Route('/admin/list/carriers', name: 'show_carriers')]
+    public function list(CarrierRepository $carrierRepository): Response
     {
         $carriers = $carrierRepository->findAll();
         return $this->render('admin/carrier/list_carrier.html.twig', [

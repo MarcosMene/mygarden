@@ -26,7 +26,7 @@ class CategoryController extends AbstractController
     }
 
     //SHOW CATEGORIES
-    #[Route('/admin/show/categories', name: 'show_categories')]
+    #[Route('/admin/list/categories', name: 'show_categories')]
     public function index(CategoryRepository $categoriesRepository): Response
     {
         $categories = $categoriesRepository->findAll();

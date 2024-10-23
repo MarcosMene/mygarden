@@ -1,70 +1,49 @@
+{% if headers|length > 0 %}
 <div id="carouselHome" class="relative" data-twe-carousel-init data-twe-ride="carousel">
 
 	<div
 		class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
 
+		{% for key, header in headers %}
+
 		<!--First item-->
 		<div
-			class="relative bg-bg1 float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none h-96 md:h-full" data-twe-carousel-active data-twe-carousel-item style=" backface-visibility: hidden">
+			class="relative {% if header.backgroundColor == "#fef5ea"%} bg-bg1 {% elseif header.backgroundColor == "#f0f8ec"%}bg-bg2 {% else %} bg-white {% endif %} float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none h-96 md:h-full" {% if key == 0 %} data-twe-carousel-active {% endif %} data-twe-carousel-item style=" backface-visibility: hidden">
 
 			<!--image-->
 			<img
-			src="{{asset('upload/carousel_home/woman.png')}}" alt="woman with flowers" class="ms-auto mr-0 lg:mr-[2%] 2xl:mr-[6%] block h-full md:h-[500px] lg:h-full opacity-20 md:opacity-100">
+			src="{{ asset('upload/headers/' ~ header.imageName) }}" alt="{{header.categoryProduct}}" class="{% if header.sideImage == "right"%} ms-auto lg:mr-[2%] mr-0 2xl:mr-[6%] {% else %} me-auto ml-[5%] {% endif %}opacity-20 xl:opacity-100   block h-full md:h-[500px]">
 
 			<!--text-->
-			<div class="absolute inset-x-[15%] inset-y-0 w-fit md:w-1/2   h-full  md:text-start text-black flex flex-col justify-center items-start">
+			<div {% if header.sideImage == "right"%} class="absolute inset-x-[10%] inset-y-0 w-fit md:w-2/3 lg:w-1/2   h-full  md:text-start text-black flex flex-col justify-center items-start "
+			{% else %}
+			class="absolute inset-x-[10%] md:inset-x-[30%]  lg:inset-x-[42%] inset-y-0 w-fit md:w-2/3 lg:w-1/2   h-full  md:text-start text-black flex flex-col justify-center items-start "
+			{% endif %}
+			>
 
-				<h2 class="text-4xl md:text-5xl lg:text-6xl line_height12 font-medium  md:font-semibold w-full">Every moment is special to give flowers</h2>
+				<h2 class="text-4xl lg:text-5xl line_height12 font-medium  md:font-semibold w-full">{{header.content}}</h2>
 
-				<a href="" class="mt-6 py-2 px-4 mb-2 sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Shop now</a>
+				<a href="{{header.buttonLink}}" class="mt-6 py-2 px-4 mb-2 sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">{{header.buttonTitle}}</a>
 			</div>
 		</div>
-
-		<!--Second item-->
-		<div
-			class="relative bg-bg2 float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none h-96 md:h-full" data-twe-carousel-item style="backface-visibility: hidden">
-
-			<!--image-->
-			<img
-			src="{{asset('upload/carousel_home/mother.png')}}" alt="mother with flowers for mothers day" class="me-auto ml-[5%] opacity-20 md:opacity-100  block h-full md:h-[500px] lg:h-full">
-
-			<!--text-->
-			<div class="absolute inset-x-[20%] md:inset-x-[45%] lg:inset-x-[40%] inset-y-1/2 -translate-y-1/2 w-fit md:w-1/2 h-full  md:text-start text-black flex flex-col justify-center items-start">
-				<h2 class="text-4xl md:text-5xl font-medium line_height12  md:font-semibold">Give a beautiful flowers on Mother’s Day!</h2>
-				<a href="" class="mt-6 py-2 px-4 mb-2 sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Shop now</a>
-			</div>
-		</div>
-
-
-		<!--Third item-->
-		<div
-			class="relative bg-white float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none h-96 md:h-full" data-twe-carousel-item style="backface-visibility: hidden">
-
-			<!--image-->
-			<img
-			src="{{asset('upload/carousel_home/valentine.png')}}" alt="bouquet saint valentine" class="ms-auto opacity-20 md:opacity-100 mr-0 lg:mr-[2%] 2xl:mr-[10%] block h-full md:h-[500px] lg:h-full">
-
-			<!--text-->
-			<div class="absolute inset-x-[15%] inset-y-1/2 -translate-y-1/2 w-fit md:w-1/2 h-full  md:text-start text-black flex flex-col justify-center items-start">
-				<h2 class="text-4xl md:text-5xl font-medium line_height12  md:font-semibold">Make a beautiful surprise to your love!</h2>
-				<a href="" class="mt-6 py-2 px-4 mb-2 sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Shop now</a>
-			</div>
-		</div>
+{% endfor %}
 	</div>
 
-
+{% if headers|length > 1 %}
 	<!--Carousel controls - prev item-->
-	<button class="absolute h-full bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" data-twe-target="#carouselHome" data-twe-slide="prev">
+	<button class="absolute h-fit top-1/2 bottom-0 left-0  z-[1] flex w-fit  ps-2 md:ps-6 items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" data-twe-target="#carouselHome" data-twe-slide="prev">
 		<span class="inline-block h-8 w-8 md:h-16 md:w-16">
-			<img src="{{asset('assets/images/arrow_left.png')}}" alt="arrow right carousel" loading="lazy">
+			<img src="{{asset('assets/images/arrow_left.png')}}" alt="arrow right carousel">
 		</span>
 		<span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
 	</button>
 	<!--Carousel controls - next item-->
-	<button class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" data-twe-target="#carouselHome" data-twe-slide="next">
+	<button class="absolute h-fit top-1/2  bottom-0 right-0  z-[1] flex w-fit pe-2 md:pe-6 items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" data-twe-target="#carouselHome" data-twe-slide="next">
 		<span class="inline-block h-8 w-8 md:h-16 md:w-16">
-			<img src="{{asset('assets/images/arrow_right.png')}}" alt="arrow right carousel" loading="lazy">
+			<img src="{{asset('assets/images/arrow_right.png')}}" alt="arrow right carousel">
 		</span>
 		<span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
 	</button>
+	{% endif %}
 </div>
+{% endif %}

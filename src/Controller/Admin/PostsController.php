@@ -26,7 +26,7 @@ class PostsController extends AbstractController
     }
 
     //LIST POSTS
-    #[Route('/admin/show/posts', name: 'show_posts')]
+    #[Route('/admin/list/posts', name: 'show_posts')]
     public function index(PostsRepository $postsRepository): Response
     {
         $posts = $postsRepository->findAll();

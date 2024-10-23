@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden -
+	{{ form.vars.value.id ? 'Edit Header' : 'Create New Header' }}
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_headers')}}" class="text-gray underline text-base  ">back to headers</a>
+	</div>
+	<div
+		class="create_headers w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+		<!-- RIGHT CREATE FORM -->
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+			<div class="title_form flex flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-4">
+					{{ form.vars.value.id ? 'Update Header' : 'Create Header' }}
+					<span class="sr-only">{{ form.vars.value.id ? 'Update Header' : 'Create Header' }}</h2>
+				</div>
+
+				<!--ERROR MESSAGE-->
+				<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
+
+				{{ form_start(form) }}
+
+				<!-- CONTENT -->
+				<div class=" w-full text-base">
+					{{ form_label(form.content) }}
+					{{ form_widget(form.content) }}
+					<div class="form-error">
+						{{ form_errors(form.content) }}
+						<div id="headerContent_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+
+				<!-- CATEGORY HEADER -->
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.categoryProduct) }}
+					{{ form_widget(form.categoryProduct) }}
+					<div class="form-error">
+						{{ form_errors(form.categoryProduct) }}
+						<div id="headerCategory_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+
+				<div
+					class="flex w-full flex-col lg:flex-row justify-between gap-0 lg:gap-12">
+					<!-- BUTTON TITLE -->
+					<div class=" w-full lg:w-1/2   text-base mb-4">
+						{{ form_label(form.buttonTitle) }}
+						{{ form_widget(form.buttonTitle) }}
+						<div class="form-error">
+							{{ form_errors(form.buttonTitle) }}
+							<div id="headerButtonTitle_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					<!--  ORDER APPEAR-->
+					<div class=" w-full lg:w-1/2  text-base mb-4">
+						{{ form_label(form.orderAppear) }}
+						{{ form_widget(form.orderAppear) }}
+						<div class="form-error">
+							{{ form_errors(form.orderAppear) }}
+							<div id="headerOrderAppear_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="flex w-full flex-col lg:flex-row justify-between gap-0 lg:gap-12">
+					
+
+					<!--  BACKGROUND COLOR-->
+					<div class=" w-full  text-base mb-4">
+						{{ form_label(form.backgroundColor) }}
+						{{ form_widget(form.backgroundColor) }}
+						<div class="form-error">
+							{{ form_errors(form.backgroundColor) }}
+							<div id="headerBackgroundColor_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+
+					<!--  SIDE OF IMAGE-->
+					<div class=" w-full  text-base mb-4">
+						{{ form_label(form.sideImage) }}
+						{{ form_widget(form.sideImage) }}
+						<div class="form-error">
+							{{ form_errors(form.sideImage) }}
+							<div id="headerSideImage_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- IMAGE  -->
+				<div class=" w-full lg:w-1/2  text-base">
+					{{ form_label(form.imageFile) }}
+					{{ form_widget(form.imageFile, {
+        'attr': {
+            'class': (attr.class|default('w-full rounded bg-white  appearance-none outline-none  leading-4 text-black py-2 mt-2') ~ (form_errors(form.imageFile) ? ' error-message' : ''))
+        }
+    }) }}
+					<div class="form-error">
+						{{ form_errors(form.imageFile) }}
+						<div id="headerImage_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+
+				<!-- SUBMIT BUTTON  -->
+				<div class="text-center my-4">
+					<button type="submit" id="header_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+						{{ form.vars.value.id ? 'Update Header' : 'Create Header' }}
+						<span class="sr-only">{{ form.vars.value.id ? 'Update Header' : 'Create Header' }}
+							button</span>
+					</button>
+				</div>
+				{{ form_end(form) }}
+			</aside>
+		</div>
+
+		<!-- VALIDATE CREATE PRODUCT WITH JS  -->
+		<script src="{{ asset('assets/js/admin/createHeader.js') }}"></script>
+	{% endblock %}

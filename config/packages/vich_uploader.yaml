@@ -20,3 +20,7 @@ vich_uploader:
       uri_prefix: /upload/galleries
       upload_destination: '%kernel.project_dir%/public/upload/galleries'
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+    headers:
+      uri_prefix: /upload/headers
+      upload_destination: '%kernel.project_dir%/public/upload/headers'
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

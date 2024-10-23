@@ -37,7 +37,13 @@ document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList
 // Add 'active' class to the clicked button
 this.classList.add('active');
 
-fetch('/filter-products?filter=' + filter).then(response => response.json()).then(data => {
+fetch('/filter-products?filter=' + filter, {
+method: 'GET',
+headers: {
+'X-Requested-With': 'XMLHttpRequest',
+'Content-Type': 'application/json'
+}
+}).then(response => response.json()).then(data => {
 document.getElementById('product-gallery').innerHTML = data.html;
 });
 });

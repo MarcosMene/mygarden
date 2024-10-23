@@ -23,7 +23,7 @@ class ShopController extends AbstractController
   }
 
   #[Route('/shop/product/{slug}', name: 'shop_product', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
-  public function show(string $slug, ProductRepository $productRepository): Response
+  public function list(string $slug, ProductRepository $productRepository): Response
   {
 
     $product = $productRepository->findOneBySlug($slug);

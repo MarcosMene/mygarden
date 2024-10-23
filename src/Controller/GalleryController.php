@@ -26,8 +26,8 @@ class GalleryController extends AbstractController
     }
 
     // LIST PRODUCTS
-    #[Route('/admin/show/galleries', name: 'show_galleries')]
-    public function show(GalleryRepository $gallerieRepository): Response
+    #[Route('/admin/list/galleries', name: 'show_galleries')]
+    public function list(GalleryRepository $gallerieRepository): Response
     {
         $galleries = $gallerieRepository->findAll();
         return $this->render('admin/gallery/list_gallery.html.twig', [

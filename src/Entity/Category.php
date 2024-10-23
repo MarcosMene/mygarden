@@ -41,9 +41,16 @@ class Category
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'category')]
     private Collection $products;
 
+    /**
+     * @var Collection<int, Header>
+     */
+    #[ORM\OneToMany(targetEntity: Header::class, mappedBy: 'categoryProduct')]
+    private Collection $headers;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->headers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,5 +161,35 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Header>
+     */
+    public function getHeaders(): Collection
+    {
+        return $this->headers;
+    }
+
+    public function addHeader(Header $header): static
+    {
+        if (!$this->headers->contains($header)) {
+            $this->headers->add($header);
+            $header->setCategoryProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHeader(Header $header): static
+    {
+        if ($this->headers->removeElement($header)) {
+            // set the owning side to null (unless already changed)
+            if ($header->getCategoryProduct() === $this) {
+                $header->setCategoryProduct(null);
+            }
+        }
+
+        return $this;
     }
 }
