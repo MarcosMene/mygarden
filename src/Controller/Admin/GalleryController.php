@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Gallery;
 use App\Form\GalleryType;
@@ -45,7 +45,6 @@ class GalleryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             // Check if the gallery name already exists
             $existingGallery = $galleryRepository->findOneBy(['name' => $gallery->getName()]);
 
@@ -69,6 +68,7 @@ class GalleryController extends AbstractController
     public function detail(GalleryRepository $galleryRepository, $id): Response
     {
         $gallery = $galleryRepository->find($id);
+        
         if (!$gallery) {
             $this->addFlash('danger', 'This gallery doesn\'t exist');
             return $this->redirectToRoute('show_galleries');

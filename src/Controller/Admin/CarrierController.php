@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Carrier;
 use App\Form\CarrierType;
@@ -16,7 +16,6 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class CarrierController extends AbstractController
 {
-
     private $entityManager;
     private $csrfTokenManager;
 
@@ -36,12 +35,10 @@ class CarrierController extends AbstractController
         ]);
     }
 
-
     // CREATE CARRIER 
     #[Route('/admin/create/carrier', name: 'create_carrier')]
     public function create(Request $request, CarrierRepository $carrierRepository): Response
     {
-
         $carrier = new Carrier();
         $form = $this->createForm(CarrierType::class, $carrier, ['is_edit' => false]);
         $form->handleRequest($request);

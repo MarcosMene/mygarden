@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Header;
 use App\Form\HeaderType;
@@ -43,7 +43,7 @@ class HeaderController extends AbstractController
         $totalElementsCarousel = $headerRepository->findAll();
 
         //MAXIMUM 4 ELEMENTS ON CAROUSEL
-        if (count($totalElementsCarousel) == 10) {
+        if (count($totalElementsCarousel) == 4) {
             $this->addFlash('error', 'You have reached the maximum number of elements.');
             return $this->redirectToRoute('show_headers');
         }
@@ -69,7 +69,6 @@ class HeaderController extends AbstractController
                 $urlHeader = "/shop/products/" . $header->getCategoryProduct()->getSlug();
                 $header->setButtonLink($urlHeader);
             }
-
 
             $this->entityManager->persist($header);
             $this->entityManager->flush();

@@ -1,0 +1,21 @@
+{% set avg_rating = review.rate %}
+{% set full_stars = avg_rating|round(0, 'floor') %}
+
+<!-- Integer part of the rating -->
+{% set has_half_star = avg_rating > full_stars %}
+
+<!-- Check if there's a decimal part -->
+{% for i in 1..5 %}
+	{% if i <= full_stars %}
+
+		<!-- Full star -->
+		<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
+	{% elseif i == full_stars + 1 and has_half_star %}
+		<!-- Half star if there's a decimal part -->
+		<i class="fa-solid fa-star-half-stroke fa-xs ms-1 text-secondary"></i>
+	{% else %}
+	
+		<!-- Empty star -->
+		<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+	{% endif %}
+{% endfor %}

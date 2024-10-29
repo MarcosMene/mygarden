@@ -1,12 +1,12 @@
-<section class="product w-full pt-5 lg:pt-12 pb-10">
-	<div class="container mx-auto p-4 lg:p-0">
-		<div
-			class="our_products w-full">
+<section class="product w-full pt-5 lg:pt-12 pb-10 ">
 
+	<div class="team w-full md:px-16 mx-auto">
+		<div
+			class="our_products container mx-auto px-8 lg:px-16 mt-6">
 
 			<!--PRODUCT-->
 			<div
-				class="product_block flex  flex-col lg:flex-row px-8 lg:px-16 items-start">
+				class="product_block flex  flex-col lg:flex-row  items-start">
 
 				<!--PRODUCT CAROUSEL-->
 				<div
@@ -45,90 +45,105 @@
 								</li>
 							</ol>
 						</nav>
-						<p class="text-gray text-sm text-end my-2 lg:my-0">This product doesn't have a review yet.</p>
+						{% if reviews|length == 0 %}
+							<p class="text-gray text-sm text-end my-2 lg:my-0">This product doesn't have a review yet.</p>
+						{% endif %}
 					</div>
 
 					<div
 						class="reviews flex items-center justify-start mt-1">
+
 						<!--PRODUCT STARS-->
-						<div class="review_stars flex justify-start mb-6 text-gray">
-							<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-							<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-							<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-							<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-							<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
+						<div
+							class="review_stars flex justify-start  text-gray">
+
+							<!--STARS-->
+							{% if reviews|length > 0 %}
+								{% include 'components/review_stars_average.html.twig'%}
+							{% endif %}
 						</div>
+
 						<!--PRODUCT REVIEW CLIENTS QUANTITY-->
-						<div class="review_clients_quantity flex justify-start text-gray mb-6 ms-3">
-							<span class="text-gray text-sm">(23 Customer reviews)</span>
-							<span class="text-gray text-sm ms-2">4.5/5</span>
-						</div>
-					</div>
-
-
-					<!--PRODUCT TITLE-->
-					<h2 class="text-3xl font-normal mt-2 mb-3 capitalize">
-						{{product.name}}</h2>
-
-					<!--PRODUCT PRICE-->
-					<div
-						class="product_price divisor">
-
-						<!--IF PRODUCT PROMOTION-->
-						{% if product.promotion != 0 %}
-							<div class="product_promotion  flex justify-start items-start">
-								<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
-								<span class="text-2xl font-bold text-primary mx-2">${{ ((product.price*(100-product.promotion))/100)|number_format(2) }}</span>
-							</div>
-						{% else %}
-							<div class="product_promotion text-start">
-								<span class="text-2xl font-bold text-primary">${{product.price}}</span>
+						<div class="review_clients_quantity flex justify-start text-gray  ms-3">
+							{% if reviews|length > 0 %}
+								<span class="text-gray text-sm">({{reviews|length}}
+									Customer review(s))</span>
+								<span class="text-gray text-sm ms-2">{{ (product.getAverageRating())|number_format(1) }}/5</span>
 							</div>
 						{% endif %}
 					</div>
 
+					<div
+						class="flex flex-col">
 
-					<div class="border w-3/4 block border-gray my-4"></div>
+						<!--PRODUCT TITLE-->
+						<h2 class="text-3xl font-normal mt-2 mb-3 capitalize">
+							{{product.name}}</h2>
 
-					<!--PRODUCT DESCRIPTION-->
-					<p class="text-base">{{product.description|raw}}</p>
+						<!--PRODUCT PRICE-->
+						<div
+							class="product_price divisor">
 
-
-					<!--PRODUCT AVAILABLE-->
-					<div class="product_available mt-4">
-						<span class="text-sm">Availability</span>
-						<span class="text-primary text-sm">10 in stock</span>
-					</div>
-
-					<!--PRODUCT ADD CART-->
-					<div class="product_add_cart flex gap-4 mt-4">
-						<div class="product_add_delete_buttons flex items-center justify-start gap-2">
-							<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full inline-flex justify-center items-center">
-								<i class="fa-solid fa-minus"></i>
-							</a>
-							<span class="btn btn-light  font-bold text-black">2</span>
-							<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full flex justify-center items-center">
-								<i class="fa-solid fa-plus"></i>
-							</a>
+							<!--IF PRODUCT PROMOTION-->
+							{% if product.promotion != 0 %}
+								<div class="product_promotion  flex justify-start items-start">
+									<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
+									<span class="text-2xl font-bold text-primary mx-2">${{ ((product.price*(100-product.promotion))/100)|number_format(2) }}</span>
+								</div>
+							{% else %}
+								<div class="product_promotion text-start">
+									<span class="text-2xl font-bold text-primary">${{product.price}}</span>
+								</div>
+							{% endif %}
 						</div>
-						<a href="" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Add to cart</a>
-					</div>
 
-					<!--PRODUCT ADD WISHLIST-->
-					<a href="" class="mt-4 text-sm font-normal text-gray w-fit capitalize hover:underline">
-						<i class="fa-regular fa-heart text-primary text-xl hover:"></i>
-						<span class="text-base">Add to wishlist</span>
-					</a>
+						<div class="border w-3/4 block border-gray my-4"></div>
 
-					<!--PRODUCT TAGS-->
-					<div class="tags flex justify-start items-center mt-4">
-						<span class="py-1 px-2  text-xs font-medium text-gray me-4 bg-gray-50 rounded-lg">Decoration</span>
-						<span class="py-1 px-2  text-xs font-medium text-gray me-4 bg-gray-50 rounded-lg">Garden</span>
-					</div>
+						<!--PRODUCT DESCRIPTION-->
+						{# <p class="text-base">{{product.description|raw}}</p> #}
+						<p class="text-base">More information about this product on description menu tab below</p>
 
-					<!--PRODUCT NETWORK-->
-					<div class="flex mt-4 -ms-2 sm:justify-start">
-						{% include ('components/network.html.twig')%}
+						<!--PRODUCT AVAILABLE-->
+						<div class="product_available mt-4">
+							<span class="text-sm">Availability</span>
+							<span class="text-primary text-sm">10 in stock</span>
+						</div>
+
+						<!--PRODUCT ADD CART-->
+						<div class="product_add_cart flex gap-4 mt-4">
+							<div class="product_add_delete_buttons flex items-center justify-start gap-2">
+								<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full inline-flex justify-center items-center">
+									<i class="fa-solid fa-minus"></i>
+								</a>
+								<span class="btn btn-light  font-bold text-black">2</span>
+								<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full flex justify-center items-center">
+									<i class="fa-solid fa-plus"></i>
+								</a>
+							</div>
+							<a href="" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Add to cart</a>
+						</div>
+
+						<!--PRODUCT ADD WISHLIST-->
+						<a href="" class="mt-4 text-sm font-normal text-gray w-fit capitalize hover:underline">
+							<i class="fa-regular fa-heart text-primary text-xl hover:"></i>
+							<span class="text-base">Add to wishlist</span>
+						</a>
+
+						<!--PRODUCT TAGS-->
+						<div class="tags flex justify-start items-center mt-4">
+							<span class="py-1 px-2  text-xs font-medium text-gray me-4 bg-gray-50 rounded-lg">Decoration</span>
+							<span class="py-1 px-2  text-xs font-medium text-gray me-4 bg-gray-50 rounded-lg">Garden</span>
+						</div>
+
+						<!--PRODUCT NETWORK-->
+						<div class="flex mt-4 me-2 sm:justify-start">
+							{% include ('components/network.html.twig')%}
+						</div>
+
+						<!--PRODUCT ALREADY REVIEWED-->
+						{% if app.user and reviews %}
+							<div class="product_already_reviewed mt-4 text-red">You have already review this product.</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -139,17 +154,18 @@
 		<!--DESCRIPTION/REVIEW-->
 		<div
 			class="product_description_review mt-4">
+
 			<!--Tabs navigation-->
 			<ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 ps-0 w-1/2 mx-auto justify-center" role="tablist" data-twe-nav-ref>
 				<li role="presentation" class="text-center">
 					<a href="#tabs-home02" class="md:mx-4 px-4 py-3 my-2 block border-x-0 border-b-2 border-t-0 border-transparent text-xl font-normal capitalize leading-tight text-black hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary" data-twe-toggle="pill" data-twe-target="#tabs-home02" data-twe-nav-active role="tab" aria-controls="tabs-home02" aria-selected="true">Description</a>
 				</li>
 				<li role="presentation" class="text-center">
-					<a href="#tabs-profile02" class="md:mx-4 px-4 py-3 my-2 block border-x-0 border-b-2 border-t-0 border-transparent text-xl font-normal capitalize leading-tight text-black hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary" data-twe-toggle="pill" data-twe-target="#tabs-profile02" role="tab" aria-controls="tabs-profile02" aria-selected="false">Review(23)</a>
+					<a href="#tabs-profile02" class="md:mx-4 px-4 py-3 my-2 block border-x-0 border-b-2 border-t-0 border-transparent text-xl font-normal capitalize leading-tight text-black hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary" data-twe-toggle="pill" data-twe-target="#tabs-profile02" role="tab" aria-controls="tabs-profile02" aria-selected="false">Review({{reviews|length}})</a>
 				</li>
 			</ul>
 
-			<!--Tabs content-->
+			<!--TAB CONTENTS-->
 			<div
 				class="w-full lg:w-3/4 mx-auto hidden opacity-100 transition-opacity duration-150 ease-linear data-[twe-tab-active]:block" id="tabs-home02" role="tabpanel" aria-labelledby="tabs-home-tab02" data-twe-tab-active>
 
@@ -160,145 +176,159 @@
 			<!--TAB REVIEW-->
 			<div
 				class="w-full lg:w-3/4 mx-auto hidden opacity-0 transition-opacity duration-150 ease-linear data-[twe-tab-active]:block" id="tabs-profile02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
-
 				<!--REVIEWS-->
-				<div class="max-h-52 overflow-y-scroll   bg-white shadow-lg rounded-lg ">
-					<div
-						class="flex flex-col justify-between items-center mb-4 p-4">
 
-						<!-- REVIEW -->
-						<div
-							class="w-full flex items-start flex-col justify-between">
+				{% if reviews|length > 0 %}
 
-							<!--PRODUCT STARS-->
-							<div class="review_stars flex justify-start items-center my-3 ">
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-regular fa-star fa-xs text-secondary"></i>
-								<span class="text-xs text-gray font-normal ms-2">September 17</span>
-							</div>
-							<!--PRODUCT REVIEW CLIENT -->
-							<p class=" text-black text-base font-normal">Ad risus nunc cubilia turpis lacinia letius platea ornare amet hendrerit sem. Amet aptent penatibus tempus mus a cras pretium egestas faucibus. Vehicula fringilla aliquam letius dapibus lacus tellus nisl nibh ante commodo finibus. Lacus erat neque parturient aliquam quisque quam vel tempus. Turpis consequat inceptos est facilisis amet gravida.</p>
-							<!--PRODUCT REVIEW NAME CLIENT -->
-							<p class=" text-gray text-base font-normal">John Doe</p>
-						</div>
+					<div class="max-h-52 overflow-y-scroll   bg-white shadow-lg rounded-lg ">
+						<div class="flex flex-col justify-between items-center mb-4 p-4">
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto my-2"></div>
+							{% for review in reviews %}
 
-						<!-- REVIEW -->
-						<div
-							class="w-full flex items-start flex-col justify-between">
+								<!-- REVIEW  USERS-->
+								<div
+									class="w-full flex items-start flex-col justify-between">
 
-							<!--PRODUCT STARS-->
-							<div class="review_stars flex justify-start items-center my-3 ">
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-regular fa-star fa-xs text-secondary"></i>
-								<span class="text-xs text-gray font-normal ms-2">September 17</span>
-							</div>
-							<!--PRODUCT REVIEW CLIENT -->
-							<p class=" text-black text-base font-normal">Ad risus nunc cubilia turpis lacinia letius platea ornare amet hendrerit sem. Amet aptent penatibus tempus mus a cras pretium egestas faucibus. Vehicula fringilla aliquam letius dapibus lacus tellus nisl nibh ante commodo finibus. Lacus erat neque parturient aliquam quisque quam vel tempus. Turpis consequat inceptos est facilisis amet gravida.</p>
-							<!--PRODUCT REVIEW NAME CLIENT -->
-							<p class=" text-gray text-base font-normal">John Doe</p>
-						</div>
+									<!--PRODUCT STARS-->
+									<div class="review_stars flex justify-start items-center my-3 ">
+										{% if product.reviews|length > 0 %}
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto my-2"></div>
+											<!--STARS-->
+											{% include 'components/review_stars_user.html.twig'%}
 
-						<!-- REVIEW -->
-						<div
-							class="w-full flex items-start flex-col justify-between">
+										{% endif %}
+										<span class="text-xs text-gray font-normal ms-2">{{review.createdAt|date("F j, Y")}}</span>
+									</div>
+									<!--PRODUCT REVIEW CLIENT -->
+									<p class=" text-black text-base font-normal">{{review.review}}</p>
+									<!--PRODUCT REVIEW NAME CLIENT -->
+									{% if app.user %}
+										{% if app.user.id == review.user.id %}
+											<p class=" text-gray text-base font-normal capitalize">You</p>
+										{% endif %}
+									{% else %}
+										<!--NAME OF USER THAT GAVE A REVIEW WITH FIRST LETTER LASTNAME UPPERCASE.-->
+										<p class=" text-gray text-base font-normal capitalize">{{review.user.firstName}}
+											{{review.user.lastName|first|upper}}.</p>
 
-							<!--PRODUCT STARS-->
-							<div class="review_stars flex justify-start items-center my-3 ">
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-regular fa-star fa-xs text-secondary"></i>
-								<span class="text-xs text-gray font-normal ms-2">September 17</span>
-							</div>
-							<!--PRODUCT REVIEW CLIENT -->
-							<p class=" text-black text-base font-normal">Ad risus nunc cubilia turpis lacinia letius platea ornare amet hendrerit sem. Amet aptent penatibus tempus mus a cras pretium egestas faucibus. Vehicula fringilla aliquam letius dapibus lacus tellus nisl nibh ante commodo finibus. Lacus erat neque parturient aliquam quisque quam vel tempus. Turpis consequat inceptos est facilisis amet gravida.</p>
-							<!--PRODUCT REVIEW NAME CLIENT -->
-							<p class=" text-gray text-base font-normal">John Doe</p>
-						</div>
+									{% endif %}
+								</div>
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto my-2"></div>
-
-						<!-- REVIEW -->
-						<div
-							class="w-full flex items-start flex-col justify-between">
-
-							<!--PRODUCT STARS-->
-							<div class="review_stars flex justify-start items-center my-3 ">
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-solid fa-star fa-xs text-secondary"></i>
-								<i class="fa-regular fa-star fa-xs text-secondary"></i>
-								<span class="text-xs text-gray font-normal ms-2">September 17</span>
-							</div>
-							<!--PRODUCT REVIEW CLIENT -->
-							<p class=" text-black text-base font-normal">Ad risus nunc cubilia turpis lacinia letius platea ornare amet hendrerit sem. Amet aptent penatibus tempus mus a cras pretium egestas faucibus. Vehicula fringilla aliquam letius dapibus lacus tellus nisl nibh ante commodo finibus. Lacus erat neque parturient aliquam quisque quam vel tempus. Turpis consequat inceptos est facilisis amet gravida.</p>
-							<!--PRODUCT REVIEW NAME CLIENT -->
-							<p class=" text-gray text-base font-normal">John Doe</p>
+								<!-- border -->
+								<div class="border border-gray w-1/2 mx-auto my-2"></div>
+							{% endfor %}
 						</div>
 					</div>
-				</div>
+				{% else %}
+					{% if app.user and reviewUser %}
 
+						<p class=" text-base font-normal text-center text-red">Your review will be available soon.</p>
+					{% else %}
+						<p class=" text-base font-normal text-center">No reviews yet</p>
+					{% endif %}
+				{% endif %}
+				<!--BUTTON ADD REVIEW IF USER NOT GIVE YEAT A REVIEW-->
+				{% if app.user and not user_reviewed %}
+					<div class="text-center pt-6">
 
-				<!--FORM ADD REVIEW-->
-				<div class="product_add_review mt-8 p-4 bg-gray-50 border border-gray-300 rounded">
-					<h2 class="text-2xl font-medium">Add a review</h2>
-					<p>Your email addres will not be published. Required fields are marked*</p>
+						<button id="toggleButton" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100" type="button" type="button" aria-expanded="false" aria-controls="collapseForm" onclick="toggleCollapse()">
+							Give your opinion for this product
+						</button>
+					</div>
+				{% elseif not app.user and not user_reviewed %}
+					<div class="text-center pt-6">
 
-					<!--FORM-->
-					<form>
-						<!--YOUR NOTE-->
-						<label for="rating" class="block mt-4 mb-2 text-sm font-medium text-black">Your note*</label>
-						<select id="rating" class="bg-white border border-gray-300 text-gray text-sm rounded-lg focus:primary focus:primary block w-fit p-2.5">
-							<option selected class="text-gray">Choose one</option>
-							<option value="1" class="text-black">1</option>
-							<option value="2" class="text-black">2</option>
-							<option value="3" class="text-black">3</option>
-							<option value="4" class="text-black">4</option>
-							<option value="5" class="text-black">5</option>
-						</select>
+						<button id="toggleButton" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100" type="button" type="button" aria-expanded="false" aria-controls="collapseForm" onclick="toggleCollapse()">
+							Give your opinion for this product
+						</button>
+					</div>
+				{% endif %}
 
-						<!--YOUR REVIEW-->
-						<label for="message" class="block mb-2 text-sm font-medium text-black mt-4">Your review*</label>
-						<textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-black bg-white rounded-lg border border-gray-300" placeholder="Write your thoughts here..."></textarea>
+				<div
+					id="collapseForm" class="max-h-0 overflow-hidden opacity-0 transition-all duration-2000 ease-in-out ">
+					<!--FORM ADD REVIEW-->
+					<div class=" product_add_review mt-8 p-4 bg-gray-50 border border-gray-300 rounded">
+						{% if app.user and not user_reviewed %}
+							<h2 class="text-2xl font-medium text-center">Add a review</h2>
 
-						<!--YOUR NAME AND EMAIL-->
+							<!--ERROR MESSAGE-->
+							<div id="error_messages" class="hidden text-center p-4 my-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
 
-						<div class="name">
-							<label class="block mb-2 text-sm font-medium text-black mt-4" for="name">
-								Your name*
-							</label>
-							<input class="appearance-none w-full py-2 px-3 text-sm text-black bg-white rounded-lg border border-gray-300" id="name" type="text" placeholder="Write your name">
-						</div>
-						<div class="email">
-							<label class="block mb-2 text-sm font-medium text-black mt-4" for="email">
-								Your email*
-							</label>
-							<input class="appearance-none w-full py-2 px-3 text-sm text-black bg-white rounded-lg border border-gray-300" id="email" type="text" placeholder="Write your email">
-						</div>
+							<!--FORM-->
+							{{form_start(formReview)}}
 
-						<div class="text-center mt-10">
-							<button type="submit" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize w-1/2 ">
-								Submit
-								<span class="sr-only">Submit button</span>
-							</button>
-						</div>
-					</form>
+							<!--  RATE -->
+							<div class=" w-full  text-base">
+								{{ form_label(formReview.rate) }}
+								{{ form_widget(formReview.rate) }}
+								<div class="form-error">
+									{{ form_errors(formReview.rate) }}
+									<div id="rateProduct_error" hidden class="text-sm text-red"></div>
+								</div>
+							</div>
+
+							<!--  REVIEW  -->
+							<div class="mt-4">
+								{{ form_label(formReview.review) }}
+								{{ form_widget(formReview.review) }}
+								<div class="form-error">
+									{{ form_errors(formReview.review) }}
+									<div id="reviewProduct_error" hidden class="text-sm text-red"></div>
+								</div>
+							</div>
+
+							<!-- SUBMIT BUTTON  -->
+							<div class="text-center mt-4">
+								<button type="submit" id="review_submit" class="w-1/5 mx-auto p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+									Submit
+									<span class="sr-only">
+										submit button</span>
+								</button>
+							</div>
+
+							{{form_end(formReview)}}
+
+						{% else %}
+							<!--MESSAGE TO LOGIN FIRST BEFORE ADD REVIEW-->
+
+							<div class="bg-bg1  mx-auto  border border-red shadow-lg p-4 text-center">
+								<h2>You need to be connected to add a review.</h2>
+								<p class="mt-3">
+									<a href="{{path('app_login')}}" class="text-dark text-decoration-underline">Click here to
+										<span class="underline">login</span>
+									</a>
+									<br/>
+									or
+									<br/>
+									<a href="{{path('app_signup')}}" class="text-dark text-decoration-underline">Create your account
+										<span class="underline">here.</span>
+									</a>
+								</p>
+							</div>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- VALIDATE ADD PRODUCT REVIEW USER JS  -->
+	<script src="{{ asset('assets/js/admin/createReviewProductUser.js') }}" defer></script>
+	<script>
+		function toggleCollapse() {
+const collapseElement = document.getElementById("collapseForm");
+
+// Toggle visibility with height and opacity changes
+if (collapseElement.classList.contains("max-h-0")) {
+collapseElement.classList.remove("max-h-0", "opacity-0");
+collapseElement.classList.add("max-h-screen", "opacity-100");
+} else {
+collapseElement.classList.add("max-h-0", "opacity-0");
+collapseElement.classList.remove("max-h-screen", "opacity-100");
+}
+
+// Update aria-expanded for accessibility
+const button = document.getElementById("toggleButton");
+const isExpanded = button.getAttribute("aria-expanded") === "true";
+button.setAttribute("aria-expanded", ! isExpanded);
+}
+	</script>

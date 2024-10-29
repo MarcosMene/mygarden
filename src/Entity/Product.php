@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -33,7 +35,6 @@ class Product
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
-
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -67,10 +68,22 @@ class Product
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'product')]
+    private Collection $reviews;
+
     public function __construct()
     {
         // Automatically set the createdAt field to the current date and time
         $this->createdAt = new \DateTime();
+        $this->reviews = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -263,5 +276,50 @@ class Product
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getProduct() === $this) {
+                $review->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    //calculate the average rating for stars of products
+    public function getAverageRating(): float
+    {
+        $totalReviews = count($this->reviews);
+        if($totalReviews === 0){
+            return 0;
+        }
+
+        $totalPoints = array_reduce($this->reviews->toArray(), function($carry, $review){
+            return $carry + $review->getRate();
+        }, 0);
+
+        return $totalPoints / $totalReviews;
     }
 }

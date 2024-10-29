@@ -14,105 +14,41 @@
 			<p class="mb-2 text-base">My Garden specializes in creating stunning ambient decorations for any occasion. From weddings to corporate events, our team excels at transforming spaces with floral designs that capture the essence of your vision.</p>
 
 			<!--CARD OWNERS-->
-			<div
-				class=" flex flex-col md:flex-row  items-center justify-between lg:justify-center  mx-auto mt-12">
+			<div class=" flex flex-col md:flex-row  items-center justify-between lg:justify-center  mx-auto mt-12">
+				{% for employee in employees %}
+					{% if(employee.orderAppear == 1 ) %}
+						<!--CARD-->
+						<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 lg:mx-4 xl:mx-12 mt-12">
+							<img
+							src="{{ asset('upload/employees/' ~ employee.imageName) }}" loading="lazy" alt="{{employee.firstName}} {{employee.lastName}}"/>
 
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 lg:mx-4 xl:mx-12 mt-12">
-					<img
-					src="{{asset('upload/team/elizabeth.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-lg">Elizabeth Moore</h3>
-						<p class="text-center text-base">Owner</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 lg:mx-4 xl:mx-12 mt-12">
-					<img
-					src="{{asset('upload/team/dona.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-lg">Dona Mcalister</h3>
-						<p class="text-center text-base">Owner</p>
-					</div>
-				</div>
+							<!--body-->
+							<div class="card-body flex flex-col items-center justify-center pt-2">
+								<h3 class="text-primary font-medium capitalize text-lg">{{employee.firstName}} {{employee.lastName}}</h3>
+								<p class="text-center text-base">{{employee.employeePost}}</p>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
 			</div>
 
-
 			<!--CARD EMPLOYEES-->
-			<div
-				class=" flex flex-wrap   items-center justify-between">
+			<div class=" flex flex-wrap   items-center justify-between">
+				{% for employee in employees %}
+					{% if(employee.orderAppear == 2 ) %}
+						<!--CARD-->
+						<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
+							<img
+							src="{{ asset('upload/employees/' ~ employee.imageName) }}" loading="lazy" alt="{{employee.firstName}} {{employee.lastName}}"/>
 
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/amelia.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Amelia Smith</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/emily.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Emily Taylor</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/anna.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Anna Clark</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/dorothy.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Dorothy Carter</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/sandra.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Sandra Jones</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-				<!--CARD-->
-				<div class="flex flex-col w-full md:w-[45%] lg:w-[31%] xl:w-[25%] mx-2 mt-12">
-					<img
-					src="{{asset('upload/team/elsa.jpg')}}" loading="lazy" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium capitalize text-xl">Elsa Harris</h3>
-						<p class="text-center text-base">Saleswoman</p>
-					</div>
-				</div>
-
+							<!--body-->
+							<div class="card-body flex flex-col items-center justify-center pt-2">
+								<h3 class="text-primary font-medium capitalize text-xl">{{employee.firstName}} {{employee.lastName}}</h3>
+								<p class="text-center text-base">{{employee.employeePost}}</p>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 	</div>

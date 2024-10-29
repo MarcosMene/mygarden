@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
-use App\Repository\CategoryRepository;
 use App\Repository\GalleryRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\ProductRepository;
@@ -14,12 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Attribute\Route;
-
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
     public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository, HeaderRepository $headerRepository): Response
-
     {
         //FIND HEADERS FOR CAROUSEL
         $headers = $headerRepository->findAllOrderedByAppear();
@@ -46,7 +42,7 @@ class HomeController extends AbstractController
     {
         // Check if the request is an AJAX request
         if (!$request->isXmlHttpRequest()) {
-            throw new AccessDeniedHttpException('Access denied. This page is only accessible via AJAX.');
+            throw new AccessDeniedHttpException('Access denied.');
         }
 
         $filterType = $request->query->get('filter', 'all');

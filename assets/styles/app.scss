@@ -66,11 +66,6 @@ select {
   color: $black; /* Placeholder color */
 }
 
-/* Style for the options (not selected) */
-// select option {
-//   color: $black;
-// }
-/* Style for the options (not selected) */
 select option:first-child {
   color: $gray;
 }
@@ -139,6 +134,23 @@ form .text-red {
     background-color: #e51515;
     color: #c34795;
   }
+}
+
+
+//ALERT ANIMATION
+@keyframes slide-in-left {
+  0% {
+      transform: translateX(100%);
+  }
+  
+  100% {
+      transform: translateX(0%);
+  }
+}
+
+/* Apply the animation */
+.animate-slide-in {
+  animation: slide-in-left 0.5s cubic-bezier(.41,1.65,.38,1.04); 
 }
 
 //WISHLIST
