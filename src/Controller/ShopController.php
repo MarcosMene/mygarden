@@ -18,14 +18,17 @@ class ShopController extends AbstractController
   public function __construct(private EntityManagerInterface $em, private CsrfTokenManagerInterface $csrfTokenManager) {}
 
   #[Route('/shop', name: 'shop')]
-  public function index(ProductRepository $productRepository): Response
+  public function index(ProductRepository $productRepository, ReviewRepository $reviewRepository): Response
   {
     $products = $productRepository->findAll();
+
+    $reviews = $reviewRepository->findAll();
 
     return $this->render(
       'pages/shop.html.twig',
       [
-        'products' => $products
+        'products' => $products,
+        'reviews'=>$reviews
       ]
     );
   }

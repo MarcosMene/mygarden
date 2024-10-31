@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden -
+	{{review.user}}
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_store_admin')}}" class="text-gray underline text-base  ">back to reviews</a>
+	</div>
+	<div
+		class="reviews w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+
+		<!-- RIGHT REVIEW -->
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+			<div class="title_form flex  flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Store review details</h2>
+			</div>
+
+			<div
+				class="detail_review flex flex-col lg:flex-row mt-4 lg:mt-0">
+
+				<!-- REVIEW  -->
+					<div
+						class="detail_review flex flex-col w-full lg:w-3/5 px-1 me-0 lg:px-8">
+						<!-- USER -->
+						<div class="flex">
+							<p class="font-semibold text-base">User:</p>
+							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.user }}</p>
+						</div>
+						<!-- FIRST NAME FORM -->
+						<div class="flex">
+							<p class="font-semibold text-base">First name from form:</p>
+							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.firstName }}</p>
+						</div>
+						<!-- RATE -->
+						<div class="flex">
+							<p class="font-semibold text-base">Note:</p>
+							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.rate }}</p>
+						</div>
+						<!-- CREATE AT -->
+						<div class="flex">
+							<p class="font-semibold text-base">Created at:</p>
+							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.createdAt|date('M d Y') }}</p>
+						</div>
+						<!-- COMMENT -->
+						<div class="flex">
+							<p class="font-semibold text-base">Comment:</p>
+							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.comment }}</p>
+						</div>
+						<!--APPROVED-->
+						<div class="mb-4 flex flex-col md:flex-row">
+							<p class="block font-bold text-base m-0">Is approved:</p>
+							<p class="text-gray-700 text-base m-0 ms-0 md:ms-2 {{review.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold uppercase">{{review.isApproved == 1 ? 'yes':'no'}}</p>
+						</div>
+					</div>
+			</div>
+		</aside>
+	</div>
+{% endblock %}

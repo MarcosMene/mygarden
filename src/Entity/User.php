@@ -60,9 +60,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'user')]
     private Collection $reviews;
 
+    /**
+     * @var Collection<int, ReviewClient>
+     */
+    #[ORM\OneToMany(targetEntity: ReviewClient::class, mappedBy: 'user')]
+    private Collection $reviewClients;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->reviewClients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -242,6 +249,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $review->setUser(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ReviewClient>
+     */
+    public function getReviewClients(): Collection
+    {
+        return $this->reviewClients;
+    }
+
+    public function addReviewClient(ReviewClient $reviewClient): static
+    {
+        if (!$this->reviewClients->contains($reviewClient)) {
+            $this->reviewClients->add($reviewClient);
+            $reviewClient->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReviewClient(ReviewClient $reviewClient): static
+    {
+        if ($this->reviewClients->removeElement($reviewClient)) {
+            // set the owning side to null (unless already changed)
+            if ($reviewClient->getUser() === $this) {
+                $reviewClient->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

@@ -6,7 +6,9 @@
 {% block body %}
 	<!-- MENU  -->
 	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
-	<a href="{{path('show_schedules')}}" class="text-gray underline text-base  ">Back to schedules</a>
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_schedules')}}" class="text-gray underline text-base  ">Back to schedules</a>
+	</div>
 </div>
 <div
 	class="create_color idll flex px-8 lg:px-16 mb-10">
@@ -23,7 +25,6 @@
 		<div class="title_form flex  flex-wrap justify-between">
 			<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Schedule detail</h2>
 		</div>
-
 
 		<div class="detail_schedule flex flex-col lg:flex-row mt-4 lg:mt-0">
 

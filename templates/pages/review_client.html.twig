@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to My Garden
+{% endblock %}
+
+{% block body %}
+
+	<!--BANNER-->
+	{% include ('_partials/review_clients/_banner.html.twig')%}
+
+	<section class="contact">
+
+		<div class=" w-full pt-5 lg:pt-12 pb-10">
+			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Would you like to leave your opinion?</h2>
+			<!--image-->
+			<img
+			src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+
+			<!--CONTACT FORM-->
+			<div class="container mx-auto px-8 lg:px-16 mt-10">
+				<div
+					class=" bg-white flex justify-center border border-gray-200">
+					<!--FORM-->
+					<div class="w-full xl:w-1/2 p-6 sm:p-12 ">
+						<p class="text-2xl text-center mb-12">Please share your thoughts and experiences with us to help us improve and serve you better.</p>
+
+						<!--ERROR MESSAGE-->
+				<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
+						
+							<!--FORM-->
+							{{form_start(formClient)}}
+
+							<!--  FIRST NAME -->
+							<div class=" w-full  text-base">
+								{{ form_label(formClient.firstName) }}
+								{{ form_widget(formClient.firstName) }}
+								<div class="form-error">
+									{{ form_errors(formClient.firstName) }}
+									<div id="clientFirstName_error" hidden class="text-sm text-red"></div>
+								</div>
+							</div>
+
+							<!--  RATE USER  -->
+							<div class="mt-4 w-full">
+								{{ form_label(formClient.rate) }}
+								{{ form_widget(formClient.rate) }}
+								<div class="form-error">
+									{{ form_errors(formClient.rate) }}
+									<div id="rateClient_error" hidden class="text-sm text-red"></div>
+								</div>
+							</div>
+
+							<!--  COMMENT  -->
+							<div class="mt-4">
+								{{ form_label(formClient.comment) }}
+								{{ form_widget(formClient.comment) }}
+								<div class="form-error">
+									{{ form_errors(formClient.comment) }}
+									<div id="commentClient_error" hidden class="text-sm text-red"></div>
+								</div>
+							</div>
+
+							<!-- SUBMIT BUTTON  -->
+							<div class="text-center mt-4">
+								<button type="submit" id="review_submit" class=" w-full md:w-1/3 mx-auto p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+									Submit
+									<span class="sr-only">
+										submit button</span>
+								</button>
+							</div>
+
+							{{form_end(formClient)}}
+					</div>
+					<div class="w-full xl:w-1/2 text-center hidden md:flex">
+						<img src="{{asset('assets/images/review_clients/review_clients.jpeg')}}" loading="lazy" class="w-full object-cover" alt="woman preparing a bouquet on a wicker basket"/></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- VALIDATE REVIEW STORE FORM WITH JS  -->
+		<script src="{{ asset('assets/js/admin/createReviewStore.js')}}"></script>
+{% endblock %}

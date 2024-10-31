@@ -9,12 +9,11 @@
 		{%if product.promotion > 0 %}
 			<div class="absolute top-0 right-0 h-45 card_label bg-primary px-4 py-2 uppercase text-white text-[10px] text-end font-bold font-roboto tracking-widest">PROMO</div>
 		{% endif %}
-		{# <img src="{{asset('upload/products/house2.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/> #}
 		<img
 		src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class="w-full group-hover:opacity-75">
 
 		<!--buttons-->
-		<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2  w-3/4 sm:w-full px-8 sm:px-6 overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
+		<div class="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2 w-3/4 sm:1/2   overflow-hidden opacity-0  group-hover:opacity-100 rounded-sm group">
 			<div
 				class="flex justify-between gap-4 items-center   ">
 
@@ -40,16 +39,17 @@
 		<h3 class="mb-2 text-xl font-semibold text-center capitalize leading-5">{{product.name}}</h3>
 		<p class="mb-3 text-center">{{product.description|slice(0, 30) ~ '...'}}</p>
 		<!--PRODUCT STARS-->
-		{# <div class="review_stars flex justify-center mt-4 mb-6">
-																																																																					<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-																																																																					<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-																																																																					<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-																																																																					<i class="fa-solid fa-star fa-xs ms-1 text-secondary"></i>
-																																																																					<i class="fa-regular fa-star fa-xs ms-1 text-secondary"></i>
-																																																																				</div> #}
+		<div
+			class="review_stars flex justify-center mt-4 mb-6">
+			<!--STARS-->
+			{% if reviews|length > 0 %}
+				{% include 'components/review_stars_average.html.twig'%}
+			{% endif %}
+		</div>
 		<!--IF PRODUCT PROMOTION-->
-			{% if product.promotion != 0 %}
-				<div class="product_promotion text-center flex justify-center items-center"> <span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
+		{% if product.promotion != 0 %}
+			<div class="product_promotion text-center flex justify-center items-center">
+				<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
 				<span class="text-2xl font-bold text-primary mx-2">${{ ((product.price*(100-product.promotion))/100)|number_format(2) }}</span>
 			</div>
 		{% else %}

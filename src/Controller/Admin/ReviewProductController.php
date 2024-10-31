@@ -26,7 +26,7 @@ class ReviewProductController extends AbstractController
 
     //LIST OF PRODUCT USER REVIEWS
     #[Route('/admin/list/review_products', name: 'show_review_products')]
-    public function index(ReviewRepository $reviewRepository): Response
+    public function list(ReviewRepository $reviewRepository): Response
     {
         $reviewProducts = $reviewRepository->findAll();
         return $this->render('admin/review_product/list_review_product.html.twig', [

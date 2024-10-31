@@ -24,13 +24,10 @@
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
 			<div class="title_form flex flex-wrap justify-between">
 				<h2 class=" text-black font-medium text-xl mb-4">
-					Product Review Detail
+					Product Review Details
 				</h2>
 				<span class="sr-only">Product Review Detail</span>
 			</div>
-
-			<!--ERROR MESSAGE-->
-			<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
 
 			<!--REVIEW-->
 			<div
@@ -61,17 +58,19 @@
 						<p class="block font-bold text-base m-0">Rating:</p>
 						<span class="text-gray-700 text-base ms-2">{{ review.rate }}</span>
 					</div>
-					<!--CREATED AT-->
+
+					<!--REVIEW-->
+					<div class="mb-4 flex flex-col ">
+						<p class="block font-bold text-base m-0">Comment:</p>
+						<p class="text-gray-700 text-base m-0">{{ review.review }}</p>
+					</div>
+
+						<!--CREATED AT-->
 					<div class="mb-4 flex flex-col md:flex-row">
 						<p class="block font-bold text-base m-0">Created at:</p>
 						<span class="text-gray-700 text-base ms-0 md:ms-2">{{ product.createdAt|date('M d Y') }}</span>
 					</div>
 
-					<!--REVIEW-->
-					<div class="mb-4 flex flex-col ">
-						<p class="block font-bold text-base m-0">Review:</p>
-						<p class="text-gray-700 text-base m-0">{{ review.review }}</p>
-					</div>
 					<!--APPROVED-->
 					<div class="mb-4 flex flex-col md:flex-row">
 						<p class="block font-bold text-base m-0">Is approved:</p>

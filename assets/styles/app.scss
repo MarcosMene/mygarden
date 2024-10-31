@@ -53,8 +53,10 @@ h6 {
 
 label {
   display: block;
-  margin-top: 1em;
+  // margin-top: 1em;
 }
+
+
 
 input::placeholder,
 textarea::placeholder {
@@ -175,7 +177,6 @@ form .text-red {
 // CARD PROMO LABEL
 .card_label {
   clip-path: polygon(26% 0, 100% 0, 100% 100%, 26% 100%, 0 56%);
-  z-index: 200;
 }
 
 //FILTER CARDS
@@ -305,4 +306,24 @@ input[type='range']::-webkit-slider-thumb {
   width: 24px;
   height: 24px;
   -webkit-appearance: none;
+}
+
+
+//REVIEW CLIENT
+#review_client_rate label{
+  margin:0 10px;
+}
+
+.custom-radio {
+  appearance: none; 
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #cbd5e0; 
+  border-radius: 50%;
+  background-color: white;
+ 
+}
+
+.custom-radio:checked {
+  background-color: $primary;
 }

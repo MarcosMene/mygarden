@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}My Garden - List review
+{% block title %}My Garden - List of Store reviews
 {% endblock %}
 
 {% block body %}
@@ -16,14 +16,13 @@
 				{% include ('admin/_partials/menu_navigation.html.twig')%}
 			</div>
 		</div>
-
-		<!-- RIGHT CREATE FORM -->
+		<!-- RIGHT FORM -->
 		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
 			<div class="title_form flex flex-wrap justify-between">
-				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of reviews</h2>
+				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of store reviews</h2>
 			</div>
 
-			{% if reviews|length >0 %}
+			{% if reviewClients|length >0 %}
 
 				<!-- TABLE  -->
 				<div class="flex flex-col">
@@ -33,10 +32,8 @@
 								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
 									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
 										<tr>
-											<th scope="col" class="p-2 w-[500px]">User Name</th>
-											<th scope="col" class="p-2 w-[500px]">Product</th>
-											<th scope="col" class="p-2 w-[500px]">Image</th>
-											<th scope="col" class="p-2 w-[500px]">Rating</th>
+											<th scope="col" class="p-2 w-[500px]">User</th>
+											<th scope="col" class="p-2 w-[500px]">First Name</th>
 											<th scope="col" class="p-2 w-[500px]">is approved</th>
 											<th scope="col" class="p-2 w-[500px]">Comment</th>
 											<th scope="col" class="p-2 w-[500px]">Created at</th>
@@ -44,37 +41,38 @@
 										</tr>
 									</thead>
 									<tbody>
-										{% for review in reviews %}
+										{% for reviewClient in reviewClients %}
+
 											<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap px-2 py-3 capitalize">{{review.user}}</td>
-												<td class="whitespace-nowrap px-2 py-3 capitalize">{{review.product }}</td>
-												<td class="whitespace-nowrap px-2 py-3"><img src="{{ asset('upload/products/' ~ review.product.imageName) }}" alt="{{ review.product.name }}" loading="lazy" class="w-14 mx-auto"></td>
-												<td class="whitespace-nowrap px-2 py-3 ">{{review.rate}}</td>
-												<td class="whitespace-nowrap px-2 py-3 uppercase {{review.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold">{{review.isApproved == 1 ? 'yes':'no'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{review.review|slice(0, 10) ~ '...'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{review.createdAt|date('M d Y')}}</td>
+												<td class="whitespace-nowrap px-2 py-3 capitalize">{{reviewClient.user ? reviewClient.user :'no'}}</td>
+												<td class="whitespace-nowrap px-2 py-3 capitalize">{{reviewClient.firstName}}</td>
+
+												<td class="whitespace-nowrap px-2 py-3 uppercase {{reviewClient.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold">{{reviewClient.isApproved == 1 ? 'yes':'no'}}</td>
+
+												<td class="whitespace-nowrap px-2 py-3 capitalize">{{reviewClient.comment|slice(0, 30) ~ '...' }}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{reviewClient.createdAt|date('M d Y')}}</td>
 
 												<!--ACTION BUTTONS-->
 												<td class="whitespace-nowrap p-2">
 													<div class="h-full flex justify-between items-center gap-4">
-														<a href="{{path('detail_review_products',{id:review.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+														<a href="{{path('detail_review_store',{id:reviewClient.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
 															<i class="fa-regular fa-eye"></i>
 															View
 														</a>
-														<a href="{{path('edit_review_product',{id:review.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+														<a href="{{path('edit_review_store',{id:reviewClient.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
 															<i class="fa-solid fa-pencil text-black"></i>
 															Edit
 														</a>
 
 														<!-- Delete button triggers the modal, not a form submission -->
-														<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ review.id }}, '{{ review.product }}')">
+														<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ reviewClient.id }}, '{{ reviewClient.user ? reviewClient.user : reviewClient.firstName }}')">
 															<i class="fa-regular fa-trash-can"></i>
 															Delete
 														</button>
 
 														<!-- Hidden form for deletion -->
-														<form id="delete-form-{{ review.id }}" action="{{ path('delete_review_product', {id: review.id}) }}" method="POST" class="hidden">
-															<input type="hidden" name="_token" value="{{ csrf_token('deleteReviewProduct' ~ review.id) }}">
+														<form id="delete-form-{{ reviewClient.id }}" action="{{ path('delete_review_client', {id: reviewClient.id}) }}" method="POST" class="hidden">
+															<input type="hidden" name="_token" value="{{ csrf_token('deleteReviewClient' ~ reviewClient.id) }}">
 														</form>
 													</div>
 												</td>
@@ -88,8 +86,8 @@
 				</div>
 			{% else %}
 				<div class="flex justify-center flex-col items-center">
-					<p class="text-2xl text-gray-600 font-normal my-3">No reviews found.</p>
-					<p>Create a review.</p>
+					<p class="text-2xl text-gray-600 font-normal my-3">No reviewClients found.</p>
+					<p>Create a reviewClient.</p>
 				</div>
 			{% endif %}
 		</aside>

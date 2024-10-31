@@ -2,16 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\Review;
+use App\Entity\ReviewClient;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReviewAdminType extends AbstractType
+class ReviewClientAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder->add('isApproved', CheckboxType::class, [
             'required' => false,
             'label' => 'Approved',
@@ -27,7 +28,7 @@ class ReviewAdminType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Review::class,
+            'data_class' => ReviewClient::class,
 
             //CSRF TOKEN
             'csrf_protection' => true,

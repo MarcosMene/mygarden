@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\GalleryRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewClientRepository;
 use App\Repository\StoreScheduleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,7 +16,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository, HeaderRepository $headerRepository): Response
+    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository, HeaderRepository $headerRepository, ReviewClientRepository $reviewClientRepository): Response
+
     {
         //FIND HEADERS FOR CAROUSEL
         $headers = $headerRepository->findAllOrderedByAppear();
@@ -26,6 +28,9 @@ class HomeController extends AbstractController
         //FIND GALLERY IMAGES
         $galleries = $galleryRepository->findAll();
 
+        //FIND STORE REVIEWS
+        $reviewClients = $reviewClientRepository->findBy(array(), array('createdAt' => 'DESC'), 5);
+
         //STORE SCHEDULES
         $shopSchedules = $storeScheduleRepository->findBy(array(), array('dayOrder' => 'ASC'));
 
@@ -33,7 +38,8 @@ class HomeController extends AbstractController
             'shopSchedules' => $shopSchedules,
             'products' => $products,
             'galleries' => $galleries,
-            'headers' => $headers
+            'headers' => $headers,
+            'reviews' => $reviewClients
         ]);
     }
 

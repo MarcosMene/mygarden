@@ -1,22 +1,34 @@
 <?php
 
-namespace App\Form\Users;
+namespace App\Form;
 
-use App\Entity\Review;
+use App\Entity\ReviewClient;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReviewType extends AbstractType
+class ReviewClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('firstName', TextType::class, [
+                'empty_data' => '',
+                'label' => 'First name',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Ex.John',
+                    'minlength' => 3,
+                    'maxlength' => 41,
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                ]
+            ])
             ->add('rate', ChoiceType::class, [
                 'empty_data' => '',
-                'label' => 'Rate of product',
+                'label' => 'Your rate',
                 'placeholder' => 'Choose one',
                 'choices' => [
                     '1' => 1,
@@ -30,30 +42,24 @@ class ReviewType extends AbstractType
                 ],
                 'multiple' => false,
             ])
-            ->add('review', TextareaType::class, [
+            ->add('comment', TextareaType::class, [
                 'empty_data' => '',
-                'label' => 'Your review',
+                'label' => 'Give your comment',
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'Ex.This product...',
                     'minlength' => 20,
-                    'maxlength' => 200,
+                    'maxlength' => 151,
                     'class' => 'w-full rounded   bg-white p-3 shadow shadow-gray-100 text-base',
-                    'rows'=>3
+                    'rows' => 3
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Review::class,
-
-            //CSRF TOKEN
-            'csrf_protection' => true,
-            'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'review_item',  // Unique token ID for the review form
+            'data_class' => ReviewClient::class,
         ]);
     }
 }
