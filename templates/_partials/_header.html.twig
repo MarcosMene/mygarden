@@ -10,6 +10,7 @@
 			<span class="text-gray text-xs">
 				email:mygarden@teste.com
 			</span>
+
 			<!--border-->
 			<div class="border border-gray"></div>
 		</div>
@@ -19,6 +20,7 @@
 		</div>
 		<div class="header_right flex-1 text-center  ">
 			{% include ('components/network.html.twig')%}
+
 			<!--border-->
 			<div class="border border-gray hidden lg:block"></div>
 		</div>
@@ -29,6 +31,7 @@
 		</div>
 	</div>
 </header>
+
 <!--END HEADER TOP-->
 <nav class="relative flex-no-wrap z-10 flex w-full items-center justify-between mt-3 lg:mt-0 px-8  lg:px-16 pb-3  lg:flex-wrap lg:justify-start">
 	<div
@@ -84,166 +87,141 @@
 					<i class="fa-solid fa-cart-shopping text-2xl"></i>
 
 					<!-- Notification shop -->
-					<span id="cart-button-notification" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
+					{% if fullCartQuantity > 0 %}
+
+						<span id="cart-button-notification" class=" rounded-full bg-primary w-5 h-5 px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">{{fullCartQuantity}}</span>
+					{% endif %}
 				</button>
 
 				<!--CART-->
-				<div id="cart-dropdown" class="max-h-52 overflow-y-scroll z-10 hidden absolute -right-5 mt-10  bg-white shadow-lg rounded-lg p-4 w-72 sm:w-80 ">
-					<div class="flex flex-col justify-between items-center mb-4">
-						<p class="text-gray-700 text-center font-bold my-4">Your cart is empty.</p>
-
-						<!-- product -->
+				<div id="cart-dropdown" class="max-h-52 overflow-y-scroll z-50 hidden absolute -right-5 mt-10   shadow-lg rounded-lg p-4 w-72 sm:w-80 border border-gray-300 bg-white">
+					{% if myCart|length > 0 %}
 						<div
-							class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
-							<!-- Product Image -->
-							<div class="w-16 h-16 flex  overflow-hidden">
-								<img src="https://via.placeholder.com/100" alt="Product Image">
-							</div>
-							<div class="flex flex-col justify-center items-center sm:justify-start sm:items-start">
-								<p class=" text-gray-900 text-base font-medium">Product Name</p>
-								<p class=" text-gray-600 text-sm text-gray">$10.00</p>
-							</div>
-							<div class="flex flex-col justify-center items-center">
-								<a href="">
-									<i class="fa-regular fa-trash-can text-red"></i>
-									<a href="" class="text-red text-sm">Remove</a>
-								</a>
-							</div>
-						</div>
+							class="flex flex-col justify-between items-center mb-4">
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto"></div>
+							<!--list products-->
+							{% for product in myCart %}
+								<!-- product -->
+								<div class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
 
-						<!-- product -->
-						<div
-							class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
-							<!-- Product Image -->
-							<div class="w-16 h-16 flex  overflow-hidden">
-								<img src="https://via.placeholder.com/100" alt="Product Image">
-							</div>
-							<div class="flex flex-col justify-center items-center sm:justify-start sm:items-start">
-								<p class=" text-gray-900 text-base font-medium">Product Name</p>
-								<p class=" text-gray-600 text-sm text-gray">$10.00</p>
-							</div>
-							<div class="flex flex-col justify-center items-center">
-								<a href="">
-									<i class="fa-regular fa-trash-can text-red"></i>
-									<a href="" class="text-red text-sm">Remove</a>
-								</a>
-							</div>
-						</div>
+									<div
+										class=" flex  overflow-hidden">
+										<!-- Product Image -->
+										<img
+										src="{{ asset('upload/products/' ~ product.object.imageName) }}" alt="{{ product.object.name }}" loading="lazy" class="w-16 h-16 group-hover:opacity-75">
+										<!-- Product text and price -->
+										<div class="flex flex-col ml-3">
+											<p class=" text-gray-900 text-base font-medium">{{product.object.name}}</p>
+											<p class=" text-gray-600 text-sm ">
+												${{product.object.price|number_format(2, '.', ',')}}</p>
+											<p class=" text-gray-900 text-base font-medium text-gray">x{{product.quantity}}</p>
+										</p>
+									</div>
+								</div>
+								<div
+									class="flex flex-col justify-center items-center">
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto"></div>
+									<!-- Delete button triggers the modal, not a form submission -->
+									<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.object.id }}, '{{ product.object.name }}')">
+										<i class="fa-regular fa-trash-can"></i>
+										Delete
+									</button>
 
-						<!-- product -->
-						<div
-							class="w-full  my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
-							<!-- Product Image -->
-							<div class="w-16 h-16 flex  overflow-hidden">
-								<img src="https://via.placeholder.com/100" alt="Product Image">
+									<!-- Hidden form for deletion -->
+									<form id="delete-form-{{ product.object.id }}" action="{{ path('delete_from_cart', {id: product.object.id}) }}" method="POST" class="hidden">
+										<input type="hidden" name="_token" value="{{ csrf_token('deleteFromCart' ~ product.object.id) }}">
+									</form>
+								</div>
 							</div>
-							<div class="flex flex-col justify-center items-center sm:justify-start sm:items-start">
-								<p class=" text-gray-900 text-base font-medium">Product Name</p>
-								<p class=" text-gray-600 text-sm text-gray">$10.00</p>
-							</div>
-							<div class="flex flex-col justify-center items-center">
-								<a href="">
-									<i class="fa-regular fa-trash-can text-red"></i>
-									<a href="" class="text-red text-sm">Remove</a>
-								</a>
-							</div>
-						</div>
 
-						<!-- border -->
-						<div class="border border-gray w-1/2 mx-auto"></div>
-
-						<!-- product -->
-						<div
-							class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
-							<!-- Product Image -->
-							<div class="w-16 h-16 flex  overflow-hidden">
-								<img src="https://via.placeholder.com/100" alt="Product Image">
-							</div>
-							<div class="flex flex-col justify-center items-center sm:justify-start sm:items-start">
-								<p class=" text-gray-900 text-base font-medium">Product Name</p>
-								<p class=" text-gray-600 text-sm text-gray">$10.00</p>
-							</div>
-							<div class="flex flex-col justify-center items-center">
-								<a href="">
-									<i class="fa-regular fa-trash-can text-red"></i>
-									<a href="" class="text-red text-sm">Remove</a>
-								</a>
-							</div>
-						</div>
+							<!-- border -->
+							<div class="border border-gray w-1/2 mx-auto"></div>
+						{% endfor %}
 					</div>
 
 					<!-- border -->
 					<div class="border  w-full mx-auto"></div>
 
-					<!-- TOTAL -->
-					<div class="cart_total flex justify-between mt-4 font-semibold uppercase">
-						<span>total:</span>
-						<span>$20.00</span>
+					<!-- TOTAL PRODUCTS  -->
+					<div class="flex justify-between mt-4 mb-2">
+						<p class="text-black text-base font-medium capitalize">Total products:
+						</p>
+						<p class="text-black text-base">{{fullCartQuantity}}</p>
+					</div>
+					<!-- SUBTOTAL NO TAX  -->
+					<div class="flex justify-between mb-2">
+						<p class="text-black text-base font-medium capitalize">Subtotal no tax:
+						</p>
+						<p class="text-black text-base">${{(totalCartNt )|number_format(2, '.', ',') }}</p>
+					</div>
+					<!--SUBTOTAL WITH TAX  -->
+					<div class="flex justify-between mb-2">
+						<p class="text-black text-base font-medium capitalize">Subtotal with tax:
+						</p>
+						<p class="text-black text-base">${{totalCartWt|number_format(2, '.', ',')}}</p>
 					</div>
 
 					<!-- BUTTONS -->
 					<div class="header_buttons mt-3 flex justify-between">
-						<a href="#" class="py-2 px-4  sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">view cart</a>
+						<a href="{{path('my_cart')}}" class="py-2 px-4  sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">view cart</a>
 						<a href="" class="py-2 px-4 ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">check out</a>
 					</div>
-				</div>
-			</div>
 
-			<!-- Wishlist Icon -->
-			<a href="" id="wishlist-button" class="p-0 m-0 relative flex items-center text-neutral-600  hover:text-primary">
-				<i class="fa-solid fa-heart text-2xl"></i>
-
-				<!-- Notification wishlist -->
-				<span id="wishlist-button-notification" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
-			</a>
-		</div>
-
-		<!-- Mobile Menu (Hidden by default) -->
-		<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
-			<div class="flex justify-end">
-				<button id="closeMobileMenu" class="mb-4">
-					<i class="fa-solid fa-xmark fa-2xl"></i>
-				</button>
-			</div>
-
-			<!-- Menu Items -->
-			<div class=" h-96 flex justify-center py-6">
-				<ul
-					class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
-
-					<!-- Home link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
-					</li>
-					<!-- About link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
-					</li>
-					<!-- Shop link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
-					</li>
-					<!-- Blog link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
-					</li>
-					<!-- Contact link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
-					</li>
-				</ul>
+				{% else %}
+					<p class="text-gray-700 text-center font-bold my-4">Your cart is empty.</p>
+				{% endif %}
 			</div>
 		</div>
-	</nav>
 
-	<script>
-		(function () { // Mobile Menu Toggle
+		<!-- Wishlist Icon -->
+		<a href="" id="wishlist-button" class="p-0 m-0 relative flex items-center text-neutral-600  hover:text-primary">
+			<i class="fa-solid fa-heart text-2xl"></i>
+
+			<!-- Notification wishlist -->
+			<span id="wishlist-button-notification" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">13</span>
+		</a>
+	</div>
+
+	<!-- Mobile Menu (Hidden by default) -->
+	<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
+		<div class="flex justify-end">
+			<button id="closeMobileMenu" class="mb-4">
+				<i class="fa-solid fa-xmark fa-2xl"></i>
+			</button>
+		</div>
+
+		<!-- Menu Items -->
+		<div class=" h-96 flex justify-center py-6">
+			<ul
+				class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
+
+				<!-- Home link -->
+				<li class="mb-8 lg:mb-0 text-center text-xl ">
+					<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
+				</li>
+				<!-- About link -->
+				<li class="mb-8 lg:mb-0 text-center text-xl ">
+					<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
+				</li>
+				<!-- Shop link -->
+				<li class="mb-8 lg:mb-0 text-center text-xl">
+					<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
+				</li>
+				<!-- Blog link -->
+				<li class="mb-8 lg:mb-0 text-center text-xl">
+					<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
+				</li>
+				<!-- Contact link -->
+				<li class="mb-8 lg:mb-0 text-center text-xl">
+					<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<script>
+	(function () { // Mobile Menu Toggle
 let mobileMenu = document.getElementById('mobileMenu');
 let mobileMenuButton = document.getElementById('mobileMenuButton');
 let closeMobileMenu = document.getElementById('closeMobileMenu');
@@ -283,19 +261,11 @@ cartDropdown.classList.add('hidden');
 }
 });
 
-// Fetch Cart Products with AJAX
-function fetchCartProducts() {
-fetch('/cart/products').then(response => response.json()).then(data => {
-const cartProducts = document.getElementById('cartProducts');
-cartProducts.innerHTML = '';
-data.forEach(product => {
-cartProducts.innerHTML += `<div class="py-2">${
-product.name
-} - $${
-product.price
-}</div>`;
-});
-});
-}
+
 })();
-	</script>
+</script>
+<!-- delete confirmation modal -->
+	{% include 'admin/_partials/_delete_modal.html.twig' %}
+
+	<!-- SCRIPT  -->
+	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>

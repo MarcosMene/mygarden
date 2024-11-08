@@ -7,12 +7,32 @@
 	<!--BANNER-->
 	{% include ('_partials/product/_banner.html.twig')%}
 
-
 	<!--PRODUCT DETAIL-->
 	{% include ('_partials/product/_product.html.twig') %}
 
 	<!--SUGGESTIONS-->
 	{% include ('_partials/product/_suggestions.html.twig') %}
 
+	<!-- VALIDATE ADD PRODUCT REVIEW USER JS  -->
+	<script src="{{ asset('assets/js/admin/createReviewProductUser.js') }}" defer></script>
+	<script>
+		function toggleCollapse() {
+const collapseElement = document.getElementById("collapseForm");
+
+// Toggle visibility with height and opacity changes
+if (collapseElement.classList.contains("max-h-0")) {
+collapseElement.classList.remove("max-h-0", "opacity-0");
+collapseElement.classList.add("max-h-screen", "opacity-100");
+} else {
+collapseElement.classList.add("max-h-0", "opacity-0");
+collapseElement.classList.remove("max-h-screen", "opacity-100");
+}
+
+// Update aria-expanded for accessibility
+const button = document.getElementById("toggleButton");
+const isExpanded = button.getAttribute("aria-expanded") === "true";
+button.setAttribute("aria-expanded", ! isExpanded);
+}
+	</script>
 
 {% endblock %}

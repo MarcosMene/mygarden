@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - About us
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/cart/_banner_cart.html.twig')%}
+
+	<section class="cart w-full pt-5 lg:pt-12 pb-10 ">
+
+		<div class="cart w-full px-16 mx-auto">
+			<div class="our_products px-0 lg:px-16  mt-6">
+
+				{% if myCart|length >0 %}
+
+					<div
+						class="cart_block flex  flex-col lg:flex-row  items-start">
+
+						<!--LIST PRODUCTS-->
+						<div class="product_cart w-full lg:w-3/4 ">
+							<p>Products</p>
+
+							<!--PRODUCTS-->
+							<div
+								class="product_list flex flex-col">
+								
+								{% include ('_partials/cart/_table_products.html.twig')%}
+							</div>
+						</div>
+
+						<!--CART-->
+					{% include ('_partials/cart/_cart_shop.html.twig')%}
+					</div>
+				</div>
+			{% else %}
+
+				<!--MESSAGE CART EMPTY-->
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">Your cart is empty.</p>
+				</div>
+				<div class="text-center my-4">
+					<a href="{{path('shop')}}" class="w-full text-center py-2 px-4 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Continue shopping</a>
+				</div>
+			{% endif %}
+		</section>
+
+		<!-- delete confirmation modal -->
+		{% include 'admin/_partials/_delete_modal.html.twig' %}
+		<!-- SCRIPT  -->
+		<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+	{% endblock %}

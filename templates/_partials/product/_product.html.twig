@@ -2,21 +2,19 @@
 
 	<div class="team w-full md:px-16 mx-auto">
 		<div
-			class="our_products container mx-auto px-8 lg:px-16 mt-6">
+			class="product   mx-auto px-8 lg:px-16 mt-6">
 
 			<!--PRODUCT-->
 			<div
-				class="product_block flex  flex-col lg:flex-row  items-start">
+				class="product_block flex  flex-col md:flex-row  items-start">
 
-				<!--PRODUCT CAROUSEL-->
-				<div
-					class="product_carousel w-full lg:w-2/6 lg:mr-4">
-					{#		{% include ('_partials/product/_carousel.html.twig') %}#}
+				<!--PRODUCT IMAGE-->
+				<div class="product_image w-full md:w-2/6 md:mr-4 max-w-[400px]">
 					<img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class=" group-hover:opacity-75 w-full">
 				</div>
 				<!--PRODUCT DESCRIPTION-->
 				<div
-					class="product_description w-full lg:w-4/6 flex flex-col ps-0 lg:ps-4">
+					class="product_description w-full md:w-4/6 flex flex-col ps-0 md:ps-4">
 
 					{# ---------- breadcrump----------------------- #}
 					<div class="breadcrump w-full flex flex-col-reverse lg:flex-row flex-wrap justify-between">
@@ -111,16 +109,8 @@
 
 						<!--PRODUCT ADD CART-->
 						<div class="product_add_cart flex gap-4 mt-4">
-							<div class="product_add_delete_buttons flex items-center justify-start gap-2">
-								<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full inline-flex justify-center items-center">
-									<i class="fa-solid fa-minus"></i>
-								</a>
-								<span class="btn btn-light  font-bold text-black">2</span>
-								<a href="#" class="btn btn-light border border-primary p-2 text-sm rounded-full flex justify-center items-center">
-									<i class="fa-solid fa-plus"></i>
-								</a>
-							</div>
-							<a href="" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Add to cart</a>
+
+							<a href="{{path('add_to_cart',{id:product.id})}}" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Add to cart</a>
 						</div>
 
 						<!--PRODUCT ADD WISHLIST-->
@@ -201,16 +191,17 @@
 									</div>
 									<!--PRODUCT REVIEW CLIENT -->
 									<p class=" text-black text-base font-normal">{{review.review}}</p>
+
 									<!--PRODUCT REVIEW NAME CLIENT -->
 									{% if app.user %}
 										{% if app.user.id == review.user.id %}
 											<p class=" text-gray text-base font-normal capitalize">You</p>
 										{% endif %}
 									{% else %}
+
 										<!--NAME OF USER THAT GAVE A REVIEW WITH FIRST LETTER LASTNAME UPPERCASE.-->
 										<p class=" text-gray text-base font-normal capitalize">{{review.user.firstName}}
 											{{review.user.lastName|first|upper}}.</p>
-
 									{% endif %}
 								</div>
 
@@ -227,6 +218,7 @@
 						<p class=" text-base font-normal text-center">No reviews yet</p>
 					{% endif %}
 				{% endif %}
+
 				<!--BUTTON ADD REVIEW IF USER NOT GIVE YEAT A REVIEW-->
 				{% if app.user and not user_reviewed %}
 					<div class="text-center pt-6">
@@ -235,6 +227,7 @@
 							Give your opinion for this product
 						</button>
 					</div>
+					
 				{% elseif not app.user and not user_reviewed %}
 					<div class="text-center pt-6">
 
