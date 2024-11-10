@@ -50,7 +50,7 @@
       colorNameError.style.display = 'block'
       colorName.classList.add('error-message')
       colorNameError.innerText =
-        'The name of the color can only contain letters, spaces, and hyphens'
+        'The name of the color can only contain letters, spaces, or hyphens'
       return false
     } else {
       colorNameError.innerText = ''

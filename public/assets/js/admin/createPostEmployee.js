@@ -50,7 +50,7 @@
       postNameError.style.display = 'block'
       postName.classList.add('error-message')
       postNameError.innerText =
-        'The post can only contain letters, spaces, and hyphens'
+        'The post can only contain letters, spaces, or hyphens'
       return false
     } else {
       postNameError.innerText = ''

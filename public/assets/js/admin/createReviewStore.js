@@ -85,7 +85,7 @@
       clientFirstNameError.style.display = 'block'
       clientFirstName.classList.add('error-message')
       clientFirstNameError.innerText =
-        'Your name can only contain letters, spaces, and hyphens'
+        'Your name can only contain letters, spaces, or hyphens'
       return false
     } else {
       clientFirstNameError.innerText = ''
@@ -140,7 +140,7 @@
       commentClientError.style.display = 'block'
       commentClient.classList.add('error-message')
       commentClientError.innerText =
-        'Your comment can only contain letters, spaces, and hyphens.'
+        'Your comment can only contain letters, spaces, or hyphens.'
       return false
     } else {
       commentClientError.innerText = ''

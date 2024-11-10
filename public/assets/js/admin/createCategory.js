@@ -67,7 +67,7 @@
       categoryNameError.style.display = 'block'
       categoryName.classList.add('error-message')
       categoryNameError.innerText =
-        'The name of the category can only contain letters, spaces, and hyphens'
+        'The name of the category can only contain letters, spaces, or hyphens'
       return false
     } else {
       categoryNameError.innerText = ''

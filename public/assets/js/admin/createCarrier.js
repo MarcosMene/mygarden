@@ -87,7 +87,7 @@
       carrierNameError.style.display = 'block'
       carrierName.classList.add('error-message')
       carrierNameError.innerText =
-        'The name of the carrier can only contain letters, spaces, and hyphens'
+        'The name of the carrier can only contain letters, spaces, or hyphens'
       return false
     } else {
       carrierNameError.innerText = ''
@@ -154,7 +154,7 @@
       carrierDescriptionError.style.display = 'block'
       carrierDescription.classList.add('error-message')
       carrierDescriptionError.innerText =
-        'The description of the carrier can only contain letters, spaces, and hyphens'
+        'The description of the carrier can only contain letters, spaces, or hyphens'
       return false
     } else {
       carrierDescriptionError.innerText = ''

@@ -173,7 +173,7 @@
       productNameError.style.display = 'block'
       productName.classList.add('error-message')
       productNameError.innerText =
-        'The name of the product can only contain letters, spaces, and hyphens'
+        'The name of the product can only contain letters, spaces, or hyphens'
       return false
     } else {
       productNameError.innerText = ''
@@ -402,7 +402,7 @@
       productDescriptionError.style.display = 'block'
       productDescription.classList.add('error-message')
       productDescriptionError.innerText =
-        'The description of the product can only contain letters, spaces, and hyphens'
+        'The description of the product can only contain letters, spaces, or hyphens'
       return false
     } else {
       productDescriptionError.innerText = ''

@@ -68,7 +68,7 @@
       galleryNameError.style.display = 'block'
       galleryName.classList.add('error-message')
       galleryNameError.innerText =
-        'The name of the gallery can only contain letters, spaces, and hyphens'
+        'The name of the gallery can only contain letters, spaces, or hyphens'
       return false
     } else {
       galleryNameError.innerText = ''

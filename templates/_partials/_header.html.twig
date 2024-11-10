@@ -75,15 +75,15 @@
 			class="flex   justify-between items-center w-[220px]">
 			<!-- Icon Member-->
 			<div class="flex justify-between items-center">
-				<span class="me-2  font-medium text-center md:text-start   sm:flex">Hello, Connor</span>
-				<a href="#">
+				<a href="{{path('my_account')}}" class="hover:text-primary">
+				<span class="me-2  font-medium ">Hello, Connor</span>
 					<i class="fa-solid fa-user text-2xl"></i>
 				</a>
 			</div>
 
 			<!-- Cart Icon -->
 			<div class=" flex justify-center w-16 relative">
-				<button id="cart-button" class=" text-gray-700 hover:text-gray-900 focus:outline-none">
+				<button id="cart-button" class=" relative flex items-center text-neutral-600  hover:text-primary">
 					<i class="fa-solid fa-cart-shopping text-2xl"></i>
 
 					<!-- Notification shop -->
@@ -163,7 +163,9 @@
 
 					<!-- BUTTONS -->
 					<div class="header_buttons mt-3 flex justify-between">
-						<a href="{{path('my_cart')}}" class="py-2 px-4  sm:mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">view cart</a>
+						<a href="{{path('my_cart')}}" class=" rounded-full bg-primary px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">view cart</a>
+
+						
 						<a href="" class="py-2 px-4 ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">check out</a>
 					</div>
 

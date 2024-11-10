@@ -147,7 +147,7 @@
       headerContentError.style.display = 'block'
       headerContent.classList.add('error-message')
       headerContentError.innerText =
-        'The content of the header can only contain letters, spaces, and hyphens'
+        'The content of the header can only contain letters, spaces, or hyphens'
       return false
     } else {
       headerContentError.innerText = ''
@@ -251,7 +251,7 @@
       headerTitleButtonError.style.display = 'block'
       headerTitleButton.classList.add('error-message')
       headerTitleButtonError.innerText =
-        'The title number of the header can only contain letters, spaces, and hyphens'
+        'The title number of the header can only contain letters, spaces, or hyphens'
       return false
     } else {
       headerTitleButtonError.innerText = ''
@@ -375,7 +375,7 @@
       headerTitleButtonError.style.display = 'block'
       headerTitleButton.classList.add('error-message')
       headerTitleButtonError.innerText =
-        'The description of the header can only contain letters, spaces, and hyphens'
+        'The description of the header can only contain letters, spaces, or hyphens'
       return false
     } else {
       headerTitleButtonError.innerText = ''

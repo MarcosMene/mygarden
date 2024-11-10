@@ -1,0 +1,32 @@
+			<!--CARD -->
+						<div class="w-full card border border-gray-300 p-4 shadow-md ">
+							<div class="card-body">
+								<div class="card-title font-bold capitalize">{{address.name}}</div>
+								<div class="card-text">
+									<p class=" break-all capitalize">{{address.address}}</p>
+									<p>
+										<span class="uppercase">{{address.postal}}</span>
+										<span class="mx-1">
+											-
+										</span>
+										<span class=" break-all capitalize">{{address.city}}</span>
+									</p>
+								</div>
+								<hr class="my-2 text-primary">
+								<div class="card-actions flex justify-around w-1/2 mx-auto text-gray-400 ">
+									<a href="{{path('account_create_address', {id:address.id})}}" class="transition duration-200 hover:scale-110 hover:text-green-600">Modify</a>
+									<span class="mx-2 ">
+										-
+									</span>
+										<!-- Delete button triggers the modal, not a form submission -->
+									<button type="button" class="flex flex-col items-center text-gray-400 transition duration-200 hover:scale-110 hover:text-red" onclick="openDeleteModal({{ address.id }}, '{{ address.name }}')">
+										Delete
+									</button>
+
+									<!-- Hidden form for deletion -->
+									<form id="delete-form-{{ address.id }}" action="{{ path('account_delete_address', {id: address.id}) }}" method="POST" class="hidden">
+										<input type="hidden" name="_token" value="{{ csrf_token('deleteAddressUser' ~ address.id) }}">
+									</form>
+								</div>
+							</div>
+						</div>

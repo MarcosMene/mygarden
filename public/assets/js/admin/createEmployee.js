@@ -112,7 +112,7 @@
     } else if (!validEmployeeFirstName) {
       employeeFirstNameError.style.display = 'block'
       employeeFirstNameError.innerText =
-        'First name can only contain letters, spaces, and hyphens'
+        'First name can only contain letters, spaces, or hyphens'
       return false
     } else {
       employeeFirstNameError.innerText = ''
@@ -142,7 +142,7 @@
     } else if (!validEmployeeLastName) {
       employeeLastNameError.style.display = 'block'
       employeeLastNameError.innerText =
-        'Last name can only contain letters, spaces, and hyphens'
+        'Last name can only contain letters, spaces, or hyphens'
       return false
     } else {
       employeeLastNameError.innerText = ''
