@@ -38,7 +38,6 @@ class StoreScheduleController extends AbstractController
     #[Route('/admin/create/schedule', name: 'create_schedule')]
     public function create(StoreScheduleRepository $storeScheduleRepository, Request $request): Response
     {
-
         $totalDays = $storeScheduleRepository->findAll();
 
         if (count($totalDays) == 7) {
@@ -121,7 +120,7 @@ class StoreScheduleController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deleteSchedule' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have permission to do that..');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
         } else {
             $this->addFlash('success', 'Schedule deleted succesfully');
             $this->entityManager->remove($schedule);

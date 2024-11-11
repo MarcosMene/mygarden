@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden -
+				My addresses
+{% endblock %}
+
+{% block body %}
+
+	<!--BANNER-->
+	{% include ('account/banners/_banner_account_wishlist.html.twig')%}
+
+	<div
+		class="create_products w-full mt-12 flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('account/menu_navigation_user.html.twig')%}
+			</div>
+		</div>
+
+		<!-- RIGHT CREATE FORM -->
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-3 md:p-4 lg:p-8 h-fit">
+			<div class="text-end">
+				<p class="text-black h5 fw-light mt-3 mb-2 fw-medium">{{ app.user.wishlists|length }}
+					wish(es) in your list.</p>
+			</div>
+
+			<!--CARDS-->
+			{% if (app.user.wishlists|length) >0 %}
+				<div
+					class="cards grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4">
+					<!--CARD -->
+					{% for product in app.user.wishlists%}
+						{% include ('account/_partials/cardWishlistUser.html.twig')%}
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="text-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">Your wishlist is empty</p>
+				</div>
+			{% endif %}
+		</aside>
+	</div>
+	<!-- delete confirmation modal -->
+	{% include 'admin/_partials/_delete_modal.html.twig' %}
+
+	<!-- SCRIPT  -->
+	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+
+{% endblock %}

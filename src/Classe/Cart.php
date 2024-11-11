@@ -45,45 +45,26 @@ class Cart
    * decrease product from cart
    *
    * @param [type] $id
-   * @return void
+   * 
    */
   public function decrease($id)
   {
     $cart = $this->getCart();
 
-    //if product is in the cart and more than one, we can decrease the quantity
-    if($cart[$id]['quantity'] > 1){
-      $cart[$id]['quantity'] =  $cart[$id]['quantity'] - 1;
-    }else{
+    //if product  is in the cart and more than one , we can decrease the quantity
+    if ($cart[$id]['quantity'] > 1) {
+      $cart[$id]['quantity'] = $cart[$id]['quantity'] - 1;
+
       //if product is less than one, delete product from the cart
+    } else {
       unset($cart[$id]);
     }
 
-    //update the session with the data
+    //update  the session with the new data
     $this->requestStack->getSession()->set('cart', $cart);
   }
 
-    /**
-   * decrease product from product page
-   *
-   * @param [type] $id
-   * @return void
-   */
-  public function decreaseProduct($id)
-  {
-    $cart = $this->getCart();
-
-    //if product is in the cart and more than one, we can decrease the quantity
-    if($cart[$id]['quantity'] > 0){
-      $cart[$id]['quantity'] =  $cart[$id]['quantity'] - 1;
-    }else{
-      //if product is less than one, delete product from the cart
-      unset($cart[$id]);
-    }
-
-    //update the session with the data
-    $this->requestStack->getSession()->set('cart', $cart);
-  }
+ 
 
   public function delete($id)
   {
@@ -119,7 +100,6 @@ class Cart
 /**
  * get total product with tax.
  *
- * @return void
  */
   public function getTotalWt()
   {

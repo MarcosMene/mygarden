@@ -118,7 +118,7 @@ class EmployeesController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deleteEmployee' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have permission to do that..');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
         } else {
             $this->addFlash('success', 'Employee deleted succesfully');
             $this->entityManager->remove($employee);

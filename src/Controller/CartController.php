@@ -13,7 +13,6 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class CartController extends AbstractController
 {
-
     private $csrfTokenManager;
 
     public function __construct(CsrfTokenManagerInterface $csrfTokenManager)
@@ -26,9 +25,8 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'my_cart')]
     public function index(): Response
     {
-        return $this->render('pages/cart.html.twig', []);
+        return $this->render('pages/cart.html.twig');
     }
-
 
     //ADD PRODUCT TO CART
     #[Route('/cart/add/{id}', name: 'add_to_cart')]
@@ -54,8 +52,7 @@ class CartController extends AbstractController
         } else {
             $this->addFlash('success', 'The product has been deleted from your shopping cart');
         }
-        // back to last page visited 
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirectToRoute('my_cart');
     }
 
 

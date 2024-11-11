@@ -1,0 +1,25 @@
+<!--CARD-->
+<div class=" border border-gray-200  flex flex-col  bg-white pb-3">
+
+	<img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class="w-full group-hover:opacity-75">
+
+		<h3 class="text-[0.9rem] md:text-[1rem] my-2 font-semibold text-center capitalize leading-5">{{product.name}}</h3>
+
+	<div class="product_promotion text-center">
+		<span class="text-xl font-bold text-primary">${{product.price}}</span>
+	</div>
+
+	<hr class="my-2 text-primary w-3/4 mx-auto">
+	<div class="card-actions flex justify-around w-1/2 mx-auto text-gray-400 ">
+	
+		<!-- Delete button triggers the modal, not a form submission -->
+		<button type="button" class="flex flex-col items-center text-gray-400 transition duration-200 hover:scale-110 hover:text-red" onclick="openDeleteModal({{ product.id }}, '{{ product.name }}')">
+			Delete
+		</button>
+
+		<!-- Hidden form for deletion -->
+		<form id="delete-form-{{ product.id }}" action="{{ path('account_wishlist_delete', {id: product.id}) }}" method="POST" class="hidden">
+			<input type="hidden" name="_token" value="{{ csrf_token('deleteWishlist' ~ product.id) }}">
+		</form>
+	</div>
+</div>

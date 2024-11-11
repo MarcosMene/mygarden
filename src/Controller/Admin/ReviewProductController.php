@@ -91,7 +91,7 @@ class ReviewProductController extends AbstractController
         //security csrf
         $csrfToken = new CsrfToken('deleteReviewProduct' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
-            $this->addFlash('danger', 'You don\'t have permission to do that..');
+            $this->addFlash('danger', 'You don\'t have permission to do that.');
         } else {
             $this->addFlash('success', 'Review deleted succesfully');
             $this->entityManager->remove($review_product);

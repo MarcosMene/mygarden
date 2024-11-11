@@ -104,7 +104,7 @@
 						<!--PRODUCT AVAILABLE-->
 						<div class="product_available mt-4">
 							<span class="text-sm">Availability</span>
-							<span class="text-primary text-sm">10 in stock</span>
+							<span class="text-primary text-sm">10 stock</span>
 						</div>
 
 						<!--PRODUCT ADD CART-->
@@ -113,11 +113,49 @@
 							<a href="{{path('add_to_cart',{id:product.id})}}" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">Add to cart</a>
 						</div>
 
+
 						<!--PRODUCT ADD WISHLIST-->
-						<a href="" class="mt-4 text-sm font-normal text-gray w-fit capitalize hover:underline">
-							<i class="fa-regular fa-heart text-primary text-xl hover:"></i>
-							<span class="text-base">Add to wishlist</span>
-						</a>
+						{% if app.user %}
+							{% if product in app.user.wishlists %}
+
+								<!-- Delete button triggers the modal, not a form submission -->
+								<button type="button" class="mt-4 text-sm font-normal text-gray w-fit hover:underline hover:text-primary" onclick="openDeleteModal({{ product.id }}, '{{ product.name }} from the wishlist')">
+									<i class="fa-solid fa-heart text-primary text-xl hover:"></i>
+									<span class="text-base">Remove from wishlist</span>
+								</button>
+
+								<!-- Hidden form for deletion -->
+								<form id="delete-form-{{ product.id }}" action="{{ path('account_wishlist_delete', {id: product.id}) }}" method="POST" class="hidden">
+									<input type="hidden" name="_token" value="{{ csrf_token('deleteWishlist' ~ product.id) }}">
+								</form>
+							{% else %}
+								<a class="mt-4 text-sm font-normal text-gray w-fit capitalize hover:underline hover:text-primary" href="{{path('account_wishlist_add', {id:product.id})}}">
+									<i class="fa-regular fa-heart text-primary text-xl "></i>
+									<span class="text-base">Add to wishlist</span>
+								</a>
+							{% endif %}
+						{% else %}
+							<a class="mt-4 text-sm font-normal text-gray w-fit capitalize hover:underline hover:text-primary" data-twe-collapse-init data-twe-ripple-init data-twe-ripple-color="light" href="#collapseMessageLogin" role="button" aria-expanded="false" aria-controls="collapseMessageLogin">
+								<i class="fa-regular fa-heart text-primary text-xl hover:"></i>
+								<span class="text-base">Add to wishlist</span>
+							</a>
+
+						{% endif %}
+
+						<!--MESSAGE TO CONNECT BEFORE TO PUT ON WISHLIST-->
+						<div class="!visible hidden text-center border border-gray-300" id="collapseMessageLogin" data-twe-collapse-item>
+							<div class="text-black fs-4 my-2 p-2 rounded text-center">
+								To take advantage of the whislist,
+								<a class="text-dark underline" href="{{ path('app_login') }}">
+									<strong>log in</strong>
+								</a>
+								or
+								<a class="text-dark underline" href="{{ path('app_signup') }}">
+									<strong>create an account</strong>
+								</a>
+								at My Garden - Flower Shop.
+							</div>
+						</div>
 
 						<!--PRODUCT TAGS-->
 						<div class="tags flex justify-start items-center mt-4">
@@ -227,7 +265,7 @@
 							Give your opinion for this product
 						</button>
 					</div>
-					
+
 				{% elseif not app.user and not user_reviewed %}
 					<div class="text-center pt-6">
 

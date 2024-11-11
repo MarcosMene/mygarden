@@ -55,7 +55,7 @@
     } else if (!validFirstName) {
       FirstNameError.style.display = 'block'
       FirstNameError.innerText =
-        'Your first name can only contain letters, spaces, and hyphens'
+        'Your first name can only contain letters, spaces, or hyphens'
       return false
     } else {
       FirstNameError.innerText = ''
@@ -84,7 +84,7 @@
     } else if (!validLastName) {
       LastNameError.style.display = 'block'
       LastNameError.innerText =
-        'Your last name can only contain letters, spaces, and hyphens'
+        'Your last name can only contain letters, spaces, or hyphens'
       return false
     } else {
       LastNameError.innerText = ''

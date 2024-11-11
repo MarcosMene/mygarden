@@ -90,7 +90,7 @@
       reviewProductError.style.display = 'block'
       reviewProduct.classList.add('error-message')
       reviewProductError.innerText =
-        'The description of the product can only contain letters, spaces, and hyphens, and must be at least 20 characters, and maximum 200 characters.'
+        'The description of the product can only contain letters, spaces, or hyphens, and must be at least 20 characters, and maximum 200 characters.'
       return false
     } else {
       reviewProductError.innerText = ''

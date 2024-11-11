@@ -28,7 +28,7 @@ class AddressController extends AbstractController
     }
 
     //LIST USER ADDRESSES
-    #[Route('/my-account/addresses', name: 'account_address')]
+    #[Route('/account/addresses', name: 'account_address')]
     public function index(AddressRepository $addressRepository): Response
     {
         $user = $this->security->getUser();
@@ -39,7 +39,7 @@ class AddressController extends AbstractController
     }
 
     //CREATE OR MODIFY ADDRESS
-    #[Route('/my-account/address/{id}', name: 'account_create_address', defaults: ['id' => null])]
+    #[Route('/account/address/{id}', name: 'account_create_address', defaults: ['id' => null])]
     public function form(Request $request, $id, AddressRepository $addressRepository): Response
     {
         $totalAddresses = $addressRepository->findAll();
@@ -88,7 +88,7 @@ class AddressController extends AbstractController
     }
 
     //DELETE ADDRESS
-    #[Route('/my-account/address/delete/{id}', name: 'account_delete_address', requirements: ['id' => '\d+'])]
+    #[Route('/account/address/delete/{id}', name: 'account_delete_address', requirements: ['id' => '\d+'])]
     public function delete(AddressRepository  $addressRepository, Request $request, $id): Response
     {
         $address = $addressRepository->find($id);
