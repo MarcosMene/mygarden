@@ -1,10 +1,8 @@
-		<!--CARDS-->
+<!--CARDS-->
 <div class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-0 sm:gap-4 md:gap-6 mt-16">
 	{% for product in products %}
 		<!--CARD-->
-		{% for product in products %}
-			{% include 'components/card.html.twig'%}
-		{% endfor %}
+		{% include 'components/card.html.twig'%}
 	{% else %}
 		<p>No products found for this filter.</p>
 	{% endfor %}

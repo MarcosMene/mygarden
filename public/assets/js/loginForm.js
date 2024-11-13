@@ -48,22 +48,17 @@
   // FUNCTION PASSWORD
   function checkPassword() {
     let patternPassword =
-      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,16}$/
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,16}$/
     let password = Password.value
     let validPassword = patternPassword.test(password)
     if (password.trim() === '') {
       PasswordError.style.display = 'block'
       PasswordError.innerText = 'Your password is required.'
       return false
-    } else if (password.length < 6 || password.length > 16) {
-      PasswordError.style.display = 'block'
-      Password.classList.add('error-message')
-      PasswordError.innerHTML =
-        'Your password must be at least 6 characters long and maximum 16 characters. An uppercase, an lowercase and a number.'
     } else if (!validPassword) {
       PasswordError.style.display = 'block'
       PasswordError.innerText =
-        'Your password can only contain letters, symbols and numbers'
+        'Your password can only contain letters, symbols and numbers. An uppercase, a lowercase and a number.'
     } else {
       PasswordError.innerText = ''
       PasswordError.style.display = 'none'

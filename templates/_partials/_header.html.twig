@@ -75,7 +75,7 @@
 			class="flex   justify-between items-center w-[220px]">
 			<!-- Icon Member-->
 			<div class="flex justify-between items-center">
-				<a href="{{path('my_account')}}" class="hover:text-primary">
+				<a href="{{path('account')}}" class="hover:text-primary">
 					<span class="me-2  font-medium ">Hello, Connor</span>
 					<i class="fa-solid fa-user text-2xl"></i>
 				</a>
@@ -185,54 +185,54 @@
 					<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
 						<i class="fa-solid fa-heart text-2xl"></i>
 					{% endif %}
-					{% else %}
+				{% else %}
 					<!-- Wishlist Icon -->
 					<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
 						<i class="fa-solid fa-heart text-2xl"></i>
-				{% endif %}
-			</a>
-		</div>
-
-		<!-- Mobile Menu (Hidden by default) -->
-		<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
-			<div class="flex justify-end">
-				<button id="closeMobileMenu" class="mb-4">
-					<i class="fa-solid fa-xmark fa-2xl"></i>
-				</button>
+					{% endif %}
+				</a>
 			</div>
 
-			<!-- Menu Items -->
-			<div class=" h-96 flex justify-center py-6">
-				<ul
-					class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
+			<!-- Mobile Menu (Hidden by default) -->
+			<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
+				<div class="flex justify-end">
+					<button id="closeMobileMenu" class="mb-4">
+						<i class="fa-solid fa-xmark fa-2xl"></i>
+					</button>
+				</div>
 
-					<!-- Home link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
-					</li>
-					<!-- About link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl ">
-						<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
-					</li>
-					<!-- Shop link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
-					</li>
-					<!-- Blog link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
-					</li>
-					<!-- Contact link -->
-					<li class="mb-8 lg:mb-0 text-center text-xl">
-						<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
-					</li>
-				</ul>
+				<!-- Menu Items -->
+				<div class=" h-96 flex justify-center py-6">
+					<ul
+						class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
+
+						<!-- Home link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl ">
+							<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
+						</li>
+						<!-- About link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl ">
+							<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
+						</li>
+						<!-- Shop link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
+						</li>
+						<!-- Blog link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
+						</li>
+						<!-- Contact link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<script>
-		(function () { // Mobile Menu Toggle
+		<script>
+			(function () { // Mobile Menu Toggle
 let mobileMenu = document.getElementById('mobileMenu');
 let mobileMenuButton = document.getElementById('mobileMenuButton');
 let closeMobileMenu = document.getElementById('closeMobileMenu');
@@ -274,9 +274,9 @@ cartDropdown.classList.add('hidden');
 
 
 })();
-	</script>
-	<!-- delete confirmation modal -->
-	{% include 'admin/_partials/_delete_modal.html.twig' %}
+		</script>
+		<!-- delete confirmation modal -->
+		{% include 'admin/_partials/_delete_modal.html.twig' %}
 
-	<!-- SCRIPT  -->
-	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+		<!-- SCRIPT  -->
+		<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>

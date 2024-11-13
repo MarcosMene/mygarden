@@ -53,10 +53,8 @@ h6 {
 
 label {
   display: block;
-  // margin-top: 1em;
+  margin-top: 1em;
 }
-
-
 
 input::placeholder,
 textarea::placeholder {
@@ -81,6 +79,8 @@ select option:not(first-child[selected]) {
 .form-error li {
   color: $red;
   margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 form .text-red {
@@ -242,10 +242,10 @@ form .text-red {
     content: '';
     display: inline-block;
     position: absolute;
-    top: 10;
+    top: 10px;
     bottom: 0;
     left: 0;
-    right: 10;
+    right: 10px;
     width: 317px;
     height: 317px;
     margin-right: 5px;
@@ -307,7 +307,6 @@ input[type='range']::-webkit-slider-thumb {
   height: 24px;
   -webkit-appearance: none;
 }
-
 
 //REVIEW CLIENT
 #review_client_rate label{
