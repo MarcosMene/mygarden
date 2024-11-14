@@ -92,8 +92,8 @@ class AddressController extends AbstractController
     public function delete(AddressRepository  $addressRepository, Request $request, $id): Response
     {
         $address = $addressRepository->find($id);
-        if (!$address or $address->getUser() != $this->getUser()) {
-            $this->addFlash('danger', 'This carrier doesn\'t exist');
+        if (!$address OR $address->getUser() != $this->getUser()) {
+            $this->addFlash('danger', 'This address doesn\'t exist');
             return $this->redirectToRoute('account_address');
         }
 

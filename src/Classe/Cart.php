@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class Cart
 {
-
   public function __construct(private RequestStack $requestStack) {}
   
   /**
@@ -19,7 +18,7 @@ class Cart
   {
 
     //call symfony session CART
-    $cart = $this->requestStack->getSession()->get('cart');
+    $cart = $this->getCart();
 
     //if product exist on cart
     if (isset($cart[$product->getId()])) {
@@ -39,7 +38,6 @@ class Cart
     //create cart session
     $this->requestStack->getSession()->set('cart', $cart);
   }
-
 
   /**
    * decrease product from cart
@@ -64,8 +62,6 @@ class Cart
     $this->requestStack->getSession()->set('cart', $cart);
   }
 
- 
-
   public function delete($id)
   {
     $cart = $this->getCart();
@@ -74,7 +70,6 @@ class Cart
     //update session
     $this->requestStack->getSession()->set('cart', $cart);
   }
-
 
   /**
    * verify total products on the shopping cart
@@ -95,7 +90,6 @@ class Cart
     }
     return $total;
   }
-
 
 /**
  * get total product with tax.

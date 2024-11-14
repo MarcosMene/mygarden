@@ -45,7 +45,7 @@ class ShopController extends AbstractController
     }
 
     //FIND PRODUCT SUGGESTIONS
-    $productSuggestions = $productRepository->findByisSuggestion($product);
+    $productSuggestions = $productRepository->findOtherSuggestions($product);
 
     //FIND USER REVIEW
     $reviewUser = $reviewRepository->findOneBy(['product' => $product, 'user' => $this->getUser()]);

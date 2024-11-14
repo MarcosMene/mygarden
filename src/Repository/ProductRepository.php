@@ -62,4 +62,16 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findOtherSuggestions($product)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id != :id')
+            ->andWhere('p.isSuggestion = true')
+            ->setParameter('id', $product->getId())
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult();
+    }
 }
