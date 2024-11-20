@@ -2,6 +2,7 @@
 
 namespace App\Controller\Account;
 
+use App\Classe\Cart;
 use App\Entity\Address;
 use App\Form\User\AddressUserType;
 use App\Repository\AddressRepository;
@@ -40,7 +41,7 @@ class AddressController extends AbstractController
 
     //CREATE OR MODIFY ADDRESS
     #[Route('/account/address/{id}', name: 'account_create_address', defaults: ['id' => null])]
-    public function form(Request $request, $id, AddressRepository $addressRepository): Response
+    public function form(Request $request, $id, AddressRepository $addressRepository, Cart $cart): Response
     {
         $totalAddresses = $addressRepository->findAll();
 
@@ -80,6 +81,12 @@ class AddressController extends AbstractController
                 'success',
                 'Your address has been saved.'
             );
+
+            //if cart is not empty return to order, otherwise account address
+            if($cart->fullQuantity()>0){
+                return $this->redirectToRoute('order');
+            }
+
             return $this->redirectToRoute('account_address');
         }
         return $this->render('account/address/addressUser_form.html.twig', [

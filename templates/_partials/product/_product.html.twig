@@ -86,11 +86,11 @@
 							{% if product.promotion != 0 %}
 								<div class="product_promotion  flex justify-start items-start">
 									<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
-									<span class="text-2xl font-bold text-primary mx-2">${{ ((product.price*(100-product.promotion))/100)|number_format(2) }}</span>
+									<span class="text-2xl font-bold text-primary mx-2">{{ ((product.price*(100-product.promotion))/100)|price }}</span>
 								</div>
 							{% else %}
 								<div class="product_promotion text-start">
-									<span class="text-2xl font-bold text-primary">${{product.price}}</span>
+									<span class="text-2xl font-bold text-primary">{{product.price|price}}</span>
 								</div>
 							{% endif %}
 						</div>

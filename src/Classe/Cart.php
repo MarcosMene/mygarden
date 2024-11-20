@@ -101,14 +101,15 @@ class Cart
     $price = 0;
 
     if (!isset($cart)) {
-      return $price;
+      return floor($price*100)/100;
     }
 
     foreach ($cart as $product) {
-      $price = $price + ($product['object']->getPriceWt()* $product['quantity']);
+
+      $price = $price + ($product['object']->getPriceWt()* $product['quantity'])*(1-($product['object']->getPromotion())/100);
     }
 
-    return $price;
+    return floor($price*100)/100;
   }
   public function getTotal()
   {
@@ -116,14 +117,14 @@ class Cart
     $price = 0;
 
     if (!isset($cart)) {
-      return $price;
+      return floor($price*100)/100;
     }
 
     foreach ($cart as $product) {
-      $price = $price + ($product['object']->getPrice()* $product['quantity']);
+      $price = $price + ($product['object']->getPrice()* $product['quantity'])*(1-($product['object']->getPromotion())/100);
     }
 
-    return $price;
+    return floor($price*100)/100;
   }
 
   public function getCart()

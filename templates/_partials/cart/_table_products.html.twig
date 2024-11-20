@@ -22,7 +22,7 @@
 							<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
 								<td class="whitespace-nowrap text-left"><img src="{{ asset('upload/products/' ~ product.object.imageName) }}" alt="{{ product.object.name }}" loading="lazy"></td>
 								<td class="whitespace-nowrap  p-2">{{product.object.name}}</td>
-								<td class="whitespace-nowrap  p-2">${{product.object.price|number_format(2, '.', ',') }}</td>
+								<td class="whitespace-nowrap  p-2">{{ ((product.object.price*(100-product.object.promotion)/100))|price }}</td>
 
 								<!--QUANTITY-->
 								<td class="whitespace-nowrap  p-2">
@@ -38,8 +38,8 @@
 									</div>
 								</td>
 
-								<td class="whitespace-nowrap py-2">{{(product.object.price*product.quantity)|number_format(2, '.', ',') }}</td>
-								<td class="whitespace-nowrap py-2">{{(product.object.pricewt*product.quantity)|number_format(2, '.', ',') }}</td>
+								<td class="whitespace-nowrap py-2">{{(product.object.price*product.quantity*((100-product.object.promotion)/100))|price }}</td>
+								<td class="whitespace-nowrap py-2">{{(product.object.pricewt*product.quantity*((100-product.object.promotion)/100))|price }}</td>
 
 
 								<!--ACTION BUTTONS-->

@@ -20,9 +20,8 @@ class CartController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-
     //CART WITH PRODUCTS 
-    #[Route('/cart', name: 'my_cart')]
+    #[Route('/cart', name: 'cart')]
     public function index(): Response
     {
         return $this->render('pages/cart.html.twig');
@@ -52,9 +51,8 @@ class CartController extends AbstractController
         } else {
             $this->addFlash('success', 'The product has been deleted from your shopping cart');
         }
-        return $this->redirectToRoute('my_cart');
+        return $this->redirectToRoute('cart');
     }
-
 
     //DELETE PRODUCT FROM CART
     #[Route('/cart/delete/{id}', name: 'delete_from_cart')]

@@ -153,4 +153,9 @@ class Address
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getName() . '<br/>' . $this->getAddress() . '<br/>' . $this->getPostal() . ' - ' .$this->getCity();
+    }
 }

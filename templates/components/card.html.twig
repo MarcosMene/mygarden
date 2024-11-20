@@ -5,7 +5,6 @@
 		class="relative">
 		<!--LABEL PROMOTION-->
 
-
 		{%if product.promotion > 0 %}
 			<div class="absolute top-0 right-0 h-45 card_label bg-primary px-4 py-2 uppercase text-white text-[10px] text-end font-bold font-roboto tracking-widest">PROMO</div>
 		{% endif %}
@@ -51,11 +50,12 @@
 		{% if product.promotion != 0 %}
 			<div class="product_promotion text-center flex justify-center items-center mt-4">
 				<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
-				<span class="text-2xl font-bold text-primary mx-2">${{ ((product.price*(100-product.promotion))/100)|number_format(2) }}</span>
+				<span class="text-2xl font-bold text-primary mx-2">{{ ((product.price*(100-product.promotion))/100)|price }}</span>
 			</div>
+				<p class="text-sm text-gray mx-2 text-center">Save {{ product.promotion }}%</p>
 		{% else %}
 			<div class="product_promotion text-center mt-4">
-				<span class="text-2xl font-bold text-primary ">${{product.price}}</span>
+				<span class="text-2xl font-bold text-primary ">{{product.price|price}}</span>
 			</div>
 		{% endif %}
 	</div>

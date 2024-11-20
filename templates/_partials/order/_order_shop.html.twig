@@ -1,0 +1,61 @@
+<!--CART-->
+<div
+	class="cart w-full min-w-[200px] mt-10 lg:mt-0 lg:w-1/4 flex flex-col ">
+
+	<!--breadcrumb-->
+	<div class="flex flex-col justify-between ">
+		<p>Delivery information</p>
+	</div>
+	<div class=" p-2 border border-gray-300 shadow-md bg-gray-50">
+		{{ form_start(deliveryForm) }}
+
+		<!--ADDRESSES-->
+		<div class="space-y-4">
+
+<!--CREATE NEW ADDRESS BUTTON-->
+<div class="text-center md:text-end mt-4">
+		<a href="{{path('account_create_address')}}" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 text-[.8rem] md:text-[1rem]">Create new address</a>
+
+</div>
+
+			{{ form_label(deliveryForm.addresses, 'Delivery address', {'label_attr': {'class': 'text-lg font-medium mt-2'}}) }}
+			{% for choice in deliveryForm.addresses %}
+				<div class="flex items-center space-x-2">
+					{{ form_widget(choice, {
+                'attr': {
+                    'class': ' custom-radio accent-primary appearance-none w-[40px] border border-gray-300 rounded-full checked:bg-primary checked:border-gray focus:outline-none transition'
+                }
+            }) }}
+					{{ form_label(choice, null, {'label_attr': {'class': 'text-gray-700 m-0 p-0'}}) }}
+				</div>
+			{% endfor %}
+		</div>
+		<hr
+		class="my-4 text-gray">
+
+		<!--CARRIERS-->
+		<div class="space-y-4">
+			{{ form_label(deliveryForm.carriers, 'Carrier company', {'label_attr': {'class': 'text-lg font-medium w-full'}}) }}
+			{% for carrier in deliveryForm.carriers %}
+				<div class="flex items-center space-x-2 w-full">
+					{{ form_widget(carrier, {
+                'attr': {
+                    'class': ' custom-radio accent-primary appearance-none w-[40px] border border-gray-300 rounded-full checked:bg-primary checked:border-gray focus:outline-none transition'
+                }
+            }) }}
+					{{ form_label(carrier, null, {'label_attr': {'class': 'text-gray-700 m-0 p-0 w-2/3 truncate '}}) }}
+				</div>
+			{% endfor %}
+		</div>
+
+		<!-- SUBMIT BUTTON  -->
+		<div class="text-center my-8">
+			<button type="submit" id="review_submit" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">
+				Confirm Order
+				<span class="sr-only">
+					Confirm Order button</span>
+			</button>
+		</div>
+		{{ form_end(deliveryForm) }}
+	</div>
+</div>

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My Garden - My Cart
+{% block title %}My Garden - My cart
 {% endblock %}
 
 {% block body %}
 	<!--BANNER-->
-	{% include ('_partials/cart/_banner_cart.html.twig')%}
+	{% include ('_partials/order/_banner_order.html.twig')%}
 
 	<section class="cart w-full pt-5 lg:pt-12 pb-10 ">
 
@@ -13,6 +13,7 @@
 			<div class="our_products px-0 lg:px-16  mt-6">
 
 				{% if myCart|length >0 %}
+
 					<div
 						class="cart_block flex  flex-col lg:flex-row  items-start">
 
@@ -24,12 +25,12 @@
 							<div
 								class="product_list flex flex-col">
 								
-								{% include ('_partials/cart/_table_products.html.twig')%}
+								{% include ('_partials/order/_table_order_products.html.twig')%}
 							</div>
 						</div>
 
 						<!--CART-->
-					{% include ('_partials/cart/_cart_shop.html.twig')%}
+					{% include ('_partials/order/_order_shop.html.twig')%}
 					</div>
 				</div>
 			{% else %}

@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - Order n#
+	{{order.id}}
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_order_client')}}" class="text-gray underline text-base  ">back to orders</a>
+	</div>
+	<div
+		class="create_employees w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+
+		<!-- RIGHT ORDER -->
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+			<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Order client</h2>
+
+			<!-- STATUS ORDER  -->
+			<div class="flex">
+				<p class="font-semibold text-lg me-2">Status order:</p>
+				{% include 'admin/state_order/state.html.twig' with{'field':order.state} %}
+			</div>
+
+			<!-- ORDER NUMBER AND DATE -->
+			<div
+				class="detail_product flex flex-col mt-4">
+
+				<!-- ORDER NUMBER  -->
+				<div class="flex">
+					<p class="font-semibold text-lg me-2">Order number:</p>
+					<p class="font-normal text-lg">{{ order.id }}</p>
+				</div>
+				<!-- ORDER DATE  -->
+				<div class="flex">
+					<p class="font-semibold text-lg me-2">Date:</p>
+					<p class="font-normal text-lg">{{ order.createdAt|date('m/d/Y - H:m') }}</p>
+				</div>
+
+			</div>
+			<!--USER NAME-->
+			<div class="delivery_info flex  w-full lg:w-3/4 items-center justify-start mt-4">
+				<p class=" text-black font-medium text-xl me-2">User client:</p>
+				<span class="text-xl capitalize me-2">{{order.user.firstname}}</span>
+				<span class="text-xl capitalize">{{order.user.lastname}}</span>
+			</div>
+
+			<!--DIVISION-->
+			<hr
+			class=" text-gray w-full my-4">
+
+			<!--DELIVERY AND CARRIER-->
+			<div class="delivery_info flex flex-col lg:flex-row w-full lg:w-3/4 items-start justify-between mt-4">
+				<div class="delivery ">
+					<p class=" text-black font-medium text-xl">Delivery address</p>
+					{{order.delivery|raw}}
+				</div>
+				<div class="carrier">
+					<p class=" text-black font-medium text-xl">Carrier</p>
+					<p class="font-normal text-lg mb-2 ms-1">{{ order.carrierName }}</p>
+				</div>
+			</div>
+
+			<!--DIVISION-->
+			<hr class=" text-gray w-full my-4">
+
+			<p class=" text-black font-medium text-xl mb-0 md:mb-4">Order details</p>
+
+			<!-- TABLE  -->
+			<div class="flex flex-col ">
+				<div class="overflow-x-auto me-0 lg:me-8">
+					<div class="inline-block min-w-full py-2 ">
+						<div class="overflow-hidden">
+							<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+								<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+									<tr>
+										<th scope="col" class="w-[300px] capitalize">Image</th>
+										<th scope="col" class="w-[300px] capitalize">Name of product</th>
+										<th scope="col" class="w-[100px] capitalize">Quantity</th>
+										<th scope="col" class="w-[400px] capitalize">price</th>
+										<th scope="col" class="w-[400px] capitalize">promotion</th>
+										<th scope="col" class="w-[400px] capitalize">price NT</th>
+										<th scope="col" class="w-[400px] capitalize">VAT</th>
+										<th scope="col" class="w-[400px] capitalize">price WT</th>
+										<th scope="col" class="w-[400px] capitalize">VAT%</th>
+									</tr>
+								</thead>
+								<tbody>
+									{# {% set totalNt = null %}
+																											{% set totalWt = null %} #}
+									{% set tva = null %}
+									{% for order in order.orderDetails%}
+										<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+
+											<td class="whitespace-nowrap text-left">
+												<img src="{{ asset('upload/products/' ~ order.productIllustration) }}" alt="{{ order.productName }}" loading="lazy" class="w-14 mx-auto py-2"></td>
+											<td class="whitespace-nowrap  p-2">{{order.productName}}</td>
+											<td class="whitespace-nowrap  p-2">{{ order.productQuantity }}</td>
+											<td class="whitespace-nowrap  p-2">{{ order.productPrice|price }}</td>
+											<td class="whitespace-nowrap  p-2">{{ order.productPromotion }}%</td>
+
+											{% set coeff = 1 + (order.productTva/100)%}
+											<!--total nt-->
+											<td>{{(order.productPrice*((100-order.productPromotion)/100)*order.productQuantity)|price}}</td>
+
+											<!--total vat-->
+											<td class="whitespace-nowrap  p-2">{{ ((order.productPrice*coeff*((100-order.productPromotion)/100)*order.productQuantity) - (order.productPrice*((100-order.productPromotion)/100)*order.productQuantity))|price}}</td>
+
+											<!--total of order-->
+											<td>{{(order.productPrice*coeff*((100-order.productPromotion)/100)*order.productQuantity)|price}}</td>
+
+											<!--tva percentage-->
+											<td>{{order.productTva}}%</td>
+
+
+										{% endfor %}
+									</tbody>
+								</tbody>
+							</table>
+							<!--DIVISION-->
+							<hr
+							class=" text-gray w-full my-4">
+
+							<!--CARRIER TOTAL-->
+							<div class="flex  items-center justify-end">
+								<p class=" text-black font-medium text-xl me-2">Carrier total:</p>
+								<span>{{order.carrierPrice|price}}</span>
+							</div>
+
+							<!--DIVISION-->
+							<hr
+							class=" text-gray w-full my-4">
+
+							<!--TOTAL vat-->
+							<div class="flex  items-center justify-end">
+								<p class=" text-black font-medium text-xl me-2">Total VAT:</p>
+								<span>{{(order.totalWt-order.totalNt)|price}}</span>
+							</div>
+
+
+							<!--TOTAL nt-->
+							<div class="flex  items-center justify-end mt-4">
+								<p class=" text-black font-medium text-xl me-2">Total NT:</p>
+								<span>{{(order.totalNt)|price}}</span>
+							</div>
+
+							<!--total-->
+							<div class="flex  items-center justify-end mb-8 lg:mb-0">
+								<p class=" text-black font-medium text-xl me-2 capitalize">total of order:</p>
+								<span class="text-base">{{(order.totalWt)|price}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+{% endblock %}

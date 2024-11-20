@@ -1,0 +1,36 @@
+<!--CART-->
+<div
+	class="cart w-full min-w-[200px] mt-10 lg:mt-0 lg:w-1/4 flex flex-col ">
+
+	<!--DELIVERY ADDRESS-->
+	<div class="flex flex-col justify-between">
+		<p class="font-bold">Your delivery address</p>
+	</div>
+	<div class=" p-4 border border-gray-300 shadow-md bg-gray-50  text-lg ">
+
+		{% if choices.addresses.company%}
+			<span>{{choices.addresses.company}}</span>
+		{% endif %}
+		<span>{{choices.addresses.firstname}}</span>
+		<span>{{choices.addresses.lastname}}</span>
+
+		<p>{{choices.addresses.address}}</p>
+		<span>{{choices.addresses.postal}}</span>
+		<span>-</span>
+		<span>{{choices.addresses.city}}</span>
+
+	</div>
+	
+	<!--DIVISION-->
+	<hr class=" text-gray w-full my-4">
+	<!--DELIVERY CARRIER-->
+	<div class="flex flex-col justify-between ">
+		<p class="font-bold">Your delivery transporter</p>
+	</div>
+	<div class=" p-2 border border-gray-300 shadow-md bg-gray-50  text-lg ">
+
+			<span>{{choices.carriers.name}}</span>
+		<span>{{choices.carriers.price|price}}</span>
+
+	</div>
+</div>

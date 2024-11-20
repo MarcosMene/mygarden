@@ -7,7 +7,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
 
-
 class AppExtensions extends AbstractExtension implements GlobalsInterface
 {
 
@@ -28,19 +27,18 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
 
   public function formatPrice($number)
   {
-    return '$ ' . number_format($number, '2', '.', ',');
+    $numberFloor = floor($number*100)/100;
+    return '$' . number_format($numberFloor, '2', '.', ' ');
   }
 
   //variable global get all CART on all pages
   public function getGlobals(): array
   {
     return [
-
       'fullCartQuantity' =>$this->cart->fullQuantity(),
       'myCart' => $this->cart->getCart(),
       'totalCartNt'=>$this->cart->getTotal(),
-      'totalCartWt'=>$this->cart->getTotalWt()
-
+      'totalCartWt'=>$this->cart->getTotalWt(),
     ];
   }
 }

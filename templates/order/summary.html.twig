@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - My cart summary
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/summary/_banner_summary.html.twig')%}
+
+	<section class="cart w-full pt-5 lg:pt-12 pb-10 ">
+
+		<div class="cart w-full px-16 mx-auto">
+			<div class="our_products px-0 lg:px-16  mt-6">
+
+					<div
+						class="cart_block flex  flex-col lg:flex-row  items-start">
+
+						<!--LIST PRODUCTS-->
+						<div class="product_summary w-full lg:w-3/4 ">
+
+							<!--PRODUCTS-->
+							<div class="product_list flex flex-col">
+
+								{% include ('_partials/summary/_table_summary.html.twig')%}
+							</div>
+						</div>
+
+						<!--CART-->
+						{% include ('_partials/summary/_summary_shop.html.twig')%}
+					</div>
+				</div>
+	
+		</section>
+
+		<!-- delete confirmation modal -->
+		{% include 'admin/_partials/_delete_modal.html.twig' %}
+		<!-- SCRIPT  -->
+		<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+	{% endblock %}

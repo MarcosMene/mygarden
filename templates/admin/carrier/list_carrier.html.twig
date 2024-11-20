@@ -47,7 +47,7 @@
 											<tr class="border-b border-neutral-200 text-base text-left font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
 												<td class="whitespace-nowrap py-2 ps-4 px-2">{{carrier.name}}</td>
 												<td class="whitespace-nowrap py-2 ps-4 px-2">{{carrier.description|slice(0, 40) ~ '...'}}</td>
-												<td class="whitespace-nowrap py-2 ps-4 px-2">{{carrier.price|number_format(2, '.', ',') }}</td>
+												<td class="whitespace-nowrap py-2 ps-4 px-2">{{carrier.price|price }}</td>
 
 
 												<!--ACTION BUTTONS-->
