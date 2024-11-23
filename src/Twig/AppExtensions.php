@@ -27,8 +27,7 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
 
   public function formatPrice($number)
   {
-    $numberFloor = floor($number*100)/100;
-    return '$' . number_format($numberFloor, '2', '.', ' ');
+    return '$' . number_format($number, 2, '.', ' ');
   }
 
   //variable global get all CART on all pages

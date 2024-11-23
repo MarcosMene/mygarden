@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class Cart
 {
   public function __construct(private RequestStack $requestStack) {}
-  
+
   /**
    * add product into shopping cart
    *
@@ -91,25 +91,25 @@ class Cart
     return $total;
   }
 
-/**
- * get total product with tax.
- *
- */
+  /**
+   * get total product with tax.
+   *
+   */
   public function getTotalWt()
   {
     $cart = $this->getCart();
     $price = 0;
 
     if (!isset($cart)) {
-      return floor($price*100)/100;
+      return $price;
     }
 
     foreach ($cart as $product) {
 
-      $price = $price + ($product['object']->getPriceWt()* $product['quantity'])*(1-($product['object']->getPromotion())/100);
+      $price = $price + ($product['object']->getPriceWt() * $product['quantity']) * ((100 - $product['object']->getPromotion()) / 100);
     }
 
-    return floor($price*100)/100;
+    return $price;
   }
   public function getTotal()
   {
@@ -117,18 +117,27 @@ class Cart
     $price = 0;
 
     if (!isset($cart)) {
-      return floor($price*100)/100;
+      return $price;
     }
 
     foreach ($cart as $product) {
-      $price = $price + ($product['object']->getPrice()* $product['quantity'])*(1-($product['object']->getPromotion())/100);
+      $price = $price + ($product['object']->getPrice() * $product['quantity']) * ((100 - $product['object']->getPromotion()) / 100);
     }
 
-    return floor($price*100)/100;
+    return $price;
   }
 
   public function getCart()
   {
     return $this->requestStack->getSession()->get('cart');
+  }
+
+  /**
+   * remove()
+   * remove all items from the list of products in the shopping cart.
+   */
+  public function remove()
+  {
+    return $this->requestStack->getSession()->remove('cart');
   }
 }

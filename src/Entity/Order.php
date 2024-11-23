@@ -42,6 +42,9 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $stripe_session_id = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -53,7 +56,7 @@ class Order
         foreach ($products as $product){
             $totalNt += ($product->getProductPrice() * $product->getProductQuantity()*((100-$product->getProductPromotion())/100));
             }
-            return floor($totalNt*100)/100 + $this->getCarrierPrice();
+            return $totalNt + $this->getCarrierPrice();
     }
 
     public function getTotalWt(){
@@ -64,8 +67,7 @@ class Order
             $coeff = 1 + ($product->getProductTva()/100);
             $totalWt += (($product->getProductPrice()*$coeff)*$product->getProductQuantity()*((100-$product->getProductPromotion())/100));
         }
-
-        return floor($totalWt*100)/100 + $this->getCarrierPrice();
+        return $totalWt + $this->getCarrierPrice();
     }
     public function getTotalTva(){
         $totalTva = 0;
@@ -73,7 +75,7 @@ class Order
 
         foreach($products as $product){
             $coeff =$product->getProductTva()/100;
-            $totalTva += $product->getProductPrice()*$coeff*((100-$product->getProductPromotion())/100);
+            $totalTva += $product->getProductPrice()*$coeff;
 
         }
         return $totalTva;
@@ -182,6 +184,18 @@ class Order
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripe_session_id;
+    }
+
+    public function setStripeSessionId(?string $stripe_session_id): static
+    {
+        $this->stripe_session_id = $stripe_session_id;
 
         return $this;
     }

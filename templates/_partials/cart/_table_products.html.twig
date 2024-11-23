@@ -10,13 +10,12 @@
 							<th scope="col" class="w-[300px]">Name</th>
 							<th scope="col" class="w-[400px]">price</th>
 							<th scope="col" class="w-[100px]">Quantity</th>
-							<th scope="col" class="w-[400px]">total</th>
-							<th scope="col" class="w-[400px]">total with Tax</th>
+							<th scope="col" class="w-[400px]">NT</th>
+							<th scope="col" class="w-[400px]">WT</th>
 							<th scope="col" class="w-[300px]"></th>
 						</tr>
 					</thead>
 					<tbody>
-						{% set total = null %}
 						{% for product in myCart %}
 
 							<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
@@ -38,8 +37,8 @@
 									</div>
 								</td>
 
-								<td class="whitespace-nowrap py-2">{{(product.object.price*product.quantity*((100-product.object.promotion)/100))|price }}</td>
-								<td class="whitespace-nowrap py-2">{{(product.object.pricewt*product.quantity*((100-product.object.promotion)/100))|price }}</td>
+								<td class="whitespace-nowrap py-2">{{(product.object.price*product.quantity*((100-product.object.promotion)/100))|number_format(2,'.','') }}</td>
+								<td class="whitespace-nowrap py-2">{{(product.object.pricewt*product.quantity*((100-product.object.promotion)/100))|number_format(2,'.','') }}</td>
 
 
 								<!--ACTION BUTTONS-->

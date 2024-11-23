@@ -39,11 +39,12 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?float $price = null;
 
-    #[ORM\Column]
-    private ?float $tva = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $price = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $tva = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isSuggestion = null;
@@ -56,8 +57,8 @@ class Product
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?ColorProduct $colorProduct = null;
 
-    #[ORM\Column]
-    private ?float $promotion = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $promotion = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isBestSeller = null;
@@ -153,12 +154,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?string
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(string $price): static
     {
         $this->price = $price;
 
@@ -171,12 +172,12 @@ class Product
         return $coeff * $this->price;
     }
 
-    public function getTva(): ?float
+    public function getTva(): ?string
     {
         return $this->tva;
     }
 
-    public function setTva(float $tva): static
+    public function setTva(string $tva): static
     {
         $this->tva = $tva;
 
@@ -238,12 +239,12 @@ class Product
         return $this;
     }
 
-    public function getPromotion(): ?float
+    public function getPromotion(): ?string
     {
         return $this->promotion;
     }
 
-    public function setPromotion(float $promotion): static
+    public function setPromotion(string $promotion): static
     {
         $this->promotion = $promotion;
         return $this;

@@ -3,22 +3,19 @@
 namespace App\Controller\Admin;
 
 use App\Repository\OrderRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class OrderClientController extends AbstractController
 {
     #[Route('/admin/list/order-client', name: 'show_order_client')]
     public function index(OrderRepository $orderRepository): Response
     {
-        $orders = $orderRepository->findAll();
+        $orders = $orderRepository->findAllOrderedCreatedDesc();
 
         return $this->render('admin/order_client/list_orderClient.html.twig', [
             'orders' => $orders,
-            
             ]);
     }
 

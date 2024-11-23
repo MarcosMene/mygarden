@@ -19,19 +19,21 @@
 		<div class="flex justify-between mb-4">
 			<p class="text-black text-base font-semibold">Subtotal NT:
 			</p>
-			<p class="text-black text-base">{{(totalCartNt |price) }}</p>
-			
+			<p class="text-black text-base">{{(totalCartNt|number_format(2,'.','')	) }}</p>
+
 		</div>
 		{# SUBTOTAL WITH TAX  #}
 		<div class="flex justify-between mb-4">
-			<p class="text-black text-base font-semibold">Subtotal VAT:
+			<p class="text-black text-base font-semibold">Subtotal WT:
 			</p>
-			<p class="text-black text-base">{{totalCartWt|price}}</p>
+			<p class="text-black text-base">{{totalCartWt|number_format(2,'.','')	}}</p>
 		</div>
-		<div class="buttons flex flex-col  mt-8">
+		<div
+			class="buttons flex flex-col  mt-8">
 
 			<!--VALIDATE ORDER-->
-				<a href="{{path('order')}}" class="w-full text-center py-2 px-4  mb-4  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100"> Validate my order</a>
+			<a href="{{path('order')}}" class="w-full text-center py-2 px-4  mb-4  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">
+				Validate my order</a>
 
 			<!--CONTINUE SHOPPING-->
 			<a href="" class="w-full text-center py-2 px-4  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Continue shopping</a>

@@ -21,10 +21,21 @@ class CartController extends AbstractController
     }
 
     //CART WITH PRODUCTS 
-    #[Route('/cart', name: 'cart')]
-    public function index(): Response
+    #[Route('/my-cart/{reason}', name: 'cart', defaults:['reason'=>null])]
+    public function index(Cart $cart, $reason): Response
     {
-        return $this->render('pages/cart.html.twig');
+        if($reason == 'annulation'){
+            $this->addFlash(
+                'info',
+                'Payment canceled: you can update your cart and your order'
+            );
+        }
+
+        return $this->render('pages/cart.html.twig',[
+            'cart' => $cart->getCart(),
+            'totalWt'=>$cart->getTotalWt(),
+            'totalNt'=>$cart->getTotal()
+        ]);
     }
 
     //ADD PRODUCT TO CART
@@ -70,5 +81,13 @@ class CartController extends AbstractController
         }
         // back to last page visited 
         return $this->redirect($request->headers->get('referer'));
+    }
+
+    #[Route('/cart/remove', name: 'remove_cart')]
+    public function remove(Cart $cart): Response
+    {
+        $cart->remove();
+        $this->addFlash('success', 'Your cart has been emptied');
+        return $this->redirectToRoute('home');
     }
 }

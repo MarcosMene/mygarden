@@ -33,26 +33,27 @@
 	<div class="p-4 text-surface ">
 		<h3 class="mb-2 text-xl font-semibold text-center capitalize leading-5">{{product.name}}</h3>
 		<p class="mb-3 text-center">{{product.description|slice(0, 20) ~ '...'}}</p>
-		
+
 		<!--PRODUCT STARS-->
 		<div
 			class="review_stars flex justify-center">
 			<!--STARS-->
 			{% if product.reviews|length > 0 %}
-			<div>{% include 'components/review_stars_average.html.twig'%}</div>
-				
-				{% else %}
+				<div>{% include 'components/review_stars_average.html.twig'%}</div>
+
+			{% else %}
 				<p class="text-xs text-gray">This product doesn't have a review yet.</p>
 			{% endif %}
 		</div>
-		
+
 		<!--IF PRODUCT PROMOTION-->
 		{% if product.promotion != 0 %}
 			<div class="product_promotion text-center flex justify-center items-center mt-4">
-				<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price}}</span>
+				<span class="font-bold text-gray text-xl line-through  mx-2">${{product.price|price}}</span>
 				<span class="text-2xl font-bold text-primary mx-2">{{ ((product.price*(100-product.promotion))/100)|price }}</span>
 			</div>
-				<p class="text-sm text-gray mx-2 text-center">Save {{ product.promotion }}%</p>
+			<p class="text-sm text-gray mx-2 text-center">Save
+				{{ product.promotion }}%</p>
 		{% else %}
 			<div class="product_promotion text-center mt-4">
 				<span class="text-2xl font-bold text-primary ">{{product.price|price}}</span>

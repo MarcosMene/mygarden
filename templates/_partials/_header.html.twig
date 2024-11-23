@@ -156,7 +156,7 @@
 					</div>
 					<!--SUBTOTAL WITH TAX  -->
 					<div class="flex justify-between mb-2">
-						<p class="text-black text-base font-medium capitalize">Subtotal VAT:
+						<p class="text-black text-base font-medium capitalize">Subtotal WT:
 						</p>
 						<p class="text-black text-base">{{totalCartWt|price}}</p>
 					</div>
@@ -173,7 +173,6 @@
 				{% endif %}
 			</div>
 		</div>
-
 
 		{% if app.user %}
 			{% if (app.user.wishlists|length) > 0 %}

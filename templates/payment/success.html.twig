@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Garden - My cart summary
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/payment/_banner_payment.html.twig')%}
+
+	<section class="cart w-full pt-5 lg:pt-12 pb-10 ">
+
+		<h2 class="text-[1.5rem] lg:text-[2rem] text-center  text-black font-normal">Thank you</h2>
+		<!--image-->
+		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+
+		<div
+			class="thank_you_block  bg-bg3 mt-4 w-full flex flex-col lg:flex-row justify-center p-8 lg:p-0">
+
+			<!--text-->
+			<div class="thank_you_text w-full lg:w-1/2 px-10 flex flex-col justify-center">
+				<h2 class="text-[1.8rem] lg:text-[2.5rem] font-medium lg:font-semibold text-black leading-normal text-center">Thank you for choosing My Garden - Flower shop!</h2>
+				<p class="text-[1rem] lg:text-[1.25rem] mt-2 text-center">We appreciate your purchase and are thrilled to have you as a customer.
+				</p>
+				<p class="text-base mt-2 text-center">We will send you another email when it is in transit.</p>
+
+				<div
+					class="text-center my-6 lg:my-8">
+					<!--button-->
+					<a href="{{path('account_order',{id_order:order.id})}}" class=" py-2 px-4 w-full   text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize text-[.75rem] lg:text-[1rem]">Check your order here</a>
+				</div>
+			</div>
+
+			<!--image-->
+			<div class="thank_you_image hidden lg:block h-full">
+
+				<img src="{{asset('assets/images/payment/thank_you.png')}}" loading="lazy" alt="a flower decoration">
+			</div>
+		</div>
+	</section>
+{% endblock %}
