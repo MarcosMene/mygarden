@@ -3,6 +3,7 @@
 // RegistrationController.php
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
@@ -30,8 +31,6 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();
@@ -46,6 +45,18 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success','Your account is successfully created. Please login'
+            );
+
+            //send email to user to confirm new account
+            $mail = new Mail();
+            $vars = [
+                "firstname" => $user->getFirstname(),
+                "lastname" => $user->getLastname(),
+            ];
+            $mail->send($user->getEmail(), $user->getFirstname() . ' ' . $user->getLastname(), 'Welcome to My Garden - Flower Shop', 'welcome.html', $vars);
 
             return $this->redirectToRoute('app_login');
         }

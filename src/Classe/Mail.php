@@ -10,16 +10,16 @@ class Mail
   public function send($to_email, $to_name, $subject, $template, $vars = null)
   {
 
-
-    //recover the template 
+    //recover the template
     $content = file_get_contents(dirname(__DIR__) . '/Mail/' . $template);
 
-    //recover $vars to put the name of user on welcome.html
+    // recover $vars to put the name of user on welcome.html
     if ($vars) {
       foreach ($vars as $key => $var) {
-        $content = str_replace('{{' . $key . '}}', $var, $content);
+        $content = str_replace('{' . $key . '}', $var, $content);
       }
     }
+
 
     $mj = new Client($_ENV['MJ_APIKEY_PUBLIC'], $_ENV['MJ_APIKEY_PRIVATE'], true, ['version' => 'v3.1']);
 
@@ -36,7 +36,7 @@ class Mail
               'Name' => $to_name
             ]
           ],
-          'TemplateID' => 6328983,
+          'TemplateID' => 6498401,
           'TemplateLanguage' => true,
           'Subject' => $subject,
           'Variables' => [
@@ -45,6 +45,7 @@ class Mail
         ]
       ]
     ];
+
     $mj->post(Resources::$Email, ['body' => $body]);
   }
 }
