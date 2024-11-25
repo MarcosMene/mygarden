@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}My Garden - My account
+{% block title %}My Garden - My order
 {% endblock %}
 
 {% block body %}
@@ -7,7 +7,7 @@
 	<!--BANNER-->
 	{% include ('account/banners/_banner_account_user.html.twig')%}
 
-<div
+	<div
 		class="show_purchases w-full mt-12 flex px-8 lg:px-16 mb-10">
 
 		<!-- MENU LEFT  -->
@@ -16,18 +16,24 @@
 				{% include ('account/menu_navigation_user.html.twig')%}
 			</div>
 		</div>
-			<!-- RIGHT ORDER -->
+		<!-- RIGHT ORDER -->
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray px-4 lg:p-x8 h-fit">
-		<div class="back_to text-end">
-		<a href="{{path('account')}}" class="text-gray underline text-base  ">back to my orders</a>
-	</div>
+			<div class="back_to text-end">
+				<a href="{{path('account')}}" class="text-gray underline text-base  ">back to my orders</a>
+			</div>
 			<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Order detail</h2>
 
 			<!-- STATUS ORDER  -->
-			<div class="flex">
-				<p class="font-semibold text-lg me-2">Status order:</p>
-				{% include 'admin/state_order/state.html.twig' with{'field':order.state} %}
+			<div class="flex justify-between items-center">
+				<div class="order_status  flex ">
+					<p class="font-semibold text-lg me-2">Status order:</p>
+					{% include 'admin/state_order/state.html.twig' with{'field':order.state} %}
+				</div>
+				<div class="order_print">
+					<a target="_blank" href="{{path('user_invoice', {id_order:order.id})}}" class="py-1 px-3 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Print order</a>
+				</div>
 			</div>
+
 
 			<!-- ORDER NUMBER AND DATE -->
 			<div
@@ -92,7 +98,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 									{% for order in order.orderDetails%}
 										<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
 
