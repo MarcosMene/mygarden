@@ -24,9 +24,27 @@
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
 			<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Order client</h2>
 
-			
+			<p class="font-semibold text-lg me-2">Act on the order</p>
+			{% if order.state != 1%}
+			<div class="text-start my-1">
+					<a href="{{ path('detail_order', { id: order.id, state: 3 }) }}" class="{%if order.state ==3%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal  bg-zinc-200 border border-gray tex-black rounded-sm hover:bg-white">Order in preparation</a>
+				<a href="{{ path('detail_order', { id: order.id, state: 4 }) }}" class="{%if order.state ==4%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal tex-black  bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order shipped</a>
+				<a href="{{ path('detail_order', { id: order.id, state: 5 }) }}" class="{%if order.state ==5%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal tex-black  bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order cancelled</a>
+				{% else %}
+				<p>you cannot act on an order that has not yet been paid for</p>
+			</div>
+		
+				
+			{% endif %}
+
+
+			<hr class="text-start my-4">
+
+
+
+
 			<!-- STATUS ORDER  -->
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center mt-4">
 				<div class="order_status  flex ">
 					<p class="font-semibold text-lg me-2">Status order:</p>
 					{% include 'admin/state_order/state.html.twig' with{'field':order.state} %}
@@ -106,7 +124,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 									{% for order in order.orderDetails%}
 										<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
 
