@@ -47,7 +47,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash(
-                'success','Your account is successfully created. Please login'
+                'success',
+                'Your account is successfully created. Please login'
             );
 
             //send email to user to confirm new account

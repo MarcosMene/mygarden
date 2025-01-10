@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -49,9 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $token = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $tokenExpireAt = null;
-
-    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $lastLoginAt = null;
 
     /**
@@ -83,6 +81,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
     private Collection $orders;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $tokenExpireAt = null;
 
     public function __construct()
     {
@@ -220,18 +221,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTokenExpireAt(): ?\DateTimeImmutable
-    {
-        return $this->tokenExpireAt;
-    }
-
-    public function setTokenExpireAt(?\DateTimeImmutable $tokenExpireAt): static
-    {
-        $this->tokenExpireAt = $tokenExpireAt;
-
-        return $this;
-    }
-
     public function getLastLoginAt(): ?\DateTimeImmutable
     {
         return $this->lastLoginAt;
@@ -287,7 +276,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reviewClients->add($reviewClient);
             $reviewClient->setUser($this);
         }
-
         return $this;
     }
 
@@ -299,7 +287,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reviewClient->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -383,6 +370,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTokenExpireAt(): ?\DateTimeInterface
+    {
+        return $this->tokenExpireAt;
+    }
+
+    public function setTokenExpireAt(?\DateTimeInterface $tokenExpireAt): static
+    {
+        $this->tokenExpireAt = $tokenExpireAt;
 
         return $this;
     }

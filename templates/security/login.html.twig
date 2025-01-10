@@ -8,10 +8,11 @@
 	{% include ('_partials/security/_banner_signin.html.twig')%}
 
 	<!--LOGIN SECTION-->
-	<section class="login w-full pt-5 lg:pt-12 pb-10">
-		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign In My Garden</h2>
-		<!--image-->
-		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+	<section
+		class="login w-full pt-5 lg:pt-10 pb-10">
+		{# <h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign In My Garden</h2>
+								<!--image-->
+								<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto"> #}
 		<div
 			class="container mx-auto px-8 lg:px-16">
 
@@ -42,7 +43,7 @@
 					<div class="password w-full relative">
 						<label for="password" class=" mb-2 text-base font-medium text-black mt-4">
 							<span>Password</span>
-							<input type="password" name="_password" id="password" class="w-full rounded border border-gray-300 focus:bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your password" required autocomplete="off" pattern=".{6,}" min="6" max="16"/>
+							<input type="password" name="_password" id="password" class="w-full rounded border border-gray-300 focus:bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black" placeholder="Write your password" required autocomplete="off" pattern=".{8,}" minlength="8" maxlength="16"/>
 							<div id="password_error" hidden class="text-sm text-red"></div>
 						</label>
 					</div>
@@ -61,7 +62,7 @@
 
 				</form>
 				<p class="text-end mt-4">
-					<a href="#" class="text-gray underline hover:text-black">Forgot your password?</a>
+					<a href="{{path('forgot_password')}}" class="text-gray underline hover:text-black">Forgot your password?</a>
 				</p>
 				<!--DIVISOR-->
 				<div

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New password
+{% endblock %}
+
+{% block body %}
+	<!--BANNER-->
+	{% include ('_partials/password/_banner_new_password.html.twig')%}
+
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+	<!--LOGIN SECTION-->
+	<section class="login w-full pt-5 lg:pt-10 pb-10">
+		{# <h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">New password</h2> #}
+
+		<!--image-->
+		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto my-4"> <div class="container mx-auto px-8 lg:px-16 ">
+
+			<div class="w-full lg:w-1/3 mx-auto login_form bg-gray-50 border border-gray-100 p-4 md:p-12 mt-5 shadow-lg">
+
+				<div
+					class="w-full">
+
+					<!--ERROR MESSAGE-->
+					<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
+
+
+					{{form_start(resetPasswordForm)}}
+					<div class=" w-full  text-base">
+						{{ form_label(resetPasswordForm.new_password.first) }}
+						{{ form_widget(resetPasswordForm.new_password.first) }}
+						<div class="form-error">
+							{{ form_errors(resetPasswordForm.new_password.first) }}
+							<div id="newPassword_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+
+					<div class=" w-full  text-base">
+						{{ form_label(resetPasswordForm.new_password.second) }}
+						{{ form_widget(resetPasswordForm.new_password.second) }}
+						<div class="form-error">
+							{{ form_errors(resetPasswordForm.new_password.second) }}
+							<div id="confirmPassword_error" hidden class="text-sm text-red"></div>
+						</div>
+					</div>
+					{{form_end(resetPasswordForm)}}
+
+				</div>
+				<p class="text-center mt-5 text-gray hover:black">
+					You already have an account? Please
+					<a href="{{ path('app_login') }}" class="underline hover:text-black">Login</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	{# VALIDATION FORM JAVASCRIPT#}
+	<script src="{{ asset('assets/js/users/newUserPassword.js') }}"></script>
+{% endblock %}

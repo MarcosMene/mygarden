@@ -111,8 +111,8 @@ class RegistrationFormType extends AbstractType
                 'first_options'  => [
                     'label' => 'Password',
                     'attr' => [
-                        'min' => 6,
-                        'max' => 16,
+                        'minlength' => 6,
+                        'maxlength' => 16,
                         'placeholder' => 'Password',
                         'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                     ]
@@ -120,6 +120,8 @@ class RegistrationFormType extends AbstractType
                 'second_options' => [
                     'label' => 'Confirm Password',
                     'attr' => [
+                        'minlength' => 6,
+                        'maxlength' => 16,
                         'placeholder' => 'Enter your password again',
                         'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                     ]

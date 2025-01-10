@@ -21,7 +21,7 @@ class PasswordController extends AbstractController
     }
 
     #[Route('/account/change-password', name: 'account_modify_password')]
-    public function index(Request $request, UserPasswordHasherInterface $passwordHasher,UserPasswordHasherInterface $encoder): Response
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher, UserPasswordHasherInterface $encoder): Response
     {
         $user = $this->getUser();
 
