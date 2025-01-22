@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - List user
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdminMarginBottom.html.twig') %}
+
+	<div
+		class="create_users w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+		<!-- RIGHT CREATE FORM -->
+		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+			<div class="title_form flex flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of users</h2>
+				{# <a href="{{path('create_user')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
+																																																																																																																																																																																																																																									Create user
+																																																																																																																																																																																																																																								</a> #}
+			</div>
+
+			{% if users|length >0 %}
+
+				<!-- TABLE  -->
+				<div class="flex flex-col">
+					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+							<div class="overflow-hidden">
+								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+										<tr>
+											<th scope="col" class="p-2 w-[500px]">First name</th>
+											<th scope="col" class="p-2 w-[500px]">Last name</th>
+											<th scope="col" class="p-2 w-[500px]">email</th>
+											<th scope="col" class="p-2 w-[500px]">Permission</th>
+											<th scope="col" class="p-2 w-[500px]">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for user in users %}
+											<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+												<td class="whitespace-nowrap px-2 py-3 ">{{user.firstname}}</td>
+												<td class="whitespace-nowrap px-2 py-3">{{user.lastname}}</td>
+
+												<td class="whitespace-nowrap px-2 py-3">{{user.email }}</td>
+
+												{# ROLES  #}
+												<td>
+													{% for role in user.roles %}
+														{{ role == 'ROLE_ADMIN' ? 'admin' : 'user' }}
+														{% if not loop.last %},
+														{% endif %}
+													{% endfor %}
+												</td>
+
+												<!--ACTION BUTTONS-->
+												<td class="whitespace-nowrap p-2">
+													<div class="h-full flex justify-between items-center gap-4">
+														<a href="{{path('detail_user', {id:user.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-regular fa-eye"></i>
+															View
+														</a>
+														<a href="{{path('edit_user',{id:user.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+															<i class="fa-solid fa-pencil text-black"></i>
+															Edit
+														</a>
+
+														<!-- toggle active user -->
+														<button class="toggle-user-btn px-4 py-2 text-white rounded {{user.isActive ? 'bg-green-500':'bg-red-500'}}" data-user-id="{{user.id}}">{{user.isActive ? 'Active':'Deactive'}}</button>
+
+
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">No users found.</p>
+					<p>Create a user.</p>
+				</div>
+			{% endif %}
+		</aside>
+	</div>
+
+
+	<script src="{{ asset('assets/js/admin/userToggleActive.js') }}" defer></script>
+{% endblock %}

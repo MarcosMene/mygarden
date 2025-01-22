@@ -14,6 +14,7 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
+      user_checker: App\Security\UserChecker
       lazy: true
       provider: app_user_provider
       form_login:
@@ -36,7 +37,7 @@ security:
   access_control:
     - { path: ^/order, roles: ROLE_USER }
     - { path: ^/account, roles: ROLE_USER }
-    # - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

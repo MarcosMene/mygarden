@@ -1,0 +1,200 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden - Edit User
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_users')}}" class="text-gray underline text-base  ">back to users</a>
+	</div>
+	<div
+		class="create_users w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</div>
+		<!-- RIGHT CREATE FORM -->
+		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+			<div class="title_form flex flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-4">
+					Update User
+					<span class="sr-only">Update User'</h2>
+				</div>
+
+				<!--ERROR MESSAGE-->
+				<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
+
+				{{form_start(form)}}
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.firstname) }}
+					{{ form_widget(form.firstname) }}
+					<div class="form-error">
+						{{ form_errors(form.firstname) }}
+						<div id="userFirstName_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.lastname) }}
+					{{ form_widget(form.lastname) }}
+					<div class="form-error">
+						{{ form_errors(form.lastname) }}
+						<div id="userLastName_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.email) }}
+					{{ form_widget(form.email) }}
+					<div class="form-error">
+						{{ form_errors(form.email) }}
+						<div id="userEmail_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.roles) }}
+					{{ form_widget(form.roles) }}
+					<div class="form-error">
+						{{ form_errors(form.roles) }}
+						<div id="userRoles_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+
+				<!-- SUBMIT BUTTON  -->
+				<div class="text-center mt-4">
+					<button type="submit" id="user_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+						Update User
+						<span class="sr-only">Update user button</span>
+					</button>
+				</div>
+				{{form_end(form)}}
+
+				{# {{ form_start(form) }}
+																																																																																														
+																																																																																																		<!-- NAME  -->
+																																																																																																		<div class="flex flex-col md:flex-row justify-between gap-1 md:gap-12 mb-4">
+																																																																																																			<div class=" w-full  text-base">
+																																																																																																				{{ form_label(form.firstnmae) }}
+																																																																																																				{{ form_widget(form.firstname, {
+																																																																																														        'attr': {
+																																																																																														            'class': (attr.class|default('w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black') ~ (form_errors(form.firstname) ? ' is-invalid' : ''))
+																																																																																														        }
+																																																																																														    }) }}
+																																																																																																				<div class="form-error">
+																																																																																																					{{ form_errors(form.firstname) }}
+																																																																																																					<div id="userName_error" hidden class="text-sm text-red"></div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																			<div class=" w-full  text-base">
+																																																																																																				{{ form_label(form.category) }}
+																																																																																																				{{ form_widget(form.category) }}
+																																																																																																				<div class="form-error">
+																																																																																																					{{ form_errors(form.category) }}
+																																																																																																					<div id="userCategory_error" hidden class="text-sm text-red"></div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																		</div>
+																																																																																														
+																																																																																																		<div
+																																																																																																			class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-4">
+																																																																																														
+																																																																																																			<!-- IMAGE  -->
+																																																																																																			<div class=" w-full  text-base">
+																																																																																																				{{ form_label(form.imageFile) }}
+																																																																																																				{{ form_widget(form.imageFile, {
+																																																																																														        'attr': {
+																																																																																														            'class': (attr.class|default('w-full rounded bg-white  appearance-none outline-none  leading-4 text-black py-2 mt-2') ~ (form_errors(form.imageFile) ? ' error-message' : ''))
+																																																																																														        }
+																																																																																														    }) }}
+																																																																																																				<div class="form-error">
+																																																																																																					{{ form_errors(form.imageFile) }}
+																																																																																																					<div id="userImage_error" hidden class="text-sm text-red"></div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																			<!--   PRICE AND TAX -->
+																																																																																																			<div
+																																																																																																				class="flex w-full flex-col md:flex-row justify-between gap-1 md:gap-12">
+																																																																																														
+																																																																																																				<!--   PRICE -->
+																																																																																																				<div class=" w-full  text-base">
+																																																																																																					{{ form_label(form.price) }}
+																																																																																																					{{ form_widget(form.price) }}
+																																																																																																					<div class="form-error">
+																																																																																																						{{ form_errors(form.price) }}
+																																																																																																						<div id="userPrice_error" hidden class="text-sm text-red"></div>
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																				<!--  TAX  -->
+																																																																																																				<div class=" w-full  text-base">
+																																																																																																					{{ form_label(form.tva) }}
+																																																																																																					{{ form_widget(form.tva) }}
+																																																																																																					<div class="form-error">
+																																																																																																						{{ form_errors(form.tva) }}
+																																																																																																						<div id="userTva_error" hidden class="text-sm text-red"></div>
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																		</div>
+																																																																																														
+																																																																																																		<!-- COLOR PROMOTION AND SUGGESTION   -->
+																																																																																																		<div class="flex flex-col lg:flex-row justify-between gap-1 lg:gap-12 mb-8">
+																																																																																																			<div
+																																																																																																				class="flex flex-col w-full md:flex-row justify-between gap-1 md:gap-12">
+																																																																																														
+																																																																																																				<!-- COLOR  -->
+																																																																																																				<div class=" w-full  text-base">
+																																																																																																					{{ form_label(form.colorUser) }}
+																																																																																																					{{ form_widget(form.colorUser) }}
+																																																																																																					<div class="form-error">
+																																																																																																						{{ form_errors(form.colorUser) }}
+																																																																																																						<div id="userColor_error" hidden class="text-sm text-red"></div>
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																				<!--  PROMOTION  -->
+																																																																																																				<div class=" w-full  text-base">
+																																																																																																					{{ form_label(form.promotion) }}
+																																																																																																					{{ form_widget(form.promotion) }}
+																																																																																																					<div class="form-error">
+																																																																																																						{{ form_errors(form.promotion) }}
+																																																																																																						<div id="userPromotion_error" hidden class="text-sm text-red"></div>
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																			<!--  SUGGESTION  -->
+																																																																																																			<div class=" w-full  text-base">
+																																																																																																				{{ form_label(form.isSuggestion) }}
+																																																																																																				{{ form_widget(form.isSuggestion) }}
+																																																																																																				<div class="form-error">
+																																																																																																					{{ form_errors(form.isSuggestion) }}
+																																																																																																					<div id="userSuggestion_error" hidden class="text-sm text-red"></div>
+																																																																																																				</div>
+																																																																																																			</div>
+																																																																																																		</div>
+																																																																																																		<!--  DESCRIPTION  -->
+																																																																																																		<div class="mt-4">
+																																																																																																			{{ form_label(form.description) }}
+																																																																																																			{{ form_widget(form.description) }}
+																																																																																																			<div class="form-error">
+																																																																																																				{{ form_errors(form.description) }}
+																																																																																																				<div id="userDescription_error" hidden class="text-sm text-red"></div>
+																																																																																																			</div>
+																																																																																																		</div>
+																																																																																														
+																																																																																																		<!-- SUBMIT BUTTON  -->
+																																																																																																		<div class="text-center mt-4">
+																																																																																																			<button type="submit" id="user_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+																																																																																																				{{ form.vars.value.id ? 'Update User' : 'Create User' }}
+																																																																																																				<span class="sr-only">{{ form.vars.value.id ? 'Update User' : 'Create User' }}
+																																																																																																					button</span>
+																																																																																																			</button>
+																																																																																																		</div>
+																																																																																																		{{ form_end(form) }} #}
+			</aside>
+		</div>
+
+		<!-- VALIDATE CREATE PRODUCT WITH JS  -->
+		<script src="{{ asset('assets/js/admin/createUser.js') }}"></script>
+	{% endblock %}

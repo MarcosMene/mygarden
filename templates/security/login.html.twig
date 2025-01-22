@@ -11,8 +11,8 @@
 	<section
 		class="login w-full pt-5 lg:pt-10 pb-10">
 		{# <h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign In My Garden</h2>
-								<!--image-->
-								<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto"> #}
+														<!--image-->
+														<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto"> #}
 		<div
 			class="container mx-auto px-8 lg:px-16">
 
@@ -51,6 +51,10 @@
 					{# security csrf  #}
 					<input
 					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+					{# redirect account page  #}
+					<input
+					type="hidden" name="_target_path" value="{{ path('account') }}"/>
 
 
 					<!--BUTTON SIGN IN-->

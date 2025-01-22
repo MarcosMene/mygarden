@@ -9,7 +9,15 @@ module.exports = {
     fontFamily: {
       inter: ['Inter', 'ui-sans-serif'],
       roboto: ['Roboto', 'ui-sans-serif'],
+
       // mulish: ['Mulish', 'ui-sans-serif'],
+    },
+    screens: {
+      sm: '576px',
+      md: '768px',
+      lg: '992px',
+      xl: '1200px',
+      '2xl': '1400px',
     },
     extend: {
       colors: {
@@ -42,14 +50,7 @@ module.exports = {
         'slide-out': 'slideOut 0.3s ease-out forwards',
         'loop-scroll': 'loop-scroll 25s linear infinite',
       },
-      screens: {
-        sm: '576px',
-        md: '768px',
-        lg: '992px',
-        xl: '1200px',
-        '2xl': '1400px',
-      },
     },
   },
   plugins: [require('tw-elements/plugin', 'tailwindcss-scoped-groups')],
-}
+};
