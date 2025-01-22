@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}My Garden -
-																																																			User detail
+																																																				User detail
 {% endblock %}
 
 {% block body %}
@@ -26,37 +26,37 @@
 				<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">User details</h2>
 			</div>
 
-
 			<!-- USER  -->
 			<div
 				class="detail_user flex flex-col lg:flex-row mt-4 lg:mt-0">
-
 
 				<!-- USER DESCRIPTION  -->
 				<div class="detail_user_description flex flex-col w-full lg:w-3/5 px-1 me-0 lg:px-8">
 					<div
 						class="detail_user_name flex flex-col lg:flex-row justify-start ">
+
 						<!-- NAME -->
 						<div class="flex me-0 lg:me-6">
 							<p class="font-semibold text-lg">First Name:</p>
 							<p class="font-normal text-lg mb-2 ms-1 capitalize">{{ user_detail.firstname }}</p>
 						</div>
+
 						<!-- LAST NAME -->
 						<div class="flex me-0 lg:me-6">
 							<p class="font-semibold text-lg">Last Name:</p>
 							<p class="font-normal text-lg mb-2 ms-1 capitalize">
 								{{ user_detail.lastname }}</p>
 						</div>
-
 					</div>
+
 					<!-- EMAIL -->
 					<div class="flex me-0 lg:me-6">
 						<p class="font-semibold text-lg">Email:</p>
 						<p class="font-normal text-lg mb-2 ms-1">
 							{{ user_detail.email }}</p>
 					</div>
-					<!-- USER ROLE -->
 
+					<!-- USER ROLE -->
 					<div class="flex me-0 lg:me-6">
 						<p class="font-semibold text-lg">Permission:</p>
 						{% for role in user_detail.roles %}
@@ -68,11 +68,8 @@
 							{% endif %}
 						{% endfor %}
 					</div>
-
-
 				</div>
 			</div>
 		</aside>
 	</div>
-
 {% endblock %}

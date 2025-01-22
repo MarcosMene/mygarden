@@ -8,11 +8,8 @@
 	{% include ('_partials/security/_banner_signin.html.twig')%}
 
 	<!--LOGIN SECTION-->
-	<section
-		class="login w-full pt-5 lg:pt-10 pb-10">
-		{# <h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal">Sign In My Garden</h2>
-														<!--image-->
-														<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto"> #}
+	<section class="login w-full pt-5 lg:pt-10 pb-10">
+
 		<div
 			class="container mx-auto px-8 lg:px-16">
 
@@ -38,7 +35,6 @@
 						</label>
 					</div>
 
-
 					<!--PASSWORD-->
 					<div class="password w-full relative">
 						<label for="password" class=" mb-2 text-base font-medium text-black mt-4">
@@ -56,7 +52,6 @@
 					<input
 					type="hidden" name="_target_path" value="{{ path('account') }}"/>
 
-
 					<!--BUTTON SIGN IN-->
 					<div class="button_submit w-full ">
 						<button type="submit" class="py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
@@ -71,9 +66,11 @@
 				<!--DIVISOR-->
 				<div
 					class="flex w-full items-center h-10">
+
 					<!--BORDER-->
 					<div class="border w-3/4 mx-auto border-gray my-6 opacity-50"></div>
 					<p class="mx-4">or</p>
+
 					<!--BORDER-->
 					<div class="border w-3/4 mx-auto border-gray my-6 opacity-50"></div>
 				</div>

@@ -20,9 +20,6 @@
 		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
 			<div class="title_form flex flex-wrap justify-between">
 				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of users</h2>
-				{# <a href="{{path('create_user')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
-																																																																																																																																																																																																																																									Create user
-																																																																																																																																																																																																																																								</a> #}
 			</div>
 
 			{% if users|length >0 %}
@@ -73,8 +70,6 @@
 
 														<!-- toggle active user -->
 														<button class="toggle-user-btn px-4 py-2 text-white rounded {{user.isActive ? 'bg-green-500':'bg-red-500'}}" data-user-id="{{user.id}}">{{user.isActive ? 'Active':'Deactive'}}</button>
-
-
 													</div>
 												</td>
 											</tr>
