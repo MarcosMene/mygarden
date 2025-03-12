@@ -44,7 +44,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findNewArrivals()
     {
         $date = new \DateTime();
-        $date->modify('-30 days'); // Products added in the last 30 days
+        $date->modify('-30 days'); // PRODUCTS ADDED IN THE LAST 30 DAYS
 
         return $this->createQueryBuilder('p')
             ->where('p.createdAt >=:date')
@@ -54,14 +54,23 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    public function findTopRated()
+
+
+    public function findTopRated($limit = 16)
     {
         return $this->createQueryBuilder('p')
-            ->where('p.rating>=:rating')
-            ->setParameter('rating', 4)
+            ->leftJoin('p.reviews', 'r') // Join Product with Review
+            ->where('r.rate >= :rating') // Filter products with rating >= 5
+            ->andWhere('r.isApproved = :approved') // Only approved reviews
+            ->setParameter('rating', 5)
+            ->setParameter('approved', true)
+            ->groupBy('p.id') // Group by product
+            ->orderBy('r.rate', 'DESC') // Sort by rating
+            ->setMaxResults($limit) // Limit to 12 products
             ->getQuery()
             ->getResult();
     }
+
 
     public function findOtherSuggestions($product)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BlogArticleRepository;
 use App\Repository\GalleryRepository;
 use App\Repository\HeaderRepository;
 use App\Repository\ProductRepository;
@@ -13,10 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Attribute\Route;
+
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository, HeaderRepository $headerRepository, ReviewClientRepository $reviewClientRepository): Response
+    public function index(StoreScheduleRepository $storeScheduleRepository, ProductRepository $productRepository, GalleryRepository $galleryRepository, HeaderRepository $headerRepository, ReviewClientRepository $reviewClientRepository, BlogArticleRepository $blogArticleRepository): Response
 
     {
         //FIND HEADERS FOR CAROUSEL
@@ -34,12 +36,16 @@ class HomeController extends AbstractController
         //STORE SCHEDULES
         $shopSchedules = $storeScheduleRepository->findBy(array(), array('dayOrder' => 'ASC'));
 
+        //FIND BLOGS
+        $articles = $blogArticleRepository->findBy(array(), array('createdAt' => 'DESC'), 3);
+
         return $this->render('pages/home.html.twig', [
             'shopSchedules' => $shopSchedules,
             'products' => $products,
             'galleries' => $galleries,
             'headers' => $headers,
-            'reviews' => $reviewClients
+            'reviews' => $reviewClients,
+            'articles' => $articles
         ]);
     }
 
@@ -63,9 +69,9 @@ class HomeController extends AbstractController
             case 'new':
                 $products = $productRepository->findNewArrivals();
                 break;
-                // case 'top-rated':
-                //     $products = $productRepository->findTopRated();
-                //     break;
+            case 'top-rated':
+                $products = $productRepository->findTopRated();
+                break;
             default:
                 $products = $productRepository->findAllWithLimit(12);
                 break;

@@ -11,17 +11,16 @@
 			<button data-filter="best-seller" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Best Seller</button>
 			<button data-filter="promotion" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Promotion</button>
 			<button data-filter="new" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">New</button>
-			{# <button data-filter="top-rated" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Top Rated</button> #}
+			<button data-filter="top-rated" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Top Rated</button>
 		</div>
 
 		<!--CARDS -->
-		<div class="px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-0 sm:gap-4 md:gap-6 mt-16">
-			{% for product in products %}
-				<!--CARD-->
-				{% include 'components/card.html.twig'%}
-			{% else %}
-				<p>No products found for this filter.</p>
-			{% endfor %}
+		<div
+			class="px-16 flex flex-wrap mt-16 gap-4 justify-center" id="product-gallery">
+
+			<!--CARD-->
+			{% include '_partials/homepage/_product_gallery.html.twig' with {'products': products} %}
+
 		</div>
 
 		<!--VIEW ALL PRODUCTS BUTTON-->
