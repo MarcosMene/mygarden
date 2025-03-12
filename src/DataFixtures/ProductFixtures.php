@@ -36,7 +36,7 @@ class ProductFixtures extends Fixture
       $color = new ColorProduct();
       $color->setColor($colorproduct);
       $manager->persist($color);
-      // Create  products per category
+      // CREATE  PRODUCTS PER CATEGORY
       for ($j = 1; $j <= 30; $j++) {
         $product = new Product();
         $product->setName('product ' . $j);

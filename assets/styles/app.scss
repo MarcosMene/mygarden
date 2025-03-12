@@ -30,6 +30,26 @@ h6 {
   font-family: 'Noto Serif', serif, system-ui;
 }
 
+//SCROLLBAR
+/*  Chrome, Edge e Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $secondary;
+}
+
 //h1 space text
 .line_height12 {
   line-height: 1.2 !important;
@@ -50,10 +70,8 @@ h6 {
 }
 
 //VALIDATE INPUTS
-
 label {
   display: block;
-  // margin-top: 1em;
 }
 
 input::placeholder,
@@ -100,6 +118,17 @@ form .text-red {
 
 .is-invalid {
   outline: 4px solid red;
+}
+
+.active {
+  background-color: $primary;
+  color: $white;
+}
+
+.form-error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
 }
 
 .disabled {

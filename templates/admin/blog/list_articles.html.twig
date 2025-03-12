@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Artigos
+{% endblock %}
+
+{% block body %}
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdminMarginBottom.html.twig') %}
+
+	<div
+		class="create_articles w-full flex px-8 lg:px-16 mb-10">
+		<!-- MENU LEFT  -->
+		<aside class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</aside>
+
+		<!-- RIGHT LIST -->
+		<div class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+			<div
+				class="title_form flex flex-wrap justify-between">
+
+				<!--TITLE-->
+				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of articles</h2>
+
+				<!--CREATE ARTICLE BUTTON-->
+				<a href="{{path('create_article')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
+					Create article
+				</a>
+			</div>
+
+			{% if articles|length >0 %}
+
+				<!-- INPUT RESEARCH -->
+				<div class="flex items-center my-4 relative">
+					<input type="text" id="search" name="q" placeholder="Search articles..." class="border p-2 rounded w-full pr-10 " value="{{ query }}">
+					<button id="clearSearch" class="absolute  right-20 text-gray-500 hidden">X</button>
+					<button id="searchButton" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary ">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+
+				<!-- SPINNER -->
+				<div id="loadingSpinner" class="hidden text-center my-4 text-primary ">
+					<i class="fa-solid fa-spinner fa-2xl  animate-spin text-red-300  mx-auto"></i>
+				</div>
+
+				<!--  TABLE -->
+				<div class="flex flex-col">
+					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+							<div id="articles-container" class=" overflow-hidden">
+								{% include 'admin/_partials/blog_article/_table_articles.html.twig' with {'articles':articles} %}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">No articles found.</p>
+					<p>Create a article.</p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<script>
+		// FUNCTION TO LOAD THE ARTICLE TABLE VIA AJAX
+document.addEventListener('DOMContentLoaded', function () {
+const searchInput = document.getElementById('search');
+const searchButton = document.getElementById('searchButton');
+const clearSearchButton = document.getElementById('clearSearch'); // Botão de limpar
+const tableContainer = document.getElementById('articles-container');
+const loadingSpinner = document.getElementById('loadingSpinner');
+
+function loadArticles(page = 1, query = '') {
+const url = new URL('{{ path('show_articles') }}', window.location.origin);
+url.searchParams.set('page', page);
+
+if (query.trim() !== '') {
+url.searchParams.set('q', query);
+}
+
+// SHOW LOADING SPINNER
+loadingSpinner.classList.remove('hidden');
+
+fetch(url, {
+headers: {
+'X-Requested-With': 'XMLHttpRequest'
+}
+}).then(response => {
+if (!response.ok) {
+throw new Error('Failed to fetch articles');
+}
+return response.text();
+}).then(html => {
+tableContainer.innerHTML = html;
+attachPaginationEvents();
+}).catch(error => {
+console.error('Error fetching articles:', error);
+tableContainer.innerHTML = `<p class="text-center text-red-500">Error loading articles. Try again later.</p>`;
+}). finally(() => { // HIDE SPINNER AFTER LOADING
+loadingSpinner.classList.add('hidden');
+});
+}
+
+function attachPaginationEvents() {
+document.querySelectorAll('.pagination a').forEach(link => {
+link.addEventListener('click', function (e) {
+e.preventDefault();
+const page = new URL(this.href).searchParams.get('page');
+loadArticles(page, searchInput.value);
+});
+});
+}
+
+// TRIGGER REQUEST BY CLICKING THE SEARCH BUTTON
+searchButton.addEventListener('click', function () {
+loadArticles(1, searchInput.value);
+});
+
+// SHOW OR HIDE THE "X" BUTTON AS THE USER TYPES
+searchInput.addEventListener('input', function () {
+if (this.value.trim() !== '') {
+clearSearchButton.classList.remove('hidden');
+} else {
+clearSearchButton.classList.add('hidden');
+}
+});
+
+// 'X' BUTTON TO CLEAR THE INPUT AND RELOAD ALL ARTICLES
+clearSearchButton.addEventListener('click', function () {
+searchInput.value = '';
+clearSearchButton.classList.add('hidden');
+loadArticles(1, '');
+});
+
+// APPENDS PAGING EVENTS WHEN LOADING THE PAGE
+attachPaginationEvents();
+});
+	</script>
+{% endblock %}

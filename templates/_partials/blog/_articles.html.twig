@@ -1,0 +1,72 @@
+{% if articles|length > 0 %}
+	{% for article in articles %}
+		<!--CARD-->
+		<div
+			class="flex flex-col w-full xl:w-[48%] relative mb-16">
+			<!--TITLE-->
+			<div class="absolute top-2 -left-3 bg-white drop-shadow-lg p-2">
+				<h2 class="text-xs font-semibold text-primary text-gray-900">{{article.createdAt()|date('F, j, Y' )}}</h>
+			</div>
+
+			<img
+			src="{{ asset('upload/blog/articles/' ~ article.articleImageName) }}" alt="{{ article.title }}" loading="lazy">
+			<!--body-->
+			<h3 class="text-black font-medium  text-xl mt-2">
+				{{article.title}}</h3>
+			<div class="card-body flex justify-between items-end">
+				<div
+					class="card-body-left w-full">
+					<!--TEXT-->
+					{% if article.author is not null  %}
+						<div class="card-body-info flex justify-start gap-4 mt-2">
+							<div
+								class="card-body-author ">
+
+								<!--AUTHOR-->
+								<span class="text-gray ">By</span>
+								<span class="capitalize">{{article.author.firstname}}</span>
+							</div>
+
+							<div class=" card-body-date ">
+								<span class="text-gray">Date</span>
+								<span class="text-black">({{article.createdAt()|date('M j, Y' )}})</span>
+							</div>
+						</div>
+					{% else %}
+						<div class="card-body-info flex justify-start mt-2">
+							<div class=" card-body-date ">
+								<span class="text-gray">Date</span>
+								<span class="text-black">({{article.createdAt()|date('M j, Y' )}})</span>
+							</div>
+						</div>
+					{% endif %}
+					<div class=" card-body-category mt-2">
+						<span class="text-gray">Category:</span>
+						<span class="text-black capitalize">{{article.category}}</span>
+					</div>
+					<div class=" card-body-category mt-2">
+						<span class="text-gray">Content:</span>
+						<span class="text-black ucfirst">{{article.content|slice(0, 40) ~ '...'}}</span>
+
+					</div>
+				</div>
+				<!--AUTHOR-->
+				{% if article.author %}
+					<div class="blog_author flex items-center">
+						<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full">
+
+					</div>
+				{% else %}
+					<img src="{{ asset('assets/images/default_avatar.jpg') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
+				{% endif %}
+			</div><!--TAGS --><div class="flex flex-wrap w-full mt-4 items-center justify-start">
+				<span class="text-gray ">Tags:</span>
+				{% for tag in article.tags %}
+					<span class="py-1  px-3 border border-gray-300 rounded-lg m-1 capitalize">{{tag.name}}</span>
+				{% endfor %}
+			</div>
+			<!--BUTTON READ MORE-->
+			<a href="{{path('blog_show',{slug:article.slug})}}" class="py-2 px-4  mb-0  text-sm font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize w-fit mt-6">Read More</a>
+		</div>
+	{% endfor %}
+{% endif %}

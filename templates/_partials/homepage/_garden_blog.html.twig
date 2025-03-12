@@ -2,72 +2,37 @@
 
 	<div class="garden_blog w-full pt-5 lg:pt-12 pb-10">
 		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Garden Blog</h2>
-		<!--image-->
+		<!--IMAGE-->
 		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
 
 		<div
 			class="md:container mx-auto px-8 lg:px-16">
 
 			<!--CARDS-->
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-20 mt-16">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-20 mt-16">
 
-				<!--CARD-->
-				<a
-					href="" class="card relative  mb-12 border border-gray-200 hover:shadow-4 bg-white">
-					<!--LABEL DATE-->
-					<div class="absolute top-5 left-5 w-12 h-20 bg-white px-4 py-2 uppercase text-primary text-[12px] font-bold flex flex-col justify-between  items-center">
-						<p class="text-xs">17</p>
-						<span class="w-3/4 border border-t bg-primary"></span>
-						<p class="text-xs">Jul</p>
-					</div>
-					<img
-					src="{{asset('upload/blog/blog1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
+				{% for article in articles %}
+					<!--CARD-->
+					<a
+						href="{{path('blog_show', {slug: article.slug})}}" class="card relative  mb-12 border border-gray-200 hover:shadow-4 bg-white">
+						<!--LABEL DATE-->
+						<div class="absolute top-5 left-5 w-12 h-20 bg-white px-4 py-2 uppercase text-primary text-[12px] font-bold flex flex-col justify-between  items-center">
+							<p class="text-xs">{{article.createdAt()|date('j')}}</p>
+							<span class="w-3/4 border border-t bg-primary"></span>
+							<p class="text-xs">{{article.createdAt()|date('M')}}</p>
+						</div>
 
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center p-5">
-						<h3 class="text-primary font-medium capitalize text-xl">Lorem ipsum</h3>
-						<p class="text-center">Volutpat maecenas cras convallis suspendisse faucibus fames luctus ullamcorper</p>
-					</div>
-				</a>
+						<!--IMAGE OF ARTICLE-->
+						<img
+						class="w-full group-hover:opacity-75" src="{{ asset('upload/blog/articles/' ~ article.articleImageName) }}" alt="{{ article.title }}" loading="lazy">
 
-				<!--CARD-->
-				<a
-					href="" class="card relative  mb-12 border border-gray-200 hover:shadow-4 bg-white">
-					<!--LABEL DATE-->
-					<div class="absolute top-5 left-5 w-12 h-20 bg-white px-4 py-2 uppercase text-primary text-[12px] font-bold flex flex-col justify-between  items-center">
-						<p class="text-xs">17</p>
-						<span class="w-3/4 border border-t bg-primary"></span>
-						<p class="text-xs">Jul</p>
-					</div>
-					<img
-					src="{{asset('upload/blog/blog2.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center p-5">
-						<h3 class="text-primary font-medium capitalize text-xl">Lorem ipsum</h3>
-						<p class="text-center">Volutpat maecenas cras convallis suspendisse faucibus fames luctus ullamcorper</p>
-					</div>
-				</a>
-
-				<!--CARD-->
-				<a
-					href="" class="card relative  mb-12 border border-gray-200 hover:shadow-4 bg-white">
-					<!--LABEL DATE-->
-					<div class="absolute top-5 left-5 w-12 h-20 bg-white px-4 py-2 uppercase text-primary text-[12px] font-bold flex flex-col justify-between  items-center">
-						<p class="text-xs">17</p>
-						<span class="w-3/4 border border-t bg-primary"></span>
-						<p class="text-xs">Jul</p>
-					</div>
-					<img
-					src="{{asset('upload/blog/blog3.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/>
-
-					<!--body-->
-					<div class="card-body flex flex-col items-center justify-center p-5">
-						<h3 class="text-primary font-medium capitalize text-xl">Lorem ipsum</h3>
-						<p class="text-center">Volutpat maecenas cras convallis suspendisse faucibus fames luctus ullamcorper</p>
-					</div>
-				</a>
+						<!--BODY-->
+						<div class="card-body flex flex-col items-center justify-center p-5">
+							<h3 class="text-primary font-medium  text-xl text-center">{{article.title}}</h3>
+							<p class="text-center">{{article.content|slice(0, 40) ~ '...'}}</p>
+						</div>
+					</a>
+				{% endfor %}
 			</div>
 		</div>
 	</div>

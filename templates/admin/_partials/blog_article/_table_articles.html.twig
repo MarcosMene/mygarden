@@ -1,0 +1,159 @@
+{% if articles|length > 0 %}
+
+	<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+		<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+			<tr>
+				<th scope="col" class="p-2 w-[500px]">Author</th>
+				<th scope="col" class="p-2 w-[500px]">Title</th>
+				<th scope="col" class="p-2 w-[500px]">Content</th>
+				<th scope="col" class="p-2 w-[500px]">Created at</th>
+				<th scope="col" class="p-2 w-[500px]">Published at</th>
+				<th scope="col" class="p-2 w-[500px]">Category</th>
+				<th scope="col" class="p-2 w-[500px]">Image</th>
+				<th scope="col" class="p-2 w-[500px]">Status</th>
+				<th scope="col" class="p-2 w-[500px]">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for article in articles %}
+
+				<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+					<td
+						class="whitespace-nowrap px-2 py-3">
+
+						<!--AUTHOR-->
+						{% if article.author %}
+							<div class="blog_author flex items-center">
+								<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full">
+							</div>
+						{% else %}
+							<img src="{{ asset('assets/images/default_avatar.jpg') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
+						{% endif %}
+					</td>
+					<td class="whitespace-nowrap px-2 py-3 ">{{article.title|slice(0, 20) ~ '...'}}</td>
+					<td class="whitespace-nowrap px-2 py-3">{{article.content|slice(0, 10) ~ '...'}}</td>
+					<td class="whitespace-nowrap px-2 py-3 ">{{article.createdAt()|date('M/j/y')}}</td>
+
+					<!--IF DRAFT NOT PUBLISHED-->
+					<td class="whitespace-nowrap px-2 py-3 ">
+						{% if article.status == 'draft' %}
+							<span class="bg-grey-300 border text-red-700 px-2 py-1 rounded">
+								Not published
+							</span>
+						{% else %}
+							{{article.publishedAt()|date('M/j/y')}}
+						{% endif %}
+					</td>
+					<!-- CATEGORY -->
+					<td class="px-4 py-2">
+						{% if article.category %}
+							<span class="capitalize">
+								{{ article.category.name }}
+							</span>
+						{% else %}
+							<span class="text-red">No category</span>
+						{% endif %}
+					</td>
+
+					<!--IMAGE ARTICLE-->
+					<td class="whitespace-nowrap px-2 py-3">
+						{% if article.articleImageName is not null %}
+							<img src="{{ asset('/upload/blog/articles/'~ article.articleImageName)|imagine_filter('blog_images') }}" alt="image of {{ article.title }}" loading="lazy" class="w-14 mx-auto">
+						{% else %}
+							<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="article image not available" loading="lazy">
+						{% endif %}
+					</td>
+
+					<!-- STATUS -->
+					<td class="px-4 py-2">
+						{% if article.status == 'draft' %}
+							<span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded">Draft</span>
+						{% else %}
+							<span class="bg-green-200 text-green-800 px-2 py-1 rounded">Published</span>
+						{% endif %}
+					</td>
+
+					<!--ACTION BUTTONS-->
+					<td class="whitespace-nowrap p-2">
+						<div class="h-full flex justify-between items-center gap-4">
+							<a href="{{path('detail_article', {slug: article.slug})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-regular fa-eye"></i>
+								View
+							</a>
+							<a href="{{path('edit_article',{id:article.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-solid fa-pencil text-black"></i>
+								Edit
+							</a>
+
+
+							<!-- DELETE BUTTON TRIGGERS THE MODAL, NOT A FORM SUBMISSION -->
+							<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ article.id }}, '{{ article.title }}')">
+								<i class="fa-regular fa-trash-can"></i>
+								Delete
+							</button>
+
+							<!-- HIDDEN FORM FOR DELETION -->
+							<form id="delete-form-{{ article.id }}" action="{{path('delete_article',{id:article.id})}}" method="POST" class="hidden">
+								<input
+								type="hidden" name="_token" value="{{ csrf_token('deleteBlogArticle' ~ article.id) }}">
+
+								<!--INPUT TO ALLOW DELETE USING METHOD DELETE ON ROUTE-->
+								<input type="hidden" name="_method" value="DELETE">
+							</form>
+						</td>
+					</td>
+				</tr>
+			</div>
+		</tbody>
+	</td>
+</tr>{% endfor %}</tbody></table><!-- DYNAMIC PAGE -->{% if articles.paginationData.pageCount > 1 %}<div class="mt-4 flex justify-center"><ul
+class="flex space-x-2">
+
+<!-- THE FIRST PAGE BUTTON-->
+{% if articles.currentPageNumber > 1 %}
+	<li>
+		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': 1})) }}" class="px-4 py-2 bg-bg2">
+			«
+		</a>
+	</li>
+{% endif %}
+
+<!-- PREVIOUS PAGE BUTTON -->
+{% if articles.currentPageNumber > 1 %}
+	<li>
+		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber - 1})) }}" class="px-4 py-2 bg-bg1">
+			‹
+		</a>
+	</li>
+{% endif %}
+
+<!-- PAGE BUTTONS -->
+{% for page in articles.paginationData.pagesInRange %}
+	{% if page == articles.currentPageNumber %}
+		<li class="px-4 py-2 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 ">{{ page }}</li>
+	{% else %}
+		<li>
+			<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': page})) }}" class="px-4 py-2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">
+				{{ page }}
+			</a>
+		</li>
+	{% endif %}
+{% endfor %}
+
+<!-- NEXT PAGE BUTTON  -->
+{% if articles.currentPageNumber < articles.paginationData.pageCount %}
+	<li>
+		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber + 1})) }}" class="px-4 py-2  bg-bg1 rounded hover:bg-gray-400">
+			›
+		</a>
+	</li>
+{% endif %}
+
+<!-- LAST PAGE BUTTON -->
+{% if articles.currentPageNumber < articles.paginationData.pageCount %}
+	<li>
+		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.paginationData.pageCount})) }}" class="px-4 py-2 rounded bg-bg2">
+			»
+		</a>
+	</li>
+{% endif %}</ul></div>{% endif %}{% else %}<div class="flex justify-center flex-col items-center"><p class="text-2xl text-gray-600 font-normal my-3">No article found.</p></div>{% endif %}

@@ -17,7 +17,7 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     $this->cart = $cart;
   }
 
-  //function to display the price format
+  //FUNCTION TO DISPLAY THE PRICE FORMAT
   public function getFilters()
   {
     return [
@@ -30,14 +30,14 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     return '$' . number_format($number, 2, '.', ' ');
   }
 
-  //variable global get all CART on all pages
+  //VARIABLE GLOBAL GET ALL CART ON ALL PAGES
   public function getGlobals(): array
   {
     return [
-      'fullCartQuantity' =>$this->cart->fullQuantity(),
+      'fullCartQuantity' => $this->cart->fullQuantity(),
       'myCart' => $this->cart->getCart(),
-      'totalCartNt'=>$this->cart->getTotal(),
-      'totalCartWt'=>$this->cart->getTotalWt(),
+      'totalCartNt' => $this->cart->getTotal(),
+      'totalCartWt' => $this->cart->getTotalWt(),
     ];
   }
 }

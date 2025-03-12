@@ -1,22 +1,22 @@
 if (typeof cancelButton === 'undefined') {
-  const cancelButton = document.getElementById('cancel-button')
+  const cancelButton = document.getElementById('cancel-button');
 
-  // Function to open the delete modal
+  // FUNCTION TO OPEN THE DELETE MODAL
   function openDeleteModal(productId, productName) {
-    // Show the modal
-    document.getElementById('modal_delete').classList.remove('hidden')
+    // SHOW THE MODAL
+    document.getElementById('modal_delete').classList.remove('hidden');
 
-    // Update the product name in the modal
-    document.getElementById('delete-product-name').textContent = productName
+    // UPDATE THE PRODUCT NAME IN THE MODAL
+    document.getElementById('delete-product-name').textContent = productName;
 
-    // Add click event to confirm delete button
+    // ADD CLICK EVENT TO CONFIRM DELETE BUTTON
     document.getElementById('confirm-button').onclick = function () {
-      // Submit the delete form for the selected product
-      document.getElementById('delete-form-' + productId).submit()
-    }
+      // SUBMIT THE DELETE FORM FOR THE SELECTED PRODUCT
+      document.getElementById('delete-form-' + productId).submit();
+    };
   }
-  // Function to close the delete modal
+  // FUNCTION TO CLOSE THE DELETE MODAL
   cancelButton.addEventListener('click', () => {
-    document.getElementById('modal_delete').classList.add('hidden')
-  })
+    document.getElementById('modal_delete').classList.add('hidden');
+  });
 }

@@ -1,0 +1,19 @@
+liip_imagine:
+  driver: 'gd'
+
+  filter_sets:
+    cache: ~ # active cache
+
+    # Filter to article images (400px, WebP)
+    blog_images:
+      quality: 85
+      format: webp
+      filters:
+        thumbnail: { size: [400, 400], mode: outbound }
+
+    # Filter to user (50px, WebP)
+    user_images:
+      quality: 85
+      format: webp
+      filters:
+        thumbnail: { size: [150, 150], mode: outbound }

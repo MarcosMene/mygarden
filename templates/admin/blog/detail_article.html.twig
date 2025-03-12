@@ -1,0 +1,218 @@
+{% extends 'base.html.twig' %}
+{% block title %}My Garden -
+	{{article.slug}}
+{% endblock %}
+
+{% block body %}
+
+	<!-- MENU  -->
+	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+	<div class="back_to text-end px-8 lg:px-16">
+		<a href="{{path('show_articles')}}" class="text-gray underline text-base  ">back to articles</a>
+	</div>
+	<div
+		class="create_articles w-full flex px-8 lg:px-16 mb-10">
+
+		<!-- MENU LEFT  -->
+		<aside class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+			<div class="sticky top-0">
+				{% include ('admin/_partials/menu_navigation.html.twig')%}
+			</div>
+		</aside>
+
+		<!-- RIGHT ARTICLE -->
+		<div class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+			<div class="title_form flex  flex-wrap justify-between">
+				<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Article details</h2>
+			</div>
+
+			<!-- ARTICLE  -->
+			<div class="detail_article flex flex-col lg:flex-row mt-4 lg:mt-0">
+
+				<!-- ARTICLE DESCRIPTION  -->
+				<!-- LEFT ARTICLE -->
+					<div class="detail_article_description flex flex-col w-full  lg:w-2/3 px-1 me-0 lg:px-8"> <div
+						class="detail_article_name flex flex-col justify-start ">
+
+						<!-- TITLE -->
+						<div class="flex me-0 lg:me-6">
+							<p class="font-semibold text-lg">Title:</p>
+							<p class="font-normal text-lg mb-2 ms-1 capitalize">{{ article.title }}</p>
+						</div>
+
+						<!-- SLUG -->
+						<div class="flex me-0 lg:me-6">
+							<p class="font-semibold text-lg">Slug:</p>
+							<p class="font-normal text-lg mb-2 ms-1">{{ article.slug }}</p>
+						</div>
+					</div>
+
+					<!-- CONTENT  -->
+					<div class="detail_article_name flex flex-col  justify-start">
+						<div class="flex flex-col  justify-start">
+							<p class="font-semibold text-lg mr-2">Content:</p>
+							<div class="custom-scrollbar h-auto max-h-screen overflow-auto p-4  mt-1 border border-gray-300 prose lg:prose-lg">
+								<p class="font-normal text-lg px-3">{{ article.content|nl2br }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- RIGHT  ARTICLE-->
+				<div
+					class=" flex flex-col w-full lg:w-1/3  px-1 me-0">
+					<!-- ARTICLE IMAGE  -->
+					<div class="detail_article_img w-full mt-12 lg:mt-0">
+						{% if article.articleImageName is not null %}
+							<img src="{{ asset('upload/blog/articles/' ~ article.articleImageName) }}" alt="{{ article.title }}" loading="lazy" class=" mx-auto">
+						{% else %}
+							<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="article image not available" loading="lazy">
+						{% endif %}
+					</div>
+
+					<!--AUTHOR DETAILS-->
+					<div class="card-body flex justify-between items-end">
+						<div
+							class="card-body-left w-full">
+							<!--TEXT-->
+							<div class="card-body-info flex flex-wrap justify-between items-center gap-4 mt-2">
+								<div
+									class="card-body-author flex items-center">
+									<!-- IMAGE AUTHOR -->
+									{% if article.author is not null and article.author.profileImageName is not null %}
+										<div class="blog_author flex items-center">
+											<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full">
+										</div>
+
+										<!--AUTHOR-->
+										<span class="text-gray mx-2">By
+										</span>
+										<span class="text-primary capitalize ">{{article.author.firstname}}</span>
+
+									{% else %}
+										<img src="{{ asset('assets/images/default_avatar.jpg') }}" alt="author image not available" loading="lazy" class="w-10 mx-auto">
+										<span class=" capitalize ml-2">unknown author</span>
+									{% endif %}
+								</div>
+
+								<!--DATE-->
+								<div class=" card-body-date ">
+									<span class="text-gray">{{article.createdAt()|date('M j, Y' )}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--USER COMMENTS QUANTITY-->
+					<div class="blog_author_date text-gray text-end ">
+						<i class="fa-regular fa-comment"></i>
+						<span>2</span>
+						<span>Comment(s)</span>
+					</div>
+
+					<!--DIVISOR-->
+					<hr
+					class="my-4 opacity-30 w-2/3 mx-auto">
+
+					<!-- CATEGORY  -->
+					<div class="tags flex justify-start items-center">
+						<div class="flex me-0 lg:me-6">
+							<p class="font-semibold text-lg">Category:</p>
+							<p class="font-normal text-lg mb-2 ms-1 capitalize">{{ article.category }}</p>
+						</div>
+					</div>
+
+					<!--TAGS-->
+					<div class="tags flex flex-wrap gap-2 justify-start items-center">
+						<p class="font-semibold text-lg mr-2">Tags:</p>
+						{% for tag in article.tags %}
+							<span class="py-1 px-2  text-base font-base text-gray me-4 bg-white rounded-lg border border-gray capitalize">{{tag}}</span>
+						{% endfor %}
+					</div>
+
+					<!-- STATUS -->
+					<div class="tags flex justify-start items-center mt-4">
+						<p class="font-semibold text-lg mr-2">Status:</p>
+						{% if article.status == 'draft' %}
+							<span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded">Draft</span>
+						{% else %}
+							<span class="bg-green-200 text-green-800 px-2 py-1 rounded">Published</span>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<!--DIVISOR-->
+			<hr class="my-10 opacity-30 w-2/3 mx-auto">
+			<h3 class=" text-black font-medium text-xl mb-0 md:mb-4">User's comments</h3>
+			<!--COMMENTS-->
+
+			{% if article.blogComments|length > 0 %}
+				<div class="w-full max-h-72 overflow-y-scroll ">
+
+					{% for comment in article.blogComments %}
+						<div class="comment-container p-4 border{% if comment.isApproved == 'approved' %} border-green-500 {% elseif comment.isApproved == 'rejected' %} border-red-500 {% else %} border-gray-500 {% endif %} rounded-lg mb-4">
+
+							<p>
+								<strong>{{ comment.user.firstname }}</strong>:
+								{{ comment.content }}</p>
+
+							<!-- PENDING INDICATOR -->
+							{% if comment.isApproved == 'pending' %}
+								<p class="text-yellow-500 font-bold pending-label">Pendente</p>
+							{% endif %}
+
+							<div class="flex space-x-2 mt-2">
+								<button class="px-4 py-2 text-white bg-green-500 rounded approve-btn" data-id="{{ comment.id }}" data-action="approve">
+									Aprovar
+								</button>
+								<button class="px-4 py-2 text-white bg-red-500 rounded reject-btn" data-id="{{ comment.id }}" data-action="reject">
+									Rejeitar
+								</button>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="flex justify-center flex-col items-center">
+					<p class="text-2xl text-gray-600 font-normal my-3">There is no comments for this article.</p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<script>
+		document.querySelectorAll('.approve-btn, .reject-btn').forEach(button => {
+button.addEventListener('click', function () {
+let commentId = this.dataset.id;
+let action = this.dataset.action;
+let commentDiv = this.closest('.comment-container');
+
+fetch(`/admin/comments/${commentId}/${action}`, {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest',
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({})
+}).then(response => response.json()).then(data => {
+if (data.success) { // REMOVE OLD BORDER CLASSES
+commentDiv.classList.remove('bg-green-100', 'bg-pink-100');
+
+// ADD THE CORRECT CLASS
+if (action === 'approve') {
+commentDiv.classList.add('bg-green-100');
+} else {
+commentDiv.classList.add('bg-pink-100');
+}
+
+// REMOVE THE WORD "PENDING", IF IT EXISTS
+let pendingLabel = commentDiv.querySelector('.pending-label');
+if (pendingLabel) {
+pendingLabel.remove();
+}
+}
+}).catch(error => console.error('Error:', error));
+});
+});
+	</script>
+{% endblock %}
