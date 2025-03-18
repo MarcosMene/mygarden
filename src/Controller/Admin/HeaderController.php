@@ -3,15 +3,18 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Header;
-use App\Form\HeaderType;
+use App\Form\Admin\HeaderType;
 use App\Repository\HeaderRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Vich\UploaderBundle\Handler\UploadHandler;
 
 class HeaderController extends AbstractController
 {
@@ -37,19 +40,21 @@ class HeaderController extends AbstractController
 
     // CREATE HEADER 
     #[Route('/admin/create/header', name: 'create_header')]
-    public function create(HeaderRepository $headerRepository, Request $request): Response
+    public function create(HeaderRepository $headerRepository, Request $request, UploadHandler $uploadHandler): Response
     {
 
         $totalElementsCarousel = $headerRepository->findAll();
 
         //MAXIMUM 4 ELEMENTS ON CAROUSEL
         if (count($totalElementsCarousel) == 4) {
-            $this->addFlash('error', 'You have reached the maximum number of elements.');
+            $this->addFlash('danger', 'You have reached the maximum number of elements.');
             return $this->redirectToRoute('show_headers');
         }
 
         $header = new Header();
-        $form = $this->createForm(HeaderType::class, $header, ['is_edit' => false]);
+        $form = $this->createForm(HeaderType::class, $header, ['is_edit' => true]);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,22 +62,41 @@ class HeaderController extends AbstractController
             //GET INFO FROM FORM
             $header = $form->getData();
 
-            //GET VALUE FROM BUTTON TITLE TO PUT ON URL
-            $buttonTitle = $header->getButtonTitle();
-
-            if (str_contains($buttonTitle, 'contact')) {
-                //SET URL FROM FORM
-                $urlHeader = "/contact";
-                $header->setButtonLink($urlHeader);
-            } else {
-                //SET URL FROM FORM
-                $urlHeader = "/shop/products/" . $header->getCategoryProduct()->getSlug();
-                $header->setButtonLink($urlHeader);
+            //CHECK THAT THE FILE HAS BEEN SENT
+            if ($header->getImageFile()) {
+                // SAVE THE IMAGE WITH VICHUPLOADERBUNDLE
+                $uploadHandler->upload($header, 'imageFile');
             }
+
+            //  GETS THE NAME OF THE ORIGINAL FILE SAVED BY VICHUPLOADER
+            $originalFilename = $header->getImageName();
+            $originalPath = $this->getParameter('kernel.project_dir') . '/public/upload/headers/' . $originalFilename;
+
+            if ($originalFilename && file_exists($originalPath)) {
+                // NEW NAME FOR THE WEBP IMAGE
+                $newFilename = uniqid() . '.webp';
+                $destination = $this->getParameter('kernel.project_dir') . '/public/upload/headers/' . $newFilename;
+
+                // CONVERT TO WEBP
+                $imagine = new Imagine();
+                $image = $imagine->open($originalPath);
+                $image->resize(new Box(536, 536))
+                    ->save($destination, ['format' => 'webp', 'quality' => 85]);
+
+                //REMOVES THE ORIGINAL FILE AFTER CONVERSION
+                unlink($originalPath);
+
+                // UPDATES THE ENTITY WITH THE NEW WEBP FILE NAME
+                $header->setImageName($newFilename);
+            }
+
+            //SET URL FROM FORM
+            $urlHeader = "/shop/products/" . $header->getCategoryProduct()->getSlug();
+            $header->setButtonLink($urlHeader);
 
             $this->entityManager->persist($header);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your header was created with success');
             return $this->redirectToRoute('show_headers');
         }
@@ -148,7 +172,7 @@ class HeaderController extends AbstractController
             return $this->redirectToRoute('show_headers');
         }
 
-        //security csrf
+        //SECURITY CSRF
         $csrfToken = new CsrfToken('deleteHeader' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have permission to do that.');

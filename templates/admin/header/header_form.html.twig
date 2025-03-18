@@ -41,6 +41,15 @@
 						<div id="headerContent_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
+				<!-- PARAGRAPH -->
+				<div class=" w-full text-base">
+					{{ form_label(form.paragraph) }}
+					{{ form_widget(form.paragraph) }}
+					<div class="form-error">
+						{{ form_errors(form.paragraph) }}
+						<div id="headerParagraph_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
 
 				<!-- CATEGORY HEADER -->
 				<div class=" w-full  text-base mb-4">
@@ -74,8 +83,8 @@
 					</div>
 				</div>
 
-				<div class="flex w-full flex-col lg:flex-row justify-between gap-0 lg:gap-12">
-					
+				<div
+					class="flex w-full flex-col lg:flex-row justify-between gap-0 lg:gap-12">
 
 					<!--  BACKGROUND COLOR-->
 					<div class=" w-full  text-base mb-4">

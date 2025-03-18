@@ -34,46 +34,55 @@
 				<div class="detail_header_img w-full lg:w-1/3">
 					<img src="{{ asset('upload/headers/' ~ header_detail.imageName) }}" alt="{{ header_detail.categoryProduct }}" loading="lazy">
 				</div>
-			
+
 				<div
 					class="detail_header_description flex flex-col w-full px-1 me-0 lg:px-8">
-			
-						<!-- TITLE -->
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Category:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.categoryProduct }}</p>
-						</div>
-						<!-- CONTENT -->
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Content:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.content }}</p>
-						</div>
-					
+
+					<!-- TITLE -->
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Category:</p>
+						<p class="font-normal text-lg mb-2 ms-1 capitalize">{{ header_detail.categoryProduct }}</p>
+					</div>
+					<!-- CONTENT -->
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Title:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.content }}</p>
+					</div>
+					<!-- PARAGRAPH -->
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Paragraph:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.paragraph }}</p>
+					</div>
+
+
 					<!-- TITTLE BUTTON -->
-					
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Button title:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.buttonTitle }}</p>
-						</div>
-				
-						<!-- BUTTON URL -->
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Button link:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.buttonLink }}</p>
-						</div>
-						<!-- ORDER -->
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Order appear:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.orderAppear }}</p>
-						</div>
-			
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Button title:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.buttonTitle }}</p>
+					</div>
+
+					<!-- BUTTON URL -->
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Button link:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.buttonLink }}</p>
+					</div>
+					<!-- ORDER -->
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Order appear:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.orderAppear }}</p>
+					</div>
+
 					<!-- SIDE IMAGE  -->
-				
-						<div class="flex me-0 lg:me-6">
-							<p class="font-semibold text-lg">Side image:</p>
-							<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.sideImage }}</p>
-						</div>
-				
+					<div class="flex me-0 lg:me-6">
+						<p class="font-semibold text-lg">Side of image:</p>
+						<p class="font-normal text-lg mb-2 ms-1">{{ header_detail.sideImage }}</p>
+					</div>
+
+					<!-- BACKGROUND COLOR -->
+					<div class="flex items-center me-0 lg:me-6 gap-4">
+						<p class="font-semibold text-lg">Background color:</p>
+						<div class="p-2 rounded-full h-10 w-10 border border-gray" style="background-color:{{header_detail.backgroundColor}}; "></div>
+					</div>
 				</div>
 			</div>
 		</aside>

@@ -24,11 +24,11 @@
 	<!--MY CONTACT US-->
 	{% include "_partials/homepage/_conversation.html.twig" %}
 
-	{# -----------------OPEN HOURS #}
-		{% if shopSchedules|length>0 %}
+	<!--OPEN HOURS-->
+	{% if shopSchedules|length>0 %}
 		{% include "_partials/homepage/_opening.html.twig" %}
 	{% else %}
-		{# VACATION MESSAGE  #}
+		<!--VACATION MESSAGE-->
 		<div class="text-capitalize  bg-white p-10  text-center text-black">
 			<div class="bg-bg1 w-fit mx-auto p-10 border border-red shadow-lg">
 				<p class="mb-4 text-red text-3xl font-medium">We are on holiday.</p>
@@ -39,5 +39,4 @@
 			</div>
 		</div>
 	{% endif %}
-
 {% endblock %}

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Category;
 use App\Entity\Header;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
@@ -20,7 +20,7 @@ class HeaderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        // Check if the form is for creating a new product (no existing product passed)
+        // CHECK IF THE FORM IS FOR CREATING A NEW PRODUCT (NO EXISTING PRODUCT PASSED)
         $isEdit = $options['is_edit'];
 
         $builder
@@ -36,9 +36,20 @@ class HeaderType extends AbstractType
                 ],
             ])
 
-            ->add('content', TextareaType::class, [
+            ->add('content', TextType::class, [
                 'empty_data' => '',
                 'label' => 'Content',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Today is a beautiful...',
+                    'minlength' => 10,
+                    'maxlength' => 51,
+                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                ],
+            ])
+            ->add('paragraph', TextType::class, [
+                'empty_data' => '',
+                'label' => 'Message',
                 'required' => true,
                 'attr' => [
                     'placeholder' => 'Today is a beautiful...',
@@ -73,11 +84,11 @@ class HeaderType extends AbstractType
                     'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black lowercase',
                 ],
             ])
-         
+
             ->add('imageFile', VichImageType::class, [
                 'empty_data' => '',
                 'label' => 'Product Image',
-                'required' => !$isEdit, // Image required if creating product
+                'required' => !$isEdit, // IMAGE REQUIRED IF CREATING PRODUCT
                 'attr' => ['class' => 'form-input mt-1 block w-full'],
                 'constraints' => !$isEdit ? [
                     new NotBlank(),
@@ -102,6 +113,7 @@ class HeaderType extends AbstractType
                     '1' => 1,
                     '2' => 2,
                     '3' => 3,
+                    '4' => 4,
                 ],
                 'attr' => [
                     'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
@@ -128,7 +140,7 @@ class HeaderType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Header::class,
-            'is_edit' => false, // Pass whether the form is for creating or editing
+            'is_edit' => false, // PASS WHETHER THE FORM IS FOR CREATING OR EDITING
         ]);
     }
 }
