@@ -24,61 +24,25 @@
 
 			{% if orders|length >0 %}
 
+				<!-- INPUT RESEARCH -->
+				<div class="flex items-center mt-4 mb-2 relative">
+					<input type="text" id="search" name="userName" placeholder="Search last name of user or ID of order" class="border p-2 rounded w-full pr-10 " value="{{ query }}" maxlength="5">
+					<button id="clearSearch" class="absolute font-bold right-5 text-gray-500 hidden">X</button>
+				</div>
+				<span id="error-message" class="text-red"></span>
+
+				<!-- SPINNER -->
+				<div id="loadingSpinner" class="hidden text-center my-4 text-primary ">
+					<i class="fa-solid fa-spinner fa-2xl  animate-spin text-red-300  mx-auto"></i>
+				</div>
+
 				<!-- TABLE  -->
 				<div class="flex flex-col">
 					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-							<div class="overflow-hidden">
-								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
-									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
-										<tr>
-											<th scope="col" class="w-[300px] ps-4 capitalize">Order number</th>
-											<th scope="col" class="w-[100px] ps-4 capitalize">Client</th>
-											<th scope="col" class="w-[100px] ps-4 capitalize">date</th>
-											<th scope="col" class="w-[100px] ps-4 capitalize">state</th>
-											<th scope="col" class="w-[100px] ps-4 capitalize">Carrier</th>
-											<th scope="col" class="w-[100px] ps-4 capitalize">VAT</th>
-											<th scope="col" class="w-[200px] ps-4 capitalize">total NT</th>
-											<th scope="col" class="w-[500px] ps-4 capitalize">total WT</th>
-											<th scope="col" class="w-[300px] capitalize">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for order in orders %}
+							<div class="overflow-hidden" id="table-container" data-url="{{ path('show_order_client') }}">
 
-											<tr class="border-b border-neutral-200 text-base text-left font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap py-2 px-4 text-center">{{order.id}}
-												</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center capitalize ">{{order.user.firstname}}
-													{{order.user.lastname}}</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center">{{order.createdAt|date('M d y - H:i')}}
-												</td>
-												<td class="whitespace-nowrap text-center py-2 px-4">
-													{% include 'admin/state_order/state.html.twig' with{'field':order.state} %}
-												</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center capitalize">{{order.carrierName}}
-												</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center">{{order.getTotalTva|price}}
-												</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center">
-													{{order.getTotalNt|price}}
-												</td>
-												<td class="whitespace-nowrap py-2 px-4 text-center">{{order.getTotalWt|price}}
-												</td>
-
-												<!--ACTION BUTTONS-->
-												<td class="whitespace-nowrap p-2 text-left">
-													<div class="h-full flex justify-center items-center gap-4">
-														<a href="{{path('detail_order',{id:order.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-regular fa-eye"></i>
-															View
-														</a>
-													</div>
-												</td>
-											</tr>
-										{% endfor %}
-									</tbody>
-								</table>
+								{% include 'admin/_partials/orders/_table_orders.html.twig' with {'orders':orders} %}
 							</div>
 						</div>
 					</div>
@@ -91,9 +55,6 @@
 		</aside>
 	</div>
 
-	<!-- delete confirmation modal -->
-	{% include 'admin/_partials/_delete_modal.html.twig' %}
-
 	<!-- SCRIPT  -->
-	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+	<script src="{{ asset('assets/js/admin/listTableElements.js') }}"></script>
 {% endblock %}

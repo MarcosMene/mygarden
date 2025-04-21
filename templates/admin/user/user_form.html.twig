@@ -31,6 +31,8 @@
 				<div id="error_messages" class="hidden text-center p-4 mb-4 text-sm rounded-lg bg-red-100 text-red-700 relative" role="alert"></div>
 
 				{{form_start(form)}}
+
+				<!--FIRST NAME-->
 				<div class=" w-full  text-base mb-4">
 					{{ form_label(form.firstname) }}
 					{{ form_widget(form.firstname) }}
@@ -39,6 +41,8 @@
 						<div id="userFirstName_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
+
+				<!--LAST NAME-->
 				<div class=" w-full  text-base mb-4">
 					{{ form_label(form.lastname) }}
 					{{ form_widget(form.lastname) }}
@@ -47,6 +51,18 @@
 						<div id="userLastName_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
+
+				<!--USER IMAGE-->
+				<div class=" w-full  text-base mb-4">
+					{{ form_label(form.profileImageFile) }}
+					{{ form_widget(form.profileImageFile) }}
+					<div class="form-error">
+						{{ form_errors(form.profileImageFile) }}
+						<div id="userProfileImageFile_error" hidden class="text-sm text-red"></div>
+					</div>
+				</div>
+
+				<!--USER EMAIL-->
 				<div class=" w-full  text-base mb-4">
 					{{ form_label(form.email) }}
 					{{ form_widget(form.email) }}
@@ -55,6 +71,8 @@
 						<div id="userEmail_error" hidden class="text-sm text-red"></div>
 					</div>
 				</div>
+
+				<!--USER ROLE-->
 				<div class=" w-full  text-base mb-4">
 					{{ form_label(form.roles) }}
 					{{ form_widget(form.roles) }}

@@ -9,8 +9,6 @@ module.exports = {
     fontFamily: {
       inter: ['Inter', 'ui-sans-serif'],
       roboto: ['Roboto', 'ui-sans-serif'],
-
-      // mulish: ['Mulish', 'ui-sans-serif'],
     },
     screens: {
       sm: '576px',
@@ -21,7 +19,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#C34795',
+        primary: '#9f2371',
         secondary: '#f1c40f',
         gray: '#989898',
         black: '#161616',

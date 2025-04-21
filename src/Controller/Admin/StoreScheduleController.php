@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\StoreSchedule;
-use App\Form\StoreScheduleType;
+use App\Form\Admin\StoreScheduleType;
 use App\Repository\StoreScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +41,7 @@ class StoreScheduleController extends AbstractController
         $totalDays = $storeScheduleRepository->findAll();
 
         if (count($totalDays) == 7) {
-            //message
+            //MESSAGE
             $this->addFlash('danger', 'Your schedule is completed');
             return $this->redirectToRoute('show_schedules');
         }
@@ -56,7 +56,7 @@ class StoreScheduleController extends AbstractController
 
             $this->entityManager->persist($schedule);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your schedule was created with success');
             return $this->redirectToRoute('show_schedules');
         }
@@ -98,7 +98,7 @@ class StoreScheduleController extends AbstractController
 
             $this->entityManager->persist($schedule);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your schedule was updated with success');
             return $this->redirectToRoute('show_schedules');
         }
@@ -117,7 +117,7 @@ class StoreScheduleController extends AbstractController
             return $this->redirectToRoute('show_schedules');
         }
 
-        //security csrf
+        //SECURITY CSRF
         $csrfToken = new CsrfToken('deleteSchedule' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have permission to do that.');

@@ -87,7 +87,7 @@ class HeaderType extends AbstractType
 
             ->add('imageFile', VichImageType::class, [
                 'empty_data' => '',
-                'label' => 'Product Image',
+                'label' => 'Header Image',
                 'required' => !$isEdit, // IMAGE REQUIRED IF CREATING PRODUCT
                 'attr' => ['class' => 'form-input mt-1 block w-full'],
                 'constraints' => !$isEdit ? [

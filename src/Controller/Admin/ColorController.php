@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ColorProduct;
-use App\Form\ColorType;
+use App\Form\Admin\ColorType;
 use App\Repository\ColorProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,10 +46,9 @@ class ColorController extends AbstractController
 
             $this->entityManager->persist($color);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your color was created with success');
             return $this->redirectToRoute('show_colors');
-            // }
         }
         return $this->render('admin/color/color_form.html.twig', [
             'form' => $form
@@ -89,7 +88,7 @@ class ColorController extends AbstractController
 
             $this->entityManager->persist($color);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your color was updated with success');
             return $this->redirectToRoute('show_colors');
         }

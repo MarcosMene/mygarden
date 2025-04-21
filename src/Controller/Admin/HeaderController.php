@@ -18,7 +18,6 @@ use Vich\UploaderBundle\Handler\UploadHandler;
 
 class HeaderController extends AbstractController
 {
-
     private $entityManager;
     private $csrfTokenManager;
 
@@ -54,7 +53,6 @@ class HeaderController extends AbstractController
         $header = new Header();
         $form = $this->createForm(HeaderType::class, $header, ['is_edit' => true]);
 
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -80,7 +78,7 @@ class HeaderController extends AbstractController
                 // CONVERT TO WEBP
                 $imagine = new Imagine();
                 $image = $imagine->open($originalPath);
-                $image->resize(new Box(536, 536))
+                $image->resize(new Box(540, 540))
                     ->save($destination, ['format' => 'webp', 'quality' => 85]);
 
                 //REMOVES THE ORIGINAL FILE AFTER CONVERSION

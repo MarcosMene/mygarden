@@ -1,0 +1,125 @@
+{% if users|length >0 %}
+
+	<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+		<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+			<tr>
+				<th scope="col" class="p-2 w-[500px]">User</th>
+				<th scope="col" class="p-2 w-[500px]">Last name</th>
+				<th scope="col" class="p-2 w-[500px]">First name</th>
+				<th scope="col" class="p-2 w-[500px]">email</th>
+				<th scope="col" class="p-2 w-[500px]">Permission</th>
+				<th scope="col" class="p-2 w-[500px]">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+
+				<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+					<td class="whitespace-nowrap px-2 py-3 ">
+
+						<img src="{{ asset('upload/users/' ~ user.profileImageName) }}" alt="{{ user.firstname }} is the author of the article" loading="lazy" class="w-10 mx-auto rounded-full">
+					</td>
+					<td class="whitespace-nowrap px-2 py-3 capitalize">{{user.lastname}}</td>
+					<td class="whitespace-nowrap px-2 py-3  capitalize">{{user.firstname}}</td>
+
+					<td class="whitespace-nowrap px-2 py-3">{{user.email }}</td>
+
+					<!-- ROLES -->
+					<td>
+						{% for role in user.roles %}
+							{{ role == 'ROLE_ADMIN' ? 'admin' : 'user' }}
+							{% if not loop.last %},
+							{% endif %}
+						{% endfor %}
+					</td>
+
+					<!--ACTION BUTTONS-->
+					<td class="whitespace-nowrap p-2">
+						<div class="h-full flex justify-between items-center gap-4">
+							<a href="{{path('detail_user', {id:user.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-regular fa-eye"></i>
+								View
+							</a>
+							<a href="{{path('edit_user',{id:user.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-solid fa-pencil text-black"></i>
+								Edit
+							</a>
+
+							<!-- TOGGLE ACTIVE USER -->
+							<button class="toggle-user-btn px-4 py-2 text-white rounded {{user.isActive ? 'bg-green-500':'bg-red-500'}}" data-user-id="{{user.id}}">{{user.isActive ? 'Active':'Deactive'}}</button>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{# {% else %}
+						<div class="flex justify-center flex-col items-center">
+							<p class="text-2xl text-gray-600 font-normal my-3">No user found.</p>
+						</div>
+					{% endif %} #}
+
+	<!-- DYNAMIC PAGE -->
+
+	{% if users.paginationData.pageCount > 1 %}
+		<div class="mt-4 flex justify-center">
+			<ul
+				class="flex space-x-2">
+
+				<!-- THE FIRST PAGE BUTTON-->
+				{% if users.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': 1})) }}" class="px-4 py-2 bg-bg2">
+							«
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- PREVIOUS PAGE BUTTON -->
+				{% if users.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': users.currentPageNumber - 1})) }}" class="px-4 py-2 bg-bg1">
+							‹
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- PAGE BUTTONS -->
+				{% for page in users.paginationData.pagesInRange %}
+					{% if page == users.currentPageNumber %}
+						<li class="px-4 py-2 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 ">{{ page }}</li>
+					{% else %}
+						<li>
+							<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': page})) }}" class="px-4 py-2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">
+								{{ page }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+
+				<!-- NEXT PAGE BUTTON  -->
+				{% if users.currentPageNumber < users.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': users.currentPageNumber + 1})) }}" class="px-4 py-2  bg-bg1 rounded hover:bg-gray-400">
+							›
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- LAST PAGE BUTTON -->
+				{% if users.currentPageNumber < users.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': users.paginationData.pageCount})) }}" class="px-4 py-2 rounded bg-bg2">
+							»
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	{% endif %}
+{% else %}
+	<div class="flex justify-center flex-col items-center">
+		<p class="text-2xl text-gray-600 font-normal my-3">No user found.</p>
+	</div>
+
+{% endif %}

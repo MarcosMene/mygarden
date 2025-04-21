@@ -27,7 +27,7 @@
 								<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full">
 							</div>
 						{% else %}
-							<img src="{{ asset('assets/images/default_avatar.jpg') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
+							<img src="{{ asset('assets/images/default_avatar.webp') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
 						{% endif %}
 					</td>
 					<td class="whitespace-nowrap px-2 py-3 ">{{article.title|slice(0, 20) ~ '...'}}</td>
@@ -103,57 +103,68 @@
 						</td>
 					</td>
 				</tr>
-			</div>
+			{% endfor %}
 		</tbody>
-	</td>
-</tr>{% endfor %}</tbody></table><!-- DYNAMIC PAGE -->{% if articles.paginationData.pageCount > 1 %}<div class="mt-4 flex justify-center"><ul
-class="flex space-x-2">
+	</table>
+	<!-- DYNAMIC PAGE -->
+	{% if articles.paginationData.pageCount > 1 %}
+		<div class="mt-4 flex justify-center">
+			<ul
+				class="flex space-x-2">
 
-<!-- THE FIRST PAGE BUTTON-->
-{% if articles.currentPageNumber > 1 %}
-	<li>
-		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': 1})) }}" class="px-4 py-2 bg-bg2">
-			«
-		</a>
-	</li>
-{% endif %}
+				<!-- THE FIRST PAGE BUTTON-->
+				{% if articles.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': 1})) }}" class="px-4 py-2 bg-bg2">
+							«
+						</a>
+					</li>
+				{% endif %}
 
-<!-- PREVIOUS PAGE BUTTON -->
-{% if articles.currentPageNumber > 1 %}
-	<li>
-		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber - 1})) }}" class="px-4 py-2 bg-bg1">
-			‹
-		</a>
-	</li>
-{% endif %}
+				<!-- PREVIOUS PAGE BUTTON -->
+				{% if articles.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber - 1})) }}" class="px-4 py-2 bg-bg1">
+							‹
+						</a>
+					</li>
+				{% endif %}
 
-<!-- PAGE BUTTONS -->
-{% for page in articles.paginationData.pagesInRange %}
-	{% if page == articles.currentPageNumber %}
-		<li class="px-4 py-2 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 ">{{ page }}</li>
-	{% else %}
-		<li>
-			<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': page})) }}" class="px-4 py-2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">
-				{{ page }}
-			</a>
-		</li>
+				<!-- PAGE BUTTONS -->
+				{% for page in articles.paginationData.pagesInRange %}
+					{% if page == articles.currentPageNumber %}
+						<li class="px-4 py-2 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 ">{{ page }}</li>
+					{% else %}
+						<li>
+							<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': page})) }}" class="px-4 py-2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">
+								{{ page }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+
+				<!-- NEXT PAGE BUTTON  -->
+				{% if articles.currentPageNumber < articles.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber + 1})) }}" class="px-4 py-2  bg-bg1 rounded hover:bg-gray-400">
+							›
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- LAST PAGE BUTTON -->
+				{% if articles.currentPageNumber < articles.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.paginationData.pageCount})) }}" class="px-4 py-2 rounded bg-bg2">
+							»
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
 	{% endif %}
-{% endfor %}
-
-<!-- NEXT PAGE BUTTON  -->
-{% if articles.currentPageNumber < articles.paginationData.pageCount %}
-	<li>
-		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.currentPageNumber + 1})) }}" class="px-4 py-2  bg-bg1 rounded hover:bg-gray-400">
-			›
-		</a>
-	</li>
+{% else %}
+	<div class="flex justify-center flex-col items-center">
+		<p class="text-2xl text-gray-600 font-normal my-3">No article found.</p>
+	</div>
 {% endif %}
-
-<!-- LAST PAGE BUTTON -->
-{% if articles.currentPageNumber < articles.paginationData.pageCount %}
-	<li>
-		<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': articles.paginationData.pageCount})) }}" class="px-4 py-2 rounded bg-bg2">
-			»
-		</a>
-	</li>
-{% endif %}</ul></div>{% endif %}{% else %}<div class="flex justify-center flex-col items-center"><p class="text-2xl text-gray-600 font-normal my-3">No article found.</p></div>{% endif %}

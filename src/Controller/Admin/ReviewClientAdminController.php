@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ReviewClient;
-use App\Form\ReviewClientAdminType;
+use App\Form\Admin\ReviewClientAdminType;
 use App\Repository\ReviewClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ReviewClientAdminController extends AbstractController
 {
@@ -24,13 +25,34 @@ class ReviewClientAdminController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    //LIST REVIEW CLIENT STORE
-    #[Route('/admin/list/review_store', name: 'show_store_admin')]
-    public function list(ReviewClientRepository $reviewClientRepository): Response
+    // LIST REVIEW CLIENT STORE
+    #[Route('/admin/list/review_store', name: 'show_store_admin', methods: ['GET'])]
+    public function list(ReviewClientRepository $reviewClientRepository,  PaginatorInterface $paginator, Request $request): Response
     {
-        $reviewClient = $reviewClientRepository->findAll();
+        $query = trim($request->query->get('query', ''));
+        $page = $request->query->getInt('page', 1);
+
+        // SEARCH PRODUCTS
+        $reviewClientQuery = $reviewClientRepository->searchStoreReviews($query);
+
+        // PAGE RESULTS
+        $reviewClient = $paginator->paginate(
+            $reviewClientQuery, // QUERY
+            $page,          // CURRENT PAGE
+            5              // LIMIT OF ITEMS PER PAGE
+        );
+
+        // IF THE REQUEST IS AJAX, IT ONLY RETURNS THE TABLE OF ARTICLES
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('admin/_partials/review_store/_table_review_store.html.twig', [
+                'reviewClients' => $reviewClient,
+            ]);
+        }
+
+        // IF IT'S NOT AJAX, IT RETURNS THE LIST OF ARTICLES
         return $this->render('admin/review_store/list_review_store.html.twig', [
             'reviewClients' => $reviewClient,
+            'query' => $query,
         ]);
     }
 
@@ -87,7 +109,7 @@ class ReviewClientAdminController extends AbstractController
             return $this->redirectToRoute('show_review_clients');
         }
 
-        //security csrf
+        //SECURITY CSRF
         $csrfToken = new CsrfToken('deleteReviewClient' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have permission to do that.');

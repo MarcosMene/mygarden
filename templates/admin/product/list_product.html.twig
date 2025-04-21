@@ -11,99 +11,44 @@
 		class="create_products w-full flex px-8 lg:px-16 mb-10">
 
 		<!-- MENU LEFT  -->
-		<div class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
+		<aside class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
 			<div class="sticky top-0">
 				{% include ('admin/_partials/menu_navigation.html.twig')%}
 			</div>
-		</div>
+		</aside>
+
 		<!-- RIGHT CREATE FORM -->
-		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+		<div class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
 			<div class="title_form flex flex-wrap justify-between">
+
 				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of products</h2>
+
 				<a href="{{path('create_product')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
 					Create product
 				</a>
 			</div>
 
-			{% if products|length >0 %}
+			{% if products|length > 0 %}
+
+				<!-- INPUT RESEARCH -->
+				<div class="flex items-center mt-4 mb-2 relative">
+					<input type="text" id="search" name="query" placeholder="Search name of product" class="border p-2 rounded w-full pr-10 " value="{{ query }}" maxlength="5">
+					<button id="clearSearch" class="absolute font-bold right-5 text-gray-500 hidden">X</button>
+				</div>
+				<span id="error-message" class="text-red"></span>
+
+				<!-- SPINNER -->
+				<div id="loadingSpinner" class="hidden text-center my-4 text-primary ">
+					<i class="fa-solid fa-spinner fa-2xl  animate-spin text-red-300  mx-auto"></i>
+				</div>
 
 				<!-- TABLE  -->
 				<div class="flex flex-col">
 					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-							<div class="overflow-hidden">
-								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
-									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
-										<tr>
-											<th scope="col" class="p-2 w-[500px]">Name</th>
-											<th scope="col" class="p-2 w-[500px]">URL</th>
-											<th scope="col" class="p-2 w-[500px]">Category</th>
-											<th scope="col" class="p-2 w-[500px]">Image</th>
-											<th scope="col" class="p-2 w-[500px]">Suggestion</th>
-											<th scope="col" class="p-2 w-[500px]">Description</th>
-											<th scope="col" class="p-2 w-[500px]">Color</th>
-											<th scope="col" class="p-2 w-[500px]">Price</th>
-											<th scope="col" class="p-2 w-[500px]">VAT%</th>
-											<th scope="col" class="p-2 w-[500px]">Promotion</th>
-											<th scope="col" class="p-2 w-[500px]">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for product in products %}
-											<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap px-2 py-3 ">{{product.name|slice(0, 10) ~ '...'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.slug|slice(0, 10) ~ '...'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">
-													{% if product.category %}
-														{{product.category}}
-													{% else %}
-														<p class="text-red font-semibold text-sm">Category deleted</p>
-														<p class="text-red font-semibold text-sm">Choose a category</p>
-													{% endif %}
-												</td>
-												<td class="whitespace-nowrap px-2 py-3"><img src="{{ asset('upload/products/' ~ product.imageName) }}" alt="{{ product.name }}" loading="lazy" class="w-14 mx-auto"></td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.isSuggestion == 1 ? 'yes':'no'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.description|slice(0, 10) ~ '...'}}</td>
-												<td class="whitespace-nowrap px-2 py-3">
-													{% if product.colorProduct %}
-														{{product.colorProduct}}
-													{% else %}
-														<p class="text-red font-semibold text-sm">Color deleted</p>
-														<p class="text-red font-semibold text-sm">Choose a color</p>
-													{% endif %}
-												</td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.price|price }}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.tva}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{product.promotion}}</td>
+							<div id="table-container" class="overflow-hidden" data-url="{{ path('show_products') }}">
 
-												<!--ACTION BUTTONS-->
-												<td class="whitespace-nowrap p-2">
-													<div class="h-full flex justify-between items-center gap-4">
-														<a href="{{path('detail_product', {slug:product.slug})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-regular fa-eye"></i>
-															View
-														</a>
-														<a href="{{path('edit_product',{id: product.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-solid fa-pencil text-black"></i>
-															Edit
-														</a>
-
-														<!-- Delete button triggers the modal, not a form submission -->
-														<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.id }}, '{{ product.name }}')">
-															<i class="fa-regular fa-trash-can"></i>
-															Delete
-														</button>
-
-														<!-- Hidden form for deletion -->
-														<form id="delete-form-{{ product.id }}" action="{{ path('delete_product', {id: product.id}) }}" method="POST" class="hidden">
-															<input type="hidden" name="_token" value="{{ csrf_token('deleteProduct' ~ product.id) }}">
-														</form>
-													</div>
-												</td>
-											</tr>
-										{% endfor %}
-									</tbody>
-								</table>
+								{% include 'admin/_partials/products/_table_products.html.twig' with {'products':products} %}
 							</div>
 						</div>
 					</div>
@@ -114,12 +59,9 @@
 					<p>Create a product.</p>
 				</div>
 			{% endif %}
-		</aside>
+		</div>
 	</div>
 
-	<!-- delete confirmation modal -->
-	{% include 'admin/_partials/_delete_modal.html.twig' %}
-
 	<!-- SCRIPT  -->
-	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+	<script src="{{ asset('assets/js/admin/listTableElements.js') }}"></script>
 {% endblock %}

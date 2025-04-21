@@ -30,39 +30,46 @@
 				class="detail_review flex flex-col lg:flex-row mt-4 lg:mt-0">
 
 				<!-- REVIEW  -->
-					<div
-						class="detail_review flex flex-col w-full lg:w-3/5 px-1 me-0 lg:px-8">
-						<!-- USER -->
-						<div class="flex">
-							<p class="font-semibold text-base">User:</p>
-							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.user }}</p>
-						</div>
-						<!-- FIRST NAME FORM -->
-						<div class="flex">
-							<p class="font-semibold text-base">First name from form:</p>
-							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.firstName }}</p>
-						</div>
-						<!-- RATE -->
-						<div class="flex">
-							<p class="font-semibold text-base">Note:</p>
-							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.rate }}</p>
-						</div>
-						<!-- CREATE AT -->
-						<div class="flex">
-							<p class="font-semibold text-base">Created at:</p>
-							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.createdAt|date('M d Y') }}</p>
-						</div>
-						<!-- COMMENT -->
-						<div class="flex">
-							<p class="font-semibold text-base">Comment:</p>
-							<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.comment }}</p>
-						</div>
-						<!--APPROVED-->
-						<div class="mb-4 flex flex-col md:flex-row">
-							<p class="block font-bold text-base m-0">Is approved:</p>
-							<p class="text-gray-700 text-base m-0 ms-0 md:ms-2 {{review.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold uppercase">{{review.isApproved == 1 ? 'yes':'no'}}</p>
-						</div>
+				<div
+					class="detail_review flex flex-col w-full lg:w-3/5 px-1 me-0 lg:px-8">
+
+					<!-- USER -->
+					<div class="flex">
+						<p class="font-semibold text-base">User name:</p>
+						<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.user }}</p>
 					</div>
+
+					<!-- FIRST NAME FORM -->
+					<div class="flex">
+						<p class="font-semibold text-base">Name:</p>
+						<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.firstName }}</p>
+					</div>
+
+
+					<!-- RATE -->
+					<div class="flex">
+						<p class="font-semibold text-base">Note:</p>
+						<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.rate }}</p>
+					</div>
+
+					<!-- CREATE AT -->
+					<div class="flex">
+						<p class="font-semibold text-base">Created at:</p>
+						<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.createdAt|date('M d Y') }}</p>
+					</div>
+
+					<!-- COMMENT -->
+					<div class="flex">
+						<p class="font-semibold text-base">Comment:</p>
+						<p class="font-normal text-base mb-2 ms-1 capitalize">{{review.comment }}</p>
+					</div>
+
+					<!--APPROVED-->
+					<div class="mb-4 flex flex-col md:flex-row">
+						<p class="block font-bold text-base m-0">Is approved:</p>
+						<p class="text-gray-700 text-base m-0 ms-0 md:ms-2 {{review.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold uppercase">{{review.isApproved == 1 ? 'yes':'no'}}</p>
+					</div>
+				</div>
 			</div>
 		</aside>
 	</div>

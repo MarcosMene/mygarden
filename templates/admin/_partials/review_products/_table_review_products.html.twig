@@ -1,0 +1,119 @@
+{% if reviews|length > 0%}
+
+	<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
+		<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
+			<tr>
+				<th scope="col" class="p-2 w-[500px]">User Name</th>
+				<th scope="col" class="p-2 w-[500px]">Product</th>
+				<th scope="col" class="p-2 w-[500px]">Image</th>
+				<th scope="col" class="p-2 w-[500px]">Rating</th>
+				<th scope="col" class="p-2 w-[500px]">is approved</th>
+				<th scope="col" class="p-2 w-[500px]">Comment</th>
+				<th scope="col" class="p-2 w-[500px]">Created at</th>
+				<th scope="col" class="p-2 w-[150px]">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for review in reviews %}
+				<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
+					<td class="whitespace-nowrap px-2 py-3 capitalize">{{review.user}}</td>
+					<td class="whitespace-nowrap px-2 py-3 capitalize">{{review.product }}</td>
+					<td class="whitespace-nowrap px-2 py-3"><img src="{{ asset('upload/products/' ~ review.product.imageName) }}" alt="{{ review.product.name }}" loading="lazy" class="w-14 mx-auto"></td>
+					<td class="whitespace-nowrap px-2 py-3 ">{{review.rate}}</td>
+					<td class="whitespace-nowrap px-2 py-3 uppercase {{review.isApproved == 1 ? 'text-green-600':'text-red'}} font-bold">{{review.isApproved == 1 ? 'yes':'no'}}</td>
+					<td class="whitespace-nowrap px-2 py-3">{{review.review|slice(0, 10) ~ '...'}}</td>
+					<td class="whitespace-nowrap px-2 py-3">{{review.createdAt|date('M d Y')}}</td>
+
+					<!--ACTION BUTTONS-->
+					<td class="whitespace-nowrap p-2">
+						<div class="h-full flex justify-between items-center gap-4">
+							<a href="{{path('detail_review_products',{id:review.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-regular fa-eye"></i>
+								View
+							</a>
+							<a href="{{path('edit_review_product',{id:review.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
+								<i class="fa-solid fa-pencil text-black"></i>
+								Edit
+							</a>
+
+							<!-- Delete button triggers the modal, not a form submission -->
+							<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ review.id }}, '{{ review.product }}')">
+								<i class="fa-regular fa-trash-can"></i>
+								Delete
+							</button>
+
+							<!-- Hidden form for deletion -->
+							<form id="delete-form-{{ review.id }}" action="{{ path('delete_review_product', {id: review.id}) }}" method="POST" class="hidden">
+								<input type="hidden" name="_token" value="{{ csrf_token('deleteReviewProduct' ~ review.id) }}">
+							</form>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<!-- DYNAMIC PAGE -->
+
+	{% if reviews.paginationData.pageCount > 1 %}
+		<div class="mt-4 flex justify-center">
+			<ul
+				class="flex space-x-2">
+
+				<!-- THE FIRST PAGE BUTTON-->
+				{% if reviews.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': 1})) }}" class="px-4 py-2 bg-bg2">
+							«
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- PREVIOUS PAGE BUTTON -->
+				{% if reviews.currentPageNumber > 1 %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': reviews.currentPageNumber - 1})) }}" class="px-4 py-2 bg-bg1">
+							‹
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- PAGE BUTTONS -->
+				{% for page in reviews.paginationData.pagesInRange %}
+					{% if page == reviews.currentPageNumber %}
+						<li class="px-4 py-2 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 ">{{ page }}</li>
+					{% else %}
+						<li>
+							<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': page})) }}" class="px-4 py-2 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">
+								{{ page }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+
+				<!-- NEXT PAGE BUTTON  -->
+				{% if reviews.currentPageNumber < reviews.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': reviews.currentPageNumber + 1})) }}" class="px-4 py-2  bg-bg1 rounded hover:bg-gray-400">
+							›
+						</a>
+					</li>
+				{% endif %}
+
+				<!-- LAST PAGE BUTTON -->
+				{% if reviews.currentPageNumber < reviews.paginationData.pageCount %}
+					<li>
+						<a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'page': reviews.paginationData.pageCount})) }}" class="px-4 py-2 rounded bg-bg2">
+							»
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	{% endif %}
+{% else %}
+	<div class="flex justify-center flex-col items-center">
+		<p class="text-2xl text-gray-600 font-normal my-3">No product found.</p>
+	</div>
+
+{% endif %}

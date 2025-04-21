@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Posts;
-use App\Form\PostsType;
+use App\Form\Admin\PostsType;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,7 +47,7 @@ class PostsController extends AbstractController
             $this->entityManager->persist($post);
             $this->entityManager->flush();
 
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your post was created with success');
             return $this->redirectToRoute('show_posts');
         }
@@ -110,7 +110,7 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('show_posts');
         }
 
-        //security csrf
+        //SECURITY CSRF
         $csrfToken = new CsrfToken('deletePost' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have permission to do that.');

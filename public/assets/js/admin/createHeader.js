@@ -1,39 +1,41 @@
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   // CONTENT HEADER
-  let headerContent = document.getElementById('header_content');
-  let headerContentError = document.getElementById('headerContent_error');
-  let errorMessages = document.getElementById('error_messages');
+  const headerContent = document.getElementById('header_content');
+  const headerContentError = document.getElementById('headerContent_error');
+  const errorMessages = document.getElementById('error_messages');
 
   // CATEGORY HEADER
-  let headerCategory = document.getElementById('header_categoryProduct');
-  let headerCategoryError = document.getElementById('headerCategory_error');
+  const headerCategory = document.getElementById('header_categoryProduct');
+  const headerCategoryError = document.getElementById('headerCategory_error');
 
   // TITLE BUTTON HEADER
-  let headerTitleButton = document.getElementById('header_buttonTitle');
-  let headerTitleButtonError = document.getElementById(
+  const headerTitleButton = document.getElementById('header_buttonTitle');
+  const headerTitleButtonError = document.getElementById(
     'headerButtonTitle_error'
   );
 
   // ORDER APPEAR
-  let headerOrderAppear = document.getElementById('header_orderAppear');
-  let headerOrderAppearError = document.getElementById(
+  const headerOrderAppear = document.getElementById('header_orderAppear');
+  const headerOrderAppearError = document.getElementById(
     'headerOrderAppear_error'
   );
 
   // COLOR HEADER
-  let headerColor = document.getElementById('header_backgroundColor');
-  let headerColorError = document.getElementById('headerBackgroundColor_error');
+  const headerColor = document.getElementById('header_backgroundColor');
+  const headerColorError = document.getElementById(
+    'headerBackgroundColor_error'
+  );
 
   // IMAGE POSITION HEADER
-  let headerSideImage = document.getElementById('header_sideImage');
-  let headerSideImageError = document.getElementById('headerSideImage_error');
+  const headerSideImage = document.getElementById('header_sideImage');
+  const headerSideImageError = document.getElementById('headerSideImage_error');
 
   // IMAGE HEADER
-  let headerImage = document.getElementById('header_imageFile_file');
-  let headerImageError = document.getElementById('headerImage_error');
+  const headerImage = document.getElementById('header_imageFile_file');
+  const headerImageError = document.getElementById('headerImage_error');
 
   // SUBMIT BUTTON
-  let submitButton = document.getElementById('header_submit');
+  const submitButton = document.getElementById('header_submit');
 
   headerContent.addEventListener('input', () => {
     checkHeaderContent();
@@ -125,9 +127,9 @@
     headerContent.classList.remove('error-message');
 
     //VALIDATION HEADER
-    let patternHeaderContent = /^[a-zA-ZÀ-ÿ0-9_?!\-\s]{10,50}$/;
-    let headercontent = headerContent.value;
-    let validHeaderContent = patternHeaderContent.test(headercontent);
+    const patternHeaderContent = /^[a-zA-ZÀ-ÿ0-9_?!\-\s]{10,50}$/;
+    const headercontent = headerContent.value;
+    const validHeaderContent = patternHeaderContent.test(headercontent);
     if (headercontent.trim() === '') {
       headerContentError.style.display = 'block';
       headerContent.classList.add('error-message');
@@ -145,7 +147,7 @@
       headerContentError.style.display = 'block';
       headerContent.classList.add('error-message');
       headerContentError.innerText =
-        'The content of the header can only contain letters, spaces, or hyphens';
+        'The content of the header can only contain constters, spaces, or hyphens';
       return false;
     } else {
       headerContentError.innerText = '';
@@ -181,10 +183,10 @@
 
   // CHECK IMAGE
   function checkProductImage() {
-    let vichImage = document.querySelector('.vich-image');
+    const vichImage = document.querySelector('.vich-image');
 
     // CHECK IF THE VICHIMAGE CONTAINS ANY ELEMENT WITH AN HREF ATTRIBUTE (LIKE AN <A> TAG)
-    let hasHrefChild = vichImage.querySelector('[href]') !== null;
+    const hasHrefChild = vichImage.querySelector('[href]') !== null;
 
     if (hasHrefChild) {
       return true;
@@ -231,9 +233,9 @@
 
   // CHECK HEADER PRICE
   function checkTitleButton() {
-    let patternTitleButton = /^[a-zA-ZÀ-ÿ0-9_\-\s]{3,15}$/;
-    let headerprice = headerTitleButton.value;
-    let validTitleButton = patternTitleButton.test(headerprice);
+    const patternTitleButton = /^[a-zA-ZÀ-ÿ0-9_\-\s]{3,15}$/;
+    const headerprice = headerTitleButton.value;
+    const validTitleButton = patternTitleButton.test(headerprice);
     if (headerprice.trim() === '') {
       headerTitleButtonError.style.display = 'block';
       headerTitleButton.classList.add('error-message');
@@ -250,7 +252,7 @@
       headerTitleButtonError.style.display = 'block';
       headerTitleButton.classList.add('error-message');
       headerTitleButtonError.innerText =
-        'The title number of the header can only contain letters, spaces, or hyphens';
+        'The title number of the header can only contain constters, spaces, or hyphens';
       return false;
     } else {
       headerTitleButtonError.innerText = '';
@@ -351,9 +353,9 @@
 
   // CHECK  TITLE BUTTON
   function checkProductTitleButton() {
-    let patternProductTitleButton = /^[a-zA-ZÀ-ÿ0-9_\.,!?\-\s]{19,199}$/;
-    let headerdescription = headerTitleButton.value;
-    let validProductTitleButton =
+    const patternProductTitleButton = /^[a-zA-ZÀ-ÿ0-9_\.,!?\-\s]{19,199}$/;
+    const headerdescription = headerTitleButton.value;
+    const validProductTitleButton =
       patternProductTitleButton.test(headerdescription);
     if (headerdescription.trim() === '') {
       headerTitleButtonError.style.display = 'block';
@@ -374,7 +376,7 @@
       headerTitleButtonError.style.display = 'block';
       headerTitleButton.classList.add('error-message');
       headerTitleButtonError.innerText =
-        'The description of the header can only contain letters, spaces, or hyphens';
+        'The description of the header can only contain constters, spaces, or hyphens';
       return false;
     } else {
       headerTitleButtonError.innerText = '';
@@ -384,4 +386,4 @@
       return true;
     }
   }
-})();
+});

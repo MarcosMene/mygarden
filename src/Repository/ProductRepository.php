@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -82,5 +83,17 @@ class ProductRepository extends ServiceEntityRepository
             ->setMaxResults(50)
             ->getQuery()
             ->getResult();
+    }
+
+
+    //FIND PRODUCTS
+    public function searchProducts(string $query = ''): Query
+    {
+        $queryBuilder = $this->createQueryBuilder('a')
+            ->where('a.name LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->orderBy('a.createdAt', 'DESC');
+
+        return $queryBuilder->getQuery();
     }
 }

@@ -52,7 +52,7 @@ class StoreSchedule
     {
         $this->day = $day;
 
-        // Automatically set the dayOrder based on the name
+        // AUTOMATICALLY SET THE DAYORDER BASED ON THE NAME
         if (array_key_exists($day, self::DAY_MAP)) {
             $this->dayOrder = self::DAY_MAP[$day];
         }

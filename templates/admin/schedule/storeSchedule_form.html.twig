@@ -21,11 +21,11 @@
 		</div>
 		<!-- RIGHT CREATE FORM -->
 		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
-			<div class="title_form flex flex-wrap justify-start items-center p-2">
+			<div class="title_form flex flex-col flex-wrap justify-start items-start p-2">
 				<h2 class=" text-black font-medium text-xl">
 					{{ form.vars.value.id ? 'Update Schedule' : 'Create Schedule' }}
 					<span class="sr-only">{{ form.vars.value.id ? 'Update Schedule' : 'Create Schedule' }}</h2>
-					<span class="text-red text-sm font-bold ms-4">* If hour equal 00, shop store is closed.</span>
+					<p class="text-red text-sm font-bold mb-4">* If hour equal 00, shop store is closed.</p>
 				</div>
 
 				<!--ERROR MESSAGE-->
@@ -38,11 +38,7 @@
 
 					<div class=" text-base">
 						{{ form_label(form.day) }}
-						{{ form_widget(form.day, {
-        'attr': {
-            'class': (attr.class|default('w-full rounded bg-white p-3 shadow shadow-gray-100 shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500') ~ (form_errors(form.day) ? ' is-invalid' : ''))
-        }
-    }) }}
+						{{ form_widget(form.day) }}
 						<div class="form-error">
 							{{ form_errors(form.day) }}
 							<div id="shopDay_error" hidden class="text-sm text-red"></div>

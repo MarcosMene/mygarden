@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'X-Requested-With': 'XMLHttpRequest', // Ensures it's an AJAX request
+            'X-Requested-With': 'XMLHttpRequest', // ENSURES IT'S AN AJAX REQUEST
           },
         });
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (data.success) {
-          // Update button text and styling dynamically
+          // UPDATE BUTTON TEXT AND STYLING DYNAMICALLY
           button.textContent = data.isActive ? 'Active' : 'Deactivate';
           button.classList.toggle('bg-green-500', data.isActive);
           button.classList.toggle('bg-red-500', !data.isActive);

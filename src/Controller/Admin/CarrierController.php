@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Carrier;
-use App\Form\CarrierType;
+use App\Form\Admin\CarrierType;
 use App\Repository\CarrierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,7 +45,7 @@ class CarrierController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Check if the carrier name already exists
+            // CHECK IF THE CARRIER NAME ALREADY EXISTS
             $existingCarrier = $carrierRepository->findOneBy(['name' => $carrier->getName()]);
 
             if ($existingCarrier) {
@@ -53,7 +53,8 @@ class CarrierController extends AbstractController
             } else {
                 $this->entityManager->persist($carrier);
                 $this->entityManager->flush();
-                //message
+
+                //MESSAGE
                 $this->addFlash('success', 'Your carrier was created with success');
                 return $this->redirectToRoute('show_carriers');
             }
@@ -96,7 +97,7 @@ class CarrierController extends AbstractController
 
             $this->entityManager->persist($carrier);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your carrier was updated with success');
             return $this->redirectToRoute('show_carriers');
         }

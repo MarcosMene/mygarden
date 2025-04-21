@@ -24,58 +24,25 @@
 
 			{% if users|length >0 %}
 
+				<!-- INPUT RESEARCH -->
+				<div class="flex items-center mt-4 mb-2 relative">
+					<input type="text" id="search" name="userName" placeholder="Search last name of user" class="border p-2 rounded w-full pr-10 " value="{{ query }}" maxlength="5">
+					<button id="clearSearch" class="absolute font-bold right-5 text-gray-500 hidden">X</button>
+				</div>
+				<span id="error-message" class="text-red"></span>
+
+				<!-- SPINNER -->
+				<div id="loadingSpinner" class="hidden text-center my-4 text-primary ">
+					<i class="fa-solid fa-spinner fa-2xl  animate-spin text-red-300  mx-auto"></i>
+				</div>
+
 				<!-- TABLE  -->
 				<div class="flex flex-col">
 					<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-							<div class="overflow-hidden">
-								<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
-									<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
-										<tr>
-											<th scope="col" class="p-2 w-[500px]">First name</th>
-											<th scope="col" class="p-2 w-[500px]">Last name</th>
-											<th scope="col" class="p-2 w-[500px]">email</th>
-											<th scope="col" class="p-2 w-[500px]">Permission</th>
-											<th scope="col" class="p-2 w-[500px]">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for user in users %}
-											<tr class="border-b border-neutral-200 text-base text-center font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap px-2 py-3 ">{{user.firstname}}</td>
-												<td class="whitespace-nowrap px-2 py-3">{{user.lastname}}</td>
+							<div id="table-container" class=" overflow-hidden" data-url="{{ path('show_users') }}">
 
-												<td class="whitespace-nowrap px-2 py-3">{{user.email }}</td>
-
-												{# ROLES  #}
-												<td>
-													{% for role in user.roles %}
-														{{ role == 'ROLE_ADMIN' ? 'admin' : 'user' }}
-														{% if not loop.last %},
-														{% endif %}
-													{% endfor %}
-												</td>
-
-												<!--ACTION BUTTONS-->
-												<td class="whitespace-nowrap p-2">
-													<div class="h-full flex justify-between items-center gap-4">
-														<a href="{{path('detail_user', {id:user.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-regular fa-eye"></i>
-															View
-														</a>
-														<a href="{{path('edit_user',{id:user.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-solid fa-pencil text-black"></i>
-															Edit
-														</a>
-
-														<!-- toggle active user -->
-														<button class="toggle-user-btn px-4 py-2 text-white rounded {{user.isActive ? 'bg-green-500':'bg-red-500'}}" data-user-id="{{user.id}}">{{user.isActive ? 'Active':'Deactive'}}</button>
-													</div>
-												</td>
-											</tr>
-										{% endfor %}
-									</tbody>
-								</table>
+								{% include 'admin/_partials/users/_table_users.html.twig' with {'users':users} %}
 							</div>
 						</div>
 					</div>
@@ -88,7 +55,5 @@
 			{% endif %}
 		</aside>
 	</div>
-
-
-	<script src="{{ asset('assets/js/admin/userToggleActive.js') }}" defer></script>
+	<script src="{{ asset('assets/js/admin/listTableElements.js') }}"></script>
 {% endblock %}

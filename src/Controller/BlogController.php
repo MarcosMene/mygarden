@@ -126,7 +126,7 @@ class BlogController extends AbstractController
             'author' => $article->getAuthor(),
 
             //IF AUTHOR IMAGE DOESNT EXIST USE DEFAULT AVATAR
-            'authorImage' => $article->getAuthor() ? $article->getAuthor()->getProfileImageName() : 'default_avatar.jpg',
+            'authorImage' => $article->getAuthor() ? $article->getAuthor()->getProfileImageName() : 'default_avatar.webp',
             'comments' => $comments,
             'form' => isset($form) ? $form->createView() : null,
             'hasCommented' => $hasCommented,

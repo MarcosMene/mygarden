@@ -60,27 +60,27 @@
 					<p class="text-gray-700 text-base m-0 ms-2">{{ review.comment }}</p>
 				</div>
 
-			<!--FORM-->
-			{{ form_start(form) }}
+				<!--FORM-->
+				{{ form_start(form) }}
 
-			<!--TOGGLE BUTTON-->
-			<div class="flex items-center mb-4">
-				<span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Is approved</span>
-				<label class="inline-flex relative items-center cursor-pointer m-0">
-					{{ form_widget(form.isApproved) }}
-					<span class="w-11 h-6 bg-gray-200 rounded-full peer transition-colors duration-200"></span>
-					<span class="absolute left-0 top-0 h-6 w-6 bg-white rounded-full border border-primary peer-checked:bg-primary transform transition-transform duration-200 peer-checked:translate-x-full"></span>
-				</label>
-			</div>
+				<!--TOGGLE BUTTON-->
+				<div class="flex items-center mb-4">
+					<span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Is approved</span>
+					<label class="inline-flex relative items-center cursor-pointer m-0">
+						{{ form_widget(form.isApproved) }}
+						<span class="w-11 h-6 bg-gray-200 rounded-full peer transition-colors duration-200"></span>
+						<span class="absolute left-0 top-0 h-6 w-6 bg-white rounded-full border border-primary peer-checked:bg-primary transform transition-transform duration-200 peer-checked:translate-x-full"></span>
+					</label>
+				</div>
 
-			<!-- SUBMIT BUTTON  -->
-			<div class="text-center mt-4">
-				<button type="submit" id="product_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
-					Update Store Review
-					<span class="sr-only">Update Store Review button</span>
-				</button>
-			</div>
-			{{ form_end(form) }}
+				<!-- SUBMIT BUTTON  -->
+				<div class="text-center mt-4">
+					<button type="submit" id="product_submit" class=" p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
+						Update Store Review
+						<span class="sr-only">Update Store Review button</span>
+					</button>
+				</div>
+				{{ form_end(form) }}
 			</div>
 		</aside>
 	</div>

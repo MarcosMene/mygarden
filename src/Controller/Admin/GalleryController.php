@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Gallery;
-use App\Form\GalleryType;
+use App\Form\Admin\GalleryType;
 use App\Repository\GalleryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,7 +45,7 @@ class GalleryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Check if the gallery name already exists
+            // CHECK IF THE GALLERY NAME ALREADY EXISTS
             $existingGallery = $galleryRepository->findOneBy(['name' => $gallery->getName()]);
 
             if ($existingGallery) {
@@ -53,7 +53,7 @@ class GalleryController extends AbstractController
             } else {
                 $this->entityManager->persist($gallery);
                 $this->entityManager->flush();
-                //message
+                //MESSAGE
                 $this->addFlash('success', 'Your gallery was created with success');
                 return $this->redirectToRoute('show_galleries');
             }
@@ -68,7 +68,7 @@ class GalleryController extends AbstractController
     public function detail(GalleryRepository $galleryRepository, $id): Response
     {
         $gallery = $galleryRepository->find($id);
-        
+
         if (!$gallery) {
             $this->addFlash('danger', 'This gallery doesn\'t exist');
             return $this->redirectToRoute('show_galleries');
@@ -97,7 +97,7 @@ class GalleryController extends AbstractController
 
             $this->entityManager->persist($gallery);
             $this->entityManager->flush();
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Your gallery was updated with success');
             return $this->redirectToRoute('show_galleries');
         }

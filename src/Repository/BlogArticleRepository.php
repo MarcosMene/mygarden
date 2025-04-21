@@ -18,12 +18,12 @@ class BlogArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, BlogArticle::class);
     }
 
-    //RETURN A QUERYBUILDER TO ALL ARTICLES
-    public function findAllQuery(): QueryBuilder
-    {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC');
-    }
+    // //RETURN A QUERYBUILDER TO ALL ARTICLES
+    // public function findAllQuery(): QueryBuilder
+    // {
+    //     return $this->createQueryBuilder('a')
+    //         ->orderBy('a.createdAt', 'DESC');
+    // }
 
     //RETURN A QUERYBUILDER TO TITLE
     public function searchArticles(string $query = ''): Query

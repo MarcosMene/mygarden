@@ -41,7 +41,7 @@ class BlogController extends AbstractController
         BlogArticleRepository $articleRepository,
         PaginatorInterface $paginator
     ): Response {
-        $query = trim($request->query->get('q', ''));
+        $query = trim($request->query->get('query', ''));
         $page = $request->query->getInt('page', 1);
 
         // SEARCH ARTICLES
@@ -145,7 +145,6 @@ class BlogController extends AbstractController
     {
         $article = $blogArticleRepository->find($id);
 
-
         //IF ARTICLES DOESNT EXIST
         if (!$article) {
             $this->addFlash('danger', 'This article doesn\'t exist.');
@@ -161,8 +160,6 @@ class BlogController extends AbstractController
             $imagine = new Imagine();
 
             $articleImageFile = $form->get('articleImageFile')->getData();
-
-
 
             // IF A NEW IMAGE OF THE ARTICLE IS UPLOADED, REPLACE THE OLD ONE
             if ($articleImageFile) {
@@ -182,7 +179,7 @@ class BlogController extends AbstractController
                 $article->setAuthorImageName($article->getAuthor()->getProfileImageName());
             } else {
                 // IF THE AUTHOR DOESN'T HAVE AN IMAGE, USE THE DEFAULT IMAGE
-                $article->setAuthorImageName('default_avatar.jpg');
+                $article->setAuthorImageName('default_avatar.webp');
             }
 
             // SET ARTICLE STATUS
@@ -229,10 +226,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-
-
     //DELETE ARTICLE
-
     #[Route('/{id}', name: 'delete_article', requirements: ['id' => '\d+'], methods: ['DELETE'])]
     // #[IsGranted('ROLE_ADMIN')]
     public function delete(BlogArticleRepository $blogArticleRepository, Request $request, $id, Filesystem $filesystem): Response

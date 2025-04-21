@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Review;
-use App\Form\ReviewAdminType;
+use App\Form\Admin\ReviewAdminType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ReviewProductController extends AbstractController
 {
@@ -24,13 +25,34 @@ class ReviewProductController extends AbstractController
         $this->csrfTokenManager = $csrfTokenManager;
     }
 
-    //LIST OF PRODUCT USER REVIEWS
-    #[Route('/admin/list/review_products', name: 'show_review_products')]
-    public function list(ReviewRepository $reviewRepository): Response
+    // LIST PRODUCTS
+    #[Route('/admin/list/review_products', name: 'show_review_products', methods: ['GET'])]
+    public function list(ReviewRepository $reviewRepository,  PaginatorInterface $paginator, Request $request): Response
     {
-        $reviewProducts = $reviewRepository->findAll();
+        $query = trim($request->query->get('query', ''));
+        $page = $request->query->getInt('page', 1);
+
+        // SEARCH PRODUCTS
+        $reviewProductQuery = $reviewRepository->searchProductReviews($query);
+
+        // PAGE RESULTS
+        $reviewProduct = $paginator->paginate(
+            $reviewProductQuery, // QUERY
+            $page,          // CURRENT PAGE
+            5              // LIMIT OF ITEMS PER PAGE
+        );
+
+        // IF THE REQUEST IS AJAX, IT ONLY RETURNS THE TABLE OF ARTICLES
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('admin/_partials/review_products/_table_review_products.html.twig', [
+                'reviews' => $reviewProduct,
+            ]);
+        }
+
+        // IF IT'S NOT AJAX, IT RETURNS THE LIST OF ARTICLES
         return $this->render('admin/review_product/list_review_product.html.twig', [
-            'reviews' => $reviewProducts,
+            'reviews' => $reviewProduct,
+            'query' => $query,
         ]);
     }
 
@@ -88,7 +110,7 @@ class ReviewProductController extends AbstractController
             return $this->redirectToRoute('show_review_products');
         }
 
-        //security csrf
+        //SECURITY CSRF
         $csrfToken = new CsrfToken('deleteReviewProduct' . $id, $request->request->get('_token'));
         if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
             $this->addFlash('danger', 'You don\'t have permission to do that.');
