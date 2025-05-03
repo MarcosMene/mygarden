@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Users;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
@@ -41,7 +41,7 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'John',
                     'minlength' => 3,
                     'maxlength' => 25,
-                    'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                 ]
             ])
             ->add('lastname', TextType::class, [
@@ -66,7 +66,7 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Enter your last name',
                     'minlength' => 3,
                     'maxlength' => 25,
-                    'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -88,7 +88,7 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'name@example.com',
                     'min' => 10,
                     'max' => 50,
-                    'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                 ]
             ])
 
@@ -114,7 +114,7 @@ class RegistrationFormType extends AbstractType
                         'minlength' => 6,
                         'maxlength' => 16,
                         'placeholder' => 'Password',
-                        'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
+                        'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black mb-4'
                     ]
                 ],
                 'second_options' => [
@@ -123,7 +123,7 @@ class RegistrationFormType extends AbstractType
                         'minlength' => 6,
                         'maxlength' => 16,
                         'placeholder' => 'Enter your password again',
-                        'class' => 'w-full rounded invalid:border-red-500  bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
+                        'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black'
                     ]
                 ],
             ])
@@ -135,12 +135,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            // ->add('submit', SubmitType::class, [
-            //     'label' => 'Create an account',
-            //     'attr' => [
-            //         'class' => 'py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled"'
-            //     ]
-            // ])
         ;
     }
 

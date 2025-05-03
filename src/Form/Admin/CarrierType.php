@@ -27,7 +27,7 @@ class CarrierType extends AbstractType
                     'placeholder' => 'Ex. UPS',
                     'minlength' => 3,
                     'maxlength' => 26,
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
             ->add('description', TextType::class, [
@@ -38,7 +38,7 @@ class CarrierType extends AbstractType
                     'placeholder' => 'Ex.This carrier...',
                     'minlength' => 20,
                     'maxlength' => 101,
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
             ->add('price', NumberType::class, [
@@ -49,7 +49,7 @@ class CarrierType extends AbstractType
                     'placeholder' => '100,00',
                     'minlength' => 2,
                     'maxlength' => 8,
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
         ;

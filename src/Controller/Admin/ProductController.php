@@ -81,7 +81,9 @@ class ProductController extends AbstractController
         }
 
         $product = new Product();
+
         $form = $this->createForm(ProductType::class, $product, ['is_edit' => false]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -155,7 +157,7 @@ class ProductController extends AbstractController
     }
 
     // DETAIL PRODUCT
-    #[Route('/admin/detail/product/{slug}', name: 'detail_product', requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
+    #[Route('/admin/detail/product/{slug}', name: 'detail_product', methods: ['GET'], requirements: ['slug' => '[a-zA-Z0-9-_]+'])]
     public function detail(ProductRepository $productRepository, $slug): Response
     {
         $product = $productRepository->findOneBySlug($slug);
@@ -170,7 +172,7 @@ class ProductController extends AbstractController
     }
 
     //EDIT PRODUCT
-    #[Route('/admin/edit/product/{id}', name: 'edit_product', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/product/{id}', name: 'edit_product', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(Request $request, ProductRepository $productRepository, UploadHandler $uploadHandler, $id): Response
     {
         $product = $productRepository->find($id);
@@ -221,7 +223,6 @@ class ProductController extends AbstractController
                 $product->setImageName($newFilename);
             }
 
-            $this->entityManager->persist($product);
             $this->entityManager->flush();
 
             $this->addFlash('success', 'Product updated succesfully');

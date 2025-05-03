@@ -74,7 +74,7 @@ class BlogCategory
     public function removeBlogArticle(BlogArticle $blogArticle): static
     {
         if ($this->blogArticles->removeElement($blogArticle)) {
-            // SET THE OWNING SIDE TO NULL (UNLESS ALREADY CHANGED)
+            // set the owning side to null (unless already changed)
             if ($blogArticle->getCategory() === $this) {
                 $blogArticle->setCategory(null);
             }

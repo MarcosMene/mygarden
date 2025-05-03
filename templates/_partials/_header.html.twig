@@ -1,278 +1,247 @@
 <!--Header TOP-->
-<header>
-	<div class="flex flex-col md:flex-row justify-between items-center px-16 text-center py-3">
-		<div class="header_left flex-1 text-center  hidden lg:block">
-			<span class="text-gray text-xs">Contact: 555-55-55
-			</span>
-			<span>
-				&nbsp;
-			</span>
-			<span class="text-gray text-xs">
-				email:mygarden@teste.com
-			</span>
+<div id="navbar" class="{% if app.request.uri matches '#/admin#' %} relative {% else %} sticky top-0 transition-transform duration-500 ease-in-out {% endif %} z-50 bg-white shadow">
+	<header>
+		<div class="flex flex-col md:flex-row justify-between items-center px-16 text-center py-3">
+			<div class="header_left flex-1 text-center  hidden lg:block">
+				<span class=" text-xs">Contact: 555-55-55
+				</span>
+				<span>
+					&nbsp;
+				</span>
+				<span class=" text-xs">
+					email:mygarden@teste.com
+				</span>
 
-			<!--border-->
-			<div class="border border-gray"></div>
-		</div>
-		<div class=" header_middle mx-auto flex-column justify-center">
-			<img src="{{asset('assets/images/logo.png')}}" alt="logo my garden" loading="lazy" class="w-14 mx-auto hidden lg:block">
-			<p class="text-gray lg:hidden text-xs">My Garden - Flower shop</p>
-		</div>
-		<div class="header_right flex-1 text-center  ">
-			{% include ('components/network.html.twig')%}
+				<!--border-->
+				<div class="border border-gray"></div>
+			</div>
+			<div class=" header_middle mx-auto flex-column justify-center">
+				<img src="{{asset('assets/images/logo.webp')}}" alt="logo my garden" loading="lazy" class="w-10 h-10  hidden lg:block mx-2">
+				<p class=" lg:hidden text-xs">My Garden - Flower shop</p>
+			</div>
+			<div class="header_right flex-1 text-center  ">
+				{% include ('components/network.html.twig')%}
 
-			<!--border-->
-			<div class="border border-gray hidden lg:block"></div>
-		</div>
-
-		<div class="header_buttons lg:ml-8 flex  items-center justify-center sm:flex-row mt-3 lg:mt-0">
-			<a href="{{path('app_login')}}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">Sign In</a>
-			<a href="{{path('app_signup')}}" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Sign Up</a>
-		</div>
-	</div>
-</header>
-
-<!--END HEADER TOP-->
-<nav class="relative flex-no-wrap z-10 flex w-full items-center justify-between mt-3 lg:mt-0 px-8  lg:px-16 pb-3  lg:flex-wrap lg:justify-start">
-	<div
-		class="w-full  flex justify-between items-center">
-
-		<!-- Mobile Menu Button -->
-		<button id="mobileMenuButton" class="lg:hidden">
-			<i class="fa-solid fa-bars fa-xl "></i>
-		</button>
-
-		<!-- Links (Hidden on mobile) -->
-		<div class="hidden lg:flex space-x-4">
-			<ul
-				class="list-style-none space-x-0 lg:space-x-24 flex justify-between flex-col ps-0 lg:flex-row">
-
-				<!-- Home link -->
-				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a href="{{path('home')}}" class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-bold">Home</a>
-				</li>
-				<!-- About link -->
-				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a href="{{path('about_us')}}" class="{{app.current_route == 'about_us'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold">About</a>
-				</li>
-				<!-- Shop link -->
-				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('shop')}}">Shop</a>
-				</li>
-				<!-- Blog link -->
-				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('blog')}}">Blog</a>
-				</li>
-				<!-- Contact link -->
-				<li class="mb-8 lg:mb-0 text-center lg:text-left">
-					<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('contact')}}">Contact</a>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Icons -->
-		<div
-			class="flex   justify-between items-center w-[220px]">
-			<!-- Icon Member-->
-			<div class="flex justify-between items-center">
-				<a href="{{path('account')}}" class="hover:text-primary">
-					<span class="me-2  font-medium ">Hello, Connor</span>
-					<i class="fa-solid fa-user text-2xl"></i>
-				</a>
+				<!--border-->
+				<div class="border border-gray hidden lg:block"></div>
 			</div>
 
-			<!-- Cart Icon -->
-			<div class=" flex justify-center w-16 relative">
-				<button id="cart-button" class=" relative flex items-center text-neutral-600  hover:text-primary">
-					<i class="fa-solid fa-cart-shopping text-2xl"></i>
+			<div class="header_buttons lg:ml-8 flex  items-center justify-center sm:flex-row mt-3 lg:mt-0">
+				<a href="{{path('app_login')}}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">Sign In</a>
+				<a href="{{path('app_signup')}}" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Sign Up</a>
+			</div>
+		</div>
+	</header>
 
-					<!-- Notification shop -->
-					{% if fullCartQuantity > 0 %}
+	<!--END HEADER TOP-->
+	<nav class="relative flex-no-wrap z-10 flex w-full items-center justify-between mt-3 lg:mt-0 px-8  lg:px-16 pb-3  lg:flex-wrap lg:justify-start">
+		<div
+			class="w-full  flex justify-between items-center">
 
-						<span id="cart-button-notification" class=" rounded-full bg-primary w-5 h-5 px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">{{fullCartQuantity}}</span>
-					{% endif %}
-				</button>
+			<!-- Mobile Menu Button -->
+			<button id="mobileMenuButton" class="lg:hidden">
+				<i class="fa-solid fa-bars fa-xl "></i>
+			</button>
 
-				<!--CART-->
-				<div id="cart-dropdown" class="max-h-52 overflow-y-scroll z-50 hidden absolute -right-5 mt-10   shadow-lg rounded-lg p-4 w-72 sm:w-80 border border-gray-300 bg-white">
-					{% if myCart|length > 0 %}
-						<div
-							class="flex flex-col justify-between items-center mb-4">
+			<!-- Links (Hidden on mobile) -->
+			<div class="hidden lg:flex space-x-4">
+				<ul
+					class="list-style-none space-x-0 lg:space-x-24 flex justify-between flex-col ps-0 lg:flex-row">
 
-							<!--list products-->
-							{% for product in myCart %}
-								<!-- product -->
-								<div class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
+					<!-- Home link -->
+					<li class="mb-8 lg:mb-0 text-center lg:text-left">
+						<a href="{{path('home')}}" class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-bold">Home</a>
+					</li>
 
-									<div
-										class=" flex  overflow-hidden">
+					<!-- About link -->
+					<li class="mb-8 lg:mb-0 text-center lg:text-left">
+						<a href="{{path('about_us')}}" class="{{app.current_route == 'about_us'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold">About</a>
+					</li>
 
-										<!-- Product Image -->
-										<img
-										src="{{ asset('upload/products/' ~ product.object.imageName) }}" alt="{{ product.object.name }}" loading="lazy" class="w-16 h-16 group-hover:opacity-75">
-										<!-- Product text and price -->
-										<div class="flex flex-col ml-3">
-											<p class=" text-gray-900 text-base font-medium">{{product.object.name}}</p>
-											<p class=" text-gray-600 text-sm ">
-												{{ ((product.object.price*(100-product.object.promotion))/100)|price }}</p>
-											<p class=" text-gray-900 text-base font-medium text-gray">x{{product.quantity}}</p>
-										</p>
+					<!-- Shop link -->
+					<li class="mb-8 lg:mb-0 text-center lg:text-left">
+						<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('shop')}}">Shop</a>
+					</li>
+
+					<!-- Blog link -->
+					<li class="mb-8 lg:mb-0 text-center lg:text-left">
+						<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('blog')}}">Blog</a>
+					</li>
+
+					<!-- Contact link -->
+					<li class="mb-8 lg:mb-0 text-center lg:text-left">
+						<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-bold" href="{{path('contact')}}">Contact</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Icons -->
+			<div
+				class="flex   justify-between items-center w-[220px]">
+				<!-- Icon Member-->
+				<div class="flex justify-between items-center">
+					<a href="{{path('account')}}" class="hover:text-primary">
+						<span class="me-2  font-medium ">Hello, Connor</span>
+						<i class="fa-solid fa-user text-2xl"></i>
+					</a>
+				</div>
+
+				<!-- Cart Icon -->
+				<div class=" flex justify-center w-16 relative">
+					<button id="cart-button" class=" relative flex items-center text-neutral-600  hover:text-primary">
+						<i class="fa-solid fa-cart-shopping text-2xl"></i>
+
+						<!-- Notification shop -->
+						{% if fullCartQuantity > 0 %}
+
+							<span id="cart-button-notification" class=" rounded-full bg-primary w-5 h-5 px-[0.35em] py-[0.35em] text-[0.75rem]  leading-none text-white font-bold">{{fullCartQuantity}}</span>
+						{% endif %}
+					</button>
+
+					<!--CART-->
+					<div id="cart-dropdown" class="max-h-52 overflow-y-scroll z-50 hidden absolute -right-5 mt-10   shadow-lg rounded-lg p-4 w-72 sm:w-80 border border-gray-300 bg-white">
+						{% if myCart|length > 0 %}
+							<div
+								class="flex flex-col justify-between items-center mb-4">
+
+								<!--list products-->
+								{% for product in myCart %}
+									<!-- product -->
+									<div class="w-full my-2 flex items-center flex-col sm:flex-row  justify-center sm:justify-between">
+
+										<div
+											class=" flex  overflow-hidden">
+
+											<!-- Product Image -->
+											<img
+											src="{{ asset('upload/products/' ~ product.object.imageName) }}" alt="{{ product.object.name }}" loading="lazy" class="w-16 h-16 group-hover:opacity-75">
+											<!-- Product text and price -->
+											<div class="flex flex-col ml-3">
+												<p class=" -900 text-base font-medium">{{product.object.name}}</p>
+												<p class=" -600 text-sm ">
+													{{ ((product.object.price*(100-product.object.promotion))/100)|price }}</p>
+												<p class=" -900 text-base font-medium ">x{{product.quantity}}</p>
+											</div>
+										</div>
+										<div
+											class="flex flex-col justify-center items-center">
+
+											<!-- Delete button triggers the modal, not a form submission -->
+											<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.object.id }}, '{{ product.object.name }}')">
+												<i class="fa-regular fa-trash-can"></i>
+												Delete
+											</button>
+
+											<!-- Hidden form for deletion -->
+											<form id="delete-form-{{ product.object.id }}" action="{{ path('delete_from_cart', {id: product.object.id}) }}" method="POST" class="hidden">
+												<input type="hidden" name="_token" value="{{ csrf_token('deleteFromCart' ~ product.object.id) }}">
+											</form>
+										</div>
 									</div>
-								</div>
-								<div
-									class="flex flex-col justify-center items-center">
 
-									<!-- Delete button triggers the modal, not a form submission -->
-									<button type="button" class="flex flex-col items-center text-red text-xs font-medium transition duration-200 hover:scale-125" onclick="openDeleteModal({{ product.object.id }}, '{{ product.object.name }}')">
-										<i class="fa-regular fa-trash-can"></i>
-										Delete
-									</button>
-
-									<!-- Hidden form for deletion -->
-									<form id="delete-form-{{ product.object.id }}" action="{{ path('delete_from_cart', {id: product.object.id}) }}" method="POST" class="hidden">
-										<input type="hidden" name="_token" value="{{ csrf_token('deleteFromCart' ~ product.object.id) }}">
-									</form>
-								</div>
+									<!-- border -->
+									<div class="border border-gray w-1/2 mx-auto"></div>
+								{% endfor %}
 							</div>
 
 							<!-- border -->
-							<div class="border border-gray w-1/2 mx-auto"></div>
-						{% endfor %}
-					</div>
+							<div class="border  w-full mx-auto"></div>
 
-					<!-- border -->
-					<div class="border  w-full mx-auto"></div>
+							<!-- TOTAL PRODUCTS  -->
+							<div class="flex justify-between mt-4 mb-2">
+								<p class="text-black text-base font-medium capitalize">Total products:
+								</p>
+								<p class="text-black text-base">{{fullCartQuantity}}</p>
+							</div>
+							<!-- SUBTOTAL NO TAX  -->
+							<div class="flex justify-between mb-2">
+								<p class="text-black text-base font-medium capitalize">Subtotal NT:
+								</p>
+								<p class="text-black text-base">{{(totalCartNt )|price }}</p>
+							</div>
+							<!--SUBTOTAL WITH TAX  -->
+							<div class="flex justify-between mb-2">
+								<p class="text-black text-base font-medium capitalize">Subtotal WT:
+								</p>
+								<p class="text-black text-base">{{totalCartWt|price}}</p>
+							</div>
 
-					<!-- TOTAL PRODUCTS  -->
-					<div class="flex justify-between mt-4 mb-2">
-						<p class="text-black text-base font-medium capitalize">Total products:
-						</p>
-						<p class="text-black text-base">{{fullCartQuantity}}</p>
-					</div>
-					<!-- SUBTOTAL NO TAX  -->
-					<div class="flex justify-between mb-2">
-						<p class="text-black text-base font-medium capitalize">Subtotal NT:
-						</p>
-						<p class="text-black text-base">{{(totalCartNt )|price }}</p>
-					</div>
-					<!--SUBTOTAL WITH TAX  -->
-					<div class="flex justify-between mb-2">
-						<p class="text-black text-base font-medium capitalize">Subtotal WT:
-						</p>
-						<p class="text-black text-base">{{totalCartWt|price}}</p>
-					</div>
+							<!-- BUTTONS -->
+							<div class="header_buttons mt-3 flex justify-between">
+								<a href="{{path('cart')}}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">view cart</a>
 
-					<!-- BUTTONS -->
-					<div class="header_buttons mt-3 flex justify-between">
-						<a href="{{path('cart')}}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">view cart</a>
+								<a href="" class="py-2 px-4 ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">check out</a>
+							</div>
 
-						<a href="" class="py-2 px-4 ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100 capitalize">check out</a>
+						{% else %}
+							<p class="-700 text-center font-bold my-4">Your cart is empty.</p>
+						{% endif %}
 					</div>
+				</div>
 
+				{% if app.user %}
+					{% if (app.user.wishlists|length) > 0 %}
+						<!-- Wishlist Icon -->
+						<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-primary">
+							<i class="fa-solid fa-heart text-2xl"></i>
+						</a>
+					{% else %}
+						<!-- Wishlist Icon -->
+						<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
+							<i class="fa-solid fa-heart text-2xl"></i>
+						</a>
+					{% endif %}
 				{% else %}
-					<p class="text-gray-700 text-center font-bold my-4">Your cart is empty.</p>
+					<!-- Wishlist Icon -->
+					<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
+						<i class="fa-solid fa-heart text-2xl"></i>
+					</a>
 				{% endif %}
 			</div>
+
+			<!-- Mobile Menu (Hidden by default) -->
+			<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
+				<div class="flex justify-end">
+					<button id="closeMobileMenu" class="mb-4">
+						<i class="fa-solid fa-xmark fa-2xl"></i>
+					</button>
+				</div>
+
+				<!-- Menu Items -->
+				<div class=" h-96 flex justify-center py-6">
+					<ul
+						class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
+
+						<!-- Home link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl ">
+							<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
+						</li>
+
+						<!-- About link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl ">
+							<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
+						</li>
+
+						<!-- Shop link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
+						</li>
+
+						<!-- Blog link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
+						</li>
+
+						<!-- Contact link -->
+						<li class="mb-8 lg:mb-0 text-center text-xl">
+							<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</nav>
+</div>
 
-		{% if app.user %}
-			{% if (app.user.wishlists|length) > 0 %}
-				<!-- Wishlist Icon -->
-				<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-primary">
-					<i class="fa-solid fa-heart text-2xl"></i>
-				</a>
-			{% else %}
-				<!-- Wishlist Icon -->
-				<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
-					<i class="fa-solid fa-heart text-2xl"></i>
-				</a>
-			{% endif %}
-		{% else %}
-			<!-- Wishlist Icon -->
-			<a href="{{path('account_wishlist')}}" id="wishlist-button" class="p-0 m-0 relative flex items-center justify-center text-neutral-600">
-				<i class="fa-solid fa-heart text-2xl"></i>
-			</a>
-		{% endif %}
-	</a>
-
-	<!-- Mobile Menu (Hidden by default) -->
-	<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-white text-black p-10 hidden lg:hidden z-50">
-		<div class="flex justify-end">
-			<button id="closeMobileMenu" class="mb-4">
-				<i class="fa-solid fa-xmark fa-2xl"></i>
-			</button>
-		</div>
-
-		<!-- Menu Items -->
-		<div class=" h-96 flex justify-center py-6">
-			<ul
-				class="list-style-none  flex justify-between flex-col ps-0 lg:flex-row">
-
-				<!-- Home link -->
-				<li class="mb-8 lg:mb-0 text-center text-xl ">
-					<a class="{{app.current_route == 'home'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary active:text-primary motion-reduce:transition-none font-medium" href="{{path('home')}}">Home</a>
-				</li>
-				<!-- About link -->
-				<li class="mb-8 lg:mb-0 text-center text-xl ">
-					<a class="{{app.current_route == 'about'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('about_us')}}">About</a>
-				</li>
-				<!-- Shop link -->
-				<li class="mb-8 lg:mb-0 text-center text-xl">
-					<a class="{{app.current_route == 'shop'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('shop')}}">Shop</a>
-				</li>
-				<!-- Blog link -->
-				<li class="mb-8 lg:mb-0 text-center text-xl">
-					<a class="{{app.current_route == 'blog'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('blog')}}">Blog</a>
-				</li>
-				<!-- Contact link -->
-				<li class="mb-8 lg:mb-0 text-center text-xl">
-					<a class="{{app.current_route == 'contact'?'text-primary':'text-black'}} transition duration-200 hover:text-primary hover:underline hover:ease-in-out focus:text-primary motion-reduce:transition-none font-medium" href="{{path('contact')}}">Contact</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<script>
-	(function () { // MOBILE MENU TOGGLE
-let mobileMenu = document.getElementById('mobileMenu');
-let mobileMenuButton = document.getElementById('mobileMenuButton');
-let closeMobileMenu = document.getElementById('closeMobileMenu');
-
-mobileMenuButton.addEventListener('click', function () {
-mobileMenu.classList.remove('hidden');
-mobileMenu.classList.remove('animate-slide-out');
-mobileMenu.classList.add('animate-slide-in');
-});
-
-closeMobileMenu.addEventListener('click', function () {
-mobileMenu.classList.remove('animate-slide-in');
-mobileMenu.classList.add('animate-slide-out');
-
-// DELAY HIDING THE MENU TO ALLOW THE ANIMATION TO COMPLETE
-setTimeout(() => {
-mobileMenu.classList.add('hidden');
-}, 300); // MATCH THIS DURATION TO YOUR ANIMATION'S DURATION
-});
-
-// CART DROPDOWN TOGGLE
-let cartIcon = document.getElementById('cart-button');
-let cartDropdown = document.getElementById('cart-dropdown');
-
-
-// TOGGLE CART DROPDOWN
-cartIcon.onclick = function (event) {
-event.stopPropagation();
-cartDropdown.classList.toggle('hidden');
-};
-
-
-// HIDE THE DIV WHEN CLICKING ANYWHERE ELSE ON THE DOCUMENT
-document.addEventListener('click', function (event) { // CHECK IF THE CLICK TARGET IS NOT THE BUTTON OR THE DIV
-if (event.target !== cartDropdown && event.target) {
-cartDropdown.classList.add('hidden');
-}
-});
-
-
-})();
-</script><!-- DELETE CONFIRMATION MODAL -->{% include 'admin/_partials/_delete_modal.html.twig' %}<!-- SCRIPT  --><script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
+<!-- MENU MOBILE -->
+<script src="{{ asset('assets/js/admin/headerMobileMenu.js') }}"></script>

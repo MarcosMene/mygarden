@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       commentClientError.style.display = 'block';
       commentClient.classList.add('error-message');
       commentClientError.innerText =
-        'Your comment can only contain constters, spaces, or hyphens.';
+        'Your comment can only contain letters, spaces, or hyphens.';
       return false;
     } else {
       commentClientError.innerText = '';

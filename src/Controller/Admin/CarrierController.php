@@ -26,7 +26,7 @@ class CarrierController extends AbstractController
     }
 
     //LIST CARRIERS
-    #[Route('/admin/list/carriers', name: 'show_carriers')]
+    #[Route('/admin/list/carriers', name: 'show_carriers', methods: ['GET'])]
     public function list(CarrierRepository $carrierRepository): Response
     {
         $carriers = $carrierRepository->findAll();
@@ -64,8 +64,8 @@ class CarrierController extends AbstractController
         ]);
     }
 
-    //DETAIL COLOR
-    #[Route('/admin/detail/carrier/{id}', name: 'detail_carrier', requirements: ['id' => '\d+'])]
+    //DETAIL CARRIER
+    #[Route('/admin/detail/carrier/{id}', name: 'detail_carrier', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function detail(CarrierRepository $carrierRepository, $id): Response
     {
         $carrier = $carrierRepository->find($id);
@@ -79,8 +79,8 @@ class CarrierController extends AbstractController
         ]);
     }
 
-    //EDIT COLOR
-    #[Route('/admin/edit/carrier/{id}', name: 'edit_carrier', requirements: ['id' => '\d+'])]
+    //EDIT CARRIER
+    #[Route('/admin/edit/carrier/{id}', name: 'edit_carrier', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function edit(CarrierRepository $carrierRepository, Request $request, $id): Response
     {
         $carrier = $carrierRepository->find($id);
@@ -106,7 +106,7 @@ class CarrierController extends AbstractController
         ]);
     }
 
-    //DELETE COLOR
+    //DELETE CARRIER
     #[Route('/admin/delete/carrier/{id}', name: 'delete_carrier', requirements: ['id' => '\d+'])]
     public function delete(CarrierRepository $carrierRepository, Request $request, $id): Response
     {

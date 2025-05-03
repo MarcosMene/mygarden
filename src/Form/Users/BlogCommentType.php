@@ -22,7 +22,7 @@ class BlogCommentType extends AbstractType
                     'minlength' => 20,
                     'maxlength' => 200,
                     'class' => 'w-full rounded   bg-white p-3 shadow shadow-gray-100 text-base',
-                    'rows' => 3
+                    'rows' => 5
                 ],
             ]);
     }

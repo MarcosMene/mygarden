@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ReviewClient;
-use App\Form\ReviewClientType;
+use App\Form\Users\ReviewClientType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ class ReviewClientController extends AbstractController
             $entityManager->persist($reviewStore);
             $entityManager->flush();
 
-            //message
+            //MESSAGE
             $this->addFlash('success', 'Thank you for your opinion. We are glad to know about you.');
             return $this->redirectToRoute('review_store');
         }

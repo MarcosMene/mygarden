@@ -1,67 +1,64 @@
 <section class="our_story w-full pt-5 lg:pt-12 pb-10">
-	<div class="container mx-auto ">
+
+	<div
+		class="our_products container-fluid md:container px-4 mx-auto">
+
+		<!--OUR STORY-->
 		<div
-			class="our_products w-full">
+			class="our_story_block flex relative flex-col xl:flex-row  items-start mx-auto ">
+			<!--TEXT-->
+			<div class="our_story_left relative w-full xl:w-2/3 flex flex-col lg:flex-row mt-4 mb-2">
+				<div class="our_story_left_col">
+					<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal">Our Story</h2>
 
-			<!--OUR STORY-->
-			<div
-				class="our_story_block flex relative flex-col xl:flex-row px-8 lg:px-16 items-start">
-				<!--TEXT-->
-				<div class="our_story_left relative full xl:w-2/3 flex flex-col lg:flex-row p-4 md:p-0 mt-4 mb-2">
-					<div class="our_story_left_col">
-						<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal">Our Story</h2>
+					<!--image-->
+					{% include "_partials/_decoration.html.twig" %}
 
-						<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+					<div class="our_story_left_description  mt-8 mx-auto">
 
-
-						<div class="our_story_left_description ps-4 lg:ps-0 me-4 mt-8 mx-auto">
-
-							<h3 class="text-primary font-medium capitalize text-xl mb-1">Lorem ipsum</h3>
-							<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
-							<br>
-							<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
-						</div>
+						<h3 class="text-primary font-medium capitalize  mb-1 text-[1rem] md:text-[1.2rem]">Lorem ipsum</h3>
+						<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
+						<br>
+						<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
 					</div>
-				</div>
-
-				<!--IMAGE-->
-				<div class="img_bg_down_left full flex items-center md:items-start p-6 absolute mx-auto   ">
-					<img src="{{asset('assets/images/about/buques.jpg')}}" loading="lazy" class="z-10" alt=""/>
 				</div>
 			</div>
 
+			<!--IMAGE-->
+			<div class="img_bg_down_left  flex items-center md:items-start ps-6 pt-6 mx-auto">
+				<img src="{{asset('assets/images/about/buques.webp')}}" loading="lazy" class="z-10" alt="detail of hands preparing a bouquet of flowers">
+			</div>
+		</div>
 
-			<!--OUR QUALITY SERVICE-->
-			<div
-				class="our_story_block flex flex-col-reverse  xl:flex-row px-8 lg:px-16 items-center justify-start mt-10">
+		<!--OUR QUALITY SERVICE-->
+		<div
+			class=" flex flex-col-reverse  xl:flex-row items-center justify-stretch mt-10 w-full  mx-auto  ">
 
-				<!--IMAGE-->
-				<div class="img_bg_down_right full flex items-center md:items-start p-6 mx-auto xl:mx-0">
-					<img src="{{asset('assets/images/about/wedding.jpg')}}" loading="lazy" class="z-10" alt=""/>
-				</div>
-
-				<!--TEXT-->
-				<div class="our_story_left  full xl:w-2/3 flex flex-col lg:flex-row">
-					<div class="our_story_left_col w-full ps-2 lg:ps-12">
-
-						<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal">Quality at customer service</h2>
-
-						<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
-
-
-						<div class="our_story_left_description mt-4 me-4 w-full">
-
-							<h2 class="text-primary font-medium capitalize text-xl mb-1">Lorem ipsum</h2>
-							<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
-							<br>
-							<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
-						</div>
-					</div>
-				</div>
-
-
+			<!--IMAGE-->
+			<div class="img_bg_down_right  flex items-center md:items-start pe-0 lg:pe-6 pb-6 mt-6">
+				<img src="{{asset('assets/images/about/wedding.webp')}}" loading="lazy" class="z-10" alt="outside a garden with wedding decorations">
 			</div>
 
+			<!--TEXT-->
+			<div class="our_story_left  w-full xl:w-2/3 flex flex-col lg:flex-row mx-auto">
+				<div class="our_story_left_col ">
+
+					<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal">Quality at customer service</h2>
+
+					<!--image-->
+					{% include "_partials/_decoration.html.twig" %}
+
+
+					<div class="our_story_left_description mt-4 ps-0  w-full">
+
+						<h3 class="text-primary font-medium capitalize mb-1 text-[1rem] md:text-[1.2rem]">Lorem ipsum</h3>
+						<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
+						<br>
+						<p>Feugiat imperdiet malesuada egestas turpis cras tincidunt nibh lorem pede sit sem suspendisse pretium rhoncus lectus ex conubia in vel mi consectetuer platea augue et natoque sollicitudin eros ipsum nostra viverra accumsan fames libero habitant dapibus</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
 </section>

@@ -1,29 +1,28 @@
-<section class=" bg-white">
+{% if galleries|length > 0 %}
 
-	<div class="gallery w-full pt-5 lg:pt-12 pb-10 ">
-		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Gallery</h2>
-		<!--image-->
-		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+	<section class=" bg-white">
 
-		<div
-			class="md:container mx-auto px-8 lg:px-16">
+		<div class="gallery w-full pt-5 lg:pt-12 pb-10 ">
+			<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Gallery</h2>
 
-			<!--CARDS-->
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-16">
+			<!--image-->
+			{% include "_partials/_decoration.html.twig" %}
 
-				{% for gallery in galleries %}
+			<div
+				class="container-fluid md:container mx-auto px-4">
+
+				<!--CARDS-->
+				<div
+					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-16">
 
 					<!--CARD-->
-					<div
-						class="card border border-gray-200">
-						{# <img src="{{asset('upload/gallery/gallery1.jpg')}}" loading="lazy" class="w-full group-hover:opacity-75" alt=""/> #}
-
-						<img src="{{ asset('upload/galleries/' ~ gallery.imageName) }}" alt="{{ gallery.name }}" loading="lazy" class="w-full group-hover:opacity-75" ">
-
-
-					</div>
-				{% endfor %}
+					{% for gallery in galleries %}
+						<div class="card border border-gray-200">
+							<img src="{{ asset('upload/galleries/' ~ gallery.imageName) }}" alt="{{ gallery.name }}" loading="lazy" class="w-full group-hover:opacity-75">
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}

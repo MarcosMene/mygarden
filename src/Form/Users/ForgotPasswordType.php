@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Users;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -40,7 +40,7 @@ class ForgotPasswordType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            // CONFIGURE YOUR FORM OPTIONS HERE
         ]);
     }
 }

@@ -38,15 +38,13 @@ document.addEventListener('DOMContentLoaded', function () {
       postName.classList.add('error-message');
       postNameError.innerText = 'The name of the post is required.';
       return false;
-    }
-    if (postname.length < 3 || postname.length > 40) {
+    } else if (postname.length < 3 || postname.length > 40) {
       postNameError.style.display = 'block';
       postName.classList.add('error-message');
       postNameError.innerText =
         'The post must be at least 3 characters, and maximum 40 characters.';
       return false;
-    }
-    if (!validcolorName) {
+    } else if (!validcolorName) {
       postNameError.style.display = 'block';
       postName.classList.add('error-message');
       postNameError.innerText =

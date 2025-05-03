@@ -24,10 +24,10 @@
 						<!--AUTHOR-->
 						{% if article.author %}
 							<div class="blog_author flex items-center">
-								<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full">
+								<img src="{{ asset('upload/users/' ~ article.author.profileImageName) }}" alt="image of author" loading="lazy" class="me-3 w-10 rounded-full max-w-12">
 							</div>
 						{% else %}
-							<img src="{{ asset('assets/images/default_avatar.webp') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
+							<img src="{{ asset('assets/images/default_avatar.webp') }}" alt="author image not available" loading="lazy" class="w-10 me-2 max-w-12">
 						{% endif %}
 					</td>
 					<td class="whitespace-nowrap px-2 py-3 ">{{article.title|slice(0, 20) ~ '...'}}</td>
@@ -58,9 +58,9 @@
 					<!--IMAGE ARTICLE-->
 					<td class="whitespace-nowrap px-2 py-3">
 						{% if article.articleImageName is not null %}
-							<img src="{{ asset('/upload/blog/articles/'~ article.articleImageName)|imagine_filter('blog_images') }}" alt="image of {{ article.title }}" loading="lazy" class="w-14 mx-auto">
+							<img src="{{ asset('/upload/blog/articles/'~ article.articleImageName)|imagine_filter('blog_images') }}" alt="image of {{ article.title }}" loading="lazy" class="w-12 mx-auto max-w-14">
 						{% else %}
-							<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="article image not available" loading="lazy">
+							<img src="{{ asset('assets/images/image_not_available.jpg') }}" alt="article image not available" loading="lazy" class="w-12 max-w-14">
 						{% endif %}
 					</td>
 

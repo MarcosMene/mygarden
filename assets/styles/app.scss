@@ -33,17 +33,22 @@ h6 {
 //SCROLLBAR
 /*  Chrome, Edge e Safari */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+}
+
+//SCROLL SMOOTH
+html {
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: $primary;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -72,6 +77,7 @@ h6 {
 //VALIDATE INPUTS
 label {
   display: block;
+  // margin-top: 10px;
 }
 
 input::placeholder,
@@ -81,17 +87,19 @@ textarea::placeholder {
 }
 
 select {
-  color: $black; /* Placeholder color */
+  color: $gray; // placeholder
 }
 
-select option:first-child {
-  color: $gray;
+select:valid {
+  color: $black; // selected value
 }
-select option:first-child[selected] {
-  color: $gray;
+
+select option {
+  color: $black; // all options are black
 }
-select option:not(first-child[selected]) {
-  color: $black;
+
+select option:disabled {
+  color: $gray; // placeholder
 }
 
 .form-error li {
@@ -102,6 +110,7 @@ select option:not(first-child[selected]) {
 }
 
 form .text-red {
+  display: block;
   margin-top: 6px;
 }
 
@@ -125,11 +134,11 @@ form .text-red {
   color: $white;
 }
 
-.form-error {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 4px;
-}
+// .form-error {
+//   color: red;
+//   font-size: 0.875rem;
+//   // margin-top: 4px;
+// }
 
 .disabled {
   pointer-events: none;
@@ -221,6 +230,20 @@ form .text-red {
   display: block;
 }
 
+//CARD ANIMATION
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px); /* Start position little down from start */
+  animation: fadeInUp 0.6s forwards; /* duration of animation */
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 //OUR SERVICE
 .img_border_up {
   position: relative;
@@ -253,8 +276,10 @@ form .text-red {
     left: 20;
     right: 0;
     bottom: 0;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+    max-width: 250px;
+    max-height: 250px;
     margin-right: 5px;
     border: 1px solid $primary;
     z-index: 0;
@@ -336,10 +361,10 @@ input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
 
-//REVIEW CLIENT
-#review_client_rate label {
-  margin: 0 10px;
-}
+// //REVIEW CLIENT
+// #review_client_rate label {
+//   margin: 30px;
+// }
 
 .custom-radio {
   appearance: none;

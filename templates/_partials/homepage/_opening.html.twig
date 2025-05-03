@@ -2,9 +2,9 @@
 
 	<div class="opening w-full pt-5 lg:pt-12 pb-10 ">
 		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Open hours</h2>
-		<!--image-->
+		<!--IMAGE-->
 		<img
-		src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+		src="{{asset('assets/images/decoration_text.webp')}}" alt="decoration title" class="mx-auto">
 
 		<!--TABLE-->
 		<div class="opening_block flex flex-wrap flex-col xl:flex-row px-8 lg:px-16 justify-center items-center gap-x-24 mt-12">
@@ -17,7 +17,7 @@
 					<tbody class="font-normal text-xl text-start">
 						{% for schedule in shopSchedules %}
 							<tr class="border-b border-neutral-200 text-xl text-start font-normal">
-								<td class="whitespace-nowrap p-1 ">{{schedule.day}}</td>
+								<td class="whitespace-nowrap p-1 capitalize">{{schedule.day}}</td>
 
 								{%if schedule.openTime|date('G') == 0 %}
 									<td class="whitespace-nowrap  ps-4 text-center" colspan="3">Closed</td>
@@ -35,7 +35,7 @@
 
 			<!--IMAGE-->
 			<div class="img_border_down full flex  justify-end p-4">
-				<img src="{{asset('assets/images/home/my_garden_building.jpg')}}" loading="lazy" class="h-[380px] w-[380px]   mt-4 z-10" alt=""/>
+				<img src="{{asset('assets/images/home/my_garden_building.webp')}}" loading="lazy" class="h-auto w-auto md:h-[380px] md:w-[380px] object-cover  mt-4 z-10" alt="front of the My garden building">
 			</div>
 		</div>
 	</div>

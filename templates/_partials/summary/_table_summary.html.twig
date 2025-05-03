@@ -6,7 +6,7 @@
 				<table class="min-w-full text-sm font-normal text-surface dark:text-white mt-4">
 					<thead class="border-b border-neutral-200 bg-white font-medium dark:border-white/10 dark:bg-body-dark">
 						<tr>
-							<th scope="col" class="w-[200px]">Image</th>
+							<th scope="col" class="w-[300px]">Image</th>
 							<th scope="col" class="w-[300px]">Product</th>
 							<th scope="col" class="w-[400px]">price</th>
 							<th scope="col" class="w-[200px]">Quantity</th>
@@ -36,17 +36,17 @@
 				</table>
 				<!--TOTAL ORDER-->
 				<div
-					class="total flex justify-between items-center mt-4">
+					class="total flex flex-col md:flex-row justify-between items-start md:items-center mt-8 md:mt-4">
 
 					<!--PAY BUTTON-->
-					<div class="mx-auto">
+					<div class="mx-0  md:mx-auto mb-4">
 						<a href="{{path('payment', {id_order:order.id})}}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">Pay
 							{{ (totalWt + choices.carriers.price)|price }}</a>
 					</div>
 
 					<!--TOTAL-->
 					<div
-						class="flex flex-col items-end mt-3">
+						class="flex flex-col items-end mb-4">
 						<!-- TOTAL PRODUCTS -->
 						<div class="text-lg ">
 							<span class="font-semibold">Total products:</span>

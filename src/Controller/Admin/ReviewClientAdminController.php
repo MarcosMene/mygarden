@@ -57,7 +57,7 @@ class ReviewClientAdminController extends AbstractController
     }
 
     //DETAIL REVIEW CLIENT STORE
-    #[Route('/admin/detail/review_store/{id}', name: 'detail_review_store', requirements: ['id' => '\d+'])]
+    #[Route('/admin/detail/review_store/{id}', methods: ['GET'], name: 'detail_review_store', requirements: ['id' => '\d+'])]
     public function detail(ReviewClientRepository $reviewClientRepository, $id): Response
     {
         $review = $reviewClientRepository->find($id);
@@ -73,7 +73,7 @@ class ReviewClientAdminController extends AbstractController
     }
 
     //EDIT REVIEW CLIENT STORE
-    #[Route('/admin/edit/review_store/{id}', name: 'edit_review_store', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/review_store/{id}', name: 'edit_review_store', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(int $id, ReviewClientRepository $reviewClientRepository, Request $request, ReviewClient $reviewClient): Response
     {
         $reviewClient = $reviewClientRepository->find($id);

@@ -1,43 +1,44 @@
-<section class="md:container mx-auto ">
+<section class="our_team w-full pt-5 lg:pt-12 pb-10 ">
 	<div class="our_products w-full pt-5 lg:pt-12 pb-10">
 
-		<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal">Our Products</h2>
+		<h2 class="text-[1.5rem] md:text-[2rem] text-center text-black font-normal">Our Products</h2>
 
 		<!--image-->
-		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+		{% include "_partials/_decoration.html.twig" %}
 
-		<div class="filter-buttons our_product_navigation flex px-8 lg:px-16 flex-wrap gap-3 w-full justify-center mt-10 items-center mx-auto">
-			<button data-filter="all" class="btn-filter active w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">All</button>
-			<button data-filter="best-seller" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Best Seller</button>
-			<button data-filter="promotion" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Promotion</button>
-			<button data-filter="new" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">New</button>
-			<button data-filter="top-rated" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2  text-base font-medium text-primary text-center  bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary   transition ease-in-out delay-100">Top Rated</button>
+
+		<div class="filter-buttons our_product_navigation flex flex-wrap gap-3 w-full justify-center mt-10 items-center ">
+			<button data-filter="all" class="btn-filter active w-[120px] py-2 px-4 ml-0 sm:ml-2 text-base font-medium text-primary text-center bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary transition ease-in-out delay-100">All</button>
+
+			<button data-filter="best-seller" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2 text-base font-medium text-primary text-center bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary transition ease-in-out delay-100">Best Seller</button>
+
+			<button data-filter="promotion" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2 text-base font-medium text-primary text-center bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary transition ease-in-out delay-100">Promotion</button>
+
+			<button data-filter="new" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2 text-base font-medium text-primary text-center bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary transition ease-in-out delay-100">New</button>
+			<button data-filter="top-rated" class="btn-filter w-[120px] py-2 px-4 ml-0 sm:ml-2 text-base font-medium text-primary text-center bg-white hover:bg-primary hover:text-white rounded-[5px] border border-primary transition ease-in-out delay-100">Top Rated</button>
 		</div>
 
 		<!--CARDS -->
 		<div
-			class="px-16 flex flex-wrap mt-16 gap-4 justify-center" id="product-gallery">
-
+			class="container-fluid md:container px-4 mt-16 flex flex-wrap justify-center items-start gap-8  mx-auto" id="product-gallery">
 			<!--CARD-->
 			{% include '_partials/homepage/_product_gallery.html.twig' with {'products': products} %}
-
 		</div>
 
 		<!--VIEW ALL PRODUCTS BUTTON-->
-		<div class="flex justify-center items-cente">
-			<a href="{{path('shop')}}" class="py-2 px-4 mt-8  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">View all products</a>
+		<div class="flex justify-center items-center">
+			<a href="{{path('shop')}}" class="py-2 px-4 mt-8 text-base font-medium text-white bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize">View all products</a>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<script>
-		document.querySelectorAll('.filter-buttons button').forEach(button => {
+<script>
+	document.querySelectorAll('.filter-buttons button').forEach(button => {
 button.addEventListener('click', function () {
 let filter = this.getAttribute('data-filter');
 
 // Remove 'active' class from all buttons
 document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList.remove('active'));
-
-// Add 'active' class to the clicked button
 this.classList.add('active');
 
 fetch('/filter-products?filter=' + filter, {
@@ -47,8 +48,15 @@ headers: {
 'Content-Type': 'application/json'
 }
 }).then(response => response.json()).then(data => {
-document.getElementById('product-gallery').innerHTML = data.html;
+const gallery = document.getElementById('product-gallery');
+gallery.innerHTML = data.html;
+
+// add css animations
+const items = gallery.querySelectorAll(':scope > *');
+items.forEach(item => {
+item.classList.add('fade-in');
 });
 });
 });
-	</script>
+});
+</script>

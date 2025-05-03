@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\User;
+namespace App\Form\Users;
 
 use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
@@ -13,8 +13,7 @@ class AddressUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Check if the form is for creating a new carrier (no existing carrier passed)
-        $isEdit = $options['is_edit'];
+        // CHECK IF THE FORM IS FOR CREATING A NEW CARRIER (NO EXISTING CARRIER PASSED)
 
         $builder
             ->add('name', TextType::class, [
@@ -97,10 +96,9 @@ class AddressUserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Address::class,
-            'is_edit' => false, // Pass whether the form is for creating or editing
-            'csrf_protection' => true, // This is the default, enabling CSRF protection
-            'csrf_token_id' => 'post_item', // Unique CSRF token ID for this form
-            
+            'is_edit' => false, // PASS WHETHER THE FORM IS FOR CREATING OR EDITING
+            'csrf_protection' => true, // THIS IS THE DEFAULT, ENABLING CSRF PROTECTION
+            'csrf_token_id' => 'post_item', // UNIQUE CSRF TOKEN ID FOR THIS FORM
         ]);
     }
 }

@@ -15,7 +15,6 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class PostsController extends AbstractController
 {
-
     private $entityManager;
     private $csrfTokenManager;
 
@@ -26,7 +25,7 @@ class PostsController extends AbstractController
     }
 
     //LIST POSTS
-    #[Route('/admin/list/posts', name: 'show_posts')]
+    #[Route('/admin/list/posts', name: 'show_posts', methods: ['GET'])]
     public function index(PostsRepository $postsRepository): Response
     {
         $posts = $postsRepository->findAll();
@@ -56,24 +55,24 @@ class PostsController extends AbstractController
         ]);
     }
 
-    //DETAIL POST
-    #[Route('/admin/detail/post/{id}', name: 'detail_post', requirements: ['id' => '\d+'])]
-    public function detail(PostsRepository $postsRepository, $id): Response
-    {
-        $post = $postsRepository->find(['id' => $id]);
+    // //DETAIL POST
+    // #[Route('/admin/detail/post/{id}', name: 'detail_post', methods: ['GET'], requirements: ['id' => '\d+'])]
+    // public function detail(PostsRepository $postsRepository, $id): Response
+    // {
+    //     $post = $postsRepository->find(['id' => $id]);
 
-        if (!$post) {
-            $this->addFlash('danger', 'Post not found');
-            return $this->redirectToRoute('show_posts');
-        }
+    //     if (!$post) {
+    //         $this->addFlash('danger', 'Post not found');
+    //         return $this->redirectToRoute('show_posts');
+    //     }
 
-        return $this->render('admin/post_employee/detail_post.html.twig', [
-            'post_detail' => $post
-        ]);
-    }
+    //     return $this->render('admin/post_employee/detail_post.html.twig', [
+    //         'post_detail' => $post
+    //     ]);
+    // }
 
     //EDIT POST
-    #[Route('/admin/edit/post/{id}', name: 'edit_post', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/post/{id}', name: 'edit_post', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(PostsRepository $postsRepository, $id, Request $request): Response
     {
         $post = $postsRepository->find(['id' => $id]);
@@ -89,7 +88,6 @@ class PostsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->persist($post);
             $this->entityManager->flush();
 
             $this->addFlash('success', 'The post was updated succesfully');

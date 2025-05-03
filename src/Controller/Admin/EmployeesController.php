@@ -122,7 +122,7 @@ class EmployeesController extends AbstractController
     }
 
     //DETAIL EMPLOYEE
-    #[Route('/admin/detail/employee/{id}', name: 'detail_employee', requirements: ['id' => '\d+'])]
+    #[Route('/admin/detail/employee/{id}', name: 'detail_employee', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function detail(EmployeesRepository $employeesRepository, $id): Response
     {
         $employee = $employeesRepository->find(['id' => $id]);
@@ -137,7 +137,7 @@ class EmployeesController extends AbstractController
     }
 
     //EDIT EMPLOYEE
-    #[Route('/admin/edit/employee/{id}', name: 'edit_employee', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/employee/{id}', name: 'edit_employee', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(EmployeesRepository $employeesRepository, $id, Request $request): Response
     {
         $employee = $employeesRepository->findOneBy(['id' => $id]);
@@ -152,7 +152,6 @@ class EmployeesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($employee);
             $this->entityManager->flush();
             $this->addFlash('success', 'Employee updated succesfully');
             return $this->redirectToRoute('show_employees');

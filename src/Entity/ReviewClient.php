@@ -34,7 +34,7 @@ class ReviewClient
 
     public function __construct()
     {
-        // Automatically set the createdAt field to the current date and time
+        // AUTOMATICALLY SET THE CREATEDAT FIELD TO THE CURRENT DATE AND TIME
         $this->createdAt = new \DateTime();
     }
 

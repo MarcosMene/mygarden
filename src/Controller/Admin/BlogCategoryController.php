@@ -97,7 +97,7 @@ class BlogCategoryController extends AbstractController
     }
 
     //DELETE BLOG CATEGORY
-    #[Route('/category/{id}', name: 'delete_blogCategory', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/category/{id}', name: 'delete_blogCategory', requirements: ['id' => '\d+'])]
     public function delete(BlogCategoryRepository $blogCategoryRepository, Request $request, $id): Response
     {
         $blogCategory = $blogCategoryRepository->find($id);

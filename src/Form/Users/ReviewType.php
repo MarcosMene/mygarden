@@ -26,7 +26,7 @@ class ReviewType extends AbstractType
                     '5' => 5,
                 ],
                 'attr' => [
-                    'class' => 'w-fit rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => 'w-fit rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
                 'multiple' => false,
             ])
@@ -39,7 +39,7 @@ class ReviewType extends AbstractType
                     'minlength' => 20,
                     'maxlength' => 200,
                     'class' => 'w-full rounded   bg-white p-3 shadow shadow-gray-100 text-base',
-                    'rows'=>3
+                    'rows' => 5
                 ],
             ])
         ;
@@ -53,7 +53,7 @@ class ReviewType extends AbstractType
             //CSRF TOKEN
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'review_item',  // Unique token ID for the review form
+            'csrf_token_id'   => 'review_item',  // UNIQUE TOKEN ID FOR THE REVIEW FORM
         ]);
     }
 }

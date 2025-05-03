@@ -12,6 +12,10 @@ class PostsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        // CHECK IF THE FORM IS FOR CREATING A NEW PRODUCT (NO EXISTING PRODUCT PASSED)
+        $isEdit = $options['is_edit'];
+
         $builder
             ->add('name', TextType::class, [
                 'empty_data' => '',
@@ -21,7 +25,7 @@ class PostsType extends AbstractType
                     'placeholder' => 'Ex. Manager',
                     'minlength' => 3,
                     'maxlength' => 51,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                    'class' => $isEdit ? 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ]
             ]);
     }

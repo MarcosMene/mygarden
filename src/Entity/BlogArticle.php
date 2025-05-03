@@ -53,13 +53,11 @@ class BlogArticle
     #[Assert\NotBlank(message: 'Select at least one tag')]
     private Collection $tags;
 
-
-
     #[ORM\ManyToOne(inversedBy: 'blogArticles')]
     private ?User $author = null;
 
     //AUTHOR IMAGE
-    #[Vich\UploadableField(mapping: 'author_blog', fileNameProperty: 'authorImageName')]
+    #[Vich\UploadableField(mapping: 'user_images', fileNameProperty: 'authorImageName')]
     #[Assert\File(
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
         mimeTypesMessage: 'Invalid file type! Please upload a JPG, JPEG, PNG or WEBP image.'

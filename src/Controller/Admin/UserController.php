@@ -57,7 +57,7 @@ class UserController extends AbstractController
     }
 
     //DETAIL USER
-    #[Route('/admin/detail/user/{id}', name: 'detail_user',  requirements: ['id' => '\d+'])]
+    #[Route('/admin/detail/user/{id}', name: 'detail_user',  requirements: ['id' => '\d+'], methods: ['GET'])]
     public function detail($id, UserRepository $userRepository): Response
     {
         $user = $userRepository->findOneById($id);

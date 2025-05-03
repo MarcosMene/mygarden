@@ -26,7 +26,7 @@ class GalleryController extends AbstractController
     }
 
     // LIST PRODUCTS
-    #[Route('/admin/list/galleries', name: 'show_galleries')]
+    #[Route('/admin/list/galleries', methods: ['GET'], name: 'show_galleries')]
     public function list(GalleryRepository $gallerieRepository): Response
     {
         $galleries = $gallerieRepository->findAll();
@@ -80,7 +80,7 @@ class GalleryController extends AbstractController
     }
 
     //EDIT GALLERY
-    #[Route('/admin/edit/gallery/{id}', name: 'edit_gallery', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/gallery/{id}', name: 'edit_gallery', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(GalleryRepository $galleryRepository, Request $request, $id): Response
     {
         $gallery = $galleryRepository->find($id);
@@ -95,7 +95,6 @@ class GalleryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->persist($gallery);
             $this->entityManager->flush();
             //MESSAGE
             $this->addFlash('success', 'Your gallery was updated with success');

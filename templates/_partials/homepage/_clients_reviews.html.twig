@@ -1,21 +1,21 @@
 {% if reviews|length > 0%}
 	<section class="client_reviews w-full pt-5 lg:pt-12 pb-10 bg-white">
 		<div class="our_clients w-full">
-			<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal line_height12">What clients say</h2>
+			<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal line_height12 ">What clients say</h2>
 			<!--image-->
 			<img
-			src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+			src="{{asset('assets/images/decoration_text.webp')}}" alt="decoration title" class="mx-auto mb-4">
 
 			<!--REVIEWS-->
 			<div
 				class="reviews w-full flex justify-between items-center px-4 md:px-0">
 
 				<!--LEFT FLOWER IMAGE-->
-				<div class="flex-none ">
-					<img src="{{asset('assets/images/home/left_flower.png')}}" loading="lazy" alt="" class="me-auto h-60 lg:h-80 hidden md:block">
+				<div>
+					<img src="{{asset('assets/images/home/left_flower.webp')}}" alt="flower decoration" class="me-auto h-60 lg:h-80 hidden md:block">
 				</div>
 				<!--CAROUSEL-->
-				<div class="grow  mt-0 ">
+				<div class="grow  mt-0 max-w-[1000px]">
 					<div id="carouselReviews" class="relative" data-twe-carousel-init data-twe-ride="carousel">
 						<div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
 
@@ -26,10 +26,9 @@
 
 									<!--REVIEW BLOCK-->
 									<div
-										class="review_block flex justify-center flex-col mx-auto w-3/4 h-80 sm:h-56">
+										class="review_block flex justify-around flex-col mx-auto w-3/4 h-80 sm:h-56 py-4">
 										<!--STARS-->
-										<div
-											class="review_stars flex justify-center mb-5">
+										<div class="review_stars flex justify-center mb-5">
 											{% if reviews|length > 0 %}
 												{% include 'components/review_stars_user.html.twig'%}
 											{% endif %}
@@ -37,7 +36,7 @@
 
 										<!--TEXT-->
 										<div class="review_text mb-4 text-black">
-											<p>{{review.comment}}</p>
+											<p class="text-base md:text-[1.4rem] capitalize first-letter:uppercase">{{review.comment}}</p>
 										</div>
 
 										<!--CLIENT NAME-->
@@ -54,31 +53,60 @@
 							{% endfor %}
 						</div>
 
-						<!--Carousel controls - prev item-->
+						<!--CAROUSEL CONTROLS - PREV ITEM-->
 						<button class="absolute h-full bottom-0 left-0 top-0 z-[1] flex w-fit items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" type="button" data-twe-target="#carouselReviews" data-twe-slide="prev">
 							<span class="inline-block h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16">
-								<img src="{{asset('assets/images/arrow_left.png')}}" alt="arrow right carousel" loading="lazy">
+								<img src="{{asset('assets/images/arrow_left.png')}}" alt="arrow left carousel">
 							</span>
 							<span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
 						</button>
-						<!--Carousel controls - next item-->
+						<!--CAROUSEL CONTROLS - NEXT ITEM-->
 						<button class="absolute bottom-0 right-0 top-0 z-[1] flex w-fit items-center justify-center border-0 bg-none p-0 text-center text-white  transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none" type="button" data-twe-target="#carouselReviews" data-twe-slide="next">
 							<span class="inline-block h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16">
-								<img src="{{asset('assets/images/arrow_right.png')}}" alt="arrow right carousel" loading="lazy">
+								<img src="{{asset('assets/images/arrow_right.png')}}" alt="arrow right carousel">
 							</span>
 							<span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
 						</button>
 					</div>
 
 					<!--GIVE YOUR OPINION BUTTON-->
-					<div class="give_your_opinion text-center mt-0 sm:mt-8">
+					<div class="give_your_opinion text-center">
 						<a href="{{path('review_store')}}" class="py-2 px-4 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize  mx-auto">Give your opinion</a>
 					</div>
 				</div>
 
 				<!--RIGHT FLOWER IMAGE-->
-				<div class="flex-none">
-					<img src="{{asset('assets/images/home/right_flower.png')}}" loading="lazy" alt="" class="ms-auto h-60 lg:h-80 hidden md:block">
+				<div>
+					<img src="{{asset('assets/images/home/right_flower.webp')}}" alt="flower decoration" class="ms-auto h-60 lg:h-80 hidden md:block">
+				</div>
+			</div>
+		</div>
+	</section>
+{% else %}
+	<section class="client_reviews w-full pt-5 lg:pt-12 pb-10 bg-white">
+		<div class="our_clients w-full">
+			<h2 class="text-[1.5rem] md:text-[2rem]  text-center  text-black font-normal line_height12">Be the first to give your opinion.</h2>
+			<!--IMAGE-->
+			<img
+			src="{{asset('assets/images/decoration_text.webp')}}" alt="decoration title" class="mx-auto">
+
+			<!--REVIEWS-->
+			<div
+				class="reviews w-full flex justify-between items-center px-4 md:px-0">
+
+				<!--LEFT FLOWER IMAGE-->
+				<div>
+					<img src="{{asset('assets/images/home/left_flower.webp')}}" alt="flower decoration" class="me-auto h-40 lg:h-40 hidden md:block">
+				</div>
+
+				<!--GIVE YOUR OPINION BUTTON-->
+				<div class="give_your_opinion text-center">
+					<a href="{{path('review_store')}}" class="py-2 px-4 text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize  mx-auto">Give your opinion</a>
+				</div>
+
+				<!--RIGHT FLOWER IMAGE-->
+				<div>
+					<img src="{{asset('assets/images/home/right_flower.png')}}" alt="flower decoration" class="ms-auto h-40 lg:h-40 hidden md:block">
 				</div>
 			</div>
 		</div>

@@ -32,7 +32,7 @@ class HeaderType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
 
@@ -44,7 +44,7 @@ class HeaderType extends AbstractType
                     'placeholder' => 'Today is a beautiful...',
                     'minlength' => 10,
                     'maxlength' => 51,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
             ->add('paragraph', TextType::class, [
@@ -55,7 +55,7 @@ class HeaderType extends AbstractType
                     'placeholder' => 'Today is a beautiful...',
                     'minlength' => 10,
                     'maxlength' => 51,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
             ->add('backgroundColor', ChoiceType::class, [
@@ -68,7 +68,7 @@ class HeaderType extends AbstractType
                     'White' => "#fcfcfc",
                 ],
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
                 'multiple' => false,
                 'required' => true,
@@ -81,7 +81,7 @@ class HeaderType extends AbstractType
                     'placeholder' => 'Shop now',
                     'minlength' => 3,
                     'maxlength' => 16,
-                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black lowercase',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
 
@@ -116,7 +116,7 @@ class HeaderType extends AbstractType
                     '4' => 4,
                 ],
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
                 'multiple' => false,
             ])
@@ -130,7 +130,7 @@ class HeaderType extends AbstractType
                     'right' => "right",
                 ],
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
                 'multiple' => false,
             ])

@@ -8,19 +8,20 @@
 	{% include ('admin/components/titleDashboardAdminMarginBottom.html.twig') %}
 
 	<div
-		class="create_colors w-full flex px-8 lg:px-16 mb-10">
+		class="list_color w-full flex px-4 md:px-8 lg:px-16 mb-10 relative overflow-hidden">
+
 
 		<!-- MENU LEFT  -->
-		<aside class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
-			<div class="sticky top-0">
-				{% include ('admin/_partials/menu_navigation.html.twig')%}
-			</div>
-		</aside>
-		<!-- RIGHT CREATE FORM -->
-		<div class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
 
-			<div class="title_form flex flex-wrap justify-between">
-				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of colors</h2>
+		{% include ('admin/_partials/menu_navigation.html.twig') %}
+
+		<!-- RIGHT LIST -->
+		<div class="w-full  bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+			<div
+				class="title_form flex flex-col md:flex-row flex-wrap items-center  md:justify-between">
+
+				<!--TITLE-->
+				<h2 class="text-center md:text-start flex-1 mb-2 md:mb-0 text-black font-medium text-xl ">List of colors</h2>
 				<a href="{{path('create_color')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
 					Create color
 				</a>
@@ -43,15 +44,12 @@
 									<tbody>
 										{% for color in colors %}
 											<tr class="border-b border-neutral-200 text-base text-left font-normal {{loop.index is odd ? 'bg-gray-50':'bg-white'}}">
-												<td class="whitespace-nowrap py-2 ps-4">{{color.color}}</td>
+												<td class="whitespace-nowrap py-2 ps-4 capitalize">{{color.color}}</td>
 
 												<!--ACTION BUTTONS-->
 												<td class="whitespace-nowrap p-2 text-left">
 													<div class="h-full flex justify-between items-center gap-4">
-														<a href="{{path('detail_color', {id:color.id})}}" class="flex flex-col items-center text-green-600 text-xs font-medium transition duration-200 hover:scale-125">
-															<i class="fa-regular fa-eye"></i>
-															View
-														</a>
+
 														<a href="{{path('edit_color',{id: color.id})}}" class="flex flex-col items-center text-black text-xs font-medium transition duration-200 hover:scale-125">
 															<i class="fa-solid fa-pencil text-black"></i>
 															Edit
@@ -86,9 +84,4 @@
 		</div>
 	</div>
 
-	<!-- delete confirmation modal -->
-	{% include 'admin/_partials/_delete_modal.html.twig' %}
-
-	<!-- SCRIPT  -->
-	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
 {% endblock %}

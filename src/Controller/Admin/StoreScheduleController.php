@@ -25,7 +25,7 @@ class StoreScheduleController extends AbstractController
     }
 
     // LIST SCHEDULE STORE
-    #[Route('/admin/list/schedules', name: 'show_schedules')]
+    #[Route('/admin/list/schedules', name: 'show_schedules', methods: ['GET'])]
     public function index(StoreScheduleRepository $storeScheduleRepository): Response
     {
         $schedules = $storeScheduleRepository->findAllOrderedByDayOrder();
@@ -65,23 +65,8 @@ class StoreScheduleController extends AbstractController
         ]);
     }
 
-    //DETAIL SCHEDULE
-    #[Route('/admin/detail/schedule/{id}', name: 'detail_schedule', requirements: ['id' => '\d+'])]
-    public function detail(StoreScheduleRepository $storeScheduleRepository, $id): Response
-    {
-        $schedule = $storeScheduleRepository->find($id);
-        //IF SCHEDULE DOESNT EXIST
-        if (!$schedule) {
-            $this->addFlash('danger', 'This schedule doesn\'t exist');
-            return $this->redirectToRoute('show_schedules');
-        }
-        return $this->render('admin/schedule/detail_storeSchedule.html.twig', [
-            'schedule' => $schedule
-        ]);
-    }
-
     //EDIT SCHEDULE
-    #[Route('/admin/edit/schedule/{id}', name: 'edit_schedule', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/schedule/{id}', name: 'edit_schedule', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function edit(StoreScheduleRepository $storeScheduleRepository, Request $request, $id): Response
     {
         $schedule = $storeScheduleRepository->find($id);
@@ -96,7 +81,6 @@ class StoreScheduleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->persist($schedule);
             $this->entityManager->flush();
             //MESSAGE
             $this->addFlash('success', 'Your schedule was updated with success');

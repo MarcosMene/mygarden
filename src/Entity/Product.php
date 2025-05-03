@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Vich\Uploadable]
@@ -25,6 +26,10 @@ class Product
     private ?string $name = null;
 
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName')]
+    #[Assert\File(
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypesMessage: 'Invalid file type! Please upload a JPG, JPEG, PNG or WEBP image.'
+    )]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -43,8 +48,8 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $tva = null;
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $tva = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isSuggestion = null;
@@ -57,8 +62,8 @@ class Product
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?ColorProduct $colorProduct = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
-    private ?string $promotion = null;
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $promotion = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isBestSeller = null;
@@ -77,7 +82,7 @@ class Product
 
     public function __construct()
     {
-        // Automatically set the createdAt field to the current date and time
+        // AUTOMATICALLY SET THE CREATEDAT FIELD TO THE CURRENT DATE AND TIME
         $this->createdAt = new \DateTime();
         $this->reviews = new ArrayCollection();
     }
@@ -109,8 +114,8 @@ class Product
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
+            // IT IS REQUIRED THAT AT LEAST ONE FIELD CHANGES IF YOU ARE USING DOCTRINE
+            // OTHERWISE THE EVENT LISTENERS WON'T BE CALLED AND THE FILE IS LOST
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
@@ -149,7 +154,7 @@ class Product
 
     public function setDescription(string $description): static
     {
-        $this->description = $description;
+        $this->description = ($description);
 
         return $this;
     }
@@ -168,16 +173,20 @@ class Product
 
     public function getPriceWt()
     {
-        $coeff = 1+($this->tva/100);
-        return $coeff * $this->price;
+        if ($this->price === null || $this->tva === null) {
+            return 0;
+        }
+
+        $coeff = 1 + ($this->tva / 100);
+        return round((float) $this->price * $coeff, 2);
     }
 
-    public function getTva(): ?string
+    public function getTva(): ?int
     {
         return $this->tva;
     }
 
-    public function setTva(string $tva): static
+    public function setTva(int $tva): static
     {
         $this->tva = $tva;
 
@@ -239,12 +248,12 @@ class Product
         return $this;
     }
 
-    public function getPromotion(): ?string
+    public function getPromotion(): ?int
     {
         return $this->promotion;
     }
 
-    public function setPromotion(string $promotion): static
+    public function setPromotion(?int $promotion): static
     {
         $this->promotion = $promotion;
         return $this;
@@ -306,7 +315,7 @@ class Product
     public function removeReview(Review $review): static
     {
         if ($this->reviews->removeElement($review)) {
-            // set the owning side to null (unless already changed)
+            // SET THE OWNING SIDE TO NULL (UNLESS ALREADY CHANGED)
             if ($review->getProduct() === $this) {
                 $review->setProduct(null);
             }
@@ -315,15 +324,15 @@ class Product
         return $this;
     }
 
-    //calculate the average rating for stars of products
+    //CALCULATE THE AVERAGE RATING FOR STARS OF PRODUCTS
     public function getAverageRating(): float
     {
         $totalReviews = count($this->reviews);
-        if($totalReviews === 0){
+        if ($totalReviews === 0) {
             return 0;
         }
 
-        $totalPoints = array_reduce($this->reviews->toArray(), function($carry, $review){
+        $totalPoints = array_reduce($this->reviews->toArray(), function ($carry, $review) {
             return $carry + $review->getRate();
         }, 0);
 

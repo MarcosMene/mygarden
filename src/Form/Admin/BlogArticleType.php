@@ -28,7 +28,7 @@ class BlogArticleType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Title',
                 'attr' => [
-                    'class' => 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black',
                     'placeholder' => 'Title article...',
                     'minlength' => 3,
                     'maxlength' => 80,
@@ -48,7 +48,7 @@ class BlogArticleType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => 'Content',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'w-full rounded bg-white p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
                     'rows' => 5,
                     'placeholder' => 'Write here your article',
                     'minlength' => 5,
@@ -67,16 +67,14 @@ class BlogArticleType extends AbstractType
             ])
             // CATEGORY
             ->add('category', EntityType::class, [
+                'empty_data' => '',
                 'label' => 'Category',
                 'placeholder' => 'Choose a category',
                 'required' => true,
                 'class' => BlogCategory::class,
                 'choice_label' => 'name',
                 'attr' => [
-                    'class' => $isEdit ? 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
-                ],
-                'constraints' => [
-                    new Assert\NotBlank(['message' => 'The category is required.']),
+                    'class' => $isEdit ? 'w-full rounded bg-white shadow shadow-gray-100 mt-2  py-2 px-3 text-black' : 'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                 ],
             ])
 

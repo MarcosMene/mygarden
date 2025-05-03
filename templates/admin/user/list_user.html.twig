@@ -8,17 +8,15 @@
 	{% include ('admin/components/titleDashboardAdminMarginBottom.html.twig') %}
 
 	<div
-		class="create_users w-full flex px-8 lg:px-16 mb-10">
+		class="create_users w-full flex px-4 md:px-8 lg:px-16 mb-10 relative overflow-hidden">
 
 		<!-- MENU LEFT  -->
-		<div class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
-			<div class="sticky top-0">
-				{% include ('admin/_partials/menu_navigation.html.twig')%}
-			</div>
-		</div>
+		{% include ('admin/_partials/menu_navigation.html.twig') %}
+
+
 		<!-- RIGHT CREATE FORM -->
-		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
-			<div class="title_form flex flex-wrap justify-between">
+		<div class="w-full bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-screen">
+			<div class="title_form text-center md:text-start">
 				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of users</h2>
 			</div>
 
@@ -27,7 +25,7 @@
 				<!-- INPUT RESEARCH -->
 				<div class="flex items-center mt-4 mb-2 relative">
 					<input type="text" id="search" name="userName" placeholder="Search last name of user" class="border p-2 rounded w-full pr-10 " value="{{ query }}" maxlength="5">
-					<button id="clearSearch" class="absolute font-bold right-5 text-gray-500 hidden">X</button>
+					<button id="clearSearch" class="absolute font-bold right-5 text-gray hidden">X</button>
 				</div>
 				<span id="error-message" class="text-red"></span>
 
@@ -53,7 +51,7 @@
 					<p>Create a user.</p>
 				</div>
 			{% endif %}
-		</aside>
+		</div>
 	</div>
 	<script src="{{ asset('assets/js/admin/listTableElements.js') }}"></script>
 {% endblock %}

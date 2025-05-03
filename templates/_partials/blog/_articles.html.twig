@@ -1,6 +1,6 @@
+<!--CARD-->
 {% if articles|length > 0 %}
 	{% for article in articles %}
-		<!--CARD-->
 		<div
 			class="flex flex-col w-full xl:w-[48%] relative mb-16">
 			<!--TITLE-->
@@ -11,7 +11,7 @@
 			<img
 			src="{{ asset('upload/blog/articles/' ~ article.articleImageName) }}" alt="{{ article.title }}" loading="lazy">
 			<!--body-->
-			<h3 class="text-black font-medium  text-xl mt-2">
+			<h3 class="text-black font-medium  text-[1rem] md:text-[1.2rem] mt-2">
 				{{article.title}}</h3>
 			<div class="card-body flex justify-between items-end">
 				<div
@@ -57,7 +57,7 @@
 
 					</div>
 				{% else %}
-					<img src="{{ asset('assets/images/default_avatar.jpg') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
+					<img src="{{ asset('assets/images/default_avatar.webp') }}" alt="author image not available" loading="lazy" class="w-10 me-2">
 				{% endif %}
 			</div><!--TAGS --><div class="flex flex-wrap w-full mt-4 items-center justify-start">
 				<span class="text-gray ">Tags:</span>

@@ -1,147 +1,210 @@
-<!--MENU ADMIN USERS-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Users</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_users')}}" class="text-base">Users</a>
-		</li>
-	</ul>
-</div>
+<!-- Botão Toggle na esquerda do conteúdo principal -->
+<button id="toggleMenuBtn" class="absolute top-2 left-0 z-50 bg-primary text-white w-10 h-10 border p-2 transition-transform duration-300 translate-x-0  rounded-full   md:hidden">
+	<i id="arrowIcon" class="fas fa-arrow-right"></i>
+</button>
 
-<!--MENU ADMIN PRODUCTS-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Products</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_products')}}" class="text-base">Products</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_categories')}}" class="text-base">Categories</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_colors')}}" class="text-base">Colors</a>
-		</li>
-	</ul>
-</div>
+<!-- ASIDE DO MENU ADMIN -->
+<aside id="sidebar" class="max-w-[300px] w-fit absolute md:relative top-0 left-0  bg-gray-50 transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 md:max-h-none  z-40 overflow-x-hidden h-screen px-4 py-8">
 
-<!--MENU ADMIN GALLERY-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Gallery (Homepage)</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_galleries')}}" class="text-base">Gallery</a>
-		</li>
-	</ul>
-</div>
+	<div
+		class="flex flex-col  text-black ">
+		<!-- USERS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Users</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_users') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_users' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-user"></i>
+						Users</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU CARRIERS-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Carriers</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_carriers')}}" class="text-base">Carriers</a>
-		</li>
-	</ul>
-</div>
+		<!-- PRODUCTS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Products</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_products') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_products' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-user group-hover:scale-110 transition"></i>
+						Products
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('show_categories') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_categories' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-tags"></i>
+						Categories</a>
+				</li>
+				<li>
+					<a href="{{ path('show_colors') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_colors' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-palette"></i>
+						Colors</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ORDERS-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Orders</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_order_client')}}" class="text-base">Orders</a>
-		</li>
-	</ul>
-</div>
+		<!-- GALLERY -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Gallery (Homepage)</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_galleries') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_galleries' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-image"></i>
+						Gallery</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ADMIN HEADER-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Home</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_headers')}}" class="text-base">Carousel</a>
-		</li>
-	</ul>
-</div>
+		<!-- CARRIERS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Carriers</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_carriers') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_carriers' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-truck"></i>
+						Carriers</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ADMIN EMPLOYEE-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Employee</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_employees')}}" class="text-base">Employees</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_posts')}}" class="text-base">Posts</a>
-		</li>
-	</ul>
-</div>
+		<!-- ORDERS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Orders</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_order_client') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_order_client' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-boxes-stacked"></i>
+						Orders</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ADMIN OPEN/CLOSE SHOP-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Open hours</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_schedules')}}" class="text-base">Open/Close</a>
-		</li>
-	</ul>
-</div>
+		<!-- HEADER -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Home</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_headers') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_headers' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-images"></i>
+						Headers</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ADMIN REVIEWS-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Reviews</p>
-	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_review_products')}}" class="text-base">Product</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_store_admin')}}" class="text-base">Store</a>
-		</li>
-	</ul>
-</div>
+		<!-- EMPLOYEES -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Employee</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_employees') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_employees' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-user-tie"></i>
+						Employees</a>
+				</li>
+				<li>
+					<a href="{{ path('show_posts') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_posts' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-briefcase"></i>
+						Posts</a>
+				</li>
+			</ul>
+		</div>
 
-<!--MENU ADMIN BLOG-->
-<div class="menu_admin_items mb-6">
-	<div class="menu_admin_title">
-		<p class="text-base font-semibold text-gray">Blog</p>
+		<!-- OPEN HOURS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Open hours</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_schedules') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_schedules' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-clock"></i>
+						Open/Close</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- REVIEWS -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Reviews</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_review_products') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_review_products' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-star"></i>
+						Product</a>
+				</li>
+				<li>
+					<a href="{{ path('show_store_admin') }}" class="menu-link flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_store_admin' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-store"></i>
+						Store</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- BLOG -->
+		<div class="mb-6">
+			<h2 class="uppercase text-sm font-semibold mb-2 border-b pb-1">Blog</h2>
+			<ul class="space-y-2">
+				<li>
+					<a href="{{ path('show_articles') }}" class="flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_articles' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-newspaper"></i>
+						Articles</a>
+				</li>
+				<li>
+					<a href="{{ path('show_blogCategories') }}" class="flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_blogCategories' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-folder"></i>
+						Categories</a>
+				</li>
+				<li>
+					<a href="{{ path('show_blogTags') }}" class="flex items-center gap-3 hover:text-primary {{ app.request.attributes.get('_route') == 'show_blogTags' ? 'text-primary font-semibold' : '' }}">
+						<i class="fa-solid fa-hashtag"></i>
+						Tags</a>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<hr class="my-2">
-	<ul class="menu_admin_links">
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_articles')}}" class="text-base">Articles</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_blogCategories')}}" class="text-base">Categories</a>
-		</li>
-		<li class="menu_admin_links_item mb-2">
-			<a href="{{path('show_blogTags')}}" class="text-base">Tags</a>
-		</li>
-	</ul>
-</div>
+</aside>
+
+<!-- SCRIPT DE TOGGLE -->
+<script>
+	const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('toggleMenuBtn');
+const arrowIcon = document.getElementById('arrowIcon');
+const menuLinks = document.querySelectorAll('.menu-link');
+
+toggleBtn.addEventListener('click', () => {
+const isOpen = sidebar.classList.contains('translate-x-0');
+
+if (isOpen) {
+sidebar.classList.remove('translate-x-0');
+sidebar.classList.add('-translate-x-full');
+arrowIcon.classList.remove('fa-arrow-left');
+arrowIcon.classList.add('fa-arrow-right');
+toggleBtn.classList.remove('translate-x-[180px]');
+toggleBtn.classList.add('translate-x-0');
+} else {
+sidebar.classList.remove('-translate-x-full');
+sidebar.classList.add('translate-x-0');
+arrowIcon.classList.remove('fa-arrow-right');
+arrowIcon.classList.add('fa-arrow-left');
+toggleBtn.classList.remove('translate-x-0');
+toggleBtn.classList.add('translate-x-[180px]');
+}
+});
+
+menuLinks.forEach((link) => {
+link.addEventListener('click', (e) => {
+if (window.innerWidth < 768 && sidebar.classList.contains('translate-x-0')) {
+e.preventDefault();
+const href = link.getAttribute('href');
+
+sidebar.classList.remove('translate-x-0');
+sidebar.classList.add('-translate-x-full');
+arrowIcon.classList.remove('fa-arrow-left');
+arrowIcon.classList.add('fa-arrow-right');
+toggleBtn.classList.remove('translate-x-[180px]');
+toggleBtn.classList.add('translate-x-0');
+
+// go to link
+window.location.href = href;
+
+}
+});
+});
+</script>

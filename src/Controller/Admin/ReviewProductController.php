@@ -57,7 +57,7 @@ class ReviewProductController extends AbstractController
     }
 
     //DETAIL REVIEW PRODUCT USER
-    #[Route('/admin/detail/review_products/{id}', name: 'detail_review_products', requirements: ['id' => '\d+'])]
+    #[Route('/admin/detail/review_products/{id}', methods: ['GET'], name: 'detail_review_products', requirements: ['id' => '\d+'])]
     public function detail(ReviewRepository $reviewRepository, $id): Response
     {
         $review = $reviewRepository->find($id);
@@ -73,7 +73,7 @@ class ReviewProductController extends AbstractController
     }
 
     //EDIT PRODUCT USER REVIEWS
-    #[Route('/admin/edit/review_products/{id}', name: 'edit_review_product', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/review_products/{id}', methods: ['GET', 'POST'], name: 'edit_review_product', requirements: ['id' => '\d+'])]
     public function edit(int $id, ReviewRepository $reviewRepository, Request $request, Review $review): Response
     {
         $reviewProduct = $reviewRepository->find($id);

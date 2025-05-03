@@ -44,6 +44,15 @@ class BlogTagController extends AbstractController
     #[Route('/tag/create', name: 'create_blogTag')]
     public function new(Request $request, BlogTagRepository $blogTagRepository): Response
     {
+        $totalBlogTags = $blogTagRepository->findAll();
+
+        if (count($totalBlogTags) == 10) {
+            $this->addFlash('danger', 'You have reached the maximum number of tags.');
+            return $this->redirectToRoute('show_blogTags');
+        }
+
+
+
         $blogTag = new BlogTag();
         $form = $this->createForm(BlogTagType::class, $blogTag, ['is_edit' => false]);
         $form->handleRequest($request);
@@ -101,7 +110,7 @@ class BlogTagController extends AbstractController
     }
 
     //DELETE BLOG TAG
-    #[Route('/tag/{id}', name: 'delete_blogTag', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/tag/{id}', name: 'delete_blogTag', requirements: ['id' => '\d+'])]
     public function delete(BlogTagRepository $blogTagRepository, Request $request, $id): Response
     {
         $blogTag = $blogTagRepository->find($id);

@@ -5,19 +5,19 @@
 		<!--CAROUSEL-->
 		<div id="carousel" class="flex transition-transform duration-700 ease-in-out ">
 			{% for header in headers %}
-				<div class="min-w-full  py-2 sm:py-12 lg:py-0 flex items-center justify-center px-8 lg:px-32 xl:px-48 {% if header.sideImage == 'left' %} flex-row-reverse  {% endif %}" style="background-color: {{ header.backgroundColor }};">
+				<div class="min-w-full  py-8 sm:py-12 lg:py-0 flex items-center justify-center px-8 lg:px-32 xl:px-48 {% if header.sideImage == 'left' %} flex-row-reverse  {% endif %}" style="background-color: {{ header.backgroundColor }};">
 					<div
 						class="w-full {% if header.sideImage == 'left' %} ps-0 lg:ps-8 {% else %} pe-0 lg:pe-8 {% endif %}">
 
 						<!--TEXTS-->
-						<h2 class="text-[1.5rem] md:text-[2rem]  text-center lg:text-left font-bold text-gray-800 ">{{ header.content }}</h2>
+						<h2 class="text-[2rem] md:text-[2.5rem]  text-center lg:text-left font-bold text-gray-800 ">{{ header.content }}</h2>
 						<p class="mt-4 text-lg text-gray-600 text-center lg:text-left">{{ header.content }}</p>
 						<div
 							class="mt-6 flex flex-wrap justify-center lg:justify-start gap-4">
 
 							<!--BUTTON CONTACT AND SHOP NOW-->
-							<a href="{{ header.buttonLink }}" class="py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">{{ header.buttonTitle }}</a>
-							<a href="{{path('contact')}}" class="py-2 px-4  ml-2  text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Contact Us</a>
+							<a href="{{ header.buttonLink }}" class="capitalize py-2 px-4  mb-0  text-base font-medium text-white  bg-primary rounded-sm border border-primary hover:bg-white hover:text-primary transition ease-in-out delay-100">{{ header.buttonTitle }}</a>
+							<a href="{{path('contact')}}" class="py-2 px-4 text-base font-medium text-primary  bg-white rounded-sm border border-primary hover:bg-primary hover:text-white transition ease-in-out delay-100">Contact Us</a>
 						</div>
 					</div>
 
@@ -40,114 +40,5 @@
 		{% endif %}
 	</div>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-const carousel = document.getElementById('carousel');
-const slides = Array.from(document.querySelectorAll('#carousel > div'));
-
-if (slides.length<= 1) {
-            //If has only one slider, remove the navigation of carousel
-            return;
-        }
-
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentIndex = 1;
-        let slideWidth = slides[0].offsetWidth;
-        let autoSlideInterval;
-        const autoSlideDelay = 5000;
-        const transitionDuration = 1500;
-        let isAnimating = false;
-
-        const firstSlideClone = slides[0].cloneNode(true);
-        const lastSlideClone = slides[slides.length - 1].cloneNode(true);
-        carousel.appendChild(firstSlideClone);
-        carousel.insertBefore(lastSlideClone, slides[0]);
-        slides.unshift(lastSlideClone);
-        slides.push(firstSlideClone);
-
-        carousel.style.transition = 'none';
-        carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        carousel.offsetHeight;
-        carousel.style.transition = `transform ${transitionDuration}ms ease-in-out`;
-
-        function updateCarousel() {
-            carousel.style.transition = isAnimating ? `transform ${transitionDuration}ms ease-in-out` : 'none';
-            carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        }
-
-        function nextSlide() {
-            if (isAnimating) return;
-            isAnimating = true;
-            currentIndex++;
-            updateCarousel();
-            setTimeout(() => {
-if (currentIndex === slides.length - 1) {
-currentIndex = 1;
-carousel.style.transition = 'none';
-carousel.style.transform = `translateX(-${
-currentIndex * slideWidth
-}px)`;
-carousel.offsetHeight;
-carousel.style.transition = `transform ${transitionDuration}ms ease-in-out`;
-}
-isAnimating = false;
-}, transitionDuration) 
-
-}
-
-function prevSlide() {
-if (isAnimating) 
-return;
-
-
-isAnimating = true;
-currentIndex --;
-updateCarousel();
-setTimeout(() => {
-if (currentIndex === 0) {
-currentIndex = slides.length - 2;
-carousel.style.transition = 'none';
-carousel.style.transform = `translateX(-${
-currentIndex * slideWidth
-}px)`;
-carousel.offsetHeight;
-carousel.style.transition = `transform ${transitionDuration}ms ease-in-out`;
-}
-isAnimating = false;
-}, transitionDuration);
-}
-
-function startAutoSlide() {
-autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
-}
-
-function stopAutoSlide() {
-clearInterval(autoSlideInterval);
-}
-
-startAutoSlide();
-
-prevBtn.addEventListener('click', () => {
-stopAutoSlide();
-prevSlide();
-startAutoSlide();
-});
-
-nextBtn.addEventListener('click', () => {
-stopAutoSlide();
-nextSlide();
-startAutoSlide();
-});
-
-carousel.addEventListener('mouseover', stopAutoSlide);
-carousel.addEventListener('mouseout', startAutoSlide);
-
-window.addEventListener('resize', () => {
-slideWidth = slides[0].offsetWidth;
-updateCarousel();
-});
-}
-);
-	</script>
+	<script src="{{ asset('assets/js/admin/carousel.js') }}"></script>
 {% endif %}

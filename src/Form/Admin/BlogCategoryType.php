@@ -19,7 +19,7 @@ class BlogCategoryType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Category',
                 'attr' => [
-                    'class' =>  'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' =>  'w-full rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray',
                     'placeholder' => 'Category name...',
                     'minlength' => 3,
                     'maxlength' => 21,

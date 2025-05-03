@@ -5,29 +5,29 @@ document.addEventListener('DOMContentLoaded', function () {
   const errorMessages = document.getElementById('error_messages');
 
   // IMAGE OF ARTICLE
-  let articleImage = document.getElementById(
+  const articleImage = document.getElementById(
     'blog_article_articleImageFile_file'
   );
-  let articleImageError = document.getElementById('blogArticleImage_error');
+  const articleImageError = document.getElementById('blogArticleImage_error');
 
   // VALIDATE THE TITLE
-  let titleInput = document.getElementById('blog_article_title');
-  let titleError = document.getElementById('blogTitle_error');
+  const titleInput = document.getElementById('blog_article_title');
+  const titleError = document.getElementById('blogTitle_error');
 
   // CATEGORY
-  let categoryInput = document.getElementById('blog_article_category');
-  let categoryError = document.getElementById('blogCategory_error');
+  const categoryInput = document.getElementById('blog_article_category');
+  const categoryError = document.getElementById('blogCategory_error');
 
   // TAGS
-  let blogTags = document.querySelector('.tags-container');
-  let BlogTagError = document.getElementById('blogTags_error');
-  let tagInputs = document.querySelectorAll(
+  const blogTags = document.querySelector('.tags-container');
+  const BlogTagError = document.getElementById('blogTags_error');
+  const tagInputs = document.querySelectorAll(
     'input[name="blog_article[tags][]"]'
   );
 
   // CONTENT
-  let contentInput = document.getElementById('blog_article_content');
-  let contentError = document.getElementById('blogContent_error');
+  const contentInput = document.getElementById('blog_article_content');
+  const contentError = document.getElementById('blogContent_error');
 
   titleInput.addEventListener('input', () => checkTitle());
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     titleError.style.display = 'none';
 
     //GET VALUE OF TITLE
-    let blogTitle = titleInput.value;
+    const blogTitle = titleInput.value;
 
     //DELETE SPACES OF TITLE
     if (blogTitle.trim() === '') {
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //REGEX
-    let patternBlogTitle = /^[a-zA-ZÀ-ÿ0-9?!_\-\s]{3,}$/;
-    let validBlogTitle = patternBlogTitle.test(blogTitle);
+    const patternBlogTitle = /^[a-zA-ZÀ-ÿ0-9?!_\-\s]{3,}$/;
+    const validBlogTitle = patternBlogTitle.test(blogTitle);
 
     if (!validBlogTitle) {
       titleError.style.display = 'block';
@@ -98,11 +98,12 @@ document.addEventListener('DOMContentLoaded', function () {
     articleImageError.style.display = 'none';
 
     //SELECT IMAGE VICH
-    let vichImage = document.querySelectorAll('.vich-image');
-    let vichImageArticle = vichImage[vichImage.length - 1];
+    const vichImage = document.querySelectorAll('.vich-image');
+    const vichImageArticle = vichImage[vichImage.length - 1];
 
     // CHECK IF THE VICHIMAGE CONTAINS ANY ELEMENT WITH AN HREF ATTRIBUTE (LIKE AN <A> TAG)
-    let hasHrefChildArticle = vichImageArticle.querySelector('[href]') !== null;
+    const hasHrefChildArticle =
+      vichImageArticle.querySelector('[href]') !== null;
 
     if (hasHrefChildArticle) {
       return true;
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     blogTags.classList.remove('error-message', 'validated-message');
     BlogTagError.style.display = 'none';
 
-    let selectedTags = document.querySelectorAll(
+    const selectedTags = document.querySelectorAll(
       'input[name="blog_article[tags][]"]:checked'
     );
     if (selectedTags.length === 0) {
@@ -184,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
     contentError.style.display = 'none';
 
     //GET VALUE OF CONTENT
-    let blogContent = contentInput.value;
+    const blogContent = contentInput.value;
 
     //DELETE SPACES OF CONTENT
     if (blogContent.trim() === '') {
@@ -195,9 +196,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //REGEX
-    let patternBlogContent =
+    const patternBlogContent =
       /^(?=.*[a-zA-ZÀ-ÿ])[a-zA-ZÀ-ÿ0-9 ,.?!;:"'`()/\r\n\-]{3,}$/;
-    let validBlogContent = patternBlogContent.test(blogContent);
+    const validBlogContent = patternBlogContent.test(blogContent);
 
     if (!validBlogContent) {
       contentError.style.display = 'block';
@@ -221,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // VALIDATE THE FORM
   function validateForm() {
-    let isValid = true;
+    const isValid = true;
 
     if (!checkTitle()) {
       isValid = false;

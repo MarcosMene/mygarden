@@ -1,6 +1,5 @@
-<!--CART-->
 <div
-	class="cart w-full min-w-[200px] mt-10 lg:mt-0 lg:w-1/4 flex flex-col ">
+	class="cart w-full max-w-[290px] mt-10 lg:mt-0 lg:w-1/4 flex flex-col ">
 
 	<!--breadcrumb-->
 	<div class="flex justify-between ">
@@ -15,19 +14,21 @@
 			</p>
 			<p class="text-black text-base">{{fullCartQuantity}}</p>
 		</div>
+
 		{# SUBTOTAL NO TAX  #}
 		<div class="flex justify-between mb-4">
 			<p class="text-black text-base font-semibold">Subtotal NT:
 			</p>
 			<p class="text-black text-base">{{(totalCartNt|number_format(2,'.','')	) }}</p>
-
 		</div>
+
 		{# SUBTOTAL WITH TAX  #}
 		<div class="flex justify-between mb-4">
 			<p class="text-black text-base font-semibold">Subtotal WT:
 			</p>
 			<p class="text-black text-base">{{totalCartWt|number_format(2,'.','')	}}</p>
 		</div>
+
 		<div
 			class="buttons flex flex-col  mt-8">
 

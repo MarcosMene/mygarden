@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployeesRepository::class)]
 #[Vich\Uploadable]
@@ -24,6 +25,10 @@ class Employees
     private ?string $lastName = null;
 
     #[Vich\UploadableField(mapping: 'employees', fileNameProperty: 'imageName')]
+    #[Assert\File(
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypesMessage: 'Invalid file type! Please upload a JPG, JPEG, PNG or WEBP image.'
+    )]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -76,8 +81,8 @@ class Employees
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
+            // IT IS REQUIRED THAT AT LEAST ONE FIELD CHANGES IF YOU ARE USING DOCTRINE
+            // OTHERWISE THE EVENT LISTENERS WON'T BE CALLED AND THE FILE IS LOST
             $this->updatedAt = new \DateTimeImmutable();
         }
     }

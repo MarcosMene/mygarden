@@ -8,18 +8,19 @@
 	{% include ('admin/components/titleDashboardAdminMarginBottom.html.twig') %}
 
 	<div
-		class="create_headers w-full flex px-8 lg:px-16 mb-10">
+		class="list_header w-full flex px-4 md:px-8 lg:px-16 mb-10 relative overflow-hidden">
 
 		<!-- MENU LEFT  -->
-		<div class="menu_admin  flex flex-col w-1/4 md:w-1/6 p-2 lg:p-8 bg-gray-50">
-			<div class="sticky top-0">
-				{% include ('admin/_partials/menu_navigation.html.twig')%}
-			</div>
-		</div>
-		<!-- RIGHT CREATE FORM -->
-		<aside class="w-3/4 md:w-5/6 bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
-			<div class="title_form flex flex-wrap justify-between">
-				<h2 class=" text-black font-medium text-xl mb-3 mb:mb-0">List of headers</h2>
+		{% include ('admin/_partials/menu_navigation.html.twig') %}
+
+		<!-- RIGHT LIST -->
+		<div class="w-full bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+			<div
+				class="title_form flex flex-col md:flex-row flex-wrap items-center  md:justify-between">
+
+				<!--TITLE-->
+				<h2 class="text-center md:text-start flex-1 mb-2 md:mb-0 text-black font-medium text-xl ">List of headers carousel</h2>
+
 				<a href="{{path('create_header')}}" class="py-2 px-4 w-fit hover:bg-white hover:text-primary transition ease-in-out delay-100 capitalize border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled">
 					Create header
 				</a>
@@ -99,12 +100,7 @@
 					<p>Create a header.</p>
 				</div>
 			{% endif %}
-		</aside>
+		</div>
 	</div>
 
-	<!-- delete confirmation modal -->
-	{% include 'admin/_partials/_delete_modal.html.twig' %}
-
-	<!-- SCRIPT  -->
-	<script src="{{ asset('assets/js/admin/modal_delete.js') }}"></script>
 {% endblock %}

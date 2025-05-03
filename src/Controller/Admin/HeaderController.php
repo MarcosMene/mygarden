@@ -28,7 +28,7 @@ class HeaderController extends AbstractController
     }
 
     // LIST HEADERS
-    #[Route('/admin/list/headers', name: 'show_headers')]
+    #[Route('/admin/list/headers', name: 'show_headers', methods: ['GET'])]
     public function list(HeaderRepository $headerRepository): Response
     {
         $headers = $headerRepository->findAll();
@@ -51,7 +51,7 @@ class HeaderController extends AbstractController
         }
 
         $header = new Header();
-        $form = $this->createForm(HeaderType::class, $header, ['is_edit' => true]);
+        $form = $this->createForm(HeaderType::class, $header, ['is_edit' => false]);
 
         $form->handleRequest($request);
 
@@ -104,7 +104,7 @@ class HeaderController extends AbstractController
     }
 
     // DETAIL HEADER
-    #[Route('/admin/detail/header/{id}', name: 'detail_header', requirements: ['id' => '\d+'])]
+    #[Route('/admin/detail/header/{id}', name: 'detail_header', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function detail(HeaderRepository $headerRepository, $id): Response
     {
         $header = $headerRepository->find($id);
@@ -118,7 +118,7 @@ class HeaderController extends AbstractController
     }
 
     //EDIT HEADER
-    #[Route('/admin/edit/header/{id}', name: 'edit_header', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/header/{id}', name: 'edit_header', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(Request $request, HeaderRepository $headerRepository, $id): Response
     {
         $header = $headerRepository->find($id);
@@ -150,7 +150,6 @@ class HeaderController extends AbstractController
                 $header->setButtonLink($urlHeader);
             }
 
-            $this->entityManager->persist($header);
             $this->entityManager->flush();
             $this->addFlash('success', 'Header updated succesfully');
             return $this->redirectToRoute('show_headers');

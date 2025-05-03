@@ -25,7 +25,7 @@ class ColorController extends AbstractController
     }
 
     //LIST COLOR
-    #[Route('/admin/list/colors', name: 'show_colors')]
+    #[Route('/admin/list/colors', name: 'show_colors', methods: ['GET'])]
     public function index(ColorProductRepository $colorProductRepository): Response
     {
         $colors = $colorProductRepository->findAll();
@@ -55,23 +55,23 @@ class ColorController extends AbstractController
         ]);
     }
 
-    //DETAIL COLOR
-    #[Route('/admin/detail/color/{id}', name: 'detail_color', requirements: ['id' => '\d+'])]
-    public function detail(ColorProductRepository $colorProductRepository, $id): Response
-    {
-        $color = $colorProductRepository->find($id);
-        //IF CATEGORY DOESNT EXIST
-        if (!$color) {
-            $this->addFlash('danger', 'This color doesn\'t exist');
-            return $this->redirectToRoute('show_colors');
-        }
-        return $this->render('admin/color/detail_color.html.twig', [
-            'color' => $color
-        ]);
-    }
+    // //DETAIL COLOR
+    // #[Route('/admin/detail/color/{id}', name: 'detail_color', requirements: ['id' => '\d+'], methods: ['GET'])]
+    // public function detail(ColorProductRepository $colorProductRepository, $id): Response
+    // {
+    //     $color = $colorProductRepository->find($id);
+    //     //IF CATEGORY DOESNT EXIST
+    //     if (!$color) {
+    //         $this->addFlash('danger', 'This color doesn\'t exist');
+    //         return $this->redirectToRoute('show_colors');
+    //     }
+    //     return $this->render('admin/color/detail_color.html.twig', [
+    //         'color' => $color
+    //     ]);
+    // }
 
     //EDIT COLOR
-    #[Route('/admin/edit/color/{id}', name: 'edit_color', requirements: ['id' => '\d+'])]
+    #[Route('/admin/edit/color/{id}', name: 'edit_color', methods: ['GET', 'POST'], requirements: ['id' => '\d+'])]
     public function edit(ColorProductRepository $colorProductRepository, Request $request, $id): Response
     {
         $color = $colorProductRepository->find($id);
@@ -86,7 +86,6 @@ class ColorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->entityManager->persist($color);
             $this->entityManager->flush();
             //MESSAGE
             $this->addFlash('success', 'Your color was updated with success');

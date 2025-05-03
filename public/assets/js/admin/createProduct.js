@@ -163,15 +163,13 @@ document.addEventListener('DOMContentLoaded', function () {
       productName.classList.add('error-message');
       productNameError.innerText = 'The name of the product is required.';
       return false;
-    }
-    if (productname.length < 3 || productname.length > 40) {
+    } else if (productname.length < 3 || productname.length > 40) {
       productNameError.style.display = 'block';
       productName.classList.add('error-message');
       productNameError.innerText =
         'The name of the product must be at least 3 characters, and maximum 40 characters.';
       return false;
-    }
-    if (!validProductName) {
+    } else if (!validProductName) {
       productNameError.style.display = 'block';
       productName.classList.add('error-message');
       productNameError.innerText =

@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}My Garden -
-	{{ form.vars.value.id ? 'Edit Category' : 'Create New Category' }}
+	{{ form.vars.value.id ? 'Update Category' : 'Create New Category' }}
 {% endblock %}
 
 {% block body %}
+
 	<!-- MENU  -->
 	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+
 	<div class="back_to text-end px-8 lg:px-16">
-		<a href="{{path('show_blogCategories')}}" class="text-gray underline text-base">back to categories</a>
+		<a href="{{path('show_blogCategories')}}" class="text-gray underline text-base">Back to categories</a>
 	</div>
 
-	<div class="create_categories w-full flex px-8 lg:px-16 mb-10">
-		<div class="menu_admin flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
-			<div class="sticky top-0">
-				{% include ('admin/_partials/menu_navigation.html.twig') %}
-			</div>
-		</div>
+	<div
+		class="create-products w-full flex px-4 md:px-8 lg:px-16 mb-10 relative overflow-hidden">
 
-		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
-			<div class="title_form flex flex-wrap justify-between">
-				<h2 class="text-black font-medium text-xl mb-4">
+		<!-- MENU LEFT  -->
+		{% include ('admin/_partials/menu_navigation.html.twig') %}
+
+		<!-- RIGHT LIST AND CREATE PRODUCT -->
+		<div class="w-full  bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
+			<div class="title_form flex flex-col md:flex-row flex-wrap items-center  md:justify-between">
+				<h2 class="text-center md:text-start flex-1 mb-2 md:mb-0 text-black font-medium text-xl ">
 					{{ form.vars.value.id ? 'Update Category' : 'Create Category' }}
 				</h2>
 			</div>
@@ -50,7 +51,7 @@
 				</button>
 			</div>
 			{{ form_end(form) }}
-		</aside>
+		</div>
 	</div>
 	<!-- VALIDATE CREATE CATEGORY WITH JS  -->
 	<script src="{{ asset('assets/js/admin/createBlogCategory.js') }}"></script>

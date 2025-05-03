@@ -1,78 +1,80 @@
 <section class="what_we_do w-full pt-5 lg:pt-12 pb-10 ">
 
-	<div class="team w-full pb-10 md:px-16 mx-auto">
+	<div class="team w-full container-fluid md:container px-4  mx-auto">
 		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal capitalize">What we do</h2>
-		<!--image-->
-		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
 
-		<div class="container mx-auto px-8 lg:px-16 mt-6">
-			<p class="mb-2 text-base">Our florists are passionate about their craft, taking the time to understand your preferences and offering expert advice to help you make the perfect choice.
+		<!--image-->
+		{% include "_partials/_decoration.html.twig" %}
+
+
+		<div class=" mx-auto mt-6">
+			<p class="mb-2 text-base max-w-[1100px] mx-auto">Our florists are passionate about their craft, taking the time to understand your preferences and offering expert advice to help you make the perfect choice.
 
 			</p>
-			<p class="mb-2 text-base">My Garden specializes in creating stunning ambient decorations for any occasion. From weddings to corporate events, our team excels at transforming spaces with floral designs that capture the essence of your vision.</p>
+			<p class="mb-2 text-base max-w-[1100px] mx-auto">My Garden specializes in creating stunning ambient decorations for any occasion. From weddings to corporate events, our team excels at transforming spaces with floral designs that capture the essence of your vision.</p>
 
 			<!--CARDS-->
 			<div
-				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-x-32  mt-16">
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 lg:gap-20  mt-16 place-items-center">
 
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/bouquets.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/bouquets.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full " alt="Bouquet of flowers">
 
 					<!--body-->
 					<div class="card-body flex flex-col  items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Bouquet of flowers</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Bouquet of flowers</h3>
 					</div>
 				</div>
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/wedding_decoration.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/wedding_decoration.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt="a decorated wedding hall">
 
 					<!--body-->
 					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Wedding decoration</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Wedding decoration</h3>
 					</div>
 				</div>
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/gift.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/gift.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt="a gift box with flowers, chocolate and champagne">
 
 					<!--body-->
 					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Special occasions</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Special occasions</h3>
 					</div>
 				</div>
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/events.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/events.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt="a room decorated for company events">
 
 					<!--body-->
 					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Event decoration</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Event decoration</h3>
 					</div>
 				</div>
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/bride_bouquet.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/bride_bouquet.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt="a bride holding a bouquet of flowers">
 
 					<!--body-->
 					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Bride’s bouquet</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Bride’s bouquet</h3>
 					</div>
 				</div>
 				<!--CARD-->
-				<div class="flex flex-col  mb-12  ">
+				<div class="flex flex-col  mb-12  max-w-[300px]">
 					<img
-					src="{{asset('upload/what_we_do/valentine.jpg')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt=""/>
+					src="{{asset('upload/what_we_do/valentine.webp')}}" loading="lazy" class=" group-hover:opacity-75 rounded-full" alt="a bouquet of red flowers with a card and a teddy bear">
 
 					<!--body-->
 					<div class="card-body flex flex-col items-center justify-center pt-2">
-						<h3 class="text-primary font-medium text-xl text-center">Valentine’s day</h3>
+						<h3 class="text-primary font-medium text-center text-[1rem] md:text-[1.2rem]">Valentine’s day</h3>
 					</div>
 				</div>
 			</div>

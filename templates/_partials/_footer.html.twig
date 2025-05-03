@@ -6,56 +6,48 @@
 			<div
 				class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 md:grid-cols-3">
 				<!--ADDRESS-->
+
 				<div class=" footer_address">
-					<h5 class="mb-2 text-black capitalize   font-medium text-base">Contact Information</h5>
+					<h3 class="mb-2 text-black capitalize   font-medium text-xl">Contact Information</h3>
 					<div class="flex">
-						<span class="text-gray text-sm">
+						<span class=" text-sm">
 							<i class="fa-solid fa-location-dot"></i>
 						</span>
-						<span class="ml-2 text-gray text-sm">123 Main St, AnyTown, USA 12345</span>
+						<span class="ml-2  text-sm">123 Main St, AnyTown, USA 12345</span>
 					</div>
 					<div>
-						<i class="fa-solid fa-phone text-gray"></i>
-						<span class="ml-2 text-gray text-sm">555-55-55</span>
+						<i class="fa-solid fa-phone "></i>
+						<span class="ml-2  text-sm">555-55-55</span>
 					</div>
 					<div>
-						<i class="fa-solid fa-envelope text-gray"></i>
-						<span class="ml-2 text-gray text-sm">mygarden@teste.com</span>
+						<i class="fa-solid fa-envelope "></i>
+						<span class="ml-2  text-sm">mygarden@teste.com</span>
 					</div>
 				</div>
 
 				<!--COMPANY-->
 				<div class="footer_our_company">
-					<h5 class="mb-2 text-black capitalize   font-medium text-base">Our Company</h5>
+					<h3 class="mb-2 text-black capitalize   font-medium text-xl">Our Company</h3>
 					<ul>
-						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">Contact Us</a>
-						</li>
-						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">Shipping</a>
-						</li>
-						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">FAQs</a>
-						</li>
-						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">Store</a>
-						</li>
-
+						<li><a href="" class="  text-sm  font-normal">Contact Us</a></li>
+						<li><a href="" class="  text-sm  font-normal">Shipping</a></li>
+						<li><a href="" class="  text-sm  font-normal">FAQs</a></li>
+						<li><a href="" class="  text-sm  font-normal">Store</a></li>
 					</ul>
 				</div>
 
 				<!--INFORMATION-->
 				<div class="footer_information">
-					<h5 class="mb-2 text-black capitalize   font-medium text-base">Information</h5>
+					<h3 class="mb-2 text-black capitalize   font-medium text-xl">Information</h3>
 					<ul>
 						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">Terms and Conditions</a>
+							<a href="" class="  text-sm  font-normal">Terms and Conditions</a>
 						</li>
 						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">About Us</a>
+							<a href="" class="  text-sm  font-normal">About Us</a>
 						</li>
 						<li class="">
-							<a href="" class=" text-gray text-sm  font-normal">Privacy Policy</a>
+							<a href="" class="  text-sm  font-normal">Privacy Policy</a>
 						</li>
 					</ul>
 				</div>
@@ -72,33 +64,33 @@
 					<form class=" mx-auto w-full">
 
 						<div class="relative w-1/2 me-auto xl:w-full">
-							<input type="search" id="location-search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-white  border-s-gray-50 border-s-2 border border-gray-300 focus:ring-primary focus:border-primary" placeholder="Your email" required/>
+							<input type="search" id="location-search" class="block p-2.5 w-full z-20 text-sm -900 bg-white  border-s-gray-50 border-s-2 border border-gray-300 focus:ring-primary focus:border-primary" placeholder="Your email" required>
 							<button type="submit" class="absolute top-0 end-0 h-full p-2.5 text-sm font-medium text-white bg-primary  border border-primary focus:outline-none focus:ring-primary">
 								Subscribe
 								<span class="sr-only">Subscribe button</span>
 							</button>
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
+
+		<div class="footer_credit_cards flex gap-5 justify-center items-center ">
+			<img src="{{asset('assets/images/footer/american.png')}}" alt="logo credit card american express" class="w-10">
+			<img src="{{asset('assets/images/footer/mastercard.png')}}" alt="logo credit card master card" class="w-10">
+			<img src="{{asset('assets/images/footer/visa.png')}}" alt="logo credit card visa" class="w-10">
+			<img src="{{asset('assets/images/footer/dinner.png')}}" alt="logo credit card dinner" class="w-10">
+		</div>
+
 	</div>
+	<hr
+	class="my-4 border-gray mx-auto w-1/2  lg:my-4">
 
-	<div class="footer_credit_cards flex gap-5 justify-center items-center ">
-		<img src="{{asset('assets/images/footer/american.png')}}" alt="logo credit card visa" loading="lazy" class="w-10">
-		<img src="{{asset('assets/images/footer/mastercard.png')}}" alt="logo credit card visa" loading="lazy" class="w-10">
-		<img src="{{asset('assets/images/footer/visa.png')}}" alt="logo credit card visa" loading="lazy" class="w-10">
-		<img src="{{asset('assets/images/footer/dinner.png')}}" alt="logo credit card visa" loading="lazy" class="w-10">
+	<!--COPYRIGHT-->
+	<div class="flex items-center justify-center pb-3">
+		<span class="text-xs">{{ '©'|raw }}
+			{{ 'now' | date('Y') }}
+			Designer by Marcos Meneghetti. All Rights Reserved.</span>
+
 	</div>
-
-</div>
-<hr
-class="my-4 border-gray mx-auto w-1/2  lg:my-4"/>
-
-<!--COPYRIGHT-->
-<div class="flex items-center justify-center pb-3">
-	<span class="text-xs">{{ '©'|raw }}
-		{{ 'now' | date('Y') }}
-		Designer by Marcos Meneghetti. All Rights Reserved.</span>
-
-</div></div></footer>
+</footer>

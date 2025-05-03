@@ -7,40 +7,36 @@
 
 	<!-- MENU  -->
 	{% include ('admin/components/titleDashboardAdmin.html.twig') %}
+
 	<div class="back_to text-end px-8 lg:px-16">
-		<a href="{{path('show_order_client')}}" class="text-gray underline text-base  ">back to orders</a>
+		<a href="{{path('show_order_client')}}" class="text-gray underline text-base  ">Back to orders</a>
 	</div>
 	<div
-		class="create_employees w-full flex px-8 lg:px-16 mb-10">
+		class="create_employees w-full flex px-4 md:px-8 lg:px-16 mb-10 relative overflow-hidden">
 
 		<!-- MENU LEFT  -->
-		<div class="menu_admin  flex flex-col w-1/3 md:w-1/6 p-2 lg:p-8 bg-gray-50">
-			<div class="sticky top-0">
-				{% include ('admin/_partials/menu_navigation.html.twig')%}
-			</div>
-		</div>
+		{% include ('admin/_partials/menu_navigation.html.twig') %}
 
 		<!-- RIGHT ORDER -->
-		<aside class="w-2/3 md:w-5/6 bg-white border border-gray p-4 lg:p-8 h-fit">
+		<div class="w-full  bg-white border border-gray p-4 lg:p-8 overflow-x-hidden h-fit">
 			<h2 class=" text-black font-medium text-xl mb-0 md:mb-4">Order client</h2>
 
 			<p class="font-semibold text-lg me-2">Act on the order</p>
 			{% if order.state != 1%}
-			<div class="text-start my-1">
-					<a href="{{ path('detail_order', { id: order.id, state: 3 }) }}" class="{%if order.state ==3%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal  bg-zinc-200 border border-gray tex-black rounded-sm hover:bg-white">Order in preparation</a>
-				<a href="{{ path('detail_order', { id: order.id, state: 4 }) }}" class="{%if order.state ==4%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal tex-black  bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order shipped</a>
-				<a href="{{ path('detail_order', { id: order.id, state: 5 }) }}" class="{%if order.state ==5%}hidden{%endif%} py-1 px-2  mb-0  text-base font-normal tex-black  bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order cancelled</a>
+				<div class="text-start my-1">
+					<a href="{{ path('detail_order', { id: order.id, state: 3 }) }}" class="{%if order.state ==3%}hidden{%endif%} py-1 px-2 mb-0 text-base font-normal bg-zinc-200 border border-gray tex-black rounded-sm hover:bg-white">Order in preparation</a>
+					<a href="{{ path('detail_order', { id: order.id, state: 4 }) }}" class="{%if order.state ==4%}hidden{%endif%} py-1 px-2 mb-0 text-base font-normal tex-black bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order shipped</a>
+					<a href="{{ path('detail_order', { id: order.id, state: 5 }) }}" class="{%if order.state ==5%}hidden{%endif%} py-1 px-2 mb-0 text-base font-normal tex-black bg-zinc-200 border border-gray rounded-sm hover:bg-white">Order cancelled</a>
 				{% else %}
-				<p>you cannot act on an order that has not yet been paid for</p>
-			</div>
-		
-				
+					<p>you cannot act on an order that has not yet been paid for</p>
+				</div>
+
+
 			{% endif %}
 
 
-			<hr class="text-start my-4">
-
-
+			<hr
+			class="text-start my-4">
 
 
 			<!-- STATUS ORDER  -->
@@ -130,7 +126,7 @@
 
 											<td class="whitespace-nowrap text-left">
 												<img src="{{ asset('upload/products/' ~ order.productIllustration) }}" alt="{{ order.productName }}" loading="lazy" class="w-14 mx-auto py-2"></td>
-											<td class="whitespace-nowrap  p-2">{{order.productName}}</td>
+											<td class="whitespace-nowrap  p-2 capitalize">{{order.productName}}</td>
 											<td class="whitespace-nowrap  p-2">{{ order.productQuantity }}</td>
 											<td class="whitespace-nowrap  p-2">{{ order.productPrice|price }}</td>
 											<td class="whitespace-nowrap  p-2">{{ order.productPromotion }}%</td>
@@ -186,6 +182,6 @@
 					</div>
 				</div>
 			</div>
-		</aside>
+		</div>
 	</div>
 {% endblock %}

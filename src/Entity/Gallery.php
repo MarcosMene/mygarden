@@ -53,8 +53,8 @@ class Gallery
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
+            // IT IS REQUIRED THAT AT LEAST ONE FIELD CHANGES IF YOU ARE USING DOCTRINE
+            // OTHERWISE THE EVENT LISTENERS WON'T BE CALLED AND THE FILE IS LOST
             $this->updatedAt = new \DateTimeImmutable();
         }
     }

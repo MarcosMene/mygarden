@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Users;
 
 use App\Entity\ReviewClient;
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +23,7 @@ class ReviewClientType extends AbstractType
                     'placeholder' => 'Ex.John',
                     'minlength' => 3,
                     'maxlength' => 41,
-                    'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black',
                 ]
             ])
             ->add('rate', ChoiceType::class, [
@@ -38,7 +38,7 @@ class ReviewClientType extends AbstractType
                     '5' => 5,
                 ],
                 'attr' => [
-                    'class' => 'w-fit rounded bg-white   shadow shadow-gray-100 mt-2  py-2 px-3 text-gray-500',
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100   py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-gray',
                 ],
                 'multiple' => false,
             ])
@@ -50,8 +50,8 @@ class ReviewClientType extends AbstractType
                     'placeholder' => 'Ex.This product...',
                     'minlength' => 20,
                     'maxlength' => 151,
-                    'class' => 'w-full rounded   bg-white p-3 shadow shadow-gray-100 text-base',
-                    'rows' => 3
+                    'class' => 'w-full rounded bg-white shadow shadow-gray-100  appearance-none outline-none py-2 px-3 leading-4 text-black  invalid:[&:not(:placeholder-shown):not(:focus)]:border-red peer  py-2 px-3 leading-4 text-black',
+                    'rows' => 5
                 ],
             ]);
     }

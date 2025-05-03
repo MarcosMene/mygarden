@@ -49,7 +49,9 @@ class OrderClientController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/detail/order/{id}', name: 'detail_order')]
+
+    //DETAIL ORDER
+    #[Route('/admin/detail/order/{id}', name: 'detail_order', methods: ['GET'])]
     public function detail($id, OrderRepository $orderRepository, Request $request): Response
     {
         $order = $orderRepository->find($id);

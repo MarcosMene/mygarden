@@ -2,17 +2,19 @@
 
 	<div class="garden_blog w-full pt-5 lg:pt-12 pb-10">
 		<h2 class="text-[1.5rem] md:text-[2rem] text-center  text-black font-normal ">Garden Blog</h2>
-		<!--IMAGE-->
-		<img src="{{asset('assets/images/decoration_text.png')}}" loading="lazy" alt="decoration title" class="mx-auto">
+
+		<!--image-->
+		{% include "_partials/_decoration.html.twig" %}
 
 		<div
-			class="md:container mx-auto px-8 lg:px-16">
+			class="container-fluid md:container  px-4 mx-auto">
 
 			<!--CARDS-->
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 lg:gap-20 mt-16">
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8  mt-16">
 
+				<!--CARD-->
 				{% for article in articles %}
-					<!--CARD-->
 					<a
 						href="{{path('blog_show', {slug: article.slug})}}" class="card relative  mb-12 border border-gray-200 hover:shadow-4 bg-white">
 						<!--LABEL DATE-->
@@ -28,8 +30,8 @@
 
 						<!--BODY-->
 						<div class="card-body flex flex-col items-center justify-center p-5">
-							<h3 class="text-primary font-medium  text-xl text-center">{{article.title}}</h3>
-							<p class="text-center">{{article.content|slice(0, 40) ~ '...'}}</p>
+							<h3 class="text-primary font-medium  text-[1rem] md:text-[1.2rem] text-center">{{article.title}}</h3>
+							<p class="text-center mt-4">{{article.content|slice(0, 40) ~ '...'}}</p>
 						</div>
 					</a>
 				{% endfor %}

@@ -227,7 +227,7 @@ class BlogController extends AbstractController
     }
 
     //DELETE ARTICLE
-    #[Route('/{id}', name: 'delete_article', requirements: ['id' => '\d+'], methods: ['DELETE'])]
+    #[Route('/{id}', name: 'delete_article', requirements: ['id' => '\d+'])]
     // #[IsGranted('ROLE_ADMIN')]
     public function delete(BlogArticleRepository $blogArticleRepository, Request $request, $id, Filesystem $filesystem): Response
     {

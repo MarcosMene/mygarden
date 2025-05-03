@@ -135,15 +135,13 @@ document.addEventListener('DOMContentLoaded', function () {
       headerContent.classList.add('error-message');
       headerContentError.innerText = 'The content of the header is required.';
       return false;
-    }
-    if (headercontent.length < 10 || headercontent.length > 50) {
+    } else if (headercontent.length < 10 || headercontent.length > 50) {
       headerContentError.style.display = 'block';
       headerContent.classList.add('error-message');
       headerContentError.innerText =
         'The content of the header must be at least 10 characters, and maximum 50 characters.';
       return false;
-    }
-    if (!validHeaderContent) {
+    } else if (!validHeaderContent) {
       headerContentError.style.display = 'block';
       headerContent.classList.add('error-message');
       headerContentError.innerText =
@@ -329,61 +327,61 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // CHECK SUGGESTION
-  function checkProductSuggestion() {
-    // SUGGESTION PLACEHOLDER
-    if (headerSuggestion.value) {
-      headerSuggestion.style.color = '#161616';
-    } else {
-      headerSuggestion.style.color = '#989898';
-    }
-    if (headerSuggestion.value == '') {
-      headerSuggestionError.style.display = 'block';
-      headerSuggestion.classList.add('error-message');
-      headerSuggestionError.innerText = 'The suggestion of header is required.';
-      return false;
-    } else {
-      headerSuggestionError.innerText = '';
-      headerSuggestionError.style.display = 'none';
-      headerSuggestion.classList.remove('error-message');
-      headerSuggestion.classList.add('validated-message');
-      return true;
-    }
-  }
+  // // CHECK SUGGESTION
+  // function checkProductSuggestion() {
+  //   // SUGGESTION PLACEHOLDER
+  //   if (headerSuggestion.value) {
+  //     headerSuggestion.style.color = '#161616';
+  //   } else {
+  //     headerSuggestion.style.color = '#989898';
+  //   }
+  //   if (headerSuggestion.value == '') {
+  //     headerSuggestionError.style.display = 'block';
+  //     headerSuggestion.classList.add('error-message');
+  //     headerSuggestionError.innerText = 'The suggestion of header is required.';
+  //     return false;
+  //   } else {
+  //     headerSuggestionError.innerText = '';
+  //     headerSuggestionError.style.display = 'none';
+  //     headerSuggestion.classList.remove('error-message');
+  //     headerSuggestion.classList.add('validated-message');
+  //     return true;
+  //   }
+  // }
 
-  // CHECK  TITLE BUTTON
-  function checkProductTitleButton() {
-    const patternProductTitleButton = /^[a-zA-ZÀ-ÿ0-9_\.,!?\-\s]{19,199}$/;
-    const headerdescription = headerTitleButton.value;
-    const validProductTitleButton =
-      patternProductTitleButton.test(headerdescription);
-    if (headerdescription.trim() === '') {
-      headerTitleButtonError.style.display = 'block';
-      headerTitleButton.classList.add('error-message');
-      headerTitleButtonError.innerText =
-        'The description of the header is required.';
-      return false;
-    } else if (
-      headerdescription.length < 20 ||
-      headerdescription.length > 200
-    ) {
-      headerTitleButtonError.style.display = 'block';
-      headerTitleButton.classList.add('error-message');
-      headerTitleButtonError.innerText =
-        'The description of the header must be at least 20 characters, and maximum 200 characters.';
-      return false;
-    } else if (!validProductTitleButton) {
-      headerTitleButtonError.style.display = 'block';
-      headerTitleButton.classList.add('error-message');
-      headerTitleButtonError.innerText =
-        'The description of the header can only contain constters, spaces, or hyphens';
-      return false;
-    } else {
-      headerTitleButtonError.innerText = '';
-      headerTitleButtonError.style.display = 'none';
-      headerTitleButton.classList.remove('error-message');
-      headerTitleButton.classList.add('validated-message');
-      return true;
-    }
-  }
+  // // CHECK  TITLE BUTTON
+  // function checkProductTitleButton() {
+  //   const patternProductTitleButton = /^[a-zA-ZÀ-ÿ0-9_\.,!?\-\s]{19,199}$/;
+  //   const headerdescription = headerTitleButton.value;
+  //   const validProductTitleButton =
+  //     patternProductTitleButton.test(headerdescription);
+  //   if (headerdescription.trim() === '') {
+  //     headerTitleButtonError.style.display = 'block';
+  //     headerTitleButton.classList.add('error-message');
+  //     headerTitleButtonError.innerText =
+  //       'The description of the header is required.';
+  //     return false;
+  //   } else if (
+  //     headerdescription.length < 20 ||
+  //     headerdescription.length > 200
+  //   ) {
+  //     headerTitleButtonError.style.display = 'block';
+  //     headerTitleButton.classList.add('error-message');
+  //     headerTitleButtonError.innerText =
+  //       'The description of the header must be at least 20 characters, and maximum 200 characters.';
+  //     return false;
+  //   } else if (!validProductTitleButton) {
+  //     headerTitleButtonError.style.display = 'block';
+  //     headerTitleButton.classList.add('error-message');
+  //     headerTitleButtonError.innerText =
+  //       'The description of the header can only contain constters, spaces, or hyphens';
+  //     return false;
+  //   } else {
+  //     headerTitleButtonError.innerText = '';
+  //     headerTitleButtonError.style.display = 'none';
+  //     headerTitleButton.classList.remove('error-message');
+  //     headerTitleButton.classList.add('validated-message');
+  //     return true;
+  //   }
+  // }
 });

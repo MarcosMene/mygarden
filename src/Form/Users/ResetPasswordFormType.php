@@ -1,52 +1,28 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Users;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ChangePasswordType extends AbstractType
+class ResetPasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('current_password', PasswordType::class, [
-                'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Your password is required.',
-                    ]),
-                    new Assert\Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password must be at least {{ limit }} characters long.',
-                        'max' => 16,
-                        'maxMessage' => 'Your password cannot be longer than {{ limit }} characters.',
-                    ]),
-                ],
-                'label' => 'Current password',
-                'mapped' => false,
-                'attr' => [
-                    'placeholder' => 'Enter your current password',
-                    'minlength' => 6,
-                    'maxlength' => 16,
-                    'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
-                ]
-            ])
-
             ->add('new_password', RepeatedType::class, [
                 'constraints' => [
                     new Assert\NotBlank([
                         'message' => 'Your password is required.',
                     ]),
                     new Assert\Length([
-                        'min' => 6,
+                        'min' => 8,
                         'minMessage' => 'Your password must be at least {{ limit }} characters long.',
                         'max' => 16,
                         'maxMessage' => 'Your password cannot be longer than {{ limit }} characters.',
@@ -61,45 +37,36 @@ class ChangePasswordType extends AbstractType
                     'label' => 'New password',
                     'attr' => [
                         'placeholder' => 'Enter your new password',
-                        'minlength' => 6,
+                        'minlength' => 8,
                         'maxlength' => 16,
                         'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
-                    ]
+                    ],
+                    'hash_property_path' => 'password' //PASSWORD WILL BE HASHED
                 ],
                 'second_options' => [
                     'label' => 'Confirm new password',
                     'attr' => [
                         'placeholder' => 'Cofirm your new password',
-                        'minlength' => 6,
+                        'minlength' => 8,
                         'maxlength' => 16,
                         'class' => 'w-full rounded bg-white shadow shadow-gray-100 mt-2 appearance-none outline-none py-2 px-3 leading-4 text-black',
                     ]
                 ],
             ])
-
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-                $form = $event->getForm();
-                $user = $form->getConfig()->getOptions()['data'];
-                $passwordHasher = $form->getConfig()->getOptions()['passwordHasher'];
-
-                //get password from form and compare with password from database
-                $isValid = $passwordHasher->isPasswordValid(
-                    $user,
-                    $form->get('current_password')->getData()
-                );
-
-                //send error if it is different
-                if (!$isValid) {
-                    $form->get('current_password')->addError(new FormError("Your current password is not valid. Please try again."));
-                }
-            });
+            ->add('submit', SubmitType::class, [
+                'label' => 'Modify password',
+                'attr' => [
+                    'class' => 'py-2 px-4 w-full  mt-6 hover:bg-white hover:text-primary transition ease-in-out delay-100 uppercase border border-primary text-base font-medium text-white  bg-primary rounded-sm group-invalid:pointer-events-none group-invalid:opacity-60 group-invalid:disabled"'
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            // CONFIGURE YOUR FORM OPTIONS HERE
             'data_class' => User::class,
-            'passwordHasher' => null
         ]);
     }
 }
